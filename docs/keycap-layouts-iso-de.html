@@ -119,20 +119,33 @@
       color: #2a2a2a;
     }
 
-    /* Modifier keys: label bottom-left */
+    /* Modifier keys: centered */
     .k-mod {
+      font-size: 8px; font-weight: 500; line-height: 1.25;
+      color: #1e3a6e; text-align: center;
+    }
+
+    /* Modifier symbol keys (⇧ ↵ ⟵): larger centered symbol */
+    .k-mod-sym {
+      font-size: 15px; font-weight: 300;
+      color: #1e3a6e;
+    }
+
+    /* AltGr (3rd-level) char: bottom-right, blue */
+    .k-altgr {
       position: absolute;
-      bottom: 4px; left: 5px;
-      font-size: 8.5px; font-weight: 500; line-height: 1.25;
-      color: #1e3a6e; text-align: left;
+      bottom: 2px; right: 3px;
+      font-size: 7px; font-weight: 500;
+      color: #0055cc;
+      line-height: 1;
     }
 
     /* Enter key (on ISO Enter, centered in top half) */
     .k-enter {
       position: absolute;
-      top: 12px; left: 0; right: 0;
+      top: 14px; left: 0; right: 0;
       text-align: center;
-      font-size: 9px; font-weight: 500; color: #1e3a6e;
+      font-size: 16px; font-weight: 300; color: #1e3a6e;
     }
 
     /* F-keys and Esc */
@@ -217,19 +230,19 @@ const LAYOUTS = [
     enterTopW: 1.5, enterBotX: 13.75,
     rows: [
       { y:0, keys:[
-        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
-        {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
-        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
-        {l:'9 )',w:1,t:'alpha'},{l:'0 =',w:1,t:'alpha'},{l:'ß ?',w:1,t:'alpha'},
-        {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2,t:'mod'},
+        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha',ag:'²'},
+        {l:'3 §',w:1,t:'alpha',ag:'³'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
+        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha',ag:'{'},{l:'8 (',w:1,t:'alpha',ag:'['},
+        {l:'9 )',w:1,t:'alpha',ag:']'},{l:'0 =',w:1,t:'alpha',ag:'}'},{l:'ß ?',w:1,t:'alpha',ag:'\\'},
+        {l:'´ `',w:1,t:'alpha'},{l:'⟵',w:2,t:'mod'},
         {l:'Entf',w:1,t:'nav',rcol:true},
       ]},
       { y:1, keys:[
         {l:'Tab',w:1.5,t:'mod'},
-        {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
+        {l:'Q',w:1,t:'alpha',ag:'@'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha',ag:'€'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
         {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
-        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha'},
+        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha',ag:'~'},
         {l:'Enter',w:1.5,t:'mod',iso:true},
         {l:'BildAuf',w:1,t:'nav',rcol:true},
       ]},
@@ -242,21 +255,26 @@ const LAYOUTS = [
         {l:'BildAb',w:1,t:'nav',rcol:true},
       ]},
       { y:3, keys:[
-        {l:'LShift',w:1.25,t:'mod'},
-        {l:'< >',w:1,t:'extra',iso_extra:true},
+        {l:'⇧',w:1.25,t:'mod'},
+        {l:'< >',w:1,t:'extra',iso_extra:true,ag:'|'},
         {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
         {l:'V',w:1,t:'alpha'},{l:'B',w:1,t:'alpha'},{l:'N',w:1,t:'alpha'},
-        {l:'M',w:1,t:'alpha'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
-        {l:'- _',w:1,t:'alpha'},{l:'RShift',w:1.75,t:'mod'},
-        {l:'↑',w:1,t:'nav',rcol:true},
+        {l:'M',w:1,t:'alpha',ag:'µ'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
+        {l:'- _',w:1,t:'alpha'},{l:'⇧',w:1.75,t:'mod'},
+        {l:'Ende',w:1,t:'nav',rcol:true},
       ]},
       { y:4, keys:[
         {l:'Strg',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Alt',w:1.25,t:'mod'},
         {l:'Leertaste',w:6.25,t:'space'},
         {l:'AltGr',w:1,t:'mod'},{l:'Fn',w:1,t:'mod'},
-        {l:'←',w:1,t:'nav'},{l:'↓',w:1,t:'nav'},{l:'→',w:1,t:'nav'},
       ]},
-    ]
+    ],
+    arrowCluster: {
+      up:    { x: 14.5,  row: 3, yOff: 0.25 },
+      left:  { x: 13.5,  row: 4, yOff: 0.25 },
+      down:  { x: 14.5,  row: 4, yOff: 0.25 },
+      right: { x: 15.5,  row: 4, yOff: 0.25 },
+    },
   },
 
   // ── 75% ─────────────────────────────────────────────────────────────────────
@@ -273,19 +291,19 @@ const LAYOUTS = [
     ],
     rows: [
       { y:0, keys:[
-        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
-        {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
-        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
-        {l:'9 )',w:1,t:'alpha'},{l:'0 =',w:1,t:'alpha'},{l:'ß ?',w:1,t:'alpha'},
-        {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2.25,t:'mod'},
+        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha',ag:'²'},
+        {l:'3 §',w:1,t:'alpha',ag:'³'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
+        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha',ag:'{'},{l:'8 (',w:1,t:'alpha',ag:'['},
+        {l:'9 )',w:1,t:'alpha',ag:']'},{l:'0 =',w:1,t:'alpha',ag:'}'},{l:'ß ?',w:1,t:'alpha',ag:'\\'},
+        {l:'´ `',w:1,t:'alpha'},{l:'⟵',w:2.25,t:'mod'},
         {l:'BildAuf',w:1,t:'nav',rcol:true},
       ]},
       { y:1, keys:[
         {l:'Tab',w:1.5,t:'mod'},
-        {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
+        {l:'Q',w:1,t:'alpha',ag:'@'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha',ag:'€'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
         {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
-        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha'},
+        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha',ag:'~'},
         {l:'Enter',w:1.5,t:'mod',iso:true},
         {l:'BildAb',w:1,t:'nav',rcol:true},
       ]},
@@ -298,21 +316,26 @@ const LAYOUTS = [
         {l:'Pos1',w:1,t:'nav',rcol:true},
       ]},
       { y:3, keys:[
-        {l:'LShift',w:1.25,t:'mod'},
-        {l:'< >',w:1,t:'extra',iso_extra:true},
+        {l:'⇧',w:1.25,t:'mod'},
+        {l:'< >',w:1,t:'extra',iso_extra:true,ag:'|'},
         {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
         {l:'V',w:1,t:'alpha'},{l:'B',w:1,t:'alpha'},{l:'N',w:1,t:'alpha'},
-        {l:'M',w:1,t:'alpha'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
-        {l:'- _',w:1,t:'alpha'},{l:'RShift',w:1.75,t:'mod'},
-        {l:'↑',w:1,t:'nav',rcol:true},
+        {l:'M',w:1,t:'alpha',ag:'µ'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
+        {l:'- _',w:1,t:'alpha'},{l:'⇧',w:1.75,t:'mod'},
+        {l:'Ende',w:1,t:'nav',rcol:true},
       ]},
       { y:4, keys:[
         {l:'Strg',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Alt',w:1.25,t:'mod'},
         {l:'Leertaste',w:6.5,t:'space'},
         {l:'AltGr',w:1,t:'mod'},{l:'Fn',w:1,t:'mod'},{l:'Strg',w:1,t:'mod'},
-        {l:'←',w:1,t:'nav'},{l:'↓',w:1,t:'nav'},{l:'→',w:1,t:'nav'},
       ]},
-    ]
+    ],
+    arrowCluster: {
+      up:    { x: 14.25, row: 3, yOff: 0.25 },
+      left:  { x: 13.25, row: 4, yOff: 0.25 },
+      down:  { x: 14.25, row: 4, yOff: 0.25 },
+      right: { x: 15.25, row: 4, yOff: 0.25 },
+    },
   },
 
   // ── 80% TKL ─────────────────────────────────────────────────────────────────
@@ -329,19 +352,19 @@ const LAYOUTS = [
     ],
     rows: [
       { y:0, keys:[
-        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
-        {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
-        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
-        {l:'9 )',w:1,t:'alpha'},{l:'0 =',w:1,t:'alpha'},{l:'ß ?',w:1,t:'alpha'},
-        {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2,t:'mod'},
+        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha',ag:'²'},
+        {l:'3 §',w:1,t:'alpha',ag:'³'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
+        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha',ag:'{'},{l:'8 (',w:1,t:'alpha',ag:'['},
+        {l:'9 )',w:1,t:'alpha',ag:']'},{l:'0 =',w:1,t:'alpha',ag:'}'},{l:'ß ?',w:1,t:'alpha',ag:'\\'},
+        {l:'´ `',w:1,t:'alpha'},{l:'⟵',w:2,t:'mod'},
         {l:'Einfg',w:1,t:'nav',rcol:true},{l:'Pos1',w:1,t:'nav',rcol:true},{l:'BildAuf',w:1,t:'nav',rcol:true},
       ]},
       { y:1, keys:[
         {l:'Tab',w:1.5,t:'mod'},
-        {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
+        {l:'Q',w:1,t:'alpha',ag:'@'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha',ag:'€'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
         {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
-        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha'},
+        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha',ag:'~'},
         {l:'Enter',w:1.5,t:'mod',iso:true},
         {l:'Entf',w:1,t:'nav',rcol:true},{l:'Ende',w:1,t:'nav',rcol:true},{l:'BildAb',w:1,t:'nav',rcol:true},
       ]},
@@ -353,13 +376,13 @@ const LAYOUTS = [
         {l:'Ö',w:1,t:'alpha'},{l:'Ä',w:1,t:'alpha'},{l:"# '",w:1,t:'alpha'},
       ]},
       { y:3, keys:[
-        {l:'LShift',w:1.25,t:'mod'},
-        {l:'< >',w:1,t:'extra',iso_extra:true},
+        {l:'⇧',w:1.25,t:'mod'},
+        {l:'< >',w:1,t:'extra',iso_extra:true,ag:'|'},
         {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
         {l:'V',w:1,t:'alpha'},{l:'B',w:1,t:'alpha'},{l:'N',w:1,t:'alpha'},
-        {l:'M',w:1,t:'alpha'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
-        {l:'- _',w:1,t:'alpha'},{l:'RShift',w:2.75,t:'mod'},
-        {l:'↑',w:1,t:'nav',rcol:true},
+        {l:'M',w:1,t:'alpha',ag:'µ'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
+        {l:'- _',w:1,t:'alpha'},{l:'⇧',w:2.75,t:'mod'},
+        {l:'↑',w:1,t:'nav',rcol:true,rcolOff:1},
       ]},
       { y:4, keys:[
         {l:'Strg',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Alt',w:1.25,t:'mod'},
@@ -385,21 +408,21 @@ const LAYOUTS = [
     ],
     rows: [
       { y:0, keys:[
-        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
-        {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
-        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
-        {l:'9 )',w:1,t:'alpha'},{l:'0 =',w:1,t:'alpha'},{l:'ß ?',w:1,t:'alpha'},
-        {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2,t:'mod'},
+        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha',ag:'²'},
+        {l:'3 §',w:1,t:'alpha',ag:'³'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
+        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha',ag:'{'},{l:'8 (',w:1,t:'alpha',ag:'['},
+        {l:'9 )',w:1,t:'alpha',ag:']'},{l:'0 =',w:1,t:'alpha',ag:'}'},{l:'ß ?',w:1,t:'alpha',ag:'\\'},
+        {l:'´ `',w:1,t:'alpha'},{l:'⟵',w:2,t:'mod'},
         {l:'Einfg',w:1,t:'nav',rcol:true},{l:'Pos1',w:1,t:'nav',rcol:true},{l:'BildAuf',w:1,t:'nav',rcol:true},
         {l:'7',w:1,t:'numpad',np:true},{l:'8',w:1,t:'numpad',np:true},{l:'9',w:1,t:'numpad',np:true},
         {l:'+',w:1,t:'numpad',np:true,npTall:true},
       ]},
       { y:1, keys:[
         {l:'Tab',w:1.5,t:'mod'},
-        {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
+        {l:'Q',w:1,t:'alpha',ag:'@'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha',ag:'€'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
         {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
-        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha'},
+        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha',ag:'~'},
         {l:'Enter',w:1.5,t:'mod',iso:true},
         {l:'Entf',w:1,t:'nav',rcol:true},{l:'Ende',w:1,t:'nav',rcol:true},{l:'BildAb',w:1,t:'nav',rcol:true},
         {l:'4',w:1,t:'numpad',np:true},{l:'5',w:1,t:'numpad',np:true},{l:'6',w:1,t:'numpad',np:true},
@@ -414,13 +437,13 @@ const LAYOUTS = [
         {l:'Enter',w:1,t:'numpad',np:true,npTall:true},
       ]},
       { y:3, keys:[
-        {l:'LShift',w:1.25,t:'mod'},
-        {l:'< >',w:1,t:'extra',iso_extra:true},
+        {l:'⇧',w:1.25,t:'mod'},
+        {l:'< >',w:1,t:'extra',iso_extra:true,ag:'|'},
         {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
         {l:'V',w:1,t:'alpha'},{l:'B',w:1,t:'alpha'},{l:'N',w:1,t:'alpha'},
-        {l:'M',w:1,t:'alpha'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
-        {l:'- _',w:1,t:'alpha'},{l:'RShift',w:2.75,t:'mod'},
-        {l:'↑',w:1,t:'nav',rcol:true},
+        {l:'M',w:1,t:'alpha',ag:'µ'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
+        {l:'- _',w:1,t:'alpha'},{l:'⇧',w:2.75,t:'mod'},
+        {l:'↑',w:1,t:'nav',rcol:true,rcolOff:1},
         {l:'0',w:2,t:'numpad',np:true},{l:'.',w:1,t:'numpad',np:true},
       ]},
       { y:4, keys:[
@@ -452,7 +475,9 @@ function span(cls, text) {
   return el;
 }
 
-function renderLabel(div, label, cls, sizeHint) {
+const MOD_SYMS = new Set(['⇧','↵','⟵','⇞','⇟']);
+
+function renderLabel(div, label, cls, sizeHint, altgr) {
   if (cls === 'c-space') return; // empty spacebar
 
   if (ARROWS.has(label)) {
@@ -477,12 +502,13 @@ function renderLabel(div, label, cls, sizeHint) {
     div.appendChild(span(isOp ? 'k-np-op' : 'k-np-num', label));
 
   } else if (cls === 'c-mod') {
-    div.appendChild(span('k-mod', label));
+    div.appendChild(span(MOD_SYMS.has(label) ? 'k-mod-sym' : 'k-mod', label));
 
   } else {
     div.appendChild(span('k-nav', label));
   }
 
+  if (altgr) div.appendChild(span('k-altgr', altgr));
   if (sizeHint) div.appendChild(span('k-size', sizeHint));
 }
 
@@ -502,11 +528,11 @@ function sizeLabel(w) {
 }
 
 // ─── makeKey ─────────────────────────────────────────────────────────────────
-function makeKey(x, y, w, h, label, cls, sizeHint) {
+function makeKey(x, y, w, h, label, cls, sizeHint, altgr) {
   const div = document.createElement('div');
   div.className = 'key ' + cls;
   div.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
-  renderLabel(div, label, cls, sizeHint);
+  renderLabel(div, label, cls, sizeHint, altgr);
   return div;
 }
 
@@ -569,13 +595,14 @@ function renderLayout(layout) {
         continue;
       }
       const hint = k.iso_extra ? '' : sizeLabel(k.w);
-      kbd.appendChild(makeKey(kx(rx), rowY, kw(k.w), KH, k.l, tc(k.t), hint));
+      kbd.appendChild(makeKey(kx(rx), rowY, kw(k.w), KH, k.l, tc(k.t), hint, k.ag));
       rx += k.w;
     }
 
-    // Right-column keys
+    // Right-column keys (rcolOff overrides index for positioning, e.g. ↑ centred in nav cluster)
     for (let i = 0; i < rcolPart.length; i++) {
-      rcolKeys.push({ y: rowY, x: rcolX + kx(i), k: rcolPart[i] });
+      const colOff = rcolPart[i].rcolOff !== undefined ? rcolPart[i].rcolOff : i;
+      rcolKeys.push({ y: rowY, x: rcolX + kx(colOff), k: rcolPart[i] });
     }
 
     // Numpad non-tall keys
@@ -607,12 +634,21 @@ function renderLayout(layout) {
     eDiv.style.clipPath =
       `polygon(0% 0%, 100% 0%, 100% 100%, ${nxPct}% 100%, ${nxPct}% ${nyPct}%, 0% ${nyPct}%)`;
 
-    // "Enter" label centered in top half
+    // Enter symbol centered in top half
     const lbl = document.createElement('span');
     lbl.className = 'k-enter';
-    lbl.textContent = 'Enter';
+    lbl.textContent = '↵';
     eDiv.appendChild(lbl);
     kbd.appendChild(eDiv);
+  }
+
+  // ── Arrow cluster (65%/75%: keys float between rows with y-offset) ──────
+  if (layout.arrowCluster) {
+    const ac = layout.arrowCluster;
+    for (const [label, pos] of [['↑',ac.up],['←',ac.left],['↓',ac.down],['→',ac.right]]) {
+      const ay = rowYBase + pos.row * U + pos.yOff * U;
+      kbd.appendChild(makeKey(kx(pos.x), ay, KH, KH, label, 'c-nav', ''));
+    }
   }
 
   // ── Tall numpad keys (+ and Enter) ───────────────────────────────────────
