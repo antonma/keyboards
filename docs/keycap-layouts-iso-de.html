@@ -4,94 +4,178 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ISO DE Keyboard Layout Referenz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      margin: 24px;
-      background: #f2f2f2;
-      color: #222;
-    }
-    h1 { font-size: 20px; margin: 0 0 16px; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Legend */
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      margin: 28px;
+      background: #dcdcdc;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #222;
+      letter-spacing: -0.3px;
+    }
+
+    /* ── Legend ──────────────────────────────────────────────────────────── */
     .legend {
-      display: flex;
+      display: inline-flex;
       flex-wrap: wrap;
-      gap: 10px 18px;
+      gap: 8px 16px;
       margin-bottom: 28px;
       background: #fff;
-      padding: 10px 14px;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      display: inline-flex;
+      padding: 9px 14px;
+      border-radius: 7px;
+      border: 1px solid #ccc;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-    .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; }
-    .legend-swatch { width: 22px; height: 14px; border-radius: 3px; border: 1.5px solid #aaa; flex-shrink: 0; }
+    .legend-item { display: flex; align-items: center; gap: 5px; font-size: 10.5px; color: #444; }
+    .legend-swatch {
+      width: 22px; height: 13px; border-radius: 3px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.15), 0 1px 0 rgba(0,0,0,0.15);
+    }
 
-    /* Layout sections */
-    .layout-section {
-      margin-bottom: 40px;
-      page-break-inside: avoid;
-    }
+    /* ── Layout sections ─────────────────────────────────────────────────── */
+    .layout-section { margin-bottom: 36px; page-break-inside: avoid; }
     .layout-title {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #333;
+      font-size: 13px; font-weight: 600;
+      margin-bottom: 10px; color: #444;
+      letter-spacing: 0.3px; text-transform: uppercase;
     }
 
-    /* Keyboard wrapper */
+    /* ── Keyboard case ───────────────────────────────────────────────────── */
     .keyboard-wrap {
-      background: #c8c8c8;
-      border-radius: 8px;
-      padding: 10px;
       display: inline-block;
+      background: linear-gradient(160deg, #b4b4b4 0%, #8e8e8e 100%);
+      border-radius: 10px;
+      padding: 10px 10px 13px 10px;
+      box-shadow:
+        0 6px 18px rgba(0,0,0,0.28),
+        0 1px 0 rgba(255,255,255,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.15);
     }
-    .keyboard {
-      position: relative;
-    }
+    .keyboard { position: relative; }
 
-    /* Keys */
+    /* ── Keys (base) ─────────────────────────────────────────────────────── */
     .key {
       position: absolute;
-      border-radius: 4px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      border-radius: 5px;
       overflow: hidden;
       cursor: default;
       user-select: none;
-      font-size: 10px;
-      line-height: 1.2;
-    }
-    .key-inner {
-      pointer-events: none;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1px;
+      /* 3-D raised effect */
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.18),
+        0 2.5px 0 rgba(0,0,0,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.65),
+        inset 0 -1px 0 rgba(0,0,0,0.04);
     }
-    .k-main { font-size: 10px; font-weight: 500; }
-    .k-sub  { font-size: 8px;  color: #555; }
-    .k-size { font-size: 7px;  color: #888; margin-top: 1px; }
 
-    /* Key type colors */
-    .c-alpha  { background: #f5f5f5; border: 1.5px solid #bbb; }
-    .c-mod    { background: #dce8fc; border: 1.5px solid #7aaae8; }
-    .c-fn     { background: #fde8d0; border: 1.5px solid #e8aa66; }
-    .c-nav    { background: #d4f4d4; border: 1.5px solid #66bb66; }
-    .c-space  { background: #fffcc0; border: 1.5px solid #cccc44; }
-    .c-numpad { background: #d0eeff; border: 1.5px solid #55aadd; }
-    .c-extra  { background: #f0f0f0; border: 1.5px solid #aaa; }
+    /* ── Key colour palettes (refined, low-saturation) ───────────────────── */
+    .c-alpha  { background: linear-gradient(180deg, #fdfdfd 0%, #f1f1f1 100%); }
+    .c-mod    { background: linear-gradient(180deg, #eef3fd 0%, #dae6f8 100%); }
+    .c-fn     { background: linear-gradient(180deg, #fff5eb 0%, #ffe5ca 100%); }
+    .c-nav    { background: linear-gradient(180deg, #edfaed 0%, #d0f0d0 100%); }
+    .c-space  { background: linear-gradient(180deg, #fffde8 0%, #fff3b0 100%); }
+    .c-numpad { background: linear-gradient(180deg, #eef5ff 0%, #d4ebff 100%); }
+    .c-extra  { background: linear-gradient(180deg, #f8f8f8 0%, #ebebeb 100%); }
 
+    /* ── Label styles ────────────────────────────────────────────────────── */
+
+    /* Dual-legend: Shift char top-left, Base char bottom-left */
+    .k-shift {
+      position: absolute;
+      top: 3px; left: 4px;
+      font-size: 7.5px; font-weight: 400; line-height: 1;
+      color: #606060;
+    }
+    .k-base {
+      position: absolute;
+      bottom: 3px; left: 4px;
+      font-size: 11px; font-weight: 700; line-height: 1;
+      color: #1a1a1a;
+    }
+
+    /* Single alpha (A–Z, Ü, Ö, Ä) */
+    .k-alpha {
+      font-size: 13px; font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    /* Arrow symbols */
+    .k-arrow {
+      font-size: 15px; font-weight: 400;
+      color: #2a2a2a;
+    }
+
+    /* Modifier keys: label bottom-left */
+    .k-mod {
+      position: absolute;
+      bottom: 4px; left: 5px;
+      font-size: 8.5px; font-weight: 500; line-height: 1.25;
+      color: #1e3a6e; text-align: left;
+    }
+
+    /* Enter key (on ISO Enter, centered in top half) */
+    .k-enter {
+      position: absolute;
+      top: 12px; left: 0; right: 0;
+      text-align: center;
+      font-size: 9px; font-weight: 500; color: #1e3a6e;
+    }
+
+    /* F-keys and Esc */
+    .k-fn {
+      font-size: 9px; font-weight: 600;
+      color: #7a3a10;
+    }
+
+    /* Navigation keys — normal */
+    .k-nav {
+      font-size: 8px; font-weight: 600;
+      color: #1a5c1a; text-align: center;
+    }
+    /* Nav keys rarely used: dimmed */
+    .k-nav-dim {
+      font-size: 7.5px; font-weight: 400;
+      color: #4a8c4a; text-align: center; opacity: 0.85;
+    }
+
+    /* Numpad numbers */
+    .k-np-num { font-size: 13px; font-weight: 700; color: #0a2a4a; }
+    /* Numpad operators */
+    .k-np-op  { font-size: 11px; font-weight: 600; color: #0a2a4a; }
+
+    /* Size annotation (bottom-right) */
+    .k-size {
+      position: absolute;
+      bottom: 2px; right: 3px;
+      font-size: 6px; font-weight: 400; color: #bbb;
+      line-height: 1;
+    }
+
+    /* ── Print ───────────────────────────────────────────────────────────── */
     @media print {
-      body { background: #fff; margin: 10px; }
+      body { background: #fff; margin: 8px; }
       .layout-section { page-break-inside: avoid; }
-      .keyboard-wrap { background: #ddd; }
+      .keyboard-wrap {
+        background: #999;
+        box-shadow: none;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .key { box-shadow: 0 0 0 1px rgba(0,0,0,0.25) !important; }
     }
   </style>
 </head>
@@ -102,7 +186,7 @@
 <div class="legend">
   <div class="legend-item"><div class="legend-swatch c-alpha"></div><span>Alpha / Zahl</span></div>
   <div class="legend-item"><div class="legend-swatch c-mod"></div><span>Modifier</span></div>
-  <div class="legend-item"><div class="legend-swatch c-fn"></div><span>F-Taste / Fn</span></div>
+  <div class="legend-item"><div class="legend-swatch c-fn"></div><span>F-Taste</span></div>
   <div class="legend-item"><div class="legend-swatch c-nav"></div><span>Navigation</span></div>
   <div class="legend-item"><div class="legend-swatch c-space"></div><span>Leertaste</span></div>
   <div class="legend-item"><div class="legend-swatch c-numpad"></div><span>Numpad</span></div>
@@ -111,37 +195,28 @@
 <div id="layouts"></div>
 
 <script>
-// ─── Rendering constants ──────────────────────────────────────────────────────
-const U  = 48;   // pixels per 1u (including gap)
-const G  =  3;   // gap between keys (pixels)
-const KH = U - G; // key visual height (45px)
+// ─── Constants ────────────────────────────────────────────────────────────────
+const U  = 48;      // pixels per 1u (step = key + gap)
+const G  =  3;      // gap between keys
+const KH = U - G;   // key visual height = 45px
 
-function kx(units) { return units * U; }           // x position from units
-function kw(units) { return units * U - G; }       // visual key width from units
+function kx(u) { return u * U; }        // x position
+function kw(u) { return u * U - G; }    // visual key width
 
 // ─── Layout data ──────────────────────────────────────────────────────────────
-// Each key: { l: label, w: width_units, t: type }
-//   Multiline label: 'main\nsub'
-//   Special: iso: true (ISO enter, listed in QWERTZ row, w = top width)
-//            iso_extra: true (< > key)
-//            rcol: true  (right-column key — rendered to the right of main body)
-//            gap: n      (horizontal gap, no key rendered)
-//            hidden: true (placeholder for ISO Enter bottom — not rendered)
-// Types: alpha, mod, fn, nav, space, numpad, extra
+// Key object: { l, w, t, iso?, iso_extra?, rcol?, np?, npTall?, gap? }
+// label format for dual-legend: 'base shift'  e.g. '1 !'
+// Types: alpha | mod | fn | nav | space | numpad | extra
 
 const LAYOUTS = [
 
   // ── 65% ─────────────────────────────────────────────────────────────────────
   {
     name: '65% ISO DE',
-    mainW: 15,     // main body width in units
-    rcolGap: 0.25, // gap between main body and right column
-    // ISO Enter dimensions
-    enterTopW: 1.5,   // width of Enter in QWERTZ row
-    enterBotX: 13.75, // left edge of Enter in ASDF row (Caps 1.75 + 12 keys)
+    mainW: 15, rcolGap: 0.25,
+    enterTopW: 1.5, enterBotX: 13.75,
     rows: [
-      // row 0 — number row
-      { y: 0, keys: [
+      { y:0, keys:[
         {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
         {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
         {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
@@ -149,8 +224,7 @@ const LAYOUTS = [
         {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2,t:'mod'},
         {l:'Entf',w:1,t:'nav',rcol:true},
       ]},
-      // row 1 — QWERTZ row
-      { y: 1, keys: [
+      { y:1, keys:[
         {l:'Tab',w:1.5,t:'mod'},
         {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
@@ -159,18 +233,15 @@ const LAYOUTS = [
         {l:'Enter',w:1.5,t:'mod',iso:true},
         {l:'BildAuf',w:1,t:'nav',rcol:true},
       ]},
-      // row 2 — ASDF row
-      { y: 2, keys: [
+      { y:2, keys:[
         {l:'Caps',w:1.75,t:'mod'},
         {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
         {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
         {l:'J',w:1,t:'alpha'},{l:'K',w:1,t:'alpha'},{l:'L',w:1,t:'alpha'},
         {l:'Ö',w:1,t:'alpha'},{l:'Ä',w:1,t:'alpha'},{l:"# '",w:1,t:'alpha'},
-        // ISO Enter bottom occupies 13.75u → 15u (auto-filled by renderer)
         {l:'BildAb',w:1,t:'nav',rcol:true},
       ]},
-      // row 3 — shift row
-      { y: 3, keys: [
+      { y:3, keys:[
         {l:'LShift',w:1.25,t:'mod'},
         {l:'< >',w:1,t:'extra',iso_extra:true},
         {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
@@ -179,8 +250,7 @@ const LAYOUTS = [
         {l:'- _',w:1,t:'alpha'},{l:'RShift',w:1.75,t:'mod'},
         {l:'↑',w:1,t:'nav',rcol:true},
       ]},
-      // row 4 — space row
-      { y: 4, keys: [
+      { y:4, keys:[
         {l:'Strg',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Alt',w:1.25,t:'mod'},
         {l:'Leertaste',w:6.25,t:'space'},
         {l:'AltGr',w:1,t:'mod'},{l:'Fn',w:1,t:'mod'},
@@ -192,25 +262,17 @@ const LAYOUTS = [
   // ── 75% ─────────────────────────────────────────────────────────────────────
   {
     name: '75% ISO DE',
-    mainW: 15,
-    rcolGap: 0.25,
-    enterTopW: 1.5,
-    enterBotX: 13.75,
-    // F-row offset: Esc + gaps + F1-F12 + Entf — placed in a higher row
+    mainW: 15, rcolGap: 0.25,
+    enterTopW: 1.5, enterBotX: 13.75,
     frow: [
-      {l:'Esc',w:1,t:'fn'},
-      {gap:0.5},
-      {l:'F1',w:1,t:'fn'},{l:'F2',w:1,t:'fn'},{l:'F3',w:1,t:'fn'},{l:'F4',w:1,t:'fn'},
-      {gap:0.25},
-      {l:'F5',w:1,t:'fn'},{l:'F6',w:1,t:'fn'},{l:'F7',w:1,t:'fn'},{l:'F8',w:1,t:'fn'},
-      {gap:0.25},
-      {l:'F9',w:1,t:'fn'},{l:'F10',w:1,t:'fn'},{l:'F11',w:1,t:'fn'},{l:'F12',w:1,t:'fn'},
-      {gap:0.25},
+      {l:'Esc',w:1,t:'fn'},{gap:0.5},
+      {l:'F1',w:1,t:'fn'},{l:'F2',w:1,t:'fn'},{l:'F3',w:1,t:'fn'},{l:'F4',w:1,t:'fn'},{gap:0.25},
+      {l:'F5',w:1,t:'fn'},{l:'F6',w:1,t:'fn'},{l:'F7',w:1,t:'fn'},{l:'F8',w:1,t:'fn'},{gap:0.25},
+      {l:'F9',w:1,t:'fn'},{l:'F10',w:1,t:'fn'},{l:'F11',w:1,t:'fn'},{l:'F12',w:1,t:'fn'},{gap:0.25},
       {l:'Entf',w:1,t:'nav'},
     ],
     rows: [
-      // row 0 — number row
-      { y: 0, keys: [
+      { y:0, keys:[
         {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
         {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
         {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
@@ -218,8 +280,7 @@ const LAYOUTS = [
         {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2.25,t:'mod'},
         {l:'BildAuf',w:1,t:'nav',rcol:true},
       ]},
-      // row 1 — QWERTZ row
-      { y: 1, keys: [
+      { y:1, keys:[
         {l:'Tab',w:1.5,t:'mod'},
         {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
@@ -228,8 +289,7 @@ const LAYOUTS = [
         {l:'Enter',w:1.5,t:'mod',iso:true},
         {l:'BildAb',w:1,t:'nav',rcol:true},
       ]},
-      // row 2 — ASDF row
-      { y: 2, keys: [
+      { y:2, keys:[
         {l:'Caps',w:1.75,t:'mod'},
         {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
         {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
@@ -237,8 +297,7 @@ const LAYOUTS = [
         {l:'Ö',w:1,t:'alpha'},{l:'Ä',w:1,t:'alpha'},{l:"# '",w:1,t:'alpha'},
         {l:'Pos1',w:1,t:'nav',rcol:true},
       ]},
-      // row 3 — shift row
-      { y: 3, keys: [
+      { y:3, keys:[
         {l:'LShift',w:1.25,t:'mod'},
         {l:'< >',w:1,t:'extra',iso_extra:true},
         {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
@@ -247,8 +306,7 @@ const LAYOUTS = [
         {l:'- _',w:1,t:'alpha'},{l:'RShift',w:1.75,t:'mod'},
         {l:'↑',w:1,t:'nav',rcol:true},
       ]},
-      // row 4 — space row
-      { y: 4, keys: [
+      { y:4, keys:[
         {l:'Strg',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Alt',w:1.25,t:'mod'},
         {l:'Leertaste',w:6.5,t:'space'},
         {l:'AltGr',w:1,t:'mod'},{l:'Fn',w:1,t:'mod'},{l:'Strg',w:1,t:'mod'},
@@ -260,25 +318,17 @@ const LAYOUTS = [
   // ── 80% TKL ─────────────────────────────────────────────────────────────────
   {
     name: '80% TKL ISO DE',
-    mainW: 15,
-    rcolGap: 1,      // standard 1u gap to nav cluster
-    navCols: 3,      // 3 nav columns
-    enterTopW: 1.5,
-    enterBotX: 13.75,
+    mainW: 15, rcolGap: 1, navCols: 3,
+    enterTopW: 1.5, enterBotX: 13.75,
     frow: [
-      {l:'Esc',w:1,t:'fn'},
-      {gap:1},
-      {l:'F1',w:1,t:'fn'},{l:'F2',w:1,t:'fn'},{l:'F3',w:1,t:'fn'},{l:'F4',w:1,t:'fn'},
-      {gap:0.5},
-      {l:'F5',w:1,t:'fn'},{l:'F6',w:1,t:'fn'},{l:'F7',w:1,t:'fn'},{l:'F8',w:1,t:'fn'},
-      {gap:0.5},
-      {l:'F9',w:1,t:'fn'},{l:'F10',w:1,t:'fn'},{l:'F11',w:1,t:'fn'},{l:'F12',w:1,t:'fn'},
-      {gap:1},
+      {l:'Esc',w:1,t:'fn'},{gap:1},
+      {l:'F1',w:1,t:'fn'},{l:'F2',w:1,t:'fn'},{l:'F3',w:1,t:'fn'},{l:'F4',w:1,t:'fn'},{gap:0.5},
+      {l:'F5',w:1,t:'fn'},{l:'F6',w:1,t:'fn'},{l:'F7',w:1,t:'fn'},{l:'F8',w:1,t:'fn'},{gap:0.5},
+      {l:'F9',w:1,t:'fn'},{l:'F10',w:1,t:'fn'},{l:'F11',w:1,t:'fn'},{l:'F12',w:1,t:'fn'},{gap:1},
       {l:'Druck',w:1,t:'nav'},{l:'Rollen',w:1,t:'nav'},{l:'Pause',w:1,t:'nav'},
     ],
     rows: [
-      // row 0 — number row
-      { y: 0, keys: [
+      { y:0, keys:[
         {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
         {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
         {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
@@ -286,8 +336,7 @@ const LAYOUTS = [
         {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2,t:'mod'},
         {l:'Einfg',w:1,t:'nav',rcol:true},{l:'Pos1',w:1,t:'nav',rcol:true},{l:'BildAuf',w:1,t:'nav',rcol:true},
       ]},
-      // row 1 — QWERTZ row
-      { y: 1, keys: [
+      { y:1, keys:[
         {l:'Tab',w:1.5,t:'mod'},
         {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
@@ -296,17 +345,14 @@ const LAYOUTS = [
         {l:'Enter',w:1.5,t:'mod',iso:true},
         {l:'Entf',w:1,t:'nav',rcol:true},{l:'Ende',w:1,t:'nav',rcol:true},{l:'BildAb',w:1,t:'nav',rcol:true},
       ]},
-      // row 2 — ASDF row
-      { y: 2, keys: [
+      { y:2, keys:[
         {l:'Caps',w:1.75,t:'mod'},
         {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
         {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
         {l:'J',w:1,t:'alpha'},{l:'K',w:1,t:'alpha'},{l:'L',w:1,t:'alpha'},
         {l:'Ö',w:1,t:'alpha'},{l:'Ä',w:1,t:'alpha'},{l:"# '",w:1,t:'alpha'},
-        // no rcol keys in row 2 for TKL (nav cluster rows 0+1 only = Einfg/Pos1/BildAuf + Entf/Ende/BildAb)
       ]},
-      // row 3 — shift row
-      { y: 3, keys: [
+      { y:3, keys:[
         {l:'LShift',w:1.25,t:'mod'},
         {l:'< >',w:1,t:'extra',iso_extra:true},
         {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
@@ -315,8 +361,7 @@ const LAYOUTS = [
         {l:'- _',w:1,t:'alpha'},{l:'RShift',w:2.75,t:'mod'},
         {l:'↑',w:1,t:'nav',rcol:true},
       ]},
-      // row 4 — space row
-      { y: 4, keys: [
+      { y:4, keys:[
         {l:'Strg',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Alt',w:1.25,t:'mod'},
         {l:'Leertaste',w:6.25,t:'space'},
         {l:'AltGr',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Menu',w:1.25,t:'mod'},{l:'Strg',w:1.25,t:'mod'},
@@ -328,40 +373,28 @@ const LAYOUTS = [
   // ── 100% Full ────────────────────────────────────────────────────────────────
   {
     name: '100% Full-Size ISO DE',
-    mainW: 15,
-    rcolGap: 1,
-    navCols: 3,
-    numpad: true,
-    enterTopW: 1.5,
-    enterBotX: 13.75,
+    mainW: 15, rcolGap: 1, navCols: 3, numpad: true,
+    enterTopW: 1.5, enterBotX: 13.75,
     frow: [
-      {l:'Esc',w:1,t:'fn'},
-      {gap:1},
-      {l:'F1',w:1,t:'fn'},{l:'F2',w:1,t:'fn'},{l:'F3',w:1,t:'fn'},{l:'F4',w:1,t:'fn'},
-      {gap:0.5},
-      {l:'F5',w:1,t:'fn'},{l:'F6',w:1,t:'fn'},{l:'F7',w:1,t:'fn'},{l:'F8',w:1,t:'fn'},
-      {gap:0.5},
-      {l:'F9',w:1,t:'fn'},{l:'F10',w:1,t:'fn'},{l:'F11',w:1,t:'fn'},{l:'F12',w:1,t:'fn'},
-      {gap:1},
-      {l:'Druck',w:1,t:'nav'},{l:'Rollen',w:1,t:'nav'},{l:'Pause',w:1,t:'nav'},
-      {gap:1},
+      {l:'Esc',w:1,t:'fn'},{gap:1},
+      {l:'F1',w:1,t:'fn'},{l:'F2',w:1,t:'fn'},{l:'F3',w:1,t:'fn'},{l:'F4',w:1,t:'fn'},{gap:0.5},
+      {l:'F5',w:1,t:'fn'},{l:'F6',w:1,t:'fn'},{l:'F7',w:1,t:'fn'},{l:'F8',w:1,t:'fn'},{gap:0.5},
+      {l:'F9',w:1,t:'fn'},{l:'F10',w:1,t:'fn'},{l:'F11',w:1,t:'fn'},{l:'F12',w:1,t:'fn'},{gap:1},
+      {l:'Druck',w:1,t:'nav'},{l:'Rollen',w:1,t:'nav'},{l:'Pause',w:1,t:'nav'},{gap:1},
       {l:'NumLk',w:1,t:'numpad'},{l:'/',w:1,t:'numpad'},{l:'*',w:1,t:'numpad'},{l:'-',w:1,t:'numpad'},
     ],
     rows: [
-      // row 0
-      { y: 0, keys: [
+      { y:0, keys:[
         {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
         {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
         {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
         {l:'9 )',w:1,t:'alpha'},{l:'0 =',w:1,t:'alpha'},{l:'ß ?',w:1,t:'alpha'},
         {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2,t:'mod'},
-        // nav cluster
         {l:'Einfg',w:1,t:'nav',rcol:true},{l:'Pos1',w:1,t:'nav',rcol:true},{l:'BildAuf',w:1,t:'nav',rcol:true},
-        // numpad
-        {l:'7',w:1,t:'numpad',np:true},{l:'8',w:1,t:'numpad',np:true},{l:'9',w:1,t:'numpad',np:true},{l:'+',w:1,t:'numpad',np:true,npTall:true},
+        {l:'7',w:1,t:'numpad',np:true},{l:'8',w:1,t:'numpad',np:true},{l:'9',w:1,t:'numpad',np:true},
+        {l:'+',w:1,t:'numpad',np:true,npTall:true},
       ]},
-      // row 1 — QWERTZ
-      { y: 1, keys: [
+      { y:1, keys:[
         {l:'Tab',w:1.5,t:'mod'},
         {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
@@ -370,21 +403,17 @@ const LAYOUTS = [
         {l:'Enter',w:1.5,t:'mod',iso:true},
         {l:'Entf',w:1,t:'nav',rcol:true},{l:'Ende',w:1,t:'nav',rcol:true},{l:'BildAb',w:1,t:'nav',rcol:true},
         {l:'4',w:1,t:'numpad',np:true},{l:'5',w:1,t:'numpad',np:true},{l:'6',w:1,t:'numpad',np:true},
-        // + tall key spans rows 0-1 (handled separately)
       ]},
-      // row 2 — ASDF
-      { y: 2, keys: [
+      { y:2, keys:[
         {l:'Caps',w:1.75,t:'mod'},
         {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
         {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
         {l:'J',w:1,t:'alpha'},{l:'K',w:1,t:'alpha'},{l:'L',w:1,t:'alpha'},
         {l:'Ö',w:1,t:'alpha'},{l:'Ä',w:1,t:'alpha'},{l:"# '",w:1,t:'alpha'},
-        // numpad
         {l:'1',w:1,t:'numpad',np:true},{l:'2',w:1,t:'numpad',np:true},{l:'3',w:1,t:'numpad',np:true},
         {l:'Enter',w:1,t:'numpad',np:true,npTall:true},
       ]},
-      // row 3 — shift
-      { y: 3, keys: [
+      { y:3, keys:[
         {l:'LShift',w:1.25,t:'mod'},
         {l:'< >',w:1,t:'extra',iso_extra:true},
         {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
@@ -393,10 +422,8 @@ const LAYOUTS = [
         {l:'- _',w:1,t:'alpha'},{l:'RShift',w:2.75,t:'mod'},
         {l:'↑',w:1,t:'nav',rcol:true},
         {l:'0',w:2,t:'numpad',np:true},{l:'.',w:1,t:'numpad',np:true},
-        // numpad Enter spans rows 2-3 (handled separately)
       ]},
-      // row 4 — space
-      { y: 4, keys: [
+      { y:4, keys:[
         {l:'Strg',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Alt',w:1.25,t:'mod'},
         {l:'Leertaste',w:6.25,t:'space'},
         {l:'AltGr',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Menu',w:1.25,t:'mod'},{l:'Strg',w:1.25,t:'mod'},
@@ -407,70 +434,83 @@ const LAYOUTS = [
 
 ]; // end LAYOUTS
 
-// ─── Renderer ────────────────────────────────────────────────────────────────
+// ─── Label rendering ──────────────────────────────────────────────────────────
 
-function makeKey(x, y, w, h, label, typeClass, sizeHint) {
-  const div = document.createElement('div');
-  div.className = 'key ' + typeClass;
-  div.style.left   = x + 'px';
-  div.style.top    = y + 'px';
-  div.style.width  = w + 'px';
-  div.style.height = h + 'px';
+const ARROWS    = new Set(['↑','↓','←','→']);
+const DIM_NAVS  = new Set(['Druck','Rollen','Pause']);
 
-  const inner = document.createElement('div');
-  inner.className = 'key-inner';
-
+function isDualLegend(label, cls) {
+  if (cls !== 'c-alpha' && cls !== 'c-extra') return false;
   const parts = label.split(' ');
-  if (parts.length === 2 && !label.includes('\n') &&
-      ['^ °','1 !','2 "','3 §','4 $','5 %','6 &','7 /','8 (','9 )','0 =','ß ?','´ `',
-       '+ *','< >','# \'',', ;','. :','- _','Ü','Ö','Ä'].includes(label) === false &&
-      label.split('\n').length === 1) {
-    // Single-line label — show as-is
-    const main = document.createElement('span');
-    main.className = 'k-main';
-    main.textContent = label;
-    inner.appendChild(main);
-  } else if (label.includes(' ') && label.length <= 5 && /^[^ ]+ [^ ]+$/.test(label)) {
-    // Two-character key like "1 !" or "+ *" — show top/bottom
-    const [main, sub] = label.split(' ');
-    const mSpan = document.createElement('span');
-    mSpan.className = 'k-main';
-    mSpan.textContent = main;
-    const sSpan = document.createElement('span');
-    sSpan.className = 'k-sub';
-    sSpan.textContent = sub;
-    inner.appendChild(mSpan);
-    inner.appendChild(sSpan);
+  return parts.length === 2 && parts[0].length <= 3 && parts[1].length <= 3;
+}
+
+function span(cls, text) {
+  const el = document.createElement('span');
+  el.className = cls;
+  el.textContent = text;
+  return el;
+}
+
+function renderLabel(div, label, cls, sizeHint) {
+  if (cls === 'c-space') return; // empty spacebar
+
+  if (ARROWS.has(label)) {
+    div.appendChild(span('k-arrow', label));
+
+  } else if (isDualLegend(label, cls)) {
+    const [base, shift] = label.split(' ');
+    div.appendChild(span('k-shift', shift)); // top-left: shift char
+    div.appendChild(span('k-base',  base));  // bottom-left: base char
+
+  } else if ((cls === 'c-alpha' || cls === 'c-extra') && !label.includes(' ')) {
+    div.appendChild(span('k-alpha', label));
+
+  } else if (cls === 'c-fn') {
+    div.appendChild(span('k-fn', label));
+
+  } else if (cls === 'c-nav') {
+    div.appendChild(span(DIM_NAVS.has(label) ? 'k-nav-dim' : 'k-nav', label));
+
+  } else if (cls === 'c-numpad') {
+    const isOp = ['+','-','*','/','.',',','Enter','NumLk'].includes(label);
+    div.appendChild(span(isOp ? 'k-np-op' : 'k-np-num', label));
+
+  } else if (cls === 'c-mod') {
+    div.appendChild(span('k-mod', label));
+
   } else {
-    const main = document.createElement('span');
-    main.className = 'k-main';
-    main.textContent = label;
-    inner.appendChild(main);
+    div.appendChild(span('k-nav', label));
   }
 
-  if (sizeHint) {
-    const sz = document.createElement('span');
-    sz.className = 'k-size';
-    sz.textContent = sizeHint;
-    inner.appendChild(sz);
-  }
-
-  div.appendChild(inner);
-  return div;
+  if (sizeHint) div.appendChild(span('k-size', sizeHint));
 }
 
-function typeClass(t) {
-  return { alpha:'c-alpha', mod:'c-mod', fn:'c-fn', nav:'c-nav',
-           space:'c-space', numpad:'c-numpad', extra:'c-extra' }[t] || 'c-alpha';
-}
+// ─── Type → CSS class map ────────────────────────────────────────────────────
+const TC = {
+  alpha:'c-alpha', mod:'c-mod', fn:'c-fn', nav:'c-nav',
+  space:'c-space', numpad:'c-numpad', extra:'c-extra',
+};
+
+function tc(t) { return TC[t] || 'c-alpha'; }
 
 function sizeLabel(w) {
   if (w === 1) return '';
-  const fracs = { 1.25:'1.25u', 1.5:'1.5u', 1.75:'1.75u', 2:'2u', 2.25:'2.25u',
-                  2.75:'2.75u', 6:'6u', 6.25:'6.25u', 6.5:'6.5u', 7:'7u' };
-  return fracs[w] || (w + 'u');
+  const m = {1.25:'1.25u',1.5:'1.5u',1.75:'1.75u',2:'2u',2.25:'2.25u',
+             2.75:'2.75u',6:'6u',6.25:'6.25u',6.5:'6.5u'};
+  return m[w] || w + 'u';
 }
 
+// ─── makeKey ─────────────────────────────────────────────────────────────────
+function makeKey(x, y, w, h, label, cls, sizeHint) {
+  const div = document.createElement('div');
+  div.className = 'key ' + cls;
+  div.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
+  renderLabel(div, label, cls, sizeHint);
+  return div;
+}
+
+// ─── Renderer ────────────────────────────────────────────────────────────────
 function renderLayout(layout) {
   const section = document.createElement('div');
   section.className = 'layout-section';
@@ -482,174 +522,112 @@ function renderLayout(layout) {
 
   const wrap = document.createElement('div');
   wrap.className = 'keyboard-wrap';
-
   const kbd = document.createElement('div');
   kbd.className = 'keyboard';
 
-  const mainW  = layout.mainW  || 15;
+  const mainW   = layout.mainW  || 15;
   const rcolGap = layout.rcolGap || 0.25;
-  const rcolX  = kx(mainW + rcolGap); // x-start of right column
+  const rcolX   = kx(mainW + rcolGap);
+  const rowYBase = layout.frow ? U : 0;
 
-  // ── F-row (if present) ───────────────────────────────────────────────────
-  const frowYOffset = layout.frow ? -U : 0; // F-row is one row above row 0
-  let frowHeight = 0;
+  // Numpad x base
+  const navWidth = layout.navCols || 0;
+  const npXBase  = rcolX + kx(navWidth) + (navWidth ? kx(1) : 0);
 
+  // ── F-row ────────────────────────────────────────────────────────────────
   if (layout.frow) {
-    frowHeight = U;
     let fx = 0;
     for (const k of layout.frow) {
-      if (k.gap) { fx += k.gap; continue; }
-      const kDiv = makeKey(kx(fx), 0, kw(k.w), KH, k.l, typeClass(k.t), '');
-      kbd.appendChild(kDiv);
+      if (k.gap !== undefined) { fx += k.gap; continue; }
+      kbd.appendChild(makeKey(kx(fx), 0, kw(k.w), KH, k.l, tc(k.t), ''));
       fx += k.w;
     }
   }
 
+  // ── ISO Enter tracking ───────────────────────────────────────────────────
+  let isoEnterRowY = -1, isoEnterTopX = -1;
+  const enterTopW  = layout.enterTopW || 1.5;
+  const enterBotX  = layout.enterBotX || 13.75;
+
   // ── Main rows ────────────────────────────────────────────────────────────
-  // Determine row y-positions
-  // If frow present, main rows start at y = frowHeight (= U)
-  const rowYBase = layout.frow ? U : 0;
-
-  // Collect right-column keys per row: [{rowY, keys:[...]}]
-  const rcolKeys = []; // {y, x, keyObj}
-
-  // We need to find ISO Enter info: row indices + left edges
-  let isoEnterRowY   = -1;  // y-pixel of QWERTZ row
-  let isoEnterTopX   = -1;  // x-pixel start of Enter top
-  const enterTopW    = layout.enterTopW || 1.5;
-  const enterBotX    = layout.enterBotX || 13.75; // in units
-
-  // Numpad info: x-offset of numpad column
-  const npGap = 1;
-  const navWidth = (layout.navCols || 0);
-  const npXBase = kx(mainW + rcolGap + navWidth + (navWidth ? npGap : 0));
-
-  // Tall numpad keys: numpad + key (rows 0-1) and numpad Enter (rows 2-3)
-  // We render them after the loop.
-  const npTallKeys = []; // {y, x, h, label, type}
+  const rcolKeys = [];
 
   for (const row of layout.rows) {
     const rowY = rowYBase + row.y * U;
-    let rx = 0; // running x in units for main body
-    let rcolCount = 0; // how many rcol keys this row has
+    let rx = 0;
 
-    // Separate rcol keys
-    const mainKeys = row.keys.filter(k => !k.rcol && !k.np);
-    const thisRcolKeys = row.keys.filter(k => k.rcol);
-    const thisNpKeys   = row.keys.filter(k => k.np);
+    const mainKeys  = row.keys.filter(k => !k.rcol && !k.np);
+    const rcolPart  = row.keys.filter(k => k.rcol);
+    const npPart    = row.keys.filter(k => k.np);
 
-    // Render main keys
     for (const k of mainKeys) {
       if (k.gap !== undefined) { rx += k.gap; continue; }
-
       if (k.iso) {
-        // ISO Enter — record position, render later
         isoEnterRowY = rowY;
         isoEnterTopX = kx(rx);
         rx += k.w;
         continue;
       }
-
       const hint = k.iso_extra ? '' : sizeLabel(k.w);
-      const kDiv = makeKey(kx(rx), rowY, kw(k.w), KH, k.l, typeClass(k.t), hint);
-      kbd.appendChild(kDiv);
+      kbd.appendChild(makeKey(kx(rx), rowY, kw(k.w), KH, k.l, tc(k.t), hint));
       rx += k.w;
     }
 
-    // Right-column keys: stacked at rcolX
-    for (let i = 0; i < thisRcolKeys.length; i++) {
-      const k = thisRcolKeys[i];
-      const colX = rcolX + kx(i);
-      rcolKeys.push({ y: rowY, x: colX, k });
+    // Right-column keys
+    for (let i = 0; i < rcolPart.length; i++) {
+      rcolKeys.push({ y: rowY, x: rcolX + kx(i), k: rcolPart[i] });
     }
 
-    // Numpad keys (non-tall)
+    // Numpad non-tall keys
     let npRx = 0;
-    for (const k of thisNpKeys) {
-      if (k.npTall) {
-        // will render as tall key after loop
-        npTallKeys.push({ row: row.y, npRx, k });
-        npRx += k.w;
-        continue;
-      }
-      const kDiv = makeKey(npXBase + kx(npRx), rowY, kw(k.w), KH, k.l, typeClass(k.t), '');
-      kbd.appendChild(kDiv);
+    for (const k of npPart) {
+      if (k.npTall) { npRx += k.w; continue; }
+      kbd.appendChild(makeKey(npXBase + kx(npRx), rowY, kw(k.w), KH, k.l, tc(k.t), ''));
       npRx += k.w;
     }
   }
 
-  // ── Right column keys ────────────────────────────────────────────────────
+  // ── Right-column keys ────────────────────────────────────────────────────
   for (const { y, x, k } of rcolKeys) {
-    const kDiv = makeKey(x, y, KH, KH, k.l, typeClass(k.t), '');
-    kbd.appendChild(kDiv);
+    kbd.appendChild(makeKey(x, y, KH, KH, k.l, tc(k.t), ''));
   }
 
   // ── ISO Enter ────────────────────────────────────────────────────────────
   if (isoEnterRowY >= 0) {
-    // Enter top: row QWERTZ
-    // Enter bottom: starts at enterBotX (units), right edge at mainW
-    const enterBotPx = kx(enterBotX);           // left edge of bottom
-    const enterBotW  = mainW - enterBotX;       // width of bottom in units
-
-    // Div: positioned at the LEFTMOST edge (top left)
-    const divX = isoEnterTopX;
-    const divW = kw(enterTopW);                 // visual width = top width
-    const divH = 2 * U - G;                    // spans 2 rows (incl. gap)
-
-    // Notch: cut bottom-left corner
-    // notch_x_px = how far from div left edge until bottom row starts
-    const notchXpx = enterBotPx - isoEnterTopX;
-    const notchYpx = U;                         // row boundary (1 unit from top)
-
-    const notchXpct = (notchXpx / divW * 100).toFixed(2);
-    const notchYpct = (notchYpx / divH * 100).toFixed(2);
+    const divW  = kw(enterTopW);
+    const divH  = 2 * U - G;
+    const notchXpx  = kx(enterBotX) - isoEnterTopX;
+    const notchYpx  = U;
+    const nxPct = (notchXpx / divW * 100).toFixed(2);
+    const nyPct = (notchYpx / divH * 100).toFixed(2);
 
     const eDiv = document.createElement('div');
     eDiv.className = 'key c-mod';
-    eDiv.style.left   = divX + 'px';
-    eDiv.style.top    = isoEnterRowY + 'px';
-    eDiv.style.width  = divW + 'px';
-    eDiv.style.height = divH + 'px';
-    eDiv.style.clipPath = `polygon(0% 0%, 100% 0%, 100% 100%, ${notchXpct}% 100%, ${notchXpct}% ${notchYpct}%, 0% ${notchYpct}%)`;
+    eDiv.style.cssText = `left:${isoEnterTopX}px;top:${isoEnterRowY}px;width:${divW}px;height:${divH}px`;
+    eDiv.style.clipPath =
+      `polygon(0% 0%, 100% 0%, 100% 100%, ${nxPct}% 100%, ${nxPct}% ${nyPct}%, 0% ${nyPct}%)`;
 
-    const inner = document.createElement('div');
-    inner.className = 'key-inner';
-    inner.style.position = 'absolute';
-    inner.style.top  = '50%';
-    inner.style.left = '50%';
-    inner.style.transform = 'translate(-50%,-50%)';
+    // "Enter" label centered in top half
     const lbl = document.createElement('span');
-    lbl.className = 'k-main';
+    lbl.className = 'k-enter';
     lbl.textContent = 'Enter';
-    inner.appendChild(lbl);
-    eDiv.appendChild(inner);
+    eDiv.appendChild(lbl);
     kbd.appendChild(eDiv);
   }
 
-  // ── Tall numpad keys (numpad + and numpad Enter) ─────────────────────────
+  // ── Tall numpad keys (+ and Enter) ───────────────────────────────────────
   if (layout.numpad) {
-    // numpad + : rows 0-1 (first row and QWERTZ row), column 3 of numpad
-    // numpad Enter: rows 2-3 (ASDF and shift row), column 3 of numpad
-    const npEnterX = npXBase + kx(3);
-    const npPlusX  = npXBase + kx(3);
-
     const row0Y = rowYBase + 0 * U;
     const row2Y = rowYBase + 2 * U;
-
-    // numpad +
-    const npPlusDiv = makeKey(npPlusX, row0Y, KH, 2*U - G, '+', 'c-numpad', '');
-    kbd.appendChild(npPlusDiv);
-
-    // numpad Enter
-    const npEnterDiv = makeKey(npEnterX, row2Y, KH, 2*U - G, 'Enter', 'c-numpad', '');
-    kbd.appendChild(npEnterDiv);
+    kbd.appendChild(makeKey(npXBase + kx(3), row0Y, KH, 2*U - G, '+',     'c-numpad', ''));
+    kbd.appendChild(makeKey(npXBase + kx(3), row2Y, KH, 2*U - G, 'Enter', 'c-numpad', ''));
   }
 
-  // ── Calculate keyboard bounding box ─────────────────────────────────────
+  // ── Bounding box ─────────────────────────────────────────────────────────
   let maxX = 0, maxY = 0;
-  for (const child of kbd.children) {
-    const r = parseInt(child.style.left) + parseInt(child.style.width);
-    const b = parseInt(child.style.top)  + parseInt(child.style.height);
+  for (const ch of kbd.children) {
+    const r = parseInt(ch.style.left) + parseInt(ch.style.width);
+    const b = parseInt(ch.style.top)  + parseInt(ch.style.height);
     if (r > maxX) maxX = r;
     if (b > maxY) maxY = b;
   }
@@ -661,7 +639,7 @@ function renderLayout(layout) {
   return section;
 }
 
-// ── Render all layouts ───────────────────────────────────────────────────────
+// ── Render all ───────────────────────────────────────────────────────────────
 const container = document.getElementById('layouts');
 for (const layout of LAYOUTS) {
   container.appendChild(renderLayout(layout));
