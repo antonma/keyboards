@@ -1,0 +1,790 @@
+{
+  "id": "akko-5098b-screen",
+  "name": "Akko 5098B with Screen",
+  "vendor": "Akko",
+  "form_factor": "96%",
+  "approx_keys": 98,
+  "total_keycaps": 104,
+  "iso_de": true,
+  "has_encoder": false,
+  "via_source": null,
+  "sourcing_notes": "Same layout as 5098B. Additional small display on keyboard body (not a keycap).",
+  "rows": [
+    {
+      "row_index": 0,
+      "kle_profile": "R1",
+      "keys": [
+        {
+          "label": "Esc",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "gap": 0.5
+        },
+        {
+          "label": "F1",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "label": "F2",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "label": "F3",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "label": "F4",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "gap": 0.25
+        },
+        {
+          "label": "F5",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "label": "F6",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "label": "F7",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "label": "F8",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "gap": 0.25
+        },
+        {
+          "label": "F9",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "label": "F10",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "label": "F11",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "label": "F12",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "fn",
+          "shape": "standard"
+        },
+        {
+          "gap": 0.25
+        },
+        {
+          "label": "Druck",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        },
+        {
+          "label": "Entf",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        },
+        {
+          "label": "NumLk",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": "/",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": "*",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": "-",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        }
+      ]
+    },
+    {
+      "row_index": 1,
+      "kle_profile": "R2",
+      "keys": [
+        {
+          "label": "^ °",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "1 !",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "2 \"",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "3 §",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "4 $",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "5 %",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "6 &",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "7 /",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "8 (",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "9 )",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "0 =",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "ß ?",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "´ `",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "BS",
+          "w": 2.0,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "Einfg",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        },
+        {
+          "label": "Pos1",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        },
+        {
+          "label": "BildAuf",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        },
+        {
+          "label": "7",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": "8",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": "9",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": "+",
+          "w": 1.0,
+          "h": 2.0,
+          "type": "num",
+          "shape": "standard"
+        }
+      ]
+    },
+    {
+      "row_index": 2,
+      "kle_profile": "R3",
+      "keys": [
+        {
+          "label": "Tab",
+          "w": 1.5,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "Q",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "W",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "E",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "R",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "T",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "Z",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "U",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "I",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "O",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "P",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "Ü",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "+ *",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "Enter",
+          "w": 1.5,
+          "h": 2.0,
+          "type": "mod",
+          "shape": "iso_enter"
+        },
+        {
+          "label": "Entf",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        },
+        {
+          "label": "Ende",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        },
+        {
+          "label": "BildAb",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        },
+        {
+          "label": "4",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": "5",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": "6",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        }
+      ]
+    },
+    {
+      "row_index": 3,
+      "kle_profile": "R4",
+      "keys": [
+        {
+          "label": "Caps",
+          "w": 1.75,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "A",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "S",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "D",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "F",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "G",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "H",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "J",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "K",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "L",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "Ö",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "Ä",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "# '",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "1",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": "2",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": "3",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": "Enter",
+          "w": 1.0,
+          "h": 2.0,
+          "type": "num",
+          "shape": "standard"
+        }
+      ]
+    },
+    {
+      "row_index": 4,
+      "kle_profile": "R5",
+      "keys": [
+        {
+          "label": "LShift",
+          "w": 1.25,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "< >",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "iso_extra"
+        },
+        {
+          "label": "Y",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "X",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "C",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "V",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "B",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "N",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "M",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": ", ;",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": ". :",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "- _",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "alpha",
+          "shape": "standard"
+        },
+        {
+          "label": "RShift",
+          "w": 2.75,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "↑",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        },
+        {
+          "label": "0",
+          "w": 2.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        },
+        {
+          "label": ".",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "num",
+          "shape": "standard"
+        }
+      ]
+    },
+    {
+      "row_index": 5,
+      "kle_profile": "R5",
+      "keys": [
+        {
+          "label": "Strg",
+          "w": 1.25,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "Win",
+          "w": 1.25,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "Alt",
+          "w": 1.25,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "Space",
+          "w": 6.25,
+          "h": 1.0,
+          "type": "space",
+          "shape": "standard"
+        },
+        {
+          "label": "AltGr",
+          "w": 1.25,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "Win",
+          "w": 1.25,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "Menu",
+          "w": 1.25,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "Strg",
+          "w": 1.25,
+          "h": 1.0,
+          "type": "mod",
+          "shape": "standard"
+        },
+        {
+          "label": "←",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        },
+        {
+          "label": "↓",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        },
+        {
+          "label": "→",
+          "w": 1.0,
+          "h": 1.0,
+          "type": "nav",
+          "shape": "standard"
+        }
+      ]
+    }
+  ]
+}
