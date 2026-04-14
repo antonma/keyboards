@@ -165,6 +165,11 @@
       color: #4a8c4a; text-align: center; opacity: 0.85;
     }
 
+    /* Two-line nav labels (e.g. Bild ↑) */
+    .k-nav-2l { display: flex; flex-direction: column; align-items: center; line-height: 1.1; gap: 1px; }
+    .k-nav-2l span:first-child { font-size: 6.5px; font-weight: 600; color: #1a5c1a; }
+    .k-nav-2l span:last-child  { font-size: 10px;  font-weight: 600; color: #1a5c1a; }
+
     /* Numpad numbers */
     .k-np-num { font-size: 13px; font-weight: 700; color: #0a2a4a; }
     /* Numpad operators */
@@ -238,21 +243,21 @@ const LAYOUTS = [
         {l:'Entf',w:1,t:'nav',rcol:true},
       ]},
       { y:1, keys:[
-        {l:'Tab',w:1.5,t:'mod'},
+        {l:'↹',w:1.5,t:'mod'},
         {l:'Q',w:1,t:'alpha',ag:'@'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha',ag:'€'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
         {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
         {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha',ag:'~'},
         {l:'Enter',w:1.5,t:'mod',iso:true},
-        {l:'BildAuf',w:1,t:'nav',rcol:true},
+        {l:'Bild\n↑',w:1,t:'nav',rcol:true},
       ]},
       { y:2, keys:[
-        {l:'Caps',w:1.75,t:'mod'},
+        {l:'⇪',w:1.75,t:'mod'},
         {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
         {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
         {l:'J',w:1,t:'alpha'},{l:'K',w:1,t:'alpha'},{l:'L',w:1,t:'alpha'},
         {l:'Ö',w:1,t:'alpha'},{l:'Ä',w:1,t:'alpha'},{l:"# '",w:1,t:'alpha'},
-        {l:'BildAb',w:1,t:'nav',rcol:true},
+        {l:'Bild\n↓',w:1,t:'nav',rcol:true},
       ]},
       { y:3, keys:[
         {l:'⇧',w:1.25,t:'mod'},
@@ -296,24 +301,24 @@ const LAYOUTS = [
         {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha',ag:'{'},{l:'8 (',w:1,t:'alpha',ag:'['},
         {l:'9 )',w:1,t:'alpha',ag:']'},{l:'0 =',w:1,t:'alpha',ag:'}'},{l:'ß ?',w:1,t:'alpha',ag:'\\'},
         {l:'´ `',w:1,t:'alpha'},{l:'⟵',w:2.25,t:'mod'},
-        {l:'BildAuf',w:1,t:'nav',rcol:true},
+        {l:'Bild\n↑',w:1,t:'nav',rcol:true},
       ]},
       { y:1, keys:[
-        {l:'Tab',w:1.5,t:'mod'},
+        {l:'↹',w:1.5,t:'mod'},
         {l:'Q',w:1,t:'alpha',ag:'@'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha',ag:'€'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
         {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
         {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha',ag:'~'},
         {l:'Enter',w:1.5,t:'mod',iso:true},
-        {l:'BildAb',w:1,t:'nav',rcol:true},
+        {l:'Bild\n↓',w:1,t:'nav',rcol:true},
       ]},
       { y:2, keys:[
-        {l:'Caps',w:1.75,t:'mod'},
+        {l:'⇪',w:1.75,t:'mod'},
         {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
         {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
         {l:'J',w:1,t:'alpha'},{l:'K',w:1,t:'alpha'},{l:'L',w:1,t:'alpha'},
         {l:'Ö',w:1,t:'alpha'},{l:'Ä',w:1,t:'alpha'},{l:"# '",w:1,t:'alpha'},
-        {l:'Pos1',w:1,t:'nav',rcol:true},
+        {l:'Pos 1',w:1,t:'nav',rcol:true},
       ]},
       { y:3, keys:[
         {l:'⇧',w:1.25,t:'mod'},
@@ -357,19 +362,19 @@ const LAYOUTS = [
         {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha',ag:'{'},{l:'8 (',w:1,t:'alpha',ag:'['},
         {l:'9 )',w:1,t:'alpha',ag:']'},{l:'0 =',w:1,t:'alpha',ag:'}'},{l:'ß ?',w:1,t:'alpha',ag:'\\'},
         {l:'´ `',w:1,t:'alpha'},{l:'⟵',w:2,t:'mod'},
-        {l:'Einfg',w:1,t:'nav',rcol:true},{l:'Pos1',w:1,t:'nav',rcol:true},{l:'BildAuf',w:1,t:'nav',rcol:true},
+        {l:'Einfg',w:1,t:'nav',rcol:true},{l:'Pos 1',w:1,t:'nav',rcol:true},{l:'Bild\n↑',w:1,t:'nav',rcol:true},
       ]},
       { y:1, keys:[
-        {l:'Tab',w:1.5,t:'mod'},
+        {l:'↹',w:1.5,t:'mod'},
         {l:'Q',w:1,t:'alpha',ag:'@'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha',ag:'€'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
         {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
         {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha',ag:'~'},
         {l:'Enter',w:1.5,t:'mod',iso:true},
-        {l:'Entf',w:1,t:'nav',rcol:true},{l:'Ende',w:1,t:'nav',rcol:true},{l:'BildAb',w:1,t:'nav',rcol:true},
+        {l:'Entf',w:1,t:'nav',rcol:true},{l:'Ende',w:1,t:'nav',rcol:true},{l:'Bild\n↓',w:1,t:'nav',rcol:true},
       ]},
       { y:2, keys:[
-        {l:'Caps',w:1.75,t:'mod'},
+        {l:'⇪',w:1.75,t:'mod'},
         {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
         {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
         {l:'J',w:1,t:'alpha'},{l:'K',w:1,t:'alpha'},{l:'L',w:1,t:'alpha'},
@@ -413,22 +418,22 @@ const LAYOUTS = [
         {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha',ag:'{'},{l:'8 (',w:1,t:'alpha',ag:'['},
         {l:'9 )',w:1,t:'alpha',ag:']'},{l:'0 =',w:1,t:'alpha',ag:'}'},{l:'ß ?',w:1,t:'alpha',ag:'\\'},
         {l:'´ `',w:1,t:'alpha'},{l:'⟵',w:2,t:'mod'},
-        {l:'Einfg',w:1,t:'nav',rcol:true},{l:'Pos1',w:1,t:'nav',rcol:true},{l:'BildAuf',w:1,t:'nav',rcol:true},
+        {l:'Einfg',w:1,t:'nav',rcol:true},{l:'Pos 1',w:1,t:'nav',rcol:true},{l:'Bild\n↑',w:1,t:'nav',rcol:true},
         {l:'7',w:1,t:'numpad',np:true},{l:'8',w:1,t:'numpad',np:true},{l:'9',w:1,t:'numpad',np:true},
         {l:'+',w:1,t:'numpad',np:true,npTall:true},
       ]},
       { y:1, keys:[
-        {l:'Tab',w:1.5,t:'mod'},
+        {l:'↹',w:1.5,t:'mod'},
         {l:'Q',w:1,t:'alpha',ag:'@'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha',ag:'€'},
         {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
         {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
         {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha',ag:'~'},
         {l:'Enter',w:1.5,t:'mod',iso:true},
-        {l:'Entf',w:1,t:'nav',rcol:true},{l:'Ende',w:1,t:'nav',rcol:true},{l:'BildAb',w:1,t:'nav',rcol:true},
+        {l:'Entf',w:1,t:'nav',rcol:true},{l:'Ende',w:1,t:'nav',rcol:true},{l:'Bild\n↓',w:1,t:'nav',rcol:true},
         {l:'4',w:1,t:'numpad',np:true},{l:'5',w:1,t:'numpad',np:true},{l:'6',w:1,t:'numpad',np:true},
       ]},
       { y:2, keys:[
-        {l:'Caps',w:1.75,t:'mod'},
+        {l:'⇪',w:1.75,t:'mod'},
         {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
         {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
         {l:'J',w:1,t:'alpha'},{l:'K',w:1,t:'alpha'},{l:'L',w:1,t:'alpha'},
@@ -475,7 +480,7 @@ function span(cls, text) {
   return el;
 }
 
-const MOD_SYMS = new Set(['⇧','↵','⟵','⇞','⇟']);
+const MOD_SYMS = new Set(['⇧','↵','⟵','⇞','⇟','↹','⇪']);
 
 function renderLabel(div, label, cls, sizeHint, altgr) {
   if (cls === 'c-space') return; // empty spacebar
@@ -495,7 +500,17 @@ function renderLabel(div, label, cls, sizeHint, altgr) {
     div.appendChild(span('k-fn', label));
 
   } else if (cls === 'c-nav') {
-    div.appendChild(span(DIM_NAVS.has(label) ? 'k-nav-dim' : 'k-nav', label));
+    if (label.includes('\n')) {
+      const [top, bot] = label.split('\n');
+      const wrap = document.createElement('span');
+      wrap.className = 'k-nav-2l';
+      const t = document.createElement('span'); t.textContent = top;
+      const b = document.createElement('span'); b.textContent = bot;
+      wrap.appendChild(t); wrap.appendChild(b);
+      div.appendChild(wrap);
+    } else {
+      div.appendChild(span(DIM_NAVS.has(label) ? 'k-nav-dim' : 'k-nav', label));
+    }
 
   } else if (cls === 'c-numpad') {
     const isOp = ['+','-','*','/','.',',','Enter','NumLk'].includes(label);
