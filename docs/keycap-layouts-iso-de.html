@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISO DE Keyboard Layout Referenz</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 24px;
+      background: #f2f2f2;
+      color: #222;
+    }
+    h1 { font-size: 20px; margin: 0 0 16px; }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-bottom: 28px;
+      background: #fff;
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      display: inline-flex;
+    }
+    .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; }
+    .legend-swatch { width: 22px; height: 14px; border-radius: 3px; border: 1.5px solid #aaa; flex-shrink: 0; }
+
+    /* Layout sections */
+    .layout-section {
+      margin-bottom: 40px;
+      page-break-inside: avoid;
+    }
+    .layout-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    /* Keyboard wrapper */
+    .keyboard-wrap {
+      background: #c8c8c8;
+      border-radius: 8px;
+      padding: 10px;
+      display: inline-block;
+    }
+    .keyboard {
+      position: relative;
+    }
+
+    /* Keys */
+    .key {
+      position: absolute;
+      border-radius: 4px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      cursor: default;
+      user-select: none;
+      font-size: 10px;
+      line-height: 1.2;
+    }
+    .key-inner {
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+    }
+    .k-main { font-size: 10px; font-weight: 500; }
+    .k-sub  { font-size: 8px;  color: #555; }
+    .k-size { font-size: 7px;  color: #888; margin-top: 1px; }
+
+    /* Key type colors */
+    .c-alpha  { background: #f5f5f5; border: 1.5px solid #bbb; }
+    .c-mod    { background: #dce8fc; border: 1.5px solid #7aaae8; }
+    .c-fn     { background: #fde8d0; border: 1.5px solid #e8aa66; }
+    .c-nav    { background: #d4f4d4; border: 1.5px solid #66bb66; }
+    .c-space  { background: #fffcc0; border: 1.5px solid #cccc44; }
+    .c-numpad { background: #d0eeff; border: 1.5px solid #55aadd; }
+    .c-extra  { background: #f0f0f0; border: 1.5px solid #aaa; }
+
+    @media print {
+      body { background: #fff; margin: 10px; }
+      .layout-section { page-break-inside: avoid; }
+      .keyboard-wrap { background: #ddd; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>ISO DE Keyboard Layout Referenz</h1>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-swatch c-alpha"></div><span>Alpha / Zahl</span></div>
+  <div class="legend-item"><div class="legend-swatch c-mod"></div><span>Modifier</span></div>
+  <div class="legend-item"><div class="legend-swatch c-fn"></div><span>F-Taste / Fn</span></div>
+  <div class="legend-item"><div class="legend-swatch c-nav"></div><span>Navigation</span></div>
+  <div class="legend-item"><div class="legend-swatch c-space"></div><span>Leertaste</span></div>
+  <div class="legend-item"><div class="legend-swatch c-numpad"></div><span>Numpad</span></div>
+</div>
+
+<div id="layouts"></div>
+
+<script>
+// ─── Rendering constants ──────────────────────────────────────────────────────
+const U  = 48;   // pixels per 1u (including gap)
+const G  =  3;   // gap between keys (pixels)
+const KH = U - G; // key visual height (45px)
+
+function kx(units) { return units * U; }           // x position from units
+function kw(units) { return units * U - G; }       // visual key width from units
+
+// ─── Layout data ──────────────────────────────────────────────────────────────
+// Each key: { l: label, w: width_units, t: type }
+//   Multiline label: 'main\nsub'
+//   Special: iso: true (ISO enter, listed in QWERTZ row, w = top width)
+//            iso_extra: true (< > key)
+//            rcol: true  (right-column key — rendered to the right of main body)
+//            gap: n      (horizontal gap, no key rendered)
+//            hidden: true (placeholder for ISO Enter bottom — not rendered)
+// Types: alpha, mod, fn, nav, space, numpad, extra
+
+const LAYOUTS = [
+
+  // ── 65% ─────────────────────────────────────────────────────────────────────
+  {
+    name: '65% ISO DE',
+    mainW: 15,     // main body width in units
+    rcolGap: 0.25, // gap between main body and right column
+    // ISO Enter dimensions
+    enterTopW: 1.5,   // width of Enter in QWERTZ row
+    enterBotX: 13.75, // left edge of Enter in ASDF row (Caps 1.75 + 12 keys)
+    rows: [
+      // row 0 — number row
+      { y: 0, keys: [
+        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
+        {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
+        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
+        {l:'9 )',w:1,t:'alpha'},{l:'0 =',w:1,t:'alpha'},{l:'ß ?',w:1,t:'alpha'},
+        {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2,t:'mod'},
+        {l:'Entf',w:1,t:'nav',rcol:true},
+      ]},
+      // row 1 — QWERTZ row
+      { y: 1, keys: [
+        {l:'Tab',w:1.5,t:'mod'},
+        {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
+        {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
+        {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
+        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha'},
+        {l:'Enter',w:1.5,t:'mod',iso:true},
+        {l:'BildAuf',w:1,t:'nav',rcol:true},
+      ]},
+      // row 2 — ASDF row
+      { y: 2, keys: [
+        {l:'Caps',w:1.75,t:'mod'},
+        {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
+        {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
+        {l:'J',w:1,t:'alpha'},{l:'K',w:1,t:'alpha'},{l:'L',w:1,t:'alpha'},
+        {l:'Ö',w:1,t:'alpha'},{l:'Ä',w:1,t:'alpha'},{l:"# '",w:1,t:'alpha'},
+        // ISO Enter bottom occupies 13.75u → 15u (auto-filled by renderer)
+        {l:'BildAb',w:1,t:'nav',rcol:true},
+      ]},
+      // row 3 — shift row
+      { y: 3, keys: [
+        {l:'LShift',w:1.25,t:'mod'},
+        {l:'< >',w:1,t:'extra',iso_extra:true},
+        {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
+        {l:'V',w:1,t:'alpha'},{l:'B',w:1,t:'alpha'},{l:'N',w:1,t:'alpha'},
+        {l:'M',w:1,t:'alpha'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
+        {l:'- _',w:1,t:'alpha'},{l:'RShift',w:1.75,t:'mod'},
+        {l:'↑',w:1,t:'nav',rcol:true},
+      ]},
+      // row 4 — space row
+      { y: 4, keys: [
+        {l:'Strg',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Alt',w:1.25,t:'mod'},
+        {l:'Leertaste',w:6.25,t:'space'},
+        {l:'AltGr',w:1,t:'mod'},{l:'Fn',w:1,t:'mod'},
+        {l:'←',w:1,t:'nav'},{l:'↓',w:1,t:'nav'},{l:'→',w:1,t:'nav'},
+      ]},
+    ]
+  },
+
+  // ── 75% ─────────────────────────────────────────────────────────────────────
+  {
+    name: '75% ISO DE',
+    mainW: 15,
+    rcolGap: 0.25,
+    enterTopW: 1.5,
+    enterBotX: 13.75,
+    // F-row offset: Esc + gaps + F1-F12 + Entf — placed in a higher row
+    frow: [
+      {l:'Esc',w:1,t:'fn'},
+      {gap:0.5},
+      {l:'F1',w:1,t:'fn'},{l:'F2',w:1,t:'fn'},{l:'F3',w:1,t:'fn'},{l:'F4',w:1,t:'fn'},
+      {gap:0.25},
+      {l:'F5',w:1,t:'fn'},{l:'F6',w:1,t:'fn'},{l:'F7',w:1,t:'fn'},{l:'F8',w:1,t:'fn'},
+      {gap:0.25},
+      {l:'F9',w:1,t:'fn'},{l:'F10',w:1,t:'fn'},{l:'F11',w:1,t:'fn'},{l:'F12',w:1,t:'fn'},
+      {gap:0.25},
+      {l:'Entf',w:1,t:'nav'},
+    ],
+    rows: [
+      // row 0 — number row
+      { y: 0, keys: [
+        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
+        {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
+        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
+        {l:'9 )',w:1,t:'alpha'},{l:'0 =',w:1,t:'alpha'},{l:'ß ?',w:1,t:'alpha'},
+        {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2.25,t:'mod'},
+        {l:'BildAuf',w:1,t:'nav',rcol:true},
+      ]},
+      // row 1 — QWERTZ row
+      { y: 1, keys: [
+        {l:'Tab',w:1.5,t:'mod'},
+        {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
+        {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
+        {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
+        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha'},
+        {l:'Enter',w:1.5,t:'mod',iso:true},
+        {l:'BildAb',w:1,t:'nav',rcol:true},
+      ]},
+      // row 2 — ASDF row
+      { y: 2, keys: [
+        {l:'Caps',w:1.75,t:'mod'},
+        {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
+        {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
+        {l:'J',w:1,t:'alpha'},{l:'K',w:1,t:'alpha'},{l:'L',w:1,t:'alpha'},
+        {l:'Ö',w:1,t:'alpha'},{l:'Ä',w:1,t:'alpha'},{l:"# '",w:1,t:'alpha'},
+        {l:'Pos1',w:1,t:'nav',rcol:true},
+      ]},
+      // row 3 — shift row
+      { y: 3, keys: [
+        {l:'LShift',w:1.25,t:'mod'},
+        {l:'< >',w:1,t:'extra',iso_extra:true},
+        {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
+        {l:'V',w:1,t:'alpha'},{l:'B',w:1,t:'alpha'},{l:'N',w:1,t:'alpha'},
+        {l:'M',w:1,t:'alpha'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
+        {l:'- _',w:1,t:'alpha'},{l:'RShift',w:1.75,t:'mod'},
+        {l:'↑',w:1,t:'nav',rcol:true},
+      ]},
+      // row 4 — space row
+      { y: 4, keys: [
+        {l:'Strg',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Alt',w:1.25,t:'mod'},
+        {l:'Leertaste',w:6.5,t:'space'},
+        {l:'AltGr',w:1,t:'mod'},{l:'Fn',w:1,t:'mod'},{l:'Strg',w:1,t:'mod'},
+        {l:'←',w:1,t:'nav'},{l:'↓',w:1,t:'nav'},{l:'→',w:1,t:'nav'},
+      ]},
+    ]
+  },
+
+  // ── 80% TKL ─────────────────────────────────────────────────────────────────
+  {
+    name: '80% TKL ISO DE',
+    mainW: 15,
+    rcolGap: 1,      // standard 1u gap to nav cluster
+    navCols: 3,      // 3 nav columns
+    enterTopW: 1.5,
+    enterBotX: 13.75,
+    frow: [
+      {l:'Esc',w:1,t:'fn'},
+      {gap:1},
+      {l:'F1',w:1,t:'fn'},{l:'F2',w:1,t:'fn'},{l:'F3',w:1,t:'fn'},{l:'F4',w:1,t:'fn'},
+      {gap:0.5},
+      {l:'F5',w:1,t:'fn'},{l:'F6',w:1,t:'fn'},{l:'F7',w:1,t:'fn'},{l:'F8',w:1,t:'fn'},
+      {gap:0.5},
+      {l:'F9',w:1,t:'fn'},{l:'F10',w:1,t:'fn'},{l:'F11',w:1,t:'fn'},{l:'F12',w:1,t:'fn'},
+      {gap:1},
+      {l:'Druck',w:1,t:'nav'},{l:'Rollen',w:1,t:'nav'},{l:'Pause',w:1,t:'nav'},
+    ],
+    rows: [
+      // row 0 — number row
+      { y: 0, keys: [
+        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
+        {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
+        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
+        {l:'9 )',w:1,t:'alpha'},{l:'0 =',w:1,t:'alpha'},{l:'ß ?',w:1,t:'alpha'},
+        {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2,t:'mod'},
+        {l:'Einfg',w:1,t:'nav',rcol:true},{l:'Pos1',w:1,t:'nav',rcol:true},{l:'BildAuf',w:1,t:'nav',rcol:true},
+      ]},
+      // row 1 — QWERTZ row
+      { y: 1, keys: [
+        {l:'Tab',w:1.5,t:'mod'},
+        {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
+        {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
+        {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
+        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha'},
+        {l:'Enter',w:1.5,t:'mod',iso:true},
+        {l:'Entf',w:1,t:'nav',rcol:true},{l:'Ende',w:1,t:'nav',rcol:true},{l:'BildAb',w:1,t:'nav',rcol:true},
+      ]},
+      // row 2 — ASDF row
+      { y: 2, keys: [
+        {l:'Caps',w:1.75,t:'mod'},
+        {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
+        {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
+        {l:'J',w:1,t:'alpha'},{l:'K',w:1,t:'alpha'},{l:'L',w:1,t:'alpha'},
+        {l:'Ö',w:1,t:'alpha'},{l:'Ä',w:1,t:'alpha'},{l:"# '",w:1,t:'alpha'},
+        // no rcol keys in row 2 for TKL (nav cluster rows 0+1 only = Einfg/Pos1/BildAuf + Entf/Ende/BildAb)
+      ]},
+      // row 3 — shift row
+      { y: 3, keys: [
+        {l:'LShift',w:1.25,t:'mod'},
+        {l:'< >',w:1,t:'extra',iso_extra:true},
+        {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
+        {l:'V',w:1,t:'alpha'},{l:'B',w:1,t:'alpha'},{l:'N',w:1,t:'alpha'},
+        {l:'M',w:1,t:'alpha'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
+        {l:'- _',w:1,t:'alpha'},{l:'RShift',w:2.75,t:'mod'},
+        {l:'↑',w:1,t:'nav',rcol:true},
+      ]},
+      // row 4 — space row
+      { y: 4, keys: [
+        {l:'Strg',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Alt',w:1.25,t:'mod'},
+        {l:'Leertaste',w:6.25,t:'space'},
+        {l:'AltGr',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Menu',w:1.25,t:'mod'},{l:'Strg',w:1.25,t:'mod'},
+        {l:'←',w:1,t:'nav',rcol:true},{l:'↓',w:1,t:'nav',rcol:true},{l:'→',w:1,t:'nav',rcol:true},
+      ]},
+    ]
+  },
+
+  // ── 100% Full ────────────────────────────────────────────────────────────────
+  {
+    name: '100% Full-Size ISO DE',
+    mainW: 15,
+    rcolGap: 1,
+    navCols: 3,
+    numpad: true,
+    enterTopW: 1.5,
+    enterBotX: 13.75,
+    frow: [
+      {l:'Esc',w:1,t:'fn'},
+      {gap:1},
+      {l:'F1',w:1,t:'fn'},{l:'F2',w:1,t:'fn'},{l:'F3',w:1,t:'fn'},{l:'F4',w:1,t:'fn'},
+      {gap:0.5},
+      {l:'F5',w:1,t:'fn'},{l:'F6',w:1,t:'fn'},{l:'F7',w:1,t:'fn'},{l:'F8',w:1,t:'fn'},
+      {gap:0.5},
+      {l:'F9',w:1,t:'fn'},{l:'F10',w:1,t:'fn'},{l:'F11',w:1,t:'fn'},{l:'F12',w:1,t:'fn'},
+      {gap:1},
+      {l:'Druck',w:1,t:'nav'},{l:'Rollen',w:1,t:'nav'},{l:'Pause',w:1,t:'nav'},
+      {gap:1},
+      {l:'NumLk',w:1,t:'numpad'},{l:'/',w:1,t:'numpad'},{l:'*',w:1,t:'numpad'},{l:'-',w:1,t:'numpad'},
+    ],
+    rows: [
+      // row 0
+      { y: 0, keys: [
+        {l:'^ °',w:1,t:'alpha'},{l:'1 !',w:1,t:'alpha'},{l:'2 "',w:1,t:'alpha'},
+        {l:'3 §',w:1,t:'alpha'},{l:'4 $',w:1,t:'alpha'},{l:'5 %',w:1,t:'alpha'},
+        {l:'6 &',w:1,t:'alpha'},{l:'7 /',w:1,t:'alpha'},{l:'8 (',w:1,t:'alpha'},
+        {l:'9 )',w:1,t:'alpha'},{l:'0 =',w:1,t:'alpha'},{l:'ß ?',w:1,t:'alpha'},
+        {l:'´ `',w:1,t:'alpha'},{l:'BS',w:2,t:'mod'},
+        // nav cluster
+        {l:'Einfg',w:1,t:'nav',rcol:true},{l:'Pos1',w:1,t:'nav',rcol:true},{l:'BildAuf',w:1,t:'nav',rcol:true},
+        // numpad
+        {l:'7',w:1,t:'numpad',np:true},{l:'8',w:1,t:'numpad',np:true},{l:'9',w:1,t:'numpad',np:true},{l:'+',w:1,t:'numpad',np:true,npTall:true},
+      ]},
+      // row 1 — QWERTZ
+      { y: 1, keys: [
+        {l:'Tab',w:1.5,t:'mod'},
+        {l:'Q',w:1,t:'alpha'},{l:'W',w:1,t:'alpha'},{l:'E',w:1,t:'alpha'},
+        {l:'R',w:1,t:'alpha'},{l:'T',w:1,t:'alpha'},{l:'Z',w:1,t:'alpha'},
+        {l:'U',w:1,t:'alpha'},{l:'I',w:1,t:'alpha'},{l:'O',w:1,t:'alpha'},
+        {l:'P',w:1,t:'alpha'},{l:'Ü',w:1,t:'alpha'},{l:'+ *',w:1,t:'alpha'},
+        {l:'Enter',w:1.5,t:'mod',iso:true},
+        {l:'Entf',w:1,t:'nav',rcol:true},{l:'Ende',w:1,t:'nav',rcol:true},{l:'BildAb',w:1,t:'nav',rcol:true},
+        {l:'4',w:1,t:'numpad',np:true},{l:'5',w:1,t:'numpad',np:true},{l:'6',w:1,t:'numpad',np:true},
+        // + tall key spans rows 0-1 (handled separately)
+      ]},
+      // row 2 — ASDF
+      { y: 2, keys: [
+        {l:'Caps',w:1.75,t:'mod'},
+        {l:'A',w:1,t:'alpha'},{l:'S',w:1,t:'alpha'},{l:'D',w:1,t:'alpha'},
+        {l:'F',w:1,t:'alpha'},{l:'G',w:1,t:'alpha'},{l:'H',w:1,t:'alpha'},
+        {l:'J',w:1,t:'alpha'},{l:'K',w:1,t:'alpha'},{l:'L',w:1,t:'alpha'},
+        {l:'Ö',w:1,t:'alpha'},{l:'Ä',w:1,t:'alpha'},{l:"# '",w:1,t:'alpha'},
+        // numpad
+        {l:'1',w:1,t:'numpad',np:true},{l:'2',w:1,t:'numpad',np:true},{l:'3',w:1,t:'numpad',np:true},
+        {l:'Enter',w:1,t:'numpad',np:true,npTall:true},
+      ]},
+      // row 3 — shift
+      { y: 3, keys: [
+        {l:'LShift',w:1.25,t:'mod'},
+        {l:'< >',w:1,t:'extra',iso_extra:true},
+        {l:'Y',w:1,t:'alpha'},{l:'X',w:1,t:'alpha'},{l:'C',w:1,t:'alpha'},
+        {l:'V',w:1,t:'alpha'},{l:'B',w:1,t:'alpha'},{l:'N',w:1,t:'alpha'},
+        {l:'M',w:1,t:'alpha'},{l:', ;',w:1,t:'alpha'},{l:'. :',w:1,t:'alpha'},
+        {l:'- _',w:1,t:'alpha'},{l:'RShift',w:2.75,t:'mod'},
+        {l:'↑',w:1,t:'nav',rcol:true},
+        {l:'0',w:2,t:'numpad',np:true},{l:'.',w:1,t:'numpad',np:true},
+        // numpad Enter spans rows 2-3 (handled separately)
+      ]},
+      // row 4 — space
+      { y: 4, keys: [
+        {l:'Strg',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Alt',w:1.25,t:'mod'},
+        {l:'Leertaste',w:6.25,t:'space'},
+        {l:'AltGr',w:1.25,t:'mod'},{l:'Win',w:1.25,t:'mod'},{l:'Menu',w:1.25,t:'mod'},{l:'Strg',w:1.25,t:'mod'},
+        {l:'←',w:1,t:'nav',rcol:true},{l:'↓',w:1,t:'nav',rcol:true},{l:'→',w:1,t:'nav',rcol:true},
+      ]},
+    ]
+  },
+
+]; // end LAYOUTS
+
+// ─── Renderer ────────────────────────────────────────────────────────────────
+
+function makeKey(x, y, w, h, label, typeClass, sizeHint) {
+  const div = document.createElement('div');
+  div.className = 'key ' + typeClass;
+  div.style.left   = x + 'px';
+  div.style.top    = y + 'px';
+  div.style.width  = w + 'px';
+  div.style.height = h + 'px';
+
+  const inner = document.createElement('div');
+  inner.className = 'key-inner';
+
+  const parts = label.split(' ');
+  if (parts.length === 2 && !label.includes('\n') &&
+      ['^ °','1 !','2 "','3 §','4 $','5 %','6 &','7 /','8 (','9 )','0 =','ß ?','´ `',
+       '+ *','< >','# \'',', ;','. :','- _','Ü','Ö','Ä'].includes(label) === false &&
+      label.split('\n').length === 1) {
+    // Single-line label — show as-is
+    const main = document.createElement('span');
+    main.className = 'k-main';
+    main.textContent = label;
+    inner.appendChild(main);
+  } else if (label.includes(' ') && label.length <= 5 && /^[^ ]+ [^ ]+$/.test(label)) {
+    // Two-character key like "1 !" or "+ *" — show top/bottom
+    const [main, sub] = label.split(' ');
+    const mSpan = document.createElement('span');
+    mSpan.className = 'k-main';
+    mSpan.textContent = main;
+    const sSpan = document.createElement('span');
+    sSpan.className = 'k-sub';
+    sSpan.textContent = sub;
+    inner.appendChild(mSpan);
+    inner.appendChild(sSpan);
+  } else {
+    const main = document.createElement('span');
+    main.className = 'k-main';
+    main.textContent = label;
+    inner.appendChild(main);
+  }
+
+  if (sizeHint) {
+    const sz = document.createElement('span');
+    sz.className = 'k-size';
+    sz.textContent = sizeHint;
+    inner.appendChild(sz);
+  }
+
+  div.appendChild(inner);
+  return div;
+}
+
+function typeClass(t) {
+  return { alpha:'c-alpha', mod:'c-mod', fn:'c-fn', nav:'c-nav',
+           space:'c-space', numpad:'c-numpad', extra:'c-extra' }[t] || 'c-alpha';
+}
+
+function sizeLabel(w) {
+  if (w === 1) return '';
+  const fracs = { 1.25:'1.25u', 1.5:'1.5u', 1.75:'1.75u', 2:'2u', 2.25:'2.25u',
+                  2.75:'2.75u', 6:'6u', 6.25:'6.25u', 6.5:'6.5u', 7:'7u' };
+  return fracs[w] || (w + 'u');
+}
+
+function renderLayout(layout) {
+  const section = document.createElement('div');
+  section.className = 'layout-section';
+
+  const title = document.createElement('div');
+  title.className = 'layout-title';
+  title.textContent = layout.name;
+  section.appendChild(title);
+
+  const wrap = document.createElement('div');
+  wrap.className = 'keyboard-wrap';
+
+  const kbd = document.createElement('div');
+  kbd.className = 'keyboard';
+
+  const mainW  = layout.mainW  || 15;
+  const rcolGap = layout.rcolGap || 0.25;
+  const rcolX  = kx(mainW + rcolGap); // x-start of right column
+
+  // ── F-row (if present) ───────────────────────────────────────────────────
+  const frowYOffset = layout.frow ? -U : 0; // F-row is one row above row 0
+  let frowHeight = 0;
+
+  if (layout.frow) {
+    frowHeight = U;
+    let fx = 0;
+    for (const k of layout.frow) {
+      if (k.gap) { fx += k.gap; continue; }
+      const kDiv = makeKey(kx(fx), 0, kw(k.w), KH, k.l, typeClass(k.t), '');
+      kbd.appendChild(kDiv);
+      fx += k.w;
+    }
+  }
+
+  // ── Main rows ────────────────────────────────────────────────────────────
+  // Determine row y-positions
+  // If frow present, main rows start at y = frowHeight (= U)
+  const rowYBase = layout.frow ? U : 0;
+
+  // Collect right-column keys per row: [{rowY, keys:[...]}]
+  const rcolKeys = []; // {y, x, keyObj}
+
+  // We need to find ISO Enter info: row indices + left edges
+  let isoEnterRowY   = -1;  // y-pixel of QWERTZ row
+  let isoEnterTopX   = -1;  // x-pixel start of Enter top
+  const enterTopW    = layout.enterTopW || 1.5;
+  const enterBotX    = layout.enterBotX || 13.75; // in units
+
+  // Numpad info: x-offset of numpad column
+  const npGap = 1;
+  const navWidth = (layout.navCols || 0);
+  const npXBase = kx(mainW + rcolGap + navWidth + (navWidth ? npGap : 0));
+
+  // Tall numpad keys: numpad + key (rows 0-1) and numpad Enter (rows 2-3)
+  // We render them after the loop.
+  const npTallKeys = []; // {y, x, h, label, type}
+
+  for (const row of layout.rows) {
+    const rowY = rowYBase + row.y * U;
+    let rx = 0; // running x in units for main body
+    let rcolCount = 0; // how many rcol keys this row has
+
+    // Separate rcol keys
+    const mainKeys = row.keys.filter(k => !k.rcol && !k.np);
+    const thisRcolKeys = row.keys.filter(k => k.rcol);
+    const thisNpKeys   = row.keys.filter(k => k.np);
+
+    // Render main keys
+    for (const k of mainKeys) {
+      if (k.gap !== undefined) { rx += k.gap; continue; }
+
+      if (k.iso) {
+        // ISO Enter — record position, render later
+        isoEnterRowY = rowY;
+        isoEnterTopX = kx(rx);
+        rx += k.w;
+        continue;
+      }
+
+      const hint = k.iso_extra ? '' : sizeLabel(k.w);
+      const kDiv = makeKey(kx(rx), rowY, kw(k.w), KH, k.l, typeClass(k.t), hint);
+      kbd.appendChild(kDiv);
+      rx += k.w;
+    }
+
+    // Right-column keys: stacked at rcolX
+    for (let i = 0; i < thisRcolKeys.length; i++) {
+      const k = thisRcolKeys[i];
+      const colX = rcolX + kx(i);
+      rcolKeys.push({ y: rowY, x: colX, k });
+    }
+
+    // Numpad keys (non-tall)
+    let npRx = 0;
+    for (const k of thisNpKeys) {
+      if (k.npTall) {
+        // will render as tall key after loop
+        npTallKeys.push({ row: row.y, npRx, k });
+        npRx += k.w;
+        continue;
+      }
+      const kDiv = makeKey(npXBase + kx(npRx), rowY, kw(k.w), KH, k.l, typeClass(k.t), '');
+      kbd.appendChild(kDiv);
+      npRx += k.w;
+    }
+  }
+
+  // ── Right column keys ────────────────────────────────────────────────────
+  for (const { y, x, k } of rcolKeys) {
+    const kDiv = makeKey(x, y, KH, KH, k.l, typeClass(k.t), '');
+    kbd.appendChild(kDiv);
+  }
+
+  // ── ISO Enter ────────────────────────────────────────────────────────────
+  if (isoEnterRowY >= 0) {
+    // Enter top: row QWERTZ
+    // Enter bottom: starts at enterBotX (units), right edge at mainW
+    const enterBotPx = kx(enterBotX);           // left edge of bottom
+    const enterBotW  = mainW - enterBotX;       // width of bottom in units
+
+    // Div: positioned at the LEFTMOST edge (top left)
+    const divX = isoEnterTopX;
+    const divW = kw(enterTopW);                 // visual width = top width
+    const divH = 2 * U - G;                    // spans 2 rows (incl. gap)
+
+    // Notch: cut bottom-left corner
+    // notch_x_px = how far from div left edge until bottom row starts
+    const notchXpx = enterBotPx - isoEnterTopX;
+    const notchYpx = U;                         // row boundary (1 unit from top)
+
+    const notchXpct = (notchXpx / divW * 100).toFixed(2);
+    const notchYpct = (notchYpx / divH * 100).toFixed(2);
+
+    const eDiv = document.createElement('div');
+    eDiv.className = 'key c-mod';
+    eDiv.style.left   = divX + 'px';
+    eDiv.style.top    = isoEnterRowY + 'px';
+    eDiv.style.width  = divW + 'px';
+    eDiv.style.height = divH + 'px';
+    eDiv.style.clipPath = `polygon(0% 0%, 100% 0%, 100% 100%, ${notchXpct}% 100%, ${notchXpct}% ${notchYpct}%, 0% ${notchYpct}%)`;
+
+    const inner = document.createElement('div');
+    inner.className = 'key-inner';
+    inner.style.position = 'absolute';
+    inner.style.top  = '50%';
+    inner.style.left = '50%';
+    inner.style.transform = 'translate(-50%,-50%)';
+    const lbl = document.createElement('span');
+    lbl.className = 'k-main';
+    lbl.textContent = 'Enter';
+    inner.appendChild(lbl);
+    eDiv.appendChild(inner);
+    kbd.appendChild(eDiv);
+  }
+
+  // ── Tall numpad keys (numpad + and numpad Enter) ─────────────────────────
+  if (layout.numpad) {
+    // numpad + : rows 0-1 (first row and QWERTZ row), column 3 of numpad
+    // numpad Enter: rows 2-3 (ASDF and shift row), column 3 of numpad
+    const npEnterX = npXBase + kx(3);
+    const npPlusX  = npXBase + kx(3);
+
+    const row0Y = rowYBase + 0 * U;
+    const row2Y = rowYBase + 2 * U;
+
+    // numpad +
+    const npPlusDiv = makeKey(npPlusX, row0Y, KH, 2*U - G, '+', 'c-numpad', '');
+    kbd.appendChild(npPlusDiv);
+
+    // numpad Enter
+    const npEnterDiv = makeKey(npEnterX, row2Y, KH, 2*U - G, 'Enter', 'c-numpad', '');
+    kbd.appendChild(npEnterDiv);
+  }
+
+  // ── Calculate keyboard bounding box ─────────────────────────────────────
+  let maxX = 0, maxY = 0;
+  for (const child of kbd.children) {
+    const r = parseInt(child.style.left) + parseInt(child.style.width);
+    const b = parseInt(child.style.top)  + parseInt(child.style.height);
+    if (r > maxX) maxX = r;
+    if (b > maxY) maxY = b;
+  }
+  kbd.style.width  = maxX + 'px';
+  kbd.style.height = maxY + 'px';
+
+  wrap.appendChild(kbd);
+  section.appendChild(wrap);
+  return section;
+}
+
+// ── Render all layouts ───────────────────────────────────────────────────────
+const container = document.getElementById('layouts');
+for (const layout of LAYOUTS) {
+  container.appendChild(renderLayout(layout));
+}
+</script>
+</body>
+</html>
