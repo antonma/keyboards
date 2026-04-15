@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 341 52">
+  <!--
+    The Well — 呪  Spacebar Motif
+    A dark well surface with concentric water ripples.
+    objectBoundingBox gradients stretch to match the ellipse aspect ratio automatically.
+  -->
+  <defs>
+    <!-- Well depth: very dark center fading to spacebar base color at edge -->
+    <radialGradient id="well-depth" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0%"   stop-color="#0D161E"/>
+      <stop offset="45%"  stop-color="#2A4258"/>
+      <stop offset="100%" stop-color="#BCC6D0"/>
+    </radialGradient>
+
+    <!-- Ring fade mask: rings visible in center, dissolve at outer edge -->
+    <radialGradient id="ring-fade" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0%"   stop-color="white" stop-opacity="0.7"/>
+      <stop offset="60%"  stop-color="white" stop-opacity="0.7"/>
+      <stop offset="92%"  stop-color="white" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="ring-mask">
+      <ellipse cx="170.5" cy="26" rx="155" ry="22" fill="url(#ring-fade)"/>
+    </mask>
+  </defs>
+
+  <!-- 1. Spacebar base -->
+  <rect width="341" height="52" fill="#BCC6D0"/>
+
+  <!-- 2. Well depth — elliptical radial gradient, seamlessly fades into base -->
+  <ellipse cx="170.5" cy="26" rx="155" ry="22" fill="url(#well-depth)"/>
+
+  <!-- 3. Water ripple rings — stroke only, masked to fade at edges -->
+  <g mask="url(#ring-mask)" fill="none" stroke-linecap="round">
+    <ellipse cx="170.5" cy="26" rx="148" ry="20" stroke="#9AADB8" stroke-width="0.75"/>
+    <ellipse cx="170.5" cy="26" rx="124" ry="17" stroke="#9BB5C2" stroke-width="0.75"/>
+    <ellipse cx="170.5" cy="26" rx="100" ry="13" stroke="#9DBBD0" stroke-width="0.75"/>
+    <ellipse cx="170.5" cy="26" rx="75"  ry="10" stroke="#9FBFCE" stroke-width="0.75"/>
+    <ellipse cx="170.5" cy="26" rx="50"  ry="7"  stroke="#A4C0CC" stroke-width="0.75"/>
+    <ellipse cx="170.5" cy="26" rx="26"  ry="4"  stroke="#AABECE" stroke-width="0.75"/>
+  </g>
+</svg>
