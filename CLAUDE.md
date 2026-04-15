@@ -237,3 +237,44 @@ Font für alle Labels: **Segoe UI Symbol** (`C:\Windows\Fonts\seguisym.ttf`)
 - Repo: antonma/keyboards (Branch: master)
 - Token: in Brain DB / Claude Memory gespeichert
 - Push nach jeder Dateiänderung
+
+## PFLICHT: Template-Verifikation nach jeder PDF-Änderung
+
+### Warum
+In v6-v8 wurden 926 Stroke-Operationen (Tastenkanten) zerstört, weil:
+1. CMYK/RGB Farbmodelle gemischt wurden
+2. Label-Ersetzung die zugehörigen Strokes mitgelöscht hat
+3. Keine Tests nach den Änderungen liefen
+
+### Regel: KEIN git push ohne bestandene Tests
+
+Nach jeder PDF-Manipulation MUSS `scripts/verify_template.py` laufen.
+Wenn der Test fehlschlägt → FIX FIRST, dann push.
+
+### 5 Pflicht-Tests
+
+1. **Stroke-Count**: Baseline v5 = 11382 Strokes. Max -50 Toleranz.
+2. **Farbmodell**: NUR CMYK oder NUR RGB — NIEMALS gemischt.
+3. **Erwartete Farben**: Alle Design-Farben müssen im PDF vorhanden sein.
+4. **Visueller Diff**: PDF rendern, Pixel-Diff gegen v5 Baseline. Tastenkanten-Region < 1% Abweichung.
+5. **Dateigröße**: v5 = 872KB. Neue Version < 2MB (sonst eingebettete Raster = Fehler).
+
+### Farbmodell: CMYK bevorzugen
+Affinity exportiert CMYK. pikepdf muss auch CMYK ersetzen.
+KEIN Mix aus CMYK-fills + RGB-fills im selben PDF.
+
+### Label-Ersetzung: Strokes erhalten
+Beim Löschen alter Label-Pfade: NUR Fill-Pfade entfernen, Stroke-Pfade BEIBEHALTEN.
+Neue Labels müssen eigene Strokes mitbringen (gleiche Breite/Farbe wie Original).
+
+### Baseline-Werte (v5 = Goldstandard)
+- Strokes (S): 11382
+- Fills (f): 906
+- Fill+Stroke (B): 1
+- CMYK fills: 6 unique
+- CMYK strokes: 3 unique
+- RGB fills: 0 (!)
+- RGB strokes: 0 (!)
+- Dateigröße: 872KB
+- Graphics states: GS0-GS6
+- Line widths: 0.016, 0.142, 0.216, 0.567
