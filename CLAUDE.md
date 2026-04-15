@@ -12,20 +12,26 @@ Alle Handoffs, Session-Logs, Decisions und Todos liegen in der **Brain DB** (Sup
 
 ## Repo-Struktur
 ```
-docs/                           # HTML-Visualisierungen, Previews
-  keycap-layouts-iso-de.html    # Interaktiver Layout-Viewer (alle 16 Layouts)
+docs/
+  keycap-layouts-iso-de.html       # ← KANONISCHE LABEL-REFERENZ (alle 16 Layouts)
 scripts/
-  recolor_template.py           # PDF-Farbersetzung (pikepdf)
-  layout-mapper.py              # VIA JSON → Layout-Daten
+  recolor_template.py              # Füllfarben ersetzen (pikepdf, CMYK)
+  cleanup_dolch_remnants.py        # Orphaned Paths entfernen (pikepdf stream excision)
+  replace_modifier_labels.py       # Modifier-Symbole: ↹ ⇪ ⇧ ⟵ ENTF (PyMuPDF)
+  replace_nav_labels.py            # Nav-Labels: POS 1, Bild↑, Bild↓ (PyMuPDF)
+  apply_legend_colors.py           # Legende-Farben per Gruppe (PyMuPDF overdraw)
+  make_v7.py                       # v6→v7: Uppercase Modifier Labels (PyMuPDF)
+  layout-mapper.py                 # VIA JSON → Layout-Daten
 templates/
-  GK75-German-Tigry-original.pdf  # Hersteller-Original (NICHT ÄNDERN)
-  GK75-TheWell-v*.pdf           # Aktuelle Design-Version
+  GK75-German-Tigry-original.pdf   # Hersteller-Original (NICHT ÄNDERN)
+  GK75-TheWell-v6.pdf              # v5 + Dolch-Cleanup + Labels + Legende-Farben
+  GK75-TheWell-v7.pdf              # v6 + Uppercase Modifier Labels (aktuell)
 designs/the-well/
   the-well-design-document-EN.docx
   the-well-design-document-CN.docx
-layouts/                        # Keyboard-Layout JSON-Daten
-via-raw/                        # VIA JSON-Rohdaten
-inventory/                      # Keycap-Inventar
+layouts/                           # Keyboard-Layout JSON-Daten
+via-raw/                           # VIA JSON-Rohdaten
+inventory/                         # Keycap-Inventar
 ```
 
 ## PDF-Keycap-Templates bearbeiten
@@ -34,37 +40,118 @@ inventory/                      # Keycap-Inventar
 - Hersteller schickt Adobe Illustrator PDF mit Keycap-Positionen
 - Jede Taste ist ein Vektorpfad (Curve) mit einer Füllfarbe
 - Legends (Tastenbeschriftungen) sind **outlined text** = Vektorpfade, KEINE echten Textzeichen
+  - Ausnahme: Row-Labels ("R1"–"R4") sind echte BT/ET-Texte mit ArialMT Subset-Font
 - Template hat Layer: MC0 (底色层/Basisfarben), MC1 (Ebene 1/Details+Legends), MC2 (图层 3/zweites Design)
+- Internes Farbmodell: **CMYK mit ICC-Profil** — PyMuPDF rendert zu RGB via ICC-Konversion
+  - Folge: Farben shiften leicht, z.B. #8899AA → rendert als #8999A9, #1E2830 → #202830
+  - Für Farb-Klassifikation immer **Toleranz ~20-30/255** verwenden, nicht exakten Match
 
-### recolor_template.py
-Ersetzt Füllfarben im PDF-Content-Stream mit pikepdf.
+### Tool-Wahl: pikepdf vs PyMuPDF
+
+| Aufgabe | Tool | Grund |
+|---------|------|-------|
+| Keycap-Füllfarben ersetzen | **pikepdf** | Direkte Byte-Manipulation im CMYK-Stream |
+| Labels ersetzen (Redact + neu) | **PyMuPDF (fitz)** | add_redact_annot + TextWriter |
+| Pfad-Farben überschreiben | **PyMuPDF (fitz)** | get_drawings() + Shape overdraw |
+| Stream-Bytes excisieren | **pikepdf** | Byte-Range-Cuts (z.B. Dolch-Cleanup) |
 
 ```bash
-# Farben analysieren
-python3 scripts/recolor_template.py templates/GK75-German-Tigry-original.pdf dummy.pdf --analyze
-
-# The Well Farben anwenden
-python3 scripts/recolor_template.py templates/GK75-German-Tigry-original.pdf templates/GK75-TheWell.pdf --scheme the-well
+# Windows: immer py -3 statt python3
+py -3 scripts/recolor_template.py templates/GK75-German-Tigry-original.pdf dummy.pdf --analyze
+py -3 scripts/make_v7.py
 ```
 
-### Kritische Regeln für PDF-Farbersetzung
-1. **pikepdf verwenden** — nie manuell PDF-Streams manipulieren (kaputte Datei)
-2. **Float-Precision: 6 Dezimalstellen** — `0.086275` nicht `0.086` (sonst Rundungsfehler)
-3. **Hex → PDF Float**: `int(hex, 16) / 255.0` mit 6 Dezimalstellen formatieren
-4. **Immer verifizieren**: Nach Ersetzung Farben auslesen und Hex-Roundtrip prüfen
+### Füllfarben ersetzen (recolor_template.py)
+Ersetzt CMYK-Füllfarben im PDF-Content-Stream mit pikepdf.
+1. **Float-Precision: 6 Dezimalstellen** — `0.086275` nicht `0.086` (sonst Rundungsfehler)
+2. **Hex → PDF Float**: `int(hex, 16) / 255.0` mit 6 Dezimalstellen formatieren
+3. **Immer verifizieren**: Nach Ersetzung Farben auslesen und Hex-Roundtrip prüfen
 
-### Labels ändern (das Schwierige)
-Die Legends sind Vektorpfade. Man kann NICHT einfach Text ersetzen.
+### Labels ersetzen — Programmatischer Ansatz (Redact + TextWriter)
 
-**Ansatz 1 — Affinity Studio (empfohlen für Label-Änderungen):**
-1. PDF in Affinity öffnen (Import as Pages, PDF/X-4)
-2. Doppelklick bis zum einzelnen Vektorpfad des Labels
-3. Alten Pfad löschen, neuen Text setzen, in Outlines konvertieren
-4. Export als PDF/X-4
+Labels sind Vektorpfade → direkte Text-Ersetzung geht NICHT. Aber: **Redact + TextWriter funktioniert.**
 
-**Ansatz 2 — Programmatisch (nur für Farben, nicht Labels):**
-- Farben ersetzen: pikepdf Stream-Manipulation (funktioniert gut)
-- Labels ersetzen: NICHT programmatisch machbar ohne die exakten Vektorpfade zu kennen
+```python
+import fitz
+import sys, io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')  # PFLICHT für Unicode-Output
+
+FONT_PATH = r'C:\Windows\Fonts\seguisym.ttf'  # Segoe UI Symbol — hat alle nötigen Glyphen
+
+font = fitz.Font(fontfile=FONT_PATH)
+
+# Schritt 1: Alten Vektorpfad wegredaktieren
+label_area = fitz.Rect(r.x0 + 5, r.y0 + 5, r.x1 - 5, r.y1 - 5)  # 5px Innenabstand
+annot = page.add_redact_annot(label_area)
+annot.set_colors(fill=key_bg_color)   # mit Hintergrundfarbe füllen
+annot.update()
+page.apply_redactions(images=fitz.PDF_REDACT_IMAGE_NONE)
+
+# Schritt 2: Neuen Text einfügen
+writer = fitz.TextWriter(page.rect)
+text_w = font.text_length(label, fontsize=fontsize)
+x = key_cx - text_w / 2              # horizontal zentrieren
+y = key_cy + fontsize * 0.35         # Baseline: ~35% der Fontgröße unter Mitte
+writer.append(fitz.Point(x, y), label, font=font, fontsize=fontsize)
+writer.write_text(page, color=legend_rgb)
+```
+
+**KRITISCH:** `page.insert_text(..., fontfile=...)` funktioniert NICHT für Unicode-Symbole
+(rendert Dots statt Glyphen). Immer **fitz.TextWriter** verwenden.
+
+**Mehrere Farben:** Eine Writer-Instanz pro Legendenfarbe (write_text hat eine Farbe für alle).
+
+### Legende-Farben anpassen (Overdraw-Strategie)
+
+Die originalen CMYK-Legendenpfade können nicht direkt umgefärbt werden. Stattdessen:
+neue RGB-Pfade on top zeichnen mit `fitz.Shape`:
+
+```python
+shape = page.new_shape()
+for item in path['items']:
+    if item[0] == 'l':   shape.draw_line(item[1], item[2])
+    elif item[0] == 'c': shape.draw_bezier(item[1], item[2], item[3], item[4])
+    elif item[0] == 're': shape.draw_rect(item[1])
+shape.finish(fill=target_rgb, color=None, even_odd=path.get('even_odd', True))
+shape.commit()
+```
+
+Klassifikation welche Farbe ein Legendenpfad bekommt:
+1. Hintergrund-Fill-Farbe des Keycaps bestimmen (get_drawings(), größter enthaltener Pfad)
+2. Accent-Fill (~#C8D0D8) → Accent-Legend #2A3540
+3. Modifier-Fill (~#202830 nach ICC) → Modifier-Legend #5A7A90
+4. Y-Position 252–312 (F-Key-Zeile) → FKey-Legend #4A6070
+5. Sonst → Alpha-Legend #8899AA (keine Änderung nötig)
+
+### GK75-spezifische Key-Koordinaten (PyMuPDF, y=0 oben)
+
+```
+Zeile          Y-Bereich    Beispiele
+F-Key-Zeile    252–312      ESC(123,254,175,306), F1-F12
+Zahlenzeile    325–378      Backspace(838,325,945,378), ENTF(963,325,1015,378)
+Tab-Zeile      380–432      Tab(123,380,203,432), PgUp(963,380,1015,432)
+CapsLk-Zeile   435–487      CapsLk(123,435,217,487), PgDn(963,435,1015,487)
+Shift-Zeile    491–543      LShift(123,491,189,543), RShift(797,491,890,543)
+Bottom-Zeile   545–597      STRG-L(123,545,189,597), WIN(192,545,258,597)
+                             ALT-L(261,545,327,597), ALT-R(674,545,726,597)
+                             FN(729,545,781,597)
+
+Nav-Spalte (rechts, x≈963–1015):
+  POS 1:  (963, 170, 1015, 223)   — über Rotary-Encoder
+  ENTF:   (963, 325, 1015, 378)
+  Bild↑:  (963, 380, 1015, 432)
+  Bild↓:  (963, 435, 1015, 487)
+```
+
+### Bekannte Fallstricke
+
+- **AltGr-Farb-Artefakt**: AltGr-Pfade (#3A6A8A Ziel) erscheinen als #3C6A8A — Rundungsfehler,
+  visuell kaum sichtbar, akzeptabel
+- **Dolch-Remnants**: Orphaned Paths bei Y<400 im original Tigry-Template — cleanup_dolch_remnants.py
+- **Redact über TextWriter-Text**: Funktioniert — zweiter Redact entfernt auch vorherige TextWriter-Inhalte
+- **Kein `even_odd` vergessen**: Buchstaben mit Lücken (O, B, 8...) brauchen even_odd=True für korrekte Füllung
+- **Windows stdout**: Immer `sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')` am Anfang
+- **Seitenkoordinaten**: PyMuPDF y=0 oben links; nativer PDF y=0 unten — get_drawings() liefert PyMuPDF-Koordinaten
 
 ## The Well — 呪 Farbschema
 
@@ -105,29 +192,40 @@ Die Legends sind Vektorpfade. Man kann NICHT einfach Text ersetzen.
 
 ## Cherry ISO-DE Layout Konventionen
 
-### Modifier-Labels (Symbole statt Text)
-| Taste     | Label  | Unicode  |
-|----------|--------|----------|
-| CapsLock | ⇪      | U+21EA   |
-| Tab      | ↹      | U+21B9   |
-| Shift    | ⇧      | U+21E7   |
-| Backspace| ⟵      | U+27F5   |
-| Enter    | ↵      | U+21B5   |
-| Delete   | Entf   | (Text)   |
+### Modifier-Labels — Symbole und Text
 
-### Navigation (Deutsch)
-| Taste    | Label           |
-|----------|----------------|
-| Page Up  | Bild ↑ (2-zeilig)|
-| Page Down| Bild ↓ (2-zeilig)|
-| Home     | Pos 1           |
-| End      | Ende            |
+**Kanonische Referenz: `docs/keycap-layouts-iso-de.html`** — dort sind alle Labels definiert.
+Bei Zweifel immer HTML prüfen.
+
+| Taste     | Label  | Unicode  | Farbe    |
+|----------|--------|----------|----------|
+| CapsLock | ⇪      | U+21EA   | #5A7A90  |
+| Tab      | ↹      | U+21B9   | #5A7A90  |
+| Shift    | ⇧      | U+21E7   | #5A7A90  |
+| Backspace| ⟵      | U+27F5   | #5A7A90  |
+| Enter    | ↵      | U+21B5   | #2A3540  |
+| ESC      | ESC    | (Text)   | #2A3540  |
+| STRG     | STRG   | (Text)   | #5A7A90  |
+| WIN      | WIN    | (Text)   | #5A7A90  |
+| ALT      | ALT    | (Text)   | #5A7A90  |
+| FN       | FN     | (Text)   | #5A7A90  |
+
+Font für alle Labels: **Segoe UI Symbol** (`C:\Windows\Fonts\seguisym.ttf`)
+
+### Navigation (Deutsch) — alle GROSSBUCHSTABEN außer "Bild"
+
+| Taste      | Label           | Farbe   | Hinweis              |
+|------------|----------------|---------|----------------------|
+| Page Up    | Bild↑ (2-zeilig)| #5A7A90 | "Bild" = dt. Substantiv|
+| Page Down  | Bild↓ (2-zeilig)| #5A7A90 |                      |
+| Home       | POS 1          | #5A7A90 | GROSSBUCHSTABEN      |
+| Delete     | ENTF           | #4A6070 | GROSSBUCHSTABEN      |
 
 ### Was NICHT geändert wird
-- Strg, Win, Alt, Fn, Esc → bleiben wie sie sind
 - Key-Positionen → kommen vom Hersteller-Template
-- AltGr-Zeichen: ², ³, {, [, ], }, \, @, €, µ, ~, |
+- AltGr-Zeichen: ², ³, {, [, ], }, \, @, €, µ, ~, | (bleiben als Vektorpfade)
 - Hex-Farbcodes, Maße (1u, 1.25u, 6.5u etc.)
+- Das grafische Icon rechts neben Fn (x=784–836) — Hersteller-Design, kein Text
 
 ## ADRs (Decisions)
 - **Ein Design pro PDF** — keine gemischten Templates
