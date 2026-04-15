@@ -1,0 +1,250 @@
+#!/usr/bin/env python3
+"""
+Keycap Template Color Replacer
+===============================
+Replaces fill colors in a manufacturer's PDF keycap template with custom color schemes.
+Uses pikepdf for proper PDF manipulation that preserves file integrity.
+
+Usage:
+    python3 recolor_template.py <input.pdf> <output.pdf> [--scheme the-well]
+
+Requirements:
+    pip install pikepdf
+
+The manufacturer template (e.g. GK75-German-Tigry) uses Adobe Illustrator PDF format
+with RGB fill colors in content streams. This script:
+1. Decompresses all PDF content streams and XObjects
+2. Finds RGB fill operations (e.g. "0.961 0.957 0.922 rg")
+3. Replaces them with the target color scheme values
+4. Recompresses and saves a valid PDF
+
+The output PDF can be opened in:
+- Adobe Illustrator (manufacturer's tool)
+- Affinity Studio/Designer
+- Any PDF viewer
+"""
+
+import argparse
+import re
+import sys
+from pathlib import Path
+
+try:
+    import pikepdf
+except ImportError:
+    print("ERROR: pikepdf required. Install with: pip install pikepdf")
+    sys.exit(1)
+
+
+def hex_to_pdf_rgb(hex_color: str) -> str:
+    """Convert hex color (#RRGGBB) to PDF RGB float string with 6 decimal places."""
+    r = int(hex_color[1:3], 16) / 255.0
+    g = int(hex_color[3:5], 16) / 255.0
+    b = int(hex_color[5:7], 16) / 255.0
+    return f"{r:.6f} {g:.6f} {b:.6f}"
+
+
+def pdf_rgb_to_hex(r: float, g: float, b: float) -> str:
+    """Convert PDF RGB floats to hex color."""
+    return f"#{int(round(r*255)):02X}{int(round(g*255)):02X}{int(round(b*255)):02X}"
+
+
+# =============================================================================
+# COLOR SCHEMES
+# =============================================================================
+
+# GK75 Tigry template original colors (extracted from PDF)
+TEMPLATE_TIGRY = {
+    "alpha":      "0.961 0.957 0.922",   # #F5F4EB (white/cream)
+    "accent1":    "0.898 0.71 0.486",     # #E4B57B (orange)
+    "accent2":    "0.925 0.725 0.525",    # #EBB885 (lighter orange)
+    "accent3":    "0.647 0.808 0.765",    # #A4CEC3 (mint/green - Enter)
+    "mod1":       "0.549 0.549 0.545",    # #8B8B8A (mid grey)
+    "mod2":       "0.51 0.518 0.529",     # #828486 (grey variant)
+    "fkey":       "0.42 0.424 0.427",     # #6B6C6C (darker grey)
+    "nav1":       "0.329 0.337 0.353",    # #53555A (dark grey)
+    "nav2":       "0.298 0.298 0.298",    # #4B4B4B (darkest grey)
+    "arrows":     "0.647 0.647 0.647",    # #A4A4A4 (light grey)
+    "dolch_red":  "0.667 0.09 0.09",      # #AA1616 (Dolch red accent)
+}
+
+# The Well — 呪 color scheme
+SCHEME_THE_WELL = {
+    "name": "The Well — 呪",
+    "description": "Dark horror keycap set inspired by The Ring/Ringu",
+    "mapping": {
+        # Template color key → target hex
+        "alpha":     "#161820",  # Deep black (dark water, TV static)
+        "accent1":   "#C8D0D8",  # Ghostly pale white (Sadako's skin)
+        "accent2":   "#C8D0D8",  # Ghostly pale white
+        "accent3":   "#C8D0D8",  # Ghostly pale white (Enter)
+        "mod1":      "#1E2830",  # Dark teal-grey (waterlogged stone)
+        "mod2":      "#1E2830",  # Dark teal-grey
+        "fkey":      "#1C2228",  # VHS blue-grey (tape distortion)
+        "nav1":      "#1A2530",  # Dark teal (deep well wall)
+        "nav2":      "#1A2530",  # Dark teal
+        "arrows":    "#C8D0D8",  # Ghostly pale white
+        "dolch_red": "#3A6A8A",  # AltGr blue (cold water reflection) - night mode variant
+    },
+    "legend_colors": {
+        "alpha_legends":    "#8899AA",  # Ghostly grey
+        "modifier_legends": "#5A7A90",  # Muted blue
+        "fkey_legends":     "#4A6070",  # Muted steel
+        "accent_legends":   "#2A3540",  # Dark charcoal
+        "altgr_legends":    "#3A6A8A",  # Deep blue (cold water)
+    },
+    "special": {
+        "spacebar": "#BCC6D0",  # Pale white (well opening, ripples)
+        "rotary":   "#161820",  # Same as alphas
+    }
+}
+
+# Add more schemes here as needed
+SCHEMES = {
+    "the-well": SCHEME_THE_WELL,
+}
+
+
+def build_color_map(template_colors: dict, scheme: dict) -> dict:
+    """Build a bytes→bytes replacement map from template colors to scheme colors."""
+    color_map = {}
+    for key, target_hex in scheme["mapping"].items():
+        if key in template_colors:
+            old_val = template_colors[key].encode()
+            new_val = hex_to_pdf_rgb(target_hex).encode()
+            color_map[old_val + b' rg'] = new_val + b' rg'
+    return color_map
+
+
+def process_stream(stream_obj, color_map: dict) -> int:
+    """Process a single PDF stream, replacing colors. Returns count of replacements."""
+    replacements = 0
+    try:
+        raw = stream_obj.read_bytes()
+        modified = raw
+        for old, new in color_map.items():
+            count = modified.count(old)
+            if count > 0:
+                modified = modified.replace(old, new)
+                replacements += count
+        if modified != raw:
+            stream_obj.write(modified)
+    except Exception:
+        pass
+    return replacements
+
+
+def recolor_pdf(input_path: str, output_path: str, scheme_name: str = "the-well") -> dict:
+    """
+    Recolor a manufacturer PDF template with a custom color scheme.
+    
+    Returns dict with stats about what was changed.
+    """
+    if scheme_name not in SCHEMES:
+        raise ValueError(f"Unknown scheme '{scheme_name}'. Available: {list(SCHEMES.keys())}")
+    
+    scheme = SCHEMES[scheme_name]
+    color_map = build_color_map(TEMPLATE_TIGRY, scheme)
+    
+    pdf = pikepdf.open(input_path)
+    total_replacements = 0
+    
+    for page in pdf.pages:
+        # Process page content streams
+        if '/Contents' in page:
+            contents = page['/Contents']
+            streams = list(contents) if isinstance(contents, pikepdf.Array) else [contents]
+            for s in streams:
+                total_replacements += process_stream(s, color_map)
+        
+        # Process Form XObjects (many Illustrator PDFs use these)
+        if '/Resources' in page and '/XObject' in page['/Resources']:
+            for name, xobj in page['/Resources']['/XObject'].items():
+                total_replacements += process_stream(xobj, color_map)
+    
+    pdf.save(output_path)
+    pdf.close()
+    
+    # Verify output
+    verify_pdf = pikepdf.open(output_path)
+    output_colors = set()
+    for page in verify_pdf.pages:
+        for source in _get_all_streams(page):
+            try:
+                data = source.read_bytes().decode('latin-1')
+                for m in re.finditer(r'([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+rg\b', data):
+                    r, g, b = float(m.group(1)), float(m.group(2)), float(m.group(3))
+                    output_colors.add(pdf_rgb_to_hex(r, g, b))
+            except Exception:
+                pass
+    verify_pdf.close()
+    
+    return {
+        "scheme": scheme_name,
+        "scheme_display_name": scheme["name"],
+        "replacements": total_replacements,
+        "output_colors": sorted(output_colors),
+        "input": input_path,
+        "output": output_path,
+    }
+
+
+def _get_all_streams(page):
+    """Get all content streams and XObject streams from a page."""
+    streams = []
+    if '/Contents' in page:
+        contents = page['/Contents']
+        streams.extend(list(contents) if isinstance(contents, pikepdf.Array) else [contents])
+    if '/Resources' in page and '/XObject' in page['/Resources']:
+        for name, xobj in page['/Resources']['/XObject'].items():
+            streams.append(xobj)
+    return streams
+
+
+def extract_colors(pdf_path: str) -> dict:
+    """Extract all unique fill colors from a PDF. Useful for analyzing new templates."""
+    pdf = pikepdf.open(pdf_path)
+    colors = set()
+    
+    for page in pdf.pages:
+        for source in _get_all_streams(page):
+            try:
+                data = source.read_bytes().decode('latin-1')
+                for m in re.finditer(r'([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+rg\b', data):
+                    r, g, b = float(m.group(1)), float(m.group(2)), float(m.group(3))
+                    hex_c = pdf_rgb_to_hex(r, g, b)
+                    colors.add((hex_c, m.group(0)))
+            except Exception:
+                pass
+    
+    pdf.close()
+    return {hex_c: raw for hex_c, raw in sorted(colors)}
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Recolor keycap manufacturer PDF templates")
+    parser.add_argument("input", help="Input PDF path (manufacturer template)")
+    parser.add_argument("output", help="Output PDF path")
+    parser.add_argument("--scheme", default="the-well", choices=list(SCHEMES.keys()),
+                       help="Color scheme to apply (default: the-well)")
+    parser.add_argument("--analyze", action="store_true",
+                       help="Just analyze and print colors in the input PDF")
+    
+    args = parser.parse_args()
+    
+    if args.analyze:
+        print(f"Analyzing colors in: {args.input}\n")
+        colors = extract_colors(args.input)
+        for hex_c, raw in colors.items():
+            print(f"  {hex_c}  ←  {raw} rg")
+        print(f"\nTotal unique fill colors: {len(colors)}")
+    else:
+        print(f"Recoloring: {args.input}")
+        print(f"Scheme: {args.scheme}")
+        print(f"Output: {args.output}\n")
+        
+        result = recolor_pdf(args.input, args.output, args.scheme)
+        
+        print(f"✓ {result['replacements']} color replacements made")
+        print(f"✓ Output colors: {result['output_colors']}")
+        print(f"✓ Saved to: {result['output']}")
