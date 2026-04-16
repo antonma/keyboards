@@ -99,9 +99,45 @@ SCHEME_THE_WELL = {
     }
 }
 
+# Terminal — 💀 Hacker Retro / Vintage CRT
+SCHEME_TERMINAL = {
+    "name": "Terminal — Hacker Retro",
+    "description": "Vintage CRT/Phosphor terminal aesthetic. Single-accent (phosphor green) on near-black bodies. Inspired by IBM 5151, VT100, hacker-retro renderings.",
+    "mapping": {
+        # Backgrounds: alle nahezu schwarz mit minimalem Grün-Tint.
+        # Zwei sehr nahe Farbtöne damit Mods/F-Keys sich subtil von Alphas absetzen.
+        "alpha":     "#0F1410",  # Phosphor-Black (Alpha-Hauptfläche, Spacebar, Enter)
+        "accent1":   "#0F1410",  # gleich Alpha (kein Amber-Akzent — Mono-Body)
+        "accent2":   "#0F1410",  # gleich Alpha
+        "accent3":   "#0F1410",  # Enter — gleich Alpha (Akzent kommt durch Phosphor-Legend)
+        "mod1":      "#181D18",  # Mod-Body (Shift, Ctrl, Win, Alt, Tab, Caps, Backspace, Fn)
+        "mod2":      "#181D18",  # Mod-Variant — gleich
+        "fkey":      "#181D18",  # F-Keys — gleich Mods (KEIN Amber)
+        "nav1":      "#181D18",  # Nav-Cluster (Bild↑, Bild↓, Pos1, Ende, Entf)
+        "nav2":      "#181D18",  # Nav-Variant
+        "arrows":    "#0F1410",  # Pfeiltasten — wie Alphas (Phosphor-Pfeile)
+        "dolch_red": "#0F1410",  # AltGr — wie Alphas (Phosphor-Legend macht den Akzent)
+    },
+    "legend_colors": {
+        "alpha_legends":    "#3FFF3F",  # Phosphor Green (Hauptlabels)
+        "modifier_legends": "#A8C8A8",  # Pale Grey-Green (Mods dezent, fast weiß)
+        "fkey_legends":     "#3FFF3F",  # Phosphor Green (F-Keys leuchten)
+        "accent_legends":   "#3FFF3F",  # Phosphor Green (Enter, Esc)
+        "altgr_legends":    "#3FFF3F",  # Phosphor Green (AltGr)
+        "sub_legends":      "#1F6B1F",  # Dim Phosphor (Sonderzeichen unter Hauptlabel)
+    },
+    "special": {
+        "spacebar":      "#0F1410",  # Phosphor-Black (später >_ Icon in Phosphor)
+        "rotary":        "#0F1410",  # gleich Alphas
+        "esc_icon":      "skull",    # Skull statt "Esc" Text (in Phosphor-Grün)
+        "spacebar_icon": "prompt",   # >_ Prompt-Symbol in Phosphor-Grün
+    }
+}
+
 # Add more schemes here as needed
 SCHEMES = {
     "the-well": SCHEME_THE_WELL,
+    "terminal": SCHEME_TERMINAL,
 }
 
 

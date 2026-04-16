@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Terminal Theme — Pixel Skull
+  ============================
+  For: Esc key on GK75-Terminal keyboard
+  Style: Clean 8-bit pixel art (inspired by classic game sprites)
+  Color: Phosphor Green #3FFF3F
+  Grid: 16-pixel units in 256x256 viewBox
+  
+  Affinity import:
+    1. File > Place > terminal-skull.svg
+    2. Drag onto Esc keycap
+    3. Snap to center, scale to ~70% of keycap size
+    4. All shapes auto-grouped — recolor whole group via Layers panel
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" shape-rendering="crispEdges">
+  <g fill="#3FFF3F">
+    <!-- Crown row 1 (narrowest top) -->
+    <rect x="80"  y="48"  width="96"  height="16"/>
+    <!-- Crown row 2 -->
+    <rect x="64"  y="64"  width="128" height="16"/>
+    <!-- Forehead — full width -->
+    <rect x="48"  y="80"  width="160" height="32"/>
+    <!-- Eye row: left socket | nose bridge | right socket (eyes are negative space) -->
+    <rect x="48"  y="112" width="32"  height="32"/>
+    <rect x="112" y="112" width="32"  height="32"/>
+    <rect x="176" y="112" width="32"  height="32"/>
+    <!-- Cheekbones row -->
+    <rect x="48"  y="144" width="160" height="16"/>
+    <!-- Nose hole row (jaw narrows) -->
+    <rect x="64"  y="160" width="48"  height="16"/>
+    <rect x="144" y="160" width="48"  height="16"/>
+    <!-- Teeth row (4 teeth, 3 gaps) -->
+    <rect x="64"  y="176" width="16"  height="32"/>
+    <rect x="96"  y="176" width="16"  height="32"/>
+    <rect x="128" y="176" width="16"  height="32"/>
+    <rect x="160" y="176" width="16"  height="32"/>
+  </g>
+</svg>

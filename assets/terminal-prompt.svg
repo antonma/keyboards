@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Terminal Theme — Shell Prompt Icon
+  ===================================
+  For: Spacebar on GK75-Terminal keyboard
+  Style: Solid ">" chevron + cursor block (classic shell prompt look)
+  Color: Phosphor Green #3FFF3F
+  ViewBox: 320x96 (wide aspect for spacebar)
+  
+  Improvements vs v1:
+  - ">" is now a single solid polygon (not fragmented pixels)
+  - Cleaner monospace look
+  - Cursor block proportioned like a real terminal cursor
+  
+  Affinity import:
+    1. File > Place > terminal-prompt.svg
+    2. Drag onto Spacebar
+    3. Position vertically centered, ~12-15% from left edge
+    4. Scale so total height = ~50% of spacebar height
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96">
+  <g fill="#3FFF3F">
+    <!-- ">" chevron as a single clean polygon -->
+    <polygon points="32,16 32,32 64,48 32,64 32,80 88,48"/>
+    <!-- Cursor block (filled rectangle, classic terminal cursor) -->
+    <rect x="120" y="16" width="48" height="64"/>
+  </g>
+</svg>
