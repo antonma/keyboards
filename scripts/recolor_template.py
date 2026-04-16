@@ -25,9 +25,12 @@ The output PDF can be opened in:
 """
 
 import argparse
+import io
 import re
 import sys
 from pathlib import Path
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 try:
     import pikepdf
@@ -134,10 +137,55 @@ SCHEME_TERMINAL = {
     }
 }
 
+# Oni Mask — 🎭 Schwarz-Rot-Gold Samurai
+# Verifiziertes Slot-Mapping (2026-04-16, audit_tigry_slots.py):
+#   alpha    (#F5F4EB): Alphas, Zahlenreihe, Spacebar, F1-F4, F9-F12  → DUNKEL
+#   accent1  (#E5B57C): ESC + alle Pfeiltasten (← ↑ ↓ →)              → GOLD
+#   accent2  (#ECB986): Zweites Design F1-Akzent                       → GOLD (passend zu accent1)
+#   accent3  (#A5CEC3): ENTER (ISO-DE Mint → einzige Enter-Farbe!)     → GOLD
+#   mod1     (#8C8C8B): Rotary/Nav-Taste (rechts F-Key-Zeile)          → ROT
+#   mod2     (#828487): ALLE Mods (Tab, Caps, Shift, Ctrl, Win, Alt,   → ROT
+#                       Fn, AltGr, Backspace) + F5-F8 + Nav-Cluster
+#   fkey     (#6B6C6D): Zweites Design F5-F8 (spiegelt mod2)           → ROT
+#   nav1     (#54565A): Nav-Background-Fläche (groß)                   → NAVY (Body)
+#   nav2     (#4C4C4C): Keyboard-Hintergrund (allergrößte Fläche)      → NAVY (Body)
+#   arrows   (#A5A5A5): Zweites Design Alphas                          → DUNKEL
+#   dolch_red(#AA1717): Zweites Design ESC (Dolch-Akzent)              → GOLD
+#
+# LIMITIERUNG: Spacebar teilt den 'alpha'-Slot mit Alphas →
+#   Spacebar wird DUNKEL (nicht Gold wie im V2 ADR).
+#   Dies entspricht Antons manueller Referenz-Datei (omni-mask_v1.pdf).
+SCHEME_ONI_MASK = {
+    "name": "Oni Mask — 鬼",
+    "description": "Schwarz-Rot-Gold Samurai. Ideogram V2 K-Means Palette. Verifiziert via PDF-Stream-Analyse 2026-04-16.",
+    "mapping": {
+        "alpha":     "#1B1D20",   # Alphas, Spacebar, Num row, F1-F4, F9-F12 → Dunkel
+        "accent1":   "#A88B63",   # ESC + Pfeiltasten → Gold
+        "accent2":   "#A88B63",   # 2nd-Design Akzent → Gold (spiegelt accent1)
+        "accent3":   "#A88B63",   # ENTER (einziger Schlüssel in diesem Slot) → Gold
+        "mod1":      "#6F2D2C",   # Rotary/Nav-Sondertaste → Rot
+        "mod2":      "#6F2D2C",   # Alle Mods + F5-F8 → Rot
+        "fkey":      "#6F2D2C",   # 2nd-Design F5-F8 → Rot (spiegelt mod2)
+        "nav1":      "#1B2230",   # Nav-Background → Navy (Keyboard-Körper)
+        "nav2":      "#1B2230",   # Keyboard-Hintergrund → Navy (Keyboard-Körper)
+        "arrows":    "#1B1D20",   # 2nd-Design Alphas → Dunkel (spiegelt alpha)
+        "dolch_red": "#A88B63",   # 2nd-Design ESC → Gold (spiegelt accent1)
+    },
+    "legend_colors": {
+        # Legends werden per PyMuPDF overdraw (apply_legend_colors.py) gesetzt,
+        # NICHT per recolor_template.py. Diese Werte sind nur Referenz.
+        "on_dark":    "#A88B63",   # Gold auf Schwarz (Alphas, F-Keys)
+        "on_red":     "#DDC096",   # Champagner auf Rot (Mods)
+        "on_gold":    "#1B1D20",   # Schwarz auf Gold (ESC, Enter, Pfeile)
+        "sub_legend": "#7A6444",   # Gedämpftes Gold (Sub-Legends)
+    },
+}
+
 # Add more schemes here as needed
 SCHEMES = {
     "the-well": SCHEME_THE_WELL,
     "terminal": SCHEME_TERMINAL,
+    "oni-mask": SCHEME_ONI_MASK,
 }
 
 
