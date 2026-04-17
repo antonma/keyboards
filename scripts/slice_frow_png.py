@@ -31,7 +31,7 @@ import numpy as np
 from PIL import Image
 
 REPO_ROOT  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PNG_PATH   = os.path.join(REPO_ROOT, "icons", "mond_flach.png")
+PNG_PATH   = os.path.join(REPO_ROOT, "images", "mond-8K.png")
 OUTPUT_DIR = os.path.join(REPO_ROOT, "icons", "fkey")
 
 # ── F-key geometry in PDF pt ───────────────────────────────────────────────────
