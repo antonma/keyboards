@@ -4,22 +4,21 @@ slice_frow_png.py — Slice mond_flach.png into 12 F-key PNGs at 600 DPI
 with Oni Mask color palette remapping.
 
 Workflow:
-  1. Vertical crop: detect moon center row, crop to key-face height (40pt)
-  2. Horizontal slice: 12 x-regions from F-key PDF coordinates
+  1. Vertical crop: detect moon center row, crop to key-face size (52.1pt)
+  2. Horizontal slice: 52.1pt centered on each F-key's PDF x-position
   3. Color remap: luminance ramp → Oni palette (grey moon → warm gold,
      neutral clouds → purple tint, background → #1B1D20)
-  4. 600 DPI export via LANCZOS upscaling
+  4. 600 DPI export via LANCZOS upscaling → 434×434 px (square)
 
 Usage:
     py -3 scripts/slice_frow_png.py
 
-Output: icons/fkey/F1.png ... icons/fkey/F12.png (600 DPI)
+Output: icons/fkey/F1.png ... icons/fkey/F12.png (600 DPI, 434×434 px)
 
 Source analysis of mond_flach.png (1376x312):
   - x-scale: 1376 px / 750 PDF-pt = 1.8347 px/pt
   - Moon peak: row 103 (mean lum 46.5) of 312 total rows
-  - Key-face crop: 73 px tall (= 40pt x 1.8347 px/pt), centered on row 103
-  - y-window: rows 67–140
+  - Key-face crop: 96 px square (= 52.1pt x 1.8347 px/pt), centered on row 103
 """
 
 import io
@@ -38,7 +37,7 @@ OUTPUT_DIR = os.path.join(REPO_ROOT, "icons", "fkey")
 # ── F-key geometry in PDF pt ───────────────────────────────────────────────────
 PDF_F_START   = 215.0   # x of F1 left edge
 PDF_F_TOTAL_W = 750.0   # F1_left to F12_right (965 - 215 pt)
-PDF_KEY_H     = 40.0    # key face height in pt (y=257.5 to y=297.5)
+PDF_KEY_FACE  = 52.1    # key face size in pt (square: 52.1 × 52.1 pt = 434×434 px @ 600 DPI)
 
 F_KEYS = [
     ("F1",  215.0, 55.0),
@@ -122,53 +121,51 @@ def main() -> None:
     px_per_pt = src_w / PDF_F_TOTAL_W
     print(f"  Scale: {px_per_pt:.4f} px/pt  ({PDF_F_TOTAL_W:.0f} pt -> {src_w} px)")
 
-    # Vertical crop: key-face height in source pixels, centered on moon
-    crop_h_src = round(PDF_KEY_H * px_per_pt)       # ~73 px at key-face height
+    # Square key-face size in source pixels
+    crop_src = round(PDF_KEY_FACE * px_per_pt)     # ~96 px (52.1pt × 1.8347)
+
+    # Vertical crop: centered on moon peak row
     arr = np.array(img)
     moon_row = find_moon_center_row(arr)
-    y0 = max(0, moon_row - crop_h_src // 2)
-    y1 = min(src_h, y0 + crop_h_src)
-    # Adjust if we hit the bottom edge
-    if y1 - y0 < crop_h_src:
-        y0 = max(0, y1 - crop_h_src)
+    y0 = max(0, moon_row - crop_src // 2)
+    y1 = min(src_h, y0 + crop_src)
+    if y1 - y0 < crop_src:                         # clamp if near bottom edge
+        y0 = max(0, y1 - crop_src)
     print(f"  Moon center row : {moon_row}")
-    print(f"  Vertical crop   : rows {y0}–{y1}  ({y1-y0} px = {PDF_KEY_H:.0f} pt face)")
+    print(f"  Vertical crop   : rows {y0}–{y1}  ({y1-y0} px = {PDF_KEY_FACE} pt)")
 
-    # Output size at 600 DPI
-    out_h = round(PDF_KEY_H * OUTPUT_DPI / PT_PER_INCH)   # 40pt → 333 px
+    # Square output size at 600 DPI
+    out_px = round(PDF_KEY_FACE * OUTPUT_DPI / PT_PER_INCH)   # 52.1pt → 434 px
     out_scale = OUTPUT_DPI / PT_PER_INCH / px_per_pt
     print(f"  Output scale    : x{out_scale:.4f}  ({OUTPUT_DPI} DPI)")
-    print(f"  Output height   : {out_h} px  ({PDF_KEY_H/PT_PER_INCH*25.4:.1f} mm)\n")
+    print(f"  Output size     : {out_px}×{out_px} px  ({PDF_KEY_FACE/PT_PER_INCH*25.4:.1f}×{PDF_KEY_FACE/PT_PER_INCH*25.4:.1f} mm)\n")
 
-    # Apply palette to full image once, then use the cropped rows
+    # Apply palette to full image once, then crop
     print("Applying Oni Mask palette ...")
     arr_oni = apply_oni_palette(arr)
-    arr_crop = arr_oni[y0:y1, :, :]    # vertical crop applied globally
     print()
 
     for name, pdf_x, pdf_w in F_KEYS:
-        # Horizontal crop in source
-        x0 = round((pdf_x - PDF_F_START) * px_per_pt)
-        x1 = round((pdf_x - PDF_F_START + pdf_w) * px_per_pt)
-        x0 = max(0, min(x0, src_w))
-        x1 = max(0, min(x1, src_w))
+        # Horizontal crop: 52.1pt centered on this key's face
+        key_center_pt = pdf_x + pdf_w / 2
+        cx0 = round((key_center_pt - PDF_KEY_FACE / 2 - PDF_F_START) * px_per_pt)
+        cx1 = cx0 + crop_src
+        cx0 = max(0, min(cx0, src_w - crop_src))
+        cx1 = cx0 + crop_src
 
-        key_crop = arr_crop[:, x0:x1, :]          # shape: (crop_h_src, key_w_src, 3)
-
-        # Output size at 600 DPI
-        out_w = round(pdf_w * OUTPUT_DPI / PT_PER_INCH)
+        key_crop = arr_oni[y0:y1, cx0:cx1, :]     # square crop in source
 
         pil_crop = Image.fromarray(key_crop, "RGB")
-        pil_out  = pil_crop.resize((out_w, out_h), Image.LANCZOS)
+        pil_out  = pil_crop.resize((out_px, out_px), Image.LANCZOS)
 
         out_path = os.path.join(OUTPUT_DIR, f"{name}.png")
         pil_out.save(out_path, "PNG", dpi=(OUTPUT_DPI, OUTPUT_DPI))
 
         size_kb = os.path.getsize(out_path) / 1024
-        print(f"  {name:4s}: src x[{x0}:{x1}] y[{y0}:{y1}]  {x1-x0}x{y1-y0}px"
-              f"  ->  {out_w}x{out_h}px @ {OUTPUT_DPI} DPI  ({size_kb:.0f} KB)")
+        print(f"  {name:4s}: src x[{cx0}:{cx1}] y[{y0}:{y1}]  {crop_src}x{crop_src}px"
+              f"  ->  {out_px}x{out_px}px @ {OUTPUT_DPI} DPI  ({size_kb:.0f} KB)")
 
-    print(f"\nDone. 12 PNGs @ {OUTPUT_DPI} DPI written to {OUTPUT_DIR}")
+    print(f"\nDone. 12 PNGs @ {OUTPUT_DPI} DPI ({out_px}x{out_px} px) written to {OUTPUT_DIR}")
 
 
 if __name__ == "__main__":
