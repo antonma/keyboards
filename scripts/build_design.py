@@ -198,6 +198,11 @@ def build(design: str, resume_from: str | None, dry_run: bool):
     print(f"  Dry run: {dry_run}")
     print()
 
+    if config.get("incomplete"):
+        print(f"ERROR: Config '{design}' is marked incomplete=true — needs ADR before first build.")
+        print(f"       Write the ADR in Brain DB (project=keycap-shop), then remove 'incomplete: true'.")
+        sys.exit(1)
+
     base_pdf = REPO / config.get("base_template_pdf", "")
     if not base_pdf.exists():
         print(f"ERROR: base_template_pdf not found: {base_pdf}")

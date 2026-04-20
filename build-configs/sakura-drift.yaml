@@ -1,0 +1,74 @@
+# Build config: Sakura Drift — Kirschblüten Japan
+# ADR: topic=sakura-drift-design (Brain DB, 2026-04-16)
+# Palette: K-Means gemessen aus Ideogram-Rendering
+# 4-Gruppen-System analog Oni Mask (alpha/mod/nav/accent)
+# NOTE: Statement-Keys (spacebar, enter, pgup) erhalten unterschiedliche Artworks.
+#       Enter + pgup liegen in anderen Gruppen (accent/nav) als Spacebar.
+#       Artwork targeting richtet sich nach verfügbaren Gruppen; plain-colored keys
+#       via color_operations.
+design_name: sakura-drift
+base_template_pdf: templates/GK75-German-Tigry-original.pdf
+
+palette:
+  body_alpha:        "#F1ECE7"   # Cremeweiss / Reispapier (Alphas, F-Keys, Esc, Enter)
+  body_mod:          "#ECC6C3"   # Soft Sakura Pink (Tab, Caps, Shift, Win, Alt, AltGr, Fn)
+  body_nav:          "#CE8E93"   # Deep Rose (Strg, Bild↑↓, Entf, Pos1, Backspace, Ende)
+  body_spacebar:     "#816855"   # Aststamm-Braun (Spacebar Statement-Element)
+  petal_pink:        "#F4ABB6"   # Kirschblüten Haupt (Artwork-Referenz)
+  petal_center:      "#E58590"   # Blütenkern / Schatten (Artwork-Referenz)
+  legend_on_cream:   "#564D48"   # Warm-Anthrazit (Alphas, F-Keys)
+  legend_on_pink:    "#6B2D32"   # Tiefes Bordeaux (Mods hell)
+  legend_on_rose:    "#FFFFFF"   # Reines Weiß (Mods dunkel/Nav)
+  legend_sub:        "#A89289"   # Gedämpftes Warmgrau (Sub-Legends)
+
+artworks:
+  - name: kirschbluten_ast
+    target_group: accent
+    aspect_ratio: ASPECT_3_1
+    model: quality
+    strategy: uniform
+    palette: none
+    size: 434
+    prompt: >
+      Cherry blossom branch growing diagonally from lower-left, several open blossoms
+      in soft pink and deep rose, warm brown branch on cream/off-white background,
+      Japanese sumi-e ink wash style with soft watercolor petals,
+      scattered falling petals, no text, flat lay, 4K
+
+  - name: driftende_bluten_pgup
+    target_group: nav
+    aspect_ratio: ASPECT_1_1
+    model: turbo
+    strategy: uniform
+    palette: none
+    size: 434
+    prompt: >
+      One or two drifting cherry blossom petals on deep rose background,
+      soft pink petals with delicate veins, minimalist Japanese style,
+      no text, centered, 4K
+
+color_operations:
+  - group: alpha
+    property: body
+    color: "#F1ECE7"
+  - group: fkey
+    property: body
+    color: "#F1ECE7"
+  - group: mod
+    property: body
+    color: "#ECC6C3"
+  - group: nav
+    property: body
+    color: "#CE8E93"
+  - group: accent
+    property: body
+    color: "#816855"
+
+quality_baseline:
+  stroke_count: null    # TBD — measure after first successful build
+  tolerance_pct: 2.0
+  expected_colors:
+    - "#F1ECE7"
+    - "#ECC6C3"
+    - "#CE8E93"
+    - "#816855"

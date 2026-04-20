@@ -1,0 +1,28 @@
+# Build config: Military / Field Kit — SKELETON, NEEDS ADR BEFORE BUILD
+# Status: incomplete — Farben und Artwork-Konzept nicht entschieden
+# TODO: ADR in Brain DB schreiben (topic=military-design) bevor Build gestartet wird
+#       Richtung laut Session 2026-04-20: Cream + Navy + Burnt Orange
+#       Artwork-Konzept offen: Field Kit Icons? Kompass? Stencil-Font?
+# DO NOT BUILD until ADR is written and palette is finalized.
+incomplete: true
+
+design_name: military
+base_template_pdf: templates/GK75-German-Tigry-original.pdf
+
+palette:
+  body_alpha:   "#000000"   # TODO: ADR needed — Richtung: "Cream"
+  body_mod:     "#000000"   # TODO: ADR needed — Richtung: "Navy"
+  body_accent:  "#000000"   # TODO: ADR needed — Richtung: "Burnt Orange"
+  legend_all:   "#000000"   # TODO: ADR needed
+
+artworks: []
+# TODO: Artwork-Konzept in ADR entscheiden, dann befüllen
+# Kandidaten: Field Kit Icons, Militär-Kompass, Stencil-Font-Textur
+
+color_operations: []
+# TODO: nach ADR-Finalisierung befüllen
+
+quality_baseline:
+  stroke_count: null
+  tolerance_pct: 1.0
+  expected_colors: []

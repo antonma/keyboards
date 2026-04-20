@@ -1,0 +1,80 @@
+# Build config: Laura — Schlaue Prinzessin / Space Princess
+# ADR: topic=laura-design (Brain DB, 2026-04-14)
+# Palette: dunklerer Range-Wert pro Gruppe (besserer Legende-Kontrast)
+# NOTE: Individual key elements (tiara/space, wand/esc, planet/enter, stars/arrows)
+#       require target_key support — not yet in build framework.
+#       Current artworks use group-level backgrounds as foundation.
+design_name: laura
+base_template_pdf: templates/GK75-German-Tigry-original.pdf
+
+palette:
+  body_alpha:   "#c4b0d8"   # Lavendel/Flieder
+  body_mod:     "#d4969c"   # Pastell-Rosa/Rose
+  body_fkey:    "#d8c490"   # Champagner-Gold
+  body_nav:     "#a0c8b4"   # Mintgrün
+  body_accent:  "#ede8f0"   # Weiß mit Sparkle-Tint
+  legend_all:   "#5a3a2a"   # Warmes Braun (alle Gruppen, wie Einladungskarten)
+
+artworks:
+  - name: accent_sparkle
+    target_group: accent
+    aspect_ratio: ASPECT_16_3
+    model: quality
+    strategy: uniform
+    palette: none
+    size: 434
+    prompt: >
+      Soft watercolor sparkle and magic background, tiny stars and glitter scattered
+      on creamy white surface, pastel lavender and champagne gold accents,
+      subtle iridescent shimmer, no text, no figures, flat lay illustration, 4K
+
+  - name: fkey_champagne
+    target_group: fkey
+    aspect_ratio: ASPECT_16_3
+    model: turbo
+    strategy: uniform
+    palette: none
+    size: 434
+    prompt: >
+      Soft champagne gold watercolor wash, gentle warm gradient left to right,
+      faint sparkle dust scattered across surface, no text, no symbols,
+      warm pastel tones, flat matte surface, 4K
+
+  - name: alpha_flowers
+    target_group: alpha
+    aspect_ratio: ASPECT_16_9
+    model: turbo
+    strategy: uniform
+    palette: none
+    size: 434
+    prompt: >
+      Subtle watercolor floral repeat pattern, tiny lavender and soft pink blossoms
+      on soft lilac background, delicate brush strokes, seamless tile,
+      no text, pastel palette, 4K
+
+color_operations:
+  - group: alpha
+    property: body
+    color: "#c4b0d8"
+  - group: mod
+    property: body
+    color: "#d4969c"
+  - group: fkey
+    property: body
+    color: "#d8c490"
+  - group: nav
+    property: body
+    color: "#a0c8b4"
+  - group: accent
+    property: body
+    color: "#ede8f0"
+
+quality_baseline:
+  stroke_count: null    # TBD — measure after first successful build
+  tolerance_pct: 2.0
+  expected_colors:
+    - "#c4b0d8"
+    - "#d4969c"
+    - "#d8c490"
+    - "#a0c8b4"
+    - "#ede8f0"
