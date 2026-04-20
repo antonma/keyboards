@@ -1,0 +1,25 @@
+{
+  "the-well": {
+    "stroke_count": 11382,
+    "tolerance_pct": 0.5,
+    "expected_colors": ["#161820", "#1E2830", "#1C2228", "#C8D0D8"],
+    "note": "v5 baseline — Goldstandard nach Dolch-Cleanup"
+  },
+  "terminal-v2": {
+    "stroke_count": 10974,
+    "tolerance_pct": 1.0,
+    "expected_colors": ["#121F13", "#161813"],
+    "note": "Aus audit_tigry_slots.py — Stroke Delta -408 vs The-Well bekannt und akzeptiert"
+  },
+  "oni-v3": {
+    "stroke_count": 11332,
+    "tolerance_pct": 0.5,
+    "expected_colors": [],
+    "note": "Basis: GK75-TheWell-omni-mask_2_mond.pdf — Manuelle Affinity-Version"
+  },
+  "_defaults": {
+    "tolerance_abs": 50,
+    "max_filesize_kb": 2048,
+    "note": "If tolerance_pct not set, use tolerance_abs=50 strokes"
+  }
+}

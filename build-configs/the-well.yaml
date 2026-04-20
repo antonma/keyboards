@@ -1,0 +1,46 @@
+# Build config: The Well — 呪 (Dark Horror)
+# Design doc: designs/the-well/the-well-design-document-EN.docx
+design_name: the-well
+base_template_pdf: templates/GK75-German-Tigry-original.pdf
+
+palette:
+  body_alpha:    "#161820"
+  body_mod:      "#1E2830"
+  body_fkey:     "#1C2228"
+  body_nav:      "#1A2530"
+  body_accent:   "#C8D0D8"
+  legend_alpha:  "#8899AA"
+  legend_mod:    "#5A7A90"
+  legend_fkey:   "#4A6070"
+  legend_accent: "#2A3540"
+  legend_nav:    "#5A7A90"
+
+artworks:
+  # No generated artwork — The Well uses manual Affinity-built template
+  # Base: templates/GK75-TheWell-omni-mask_2_mond.pdf
+
+color_operations:
+  - group: alpha
+    property: body
+    color: "#161820"
+  - group: mod
+    property: body
+    color: "#1E2830"
+  - group: fkey
+    property: body
+    color: "#1C2228"
+  - group: nav
+    property: body
+    color: "#1A2530"
+  - group: accent
+    property: body
+    color: "#C8D0D8"
+
+quality_baseline:
+  stroke_count: 11382
+  tolerance_pct: 0.5
+  expected_colors:
+    - "#161820"
+    - "#1E2830"
+    - "#1C2228"
+    - "#C8D0D8"

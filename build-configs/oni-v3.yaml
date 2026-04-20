@@ -1,0 +1,34 @@
+# Build config: Oni Mask — Schwarz/Blutrot/Gold
+# Base: templates/GK75-TheWell-omni-mask_2_mond.pdf (Anton's manual Affinity build)
+# NOTE: This base PDF already has labels, icons (Torii/Oni), and Mond artwork.
+#       Claude Code must NOT overwrite templates/GK75-TheWell-omni-mask_2_mond.pdf.
+#       Always save as new version (oni-v3.pdf, oni-v4.pdf ...).
+design_name: oni-v3
+base_template_pdf: templates/GK75-TheWell-omni-mask_2_mond.pdf
+
+palette:
+  body_alpha:   "#1B1D20"
+  body_mod:     "#6F2D2C"
+  body_accent:  "#A88B63"
+  legend_mod:   "#A88B63"
+  legend_alpha: "#D4A855"
+
+artworks:
+  - name: mond-frow
+    target_group: fkey
+    aspect_ratio: ASPECT_16_3
+    model: quality
+    strategy: moon
+    palette: oni
+    size: 434
+    prompt: >
+      Moon surface panorama, realistic lunar landscape, terminator line visible,
+      dark craters, no atmosphere, deep black space background, no text,
+      no labels, photorealistic, 8K resolution, cinematic lighting
+
+color_operations: []
+
+quality_baseline:
+  stroke_count: 11332
+  tolerance_pct: 0.5
+  expected_colors: []

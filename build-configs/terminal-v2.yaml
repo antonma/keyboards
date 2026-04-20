@@ -1,0 +1,54 @@
+# Build config: Terminal — Phosphor Green Matrix
+# ADR: Terminal-Farbschema V2 (Colorpicker-Farben)
+design_name: terminal-v2
+base_template_pdf: templates/GK75-German-Tigry-original.pdf
+
+palette:
+  body_alpha:   "#121F13"
+  body_mod:     "#161813"
+  legend_alpha: "#50B05E"
+  legend_mod:   "#284A35"
+  legend_fkey:  "#AC8A59"
+
+artworks:
+  - name: matrix-frow
+    target_group: fkey
+    aspect_ratio: ASPECT_16_3
+    model: turbo
+    strategy: matrix
+    palette: none
+    size: 434
+    prompt: >
+      Matrix digital rain, horizontal flowing green binary code (only 0 and 1),
+      exactly 3 straight horizontal rows of digits, dark background near black #121F13,
+      digits in phosphor green #50B05E, no glow no haze flat matte surface,
+      maximum 30% opacity digits, clean minimal, 4K resolution
+
+  - name: spacebar-prompt
+    target_group: spacebar
+    aspect_ratio: ASPECT_3_1
+    model: turbo
+    strategy: uniform
+    palette: none
+    size: 434
+    prompt: >
+      Terminal command prompt ">_" symbol, phosphor green on near-black background,
+      monospace pixel font, flat matte, no glow, minimal, 4K
+
+color_operations:
+  - group: alpha
+    property: body
+    color: "#121F13"
+  - group: mod
+    property: body
+    color: "#161813"
+  - group: fkey
+    property: body
+    color: "#121F13"
+
+quality_baseline:
+  stroke_count: 10974
+  tolerance_pct: 1.0
+  expected_colors:
+    - "#121F13"
+    - "#161813"

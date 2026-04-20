@@ -238,6 +238,85 @@ Font für alle Labels: **Segoe UI Symbol** (`C:\Windows\Fonts\seguisym.ttf`)
 - Token: in Brain DB / Claude Memory gespeichert
 - Push nach jeder Dateiänderung
 
+## Build-Framework (E2E Automation)
+
+### Ground Truth: Coordinate Map
+**`layouts/keycap-coordinate-map.json`** ist die einzige kanonische Quelle für Key-Positionen.
+- 84 Keys, GK75 ISO-DE, mit x0/y0/x1/y1/cx/cy/group pro Key
+- Nie hartkodierte Koordinaten in Scripts — immer aus der Map lesen
+- Gruppen: `alpha`, `mod`, `fkey`, `accent`, `nav`, `spacebar`
+
+### Build-Scripts
+
+| Script | Funktion |
+|--------|----------|
+| `scripts/generate_artwork.py` | Ideogram API v3 → PNG generieren |
+| `scripts/slice_artwork.py` | PNG → Key-Tiles pro Gruppe (moon/matrix/uniform) |
+| `scripts/place_artwork.py` | Tiles → PDF (insert_image per Key via Coordinate Map) |
+| `scripts/recolor.py` | Gruppe → neue Füllfarbe (Overdraw-Strategie) |
+| `scripts/verify_template.py` | Quality Gate (Stroke Count, Farbmodell, Dateigröße) |
+| `scripts/build_design.py` | Orchestrator: alles zusammen + 2 Review-Gates |
+
+### Build-Configs
+Jedes Design hat eine YAML-Datei in `build-configs/<design>.yaml`:
+```yaml
+design_name: terminal-v2
+base_template_pdf: templates/GK75-German-Tigry-original.pdf
+palette: { body_alpha: "#121F13", ... }
+artworks:
+  - name: matrix-frow
+    target_group: fkey
+    aspect_ratio: ASPECT_16_3
+    model: turbo
+    strategy: matrix
+    prompt: "..."
+color_operations:
+  - group: alpha
+    property: body
+    color: "#121F13"
+quality_baseline:
+  stroke_count: 10974
+  tolerance_pct: 1.0
+```
+
+### Design bauen
+```bash
+# Dry-Run (kein API-Call, kein Commit)
+py -3 scripts/build_design.py --design terminal-v2 --dry-run
+
+# Echter Build (pausiert an Gate 1 + Gate 2)
+py -3 scripts/build_design.py --design terminal-v2
+
+# Nach Gate-Pause fortsetzen
+py -3 scripts/build_design.py --design terminal-v2 --resume gate2
+
+# Alle Designs auflisten
+py -3 scripts/build_design.py --list
+```
+
+### Review Gates
+**Gate 1** — nach Artwork-Generierung: Artworks werden in `artwork-review/<design>` Branch gepusht.
+Anton reviewt die PNGs auf GitHub (mobile), antwortet mit `ok` oder `verwerfen`.
+
+**Gate 2** — vor finalem Commit: Fertiges PDF im gleichen Branch. Anton öffnet PDF, antwortet mit `commit` oder `verwerfen`.
+
+### Rückfragen erlaubt bei
+- Quelldatei nicht gefunden
+- Gruppe aus Coordinate Map unbekannt
+- verify_template schlägt nach 2 Retry-Versuchen fehl
+- ADR-Konflikt
+
+### Bei jedem Build: Brain DB Session-Log
+```python
+# Am Ende jeder Build-Session schreiben (project=keycap-shop, source_agent=claude-code)
+```
+
+### Ideogram API
+- Env Var: `IDEOGRAM_API_KEY` (Codespace Secret)
+- Kosten: ~$0.08–0.16 pro Bild
+- Aktuelle Docs prüfen vor generate_artwork.py-Änderungen: ideogram.ai/api/docs
+- Bei Dry-Run: `--dry-run` Flag → Placeholder PNG, kein API-Call
+
 ## PFLICHT: Template-Verifikation nach jeder PDF-Änderung
 
 ### Warum
