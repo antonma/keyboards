@@ -28,17 +28,30 @@ from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
-IDEOGRAM_URL = "https://api.ideogram.ai/generate"
+IDEOGRAM_URL = "https://api.ideogram.ai/v1/ideogram-v3/generate"
 COST_PER_IMAGE = {
     "turbo":   0.08,
     "default": 0.12,
     "quality": 0.16,
 }
-VALID_ASPECTS = [
-    "ASPECT_1_1", "ASPECT_4_3", "ASPECT_3_4",
-    "ASPECT_16_9", "ASPECT_9_16", "ASPECT_16_3",
-    "ASPECT_3_1", "ASPECT_10_16",
+# V3 API format (lowercase with x)
+VALID_ASPECTS_V3 = [
+    "1x1", "4x3", "3x4", "16x9", "9x16",
+    "16x10", "10x16", "2x3", "3x2", "3x1", "1x3",
+    "2x1", "1x2", "4x5", "5x4",
 ]
+# Legacy format → V3 format (for backward compat with build-configs)
+ASPECT_MAP = {
+    "ASPECT_1_1":   "1x1",
+    "ASPECT_4_3":   "4x3",
+    "ASPECT_3_4":   "3x4",
+    "ASPECT_16_9":  "16x9",
+    "ASPECT_9_16":  "9x16",
+    "ASPECT_16_3":  "3x1",   # closest: 3:1 wide (F-row)
+    "ASPECT_3_1":   "3x1",
+    "ASPECT_10_16": "10x16",
+}
+VALID_ASPECTS = list(ASPECT_MAP.keys()) + VALID_ASPECTS_V3
 MAX_RETRIES = 3
 RETRY_BASE_DELAY = 5.0
 
@@ -131,24 +144,18 @@ def main():
     if not output_path.is_absolute():
         output_path = Path(__file__).parent.parent / output_path
 
+    aspect_v3 = ASPECT_MAP.get(args.aspect, args.aspect)  # normalize to V3 format
+
     payload = {
-        "image_request": {
-            "prompt": args.prompt,
-            "aspect_ratio": args.aspect,
-            "model": "V_3",  # always use V3
-            "style_type": "REALISTIC",
-        }
+        "prompt": args.prompt,
+        "aspect_ratio": aspect_v3,
+        "rendering_speed": "DEFAULT" if args.model == "quality" else "TURBO",
+        "style_type": "REALISTIC",
     }
     if args.negative:
-        payload["image_request"]["negative_prompt"] = args.negative
+        payload["negative_prompt"] = args.negative
     if args.seed is not None:
-        payload["image_request"]["seed"] = args.seed
-
-    # Map model alias to magic_prompt_option
-    if args.model == "quality":
-        payload["image_request"]["magic_prompt_option"] = "ON"
-    else:
-        payload["image_request"]["magic_prompt_option"] = "OFF"
+        payload["seed"] = args.seed
 
     print(f"Ideogram generate_artwork")
     print(f"  Prompt  : {args.prompt[:80]}{'...' if len(args.prompt) > 80 else ''}")
