@@ -167,16 +167,34 @@ def slice_uniform(img: Image.Image, keys: list, output_dir: Path, out_px: int, p
         print(f"  {key['name']:4s}: x[{x0}:{x1}] y[{y0}:{y1}]  → {out_path.name}")
 
 
+def slice_keys(img: Image.Image, key_ids: list, coord_map: dict, output_dir: Path, out_px: int) -> None:
+    """Keys mode: resize full image for each key, save as {key_id}.png."""
+    keys_by_id = {k["id"]: k for k in coord_map["keys"]}
+    arr = np.array(img.convert("RGB"))
+    for key_id in key_ids:
+        if key_id not in keys_by_id:
+            print(f"  WARN: key '{key_id}' not in coordinate map — skipped")
+            continue
+        pil = Image.fromarray(arr, "RGB").resize((out_px, out_px), Image.LANCZOS)
+        out_path = output_dir / f"{key_id}.png"
+        pil.save(out_path, "PNG", dpi=(OUTPUT_DPI, OUTPUT_DPI))
+        print(f"  {key_id}: resized to {out_px}×{out_px}  → {out_path.name}")
+
+
 def main():
     p = argparse.ArgumentParser(description="Slice artwork PNG into per-key tiles")
-    p.add_argument("--source",   required=True, help="Source image path")
-    p.add_argument("--group",    required=True, help="Key group (fkey, alpha, mod, accent, nav)")
+    p.add_argument("--source",     required=True, help="Source image path")
     p.add_argument("--output-dir", required=True, help="Output directory for key PNGs")
-    p.add_argument("--size",     type=int, default=434, help="Output size in px (default 434)")
+    p.add_argument("--size",       type=int, default=434, help="Output size in px (default 434)")
+
+    target = p.add_mutually_exclusive_group(required=True)
+    target.add_argument("--group", help="Key group (fkey, alpha, mod, accent, nav) — slices image across all keys")
+    target.add_argument("--keys",  help="Comma-separated key IDs (e.g. space,esc) — resizes full image per key")
+
     p.add_argument("--strategy", choices=["moon", "matrix", "uniform"], default="matrix",
-                   help="Slicing strategy (default: matrix)")
+                   help="Slicing strategy for --group mode (default: matrix)")
     p.add_argument("--palette",  choices=["oni", "none"], default="none",
-                   help="Color palette remap (default: none)")
+                   help="Color palette remap for --group mode (default: none)")
     args = p.parse_args()
 
     src_path = Path(args.source)
@@ -192,26 +210,32 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
 
     coord_map = load_coord_map()
-    keys = keys_for_group(coord_map, args.group)
-    if not keys:
-        print(f"ERROR: No keys found for group '{args.group}' in coordinate map.", file=sys.stderr)
-        print(f"  Available groups: {sorted(set(k['group'] for k in coord_map['keys']))}")
-        sys.exit(1)
-
     img = Image.open(src_path)
     print(f"Source : {src_path.name}  {img.size[0]}×{img.size[1]} {img.mode}")
-    print(f"Group  : {args.group}  ({len(keys)} keys)")
-    print(f"Output : {output_dir}  ({args.size}×{args.size} px, {args.strategy} strategy)")
-    print()
 
-    if args.strategy == "moon":
-        slice_moon(img, keys, output_dir, args.size, args.palette)
-    elif args.strategy == "matrix":
-        slice_matrix(img, keys, output_dir, args.size, args.palette)
+    if args.keys:
+        key_ids = [k.strip() for k in args.keys.split(",") if k.strip()]
+        print(f"Keys   : {key_ids}")
+        print(f"Output : {output_dir}  ({args.size}×{args.size} px, keys mode)")
+        print()
+        slice_keys(img, key_ids, coord_map, output_dir, args.size)
+        print(f"\nDone. {len(key_ids)} tiles → {output_dir}")
     else:
-        slice_uniform(img, keys, output_dir, args.size, args.palette)
-
-    print(f"\nDone. {len(keys)} tiles → {output_dir}")
+        keys = keys_for_group(coord_map, args.group)
+        if not keys:
+            print(f"ERROR: No keys found for group '{args.group}' in coordinate map.", file=sys.stderr)
+            print(f"  Available groups: {sorted(set(k['group'] for k in coord_map['keys']))}")
+            sys.exit(1)
+        print(f"Group  : {args.group}  ({len(keys)} keys)")
+        print(f"Output : {output_dir}  ({args.size}×{args.size} px, {args.strategy} strategy)")
+        print()
+        if args.strategy == "moon":
+            slice_moon(img, keys, output_dir, args.size, args.palette)
+        elif args.strategy == "matrix":
+            slice_matrix(img, keys, output_dir, args.size, args.palette)
+        else:
+            slice_uniform(img, keys, output_dir, args.size, args.palette)
+        print(f"\nDone. {len(keys)} tiles → {output_dir}")
 
 
 if __name__ == "__main__":

@@ -1,9 +1,6 @@
 # Build config: Laura — Schlaue Prinzessin / Space Princess
 # ADR: topic=laura-design (Brain DB, 2026-04-14)
 # Palette: dunklerer Range-Wert pro Gruppe (besserer Legende-Kontrast)
-# NOTE: Individual key elements (tiara/space, wand/esc, planet/enter, stars/arrows)
-#       require target_key support — not yet in build framework.
-#       Current artworks use group-level backgrounds as foundation.
 design_name: laura
 base_template_pdf: templates/GK75-German-Tigry-original.pdf
 
@@ -16,17 +13,42 @@ palette:
   legend_all:   "#5a3a2a"   # Warmes Braun (alle Gruppen, wie Einladungskarten)
 
 artworks:
-  - name: accent_sparkle
-    target_group: accent
-    aspect_ratio: ASPECT_16_3
+  - name: tiara
+    target_key: space
+    aspect_ratio: ASPECT_3_1
     model: quality
-    strategy: uniform
-    palette: none
     size: 434
     prompt: >
-      Soft watercolor sparkle and magic background, tiny stars and glitter scattered
-      on creamy white surface, pastel lavender and champagne gold accents,
-      subtle iridescent shimmer, no text, no figures, flat lay illustration, 4K
+      Watercolor tiara with delicate sparkles and stars, centered on white background,
+      soft pastel lavender and champagne gold tones, princess crown illustration,
+      flat lay, no text, 4K
+
+  - name: zauberstab
+    target_key: esc
+    aspect_ratio: ASPECT_1_1
+    model: quality
+    size: 434
+    prompt: >
+      Star wand icon, five-pointed star on tip of wand, soft watercolor style,
+      pastel lavender and gold, centered on white background, no text, 4K
+
+  - name: planet
+    target_key: enter
+    aspect_ratio: ASPECT_1_1
+    model: quality
+    size: 434
+    prompt: >
+      Small planet with rings, watercolor illustration, pastel mint green and lavender,
+      soft space background, centered, no text, 4K
+
+  - name: sterne
+    target_keys: [up, down, left, right]
+    aspect_ratio: ASPECT_1_1
+    model: turbo
+    size: 434
+    prompt: >
+      Single golden five-pointed star, soft watercolor style, warm champagne gold,
+      centered on white sparkle background, minimal, no text, 4K
 
   - name: fkey_champagne
     target_group: fkey

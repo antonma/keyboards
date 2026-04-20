@@ -38,8 +38,9 @@ except ImportError:
 
 REPO = Path(__file__).resolve().parent.parent
 BUILD_CONFIGS_DIR = REPO / "build-configs"
-STATE_DIR = REPO / ".build-state"
-GITHUB_REPO = "antonma/keyboards"
+STATE_DIR         = REPO / ".build-state"
+COORD_MAP_PATH    = REPO / "layouts" / "keycap-coordinate-map.json"
+GITHUB_REPO       = "antonma/keyboards"
 
 
 # ── YAML loader fallback (minimal) ───────────────────────────────────────────
@@ -169,6 +170,55 @@ def review_gate(design: str, stage: str, files_to_review: list, config: dict):
             print("  (ok / verwerfen)")
 
 
+# ── Artwork schema helpers ────────────────────────────────────────────────────
+
+def load_coord_map() -> dict:
+    with open(COORD_MAP_PATH, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def artwork_mode(aw: dict) -> str:
+    """Return 'key', 'keys', or 'group' based on artwork config."""
+    if "target_key" in aw:  return "key"
+    if "target_keys" in aw: return "keys"
+    return "group"
+
+
+def artwork_default_name(aw: dict) -> str:
+    mode = artwork_mode(aw)
+    if mode == "key":   return aw["target_key"]
+    if mode == "keys":  return "_".join(aw["target_keys"])
+    return aw.get("target_group", "artwork")
+
+
+def validate_artworks(artworks: list, coord_map: dict):
+    known_ids    = {k["id"]    for k in coord_map["keys"]}
+    known_groups = {k["group"] for k in coord_map["keys"]}
+    for aw in artworks:
+        name     = aw.get("name", artwork_default_name(aw))
+        has_grp  = "target_group" in aw
+        has_key  = "target_key"   in aw
+        has_keys = "target_keys"  in aw
+        count    = sum([has_grp, has_key, has_keys])
+        if count > 1:
+            raise ValueError(f"artwork '{name}': target_group / target_key / target_keys are mutually exclusive")
+        if count == 0:
+            raise ValueError(f"artwork '{name}': must have one of target_group, target_key, target_keys")
+        if "exclude_keys" in aw and not has_grp:
+            raise ValueError(f"artwork '{name}': exclude_keys requires target_group")
+        if has_grp and aw["target_group"] not in known_groups:
+            raise ValueError(f"artwork '{name}': target_group '{aw['target_group']}' not in coord map. Known: {sorted(known_groups)}")
+        if has_key and aw["target_key"] not in known_ids:
+            raise ValueError(f"artwork '{name}': target_key '{aw['target_key']}' not in coord map")
+        if has_keys:
+            for kid in aw["target_keys"]:
+                if kid not in known_ids:
+                    raise ValueError(f"artwork '{name}': target_keys['{kid}'] not in coord map")
+        for kid in aw.get("exclude_keys", []):
+            if kid not in known_ids:
+                raise ValueError(f"artwork '{name}': exclude_keys['{kid}'] not in coord map")
+
+
 # ── Main pipeline ─────────────────────────────────────────────────────────────
 
 def list_designs():
@@ -189,8 +239,19 @@ def build(design: str, resume_from: str | None, dry_run: bool):
         print(f"ERROR: No build config found for '{design}' in build-configs/")
         sys.exit(1)
 
-    config = load_yaml(config_path)
-    state  = load_state(design)
+    config    = load_yaml(config_path)
+    state     = load_state(design)
+    coord_map = load_coord_map()
+
+    artworks  = config.get("artworks")  or []
+    color_ops = config.get("color_operations") or []
+
+    # Validate artwork schema and key IDs before doing any work
+    try:
+        validate_artworks(artworks, coord_map)
+    except ValueError as e:
+        print(f"ERROR: {e}")
+        sys.exit(1)
 
     print(f"build_design: {design}")
     print(f"  Config : {config_path.name}")
@@ -209,12 +270,9 @@ def build(design: str, resume_from: str | None, dry_run: bool):
         sys.exit(1)
 
     working_pdf = REPO / "templates" / f"{design}-wip.pdf"
-    import shutil
-    shutil.copy(base_pdf, working_pdf)
+    import shutil as _shutil
+    _shutil.copy(base_pdf, working_pdf)
     print(f"  Working PDF: {working_pdf.name}")
-
-    artworks = config.get("artworks", [])
-    color_ops = config.get("color_operations", [])
 
     # ── Stage: artwork generation ─────────────────────────────────────────────
     if not resume_from or resume_from == "start":
@@ -222,10 +280,9 @@ def build(design: str, resume_from: str | None, dry_run: bool):
         generated = []
         for aw in artworks:
             prompt  = aw.get("prompt", "")
-            group   = aw.get("target_group", "fkey")
             aspect  = aw.get("aspect_ratio", "ASPECT_1_1")
             model   = aw.get("model", "turbo")
-            name    = aw.get("name", group)
+            name    = aw.get("name", artwork_default_name(aw))
             out_png = f"images/{design}/{name}.png"
 
             if dry_run:
@@ -264,47 +321,91 @@ def build(design: str, resume_from: str | None, dry_run: bool):
             if dry_run:
                 print("  [DRY RUN] Would execute:")
                 for aw in artworks:
-                    group = aw.get("target_group", "fkey")
-                    name  = aw.get("name", group)
-                    print(f"    slice_artwork  --source images/{design}/{name}.png --group {group}")
-                    print(f"    place_artwork  --group {group} → {design}-wip.pdf")
+                    mode = artwork_mode(aw)
+                    name = aw.get("name", artwork_default_name(aw))
+                    src  = f"images/{design}/{name}.png"
+                    if mode == "group":
+                        grp  = aw["target_group"]
+                        excl = aw.get("exclude_keys", [])
+                        excl_str = f" --exclude {','.join(excl)}" if excl else ""
+                        print(f"    slice_artwork  --source {src} --group {grp}")
+                        print(f"    place_artwork  --group {grp}{excl_str} → {design}-wip.pdf")
+                    elif mode == "key":
+                        kid = aw["target_key"]
+                        print(f"    slice_artwork  --source {src} --keys {kid}")
+                        print(f"    place_artwork  --keys {kid} → {design}-wip.pdf")
+                    else:  # keys
+                        kids = ",".join(aw["target_keys"])
+                        print(f"    slice_artwork  --source {src} --keys {kids}")
+                        print(f"    place_artwork  --keys {kids} → {design}-wip.pdf")
                 for op in color_ops:
                     print(f"    recolor        {op.get('group')}:{op.get('property')}:{op.get('color')}")
                 print(f"    verify_template {design}-wip.pdf")
                 print("\n[DRY RUN] Pipeline complete — no commits made.")
                 return
 
+            import shutil as _shutil
             for aw in artworks:
-                group   = aw.get("target_group", "fkey")
-                name    = aw.get("name", group)
+                mode     = artwork_mode(aw)
+                name     = aw.get("name", artwork_default_name(aw))
                 strategy = aw.get("strategy", "matrix")
                 palette  = aw.get("palette", "none")
                 size     = str(aw.get("size", 434))
                 src_png  = f"images/{design}/{name}.png"
-                out_dir  = f"images/{design}/sliced/{group}"
-
-                rc = run_script("slice_artwork.py",
-                                "--source", src_png,
-                                "--group", group,
-                                "--output-dir", out_dir,
-                                "--strategy", strategy,
-                                "--palette", palette,
-                                "--size", size)
-                if rc != 0:
-                    print(f"\nERROR: Slice failed for '{name}'")
-                    sys.exit(1)
-
+                out_dir  = f"images/{design}/sliced/{name}"
                 next_pdf = REPO / "templates" / f"{design}-wip2.pdf"
-                rc = run_script("place_artwork.py",
-                                "--input", str(working_pdf),
-                                "--tiles", out_dir,
-                                "--group", group,
-                                "--output", str(next_pdf))
+
+                if mode == "group":
+                    grp  = aw["target_group"]
+                    excl = aw.get("exclude_keys", [])
+                    rc = run_script("slice_artwork.py",
+                                    "--source", src_png,
+                                    "--group", grp,
+                                    "--output-dir", out_dir,
+                                    "--strategy", strategy,
+                                    "--palette", palette,
+                                    "--size", size)
+                    if rc != 0:
+                        print(f"\nERROR: Slice failed for '{name}'")
+                        sys.exit(1)
+                    place_args = ["--input", str(working_pdf), "--tiles", out_dir,
+                                  "--group", grp, "--output", str(next_pdf)]
+                    if excl:
+                        place_args += ["--exclude", ",".join(excl)]
+                    rc = run_script("place_artwork.py", *place_args)
+
+                elif mode == "key":
+                    kid = aw["target_key"]
+                    rc = run_script("slice_artwork.py",
+                                    "--source", src_png,
+                                    "--keys", kid,
+                                    "--output-dir", out_dir,
+                                    "--size", size)
+                    if rc != 0:
+                        print(f"\nERROR: Slice failed for '{name}'")
+                        sys.exit(1)
+                    rc = run_script("place_artwork.py",
+                                    "--input", str(working_pdf), "--tiles", out_dir,
+                                    "--keys", kid, "--output", str(next_pdf))
+
+                else:  # keys
+                    kids_str = ",".join(aw["target_keys"])
+                    rc = run_script("slice_artwork.py",
+                                    "--source", src_png,
+                                    "--keys", kids_str,
+                                    "--output-dir", out_dir,
+                                    "--size", size)
+                    if rc != 0:
+                        print(f"\nERROR: Slice failed for '{name}'")
+                        sys.exit(1)
+                    rc = run_script("place_artwork.py",
+                                    "--input", str(working_pdf), "--tiles", out_dir,
+                                    "--keys", kids_str, "--output", str(next_pdf))
+
                 if rc != 0:
                     print(f"\nERROR: Place failed for '{name}'")
                     sys.exit(1)
-                import shutil
-                shutil.move(next_pdf, working_pdf)
+                _shutil.move(next_pdf, working_pdf)
 
             for op in color_ops:
                 group = op.get("group", "")
@@ -320,8 +421,7 @@ def build(design: str, resume_from: str | None, dry_run: bool):
                 if rc != 0:
                     print(f"\nERROR: Recolor failed for {group}:{prop}:{color}")
                     sys.exit(1)
-                import shutil
-                shutil.move(next_pdf, working_pdf)
+                _shutil.move(next_pdf, working_pdf)
 
             # ── Verify ───────────────────────────────────────────────────────
             print("\n── Stage 3: Verify ──")
@@ -336,8 +436,7 @@ def build(design: str, resume_from: str | None, dry_run: bool):
         # ── Gate 2 ────────────────────────────────────────────────────────────
         if not dry_run:
             final_pdf = REPO / "templates" / f"{design}.pdf"
-            import shutil
-            shutil.copy(working_pdf, final_pdf)
+            _shutil.copy(working_pdf, final_pdf)
 
             result = review_gate(
                 design, "gate2 — build complete",
@@ -352,8 +451,7 @@ def build(design: str, resume_from: str | None, dry_run: bool):
     if not dry_run:
         print("\n── Stage 4: Commit to master ──")
         final_pdf = REPO / "templates" / f"{design}.pdf"
-        import shutil
-        shutil.copy(working_pdf, final_pdf)
+        _shutil.copy(working_pdf, final_pdf)
 
         branch = f"artwork-review/{design}"
         try:
