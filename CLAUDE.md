@@ -152,6 +152,12 @@ Nav-Spalte (rechts, x≈963–1015):
 - **Kein `even_odd` vergessen**: Buchstaben mit Lücken (O, B, 8...) brauchen even_odd=True für korrekte Füllung
 - **Windows stdout**: Immer `sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')` am Anfang
 - **Seitenkoordinaten**: PyMuPDF y=0 oben links; nativer PDF y=0 unten — get_drawings() liefert PyMuPDF-Koordinaten
+- **Space-Key hat leeren `name`**: In keycap-coordinate-map.json ist `space.name = ""` — Tile-Dateinamen im
+  `--keys`-Mode müssen `key['id']` verwenden, nicht `key['name']`
+- **`artworks: null`** (YAML mit nur Kommentaren): PyYAML parst `artworks:` gefolgt von nur Kommentaren als `None`,
+  nicht als `[]` — immer `config.get("artworks") or []` statt `.get("artworks", [])`
+- **Ideogram Aspect-Ratios**: Kein `ASPECT_7_1` o.ä. — breitestes Format ist `ASPECT_3_1` (3:1).
+  Für Spacebar (6.5:1) ist `ASPECT_3_1` das Maximum; PyMuPDF streckt das Bild auf die Key-Fläche.
 
 ## The Well — 呪 Farbschema
 
