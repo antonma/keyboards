@@ -1,0 +1,10 @@
+{
+  "prompt": "Single drifting cherry blossom petal on deep rose background, soft pink petal with delicate veins, minimalist Japanese style, no text, centered, 4K",
+  "negative_prompt": "",
+  "aspect_ratio": "ASPECT_1_1",
+  "model": "turbo",
+  "seed": 1316442775,
+  "url": "https://ideogram.ai/api/images/ephemeral/FcOqU6wfTkGXMS39lH8alw.png?exp=1776798450&sig=ceb13194f0918c9b6782152d1532f83b1e4df436969c2594cfb016749ff9179b",
+  "cost_estimate_usd": 0.08,
+  "generated_at": "2026-04-20T19:07:31Z"
+}

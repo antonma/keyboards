@@ -1,0 +1,10 @@
+{
+  "prompt": "Two drifting cherry blossom petals on soft cream background, soft pink petals with delicate pink veins, minimalist Japanese style, no text, centered, 4K",
+  "negative_prompt": "",
+  "aspect_ratio": "ASPECT_1_1",
+  "model": "turbo",
+  "seed": 592304385,
+  "url": "https://ideogram.ai/api/images/ephemeral/iDNqk4NkS_i-5FiNCbq9Bg.png?exp=1776798444&sig=8245604a65cd2c5b19985919294e134fb4fc07133f793343a2320b6e0e185e55",
+  "cost_estimate_usd": 0.08,
+  "generated_at": "2026-04-20T19:07:24Z"
+}

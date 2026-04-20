@@ -1,0 +1,10 @@
+{
+  "prompt": "Cherry blossom branch growing diagonally from lower-left, several open blossoms in soft pink and deep rose, warm brown branch on cream/off-white background, Japanese sumi-e ink wash style with soft watercolor petals, scattered falling petals, no text, flat lay, 4K",
+  "negative_prompt": "",
+  "aspect_ratio": "ASPECT_3_1",
+  "model": "quality",
+  "seed": 1085896949,
+  "url": "https://ideogram.ai/api/images/ephemeral/-e20zggmSgO-FQ5yMTMRUQ.png?exp=1776798431&sig=e3e8b327afe5e18a625cafd44ae9b520888a225c3004a7e7f13a6309261dd8d5",
+  "cost_estimate_usd": 0.16,
+  "generated_at": "2026-04-20T19:07:11Z"
+}
