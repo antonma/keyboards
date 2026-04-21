@@ -241,7 +241,15 @@ def build(design: str, resume_from: str | None, dry_run: bool):
 
     config    = load_yaml(config_path)
     state     = load_state(design)
-    coord_map = load_coord_map()
+
+    # Support per-config coordinate map (Cherry, future templates)
+    coord_map_rel = config.get("coordinate_map", "layouts/keycap-coordinate-map.json")
+    coord_map_path = REPO / coord_map_rel
+    if not coord_map_path.exists():
+        print(f"ERROR: coordinate_map not found: {coord_map_path}")
+        sys.exit(1)
+    with open(coord_map_path, encoding="utf-8") as _f:
+        coord_map = json.load(_f)
 
     artworks  = config.get("artworks")  or []
     color_ops = config.get("color_operations") or []
@@ -254,9 +262,10 @@ def build(design: str, resume_from: str | None, dry_run: bool):
         sys.exit(1)
 
     print(f"build_design: {design}")
-    print(f"  Config : {config_path.name}")
-    print(f"  Resume : {resume_from or 'start'}")
-    print(f"  Dry run: {dry_run}")
+    print(f"  Config     : {config_path.name}")
+    print(f"  Coord map  : {coord_map_rel}")
+    print(f"  Resume     : {resume_from or 'start'}")
+    print(f"  Dry run    : {dry_run}")
     print()
 
     if config.get("incomplete"):
@@ -339,7 +348,8 @@ def build(design: str, resume_from: str | None, dry_run: bool):
                         print(f"    slice_artwork  --source {src} --keys {kids}")
                         print(f"    place_artwork  --keys {kids} → {design}-wip.pdf")
                 for op in color_ops:
-                    print(f"    recolor        {op.get('group')}:{op.get('property')}:{op.get('color')}")
+                    mode_tag = f" [{op.get('recolor_mode','solid')}]" if op.get("recolor_mode") else ""
+                    print(f"    recolor        {op.get('group')}:{op.get('property')}:{op.get('color')}{mode_tag}")
                 print(f"    verify_template {design}-wip.pdf")
                 print("\n[DRY RUN] Pipeline complete — no commits made.")
                 return
@@ -408,16 +418,19 @@ def build(design: str, resume_from: str | None, dry_run: bool):
                 _shutil.move(next_pdf, working_pdf)
 
             for op in color_ops:
-                group = op.get("group", "")
-                prop  = op.get("property", "body")
-                color = op.get("color", "#000000")
-                next_pdf = REPO / "templates" / f"{design}-wip2.pdf"
+                group      = op.get("group", "")
+                prop       = op.get("property", "body")
+                color      = op.get("color", "#000000")
+                recolor_mode = op.get("recolor_mode", "solid")
+                next_pdf   = REPO / "templates" / f"{design}-wip2.pdf"
                 rc = run_script("recolor.py",
-                                "--input", str(working_pdf),
-                                "--group", group,
-                                "--property", prop,
-                                "--color", color,
-                                "--output", str(next_pdf))
+                                "--input",     str(working_pdf),
+                                "--group",     group,
+                                "--property",  prop,
+                                "--color",     color,
+                                "--mode",      recolor_mode,
+                                "--coord-map", str(coord_map_path),
+                                "--output",    str(next_pdf))
                 if rc != 0:
                     print(f"\nERROR: Recolor failed for {group}:{prop}:{color}")
                     sys.exit(1)
