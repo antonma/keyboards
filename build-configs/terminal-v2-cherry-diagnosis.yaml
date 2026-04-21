@@ -1,0 +1,55 @@
+# Diagnosis build: solid vs hue_shift — uniform body color
+# Purpose: isolate recolor mode behaviour with identical input palette.
+# All groups use the same body color #121E13 → only mode differs between builds.
+# Expected: solid = uniform dark green; hue_shift = luminance-preserved variants.
+
+design_name: terminal-v2-cherry-diagnosis
+base_template_pdf: "templates/135 Cherry 全五面.pdf"
+coordinate_map: layouts/cherry-135-coordinate-map.json
+
+palette:
+  body_all: "#121E13"
+
+artworks: []
+
+color_operations:
+  - group: alpha
+    property: body
+    color: "#121E13"
+    recolor_mode: solid
+
+  - group: mod
+    property: body
+    color: "#121E13"
+    recolor_mode: solid
+
+  - group: fkey
+    property: body
+    color: "#121E13"
+    recolor_mode: solid
+
+  - group: nav
+    property: body
+    color: "#121E13"
+    recolor_mode: solid
+
+  - group: num
+    property: body
+    color: "#121E13"
+    recolor_mode: solid
+
+  - group: spacebar
+    property: body
+    color: "#121E13"
+    recolor_mode: solid
+
+  - group: accent
+    property: body
+    color: "#121E13"
+    recolor_mode: solid
+
+quality_baseline:
+  stroke_count: 3358
+  fill_count: 460
+  tolerance_pct: 1.5
+  color_model: RGB
