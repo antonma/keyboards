@@ -115,18 +115,20 @@ def gather_group_paths(page, group: str, coord_map: dict) -> list:
     ]
 
 
-def _median_fill(paths: list, lum_threshold: float = 0.0):
-    """Return the median-luminance fill RGB, skipping very dark fills if threshold set.
+def _median_fill(paths: list, lum_min: float = 0.0, lum_max: float = 1.0):
+    """Return the median-luminance fill RGB from the body-luminance range.
 
-    Without threshold, dark shadow/bevel fills (#231915, L≈0.11) can skew the median
-    away from the actual keycap body luminance when many keys are in the group.
+    lum_min: exclude very dark shadow/bevel fills (e.g. #231915 L≈0.11).
+    lum_max: exclude near-white specular highlights (e.g. #F6F2F4 L=0.96 on
+             Enter keys) — these have arbitrary hues that corrupt h_delta.
+    Falls back to all fills if the filtered set would be empty.
     """
     import colorsys
     fills = [tuple(p["fill"][:3]) for p in paths]
-    if lum_threshold > 0.0:
-        bright = [f for f in fills if colorsys.rgb_to_hls(*f)[1] >= lum_threshold]
-        if bright:
-            fills = bright
+    filtered = [f for f in fills
+                if lum_min <= colorsys.rgb_to_hls(*f)[1] <= lum_max]
+    if filtered:
+        fills = filtered
     return sorted(fills, key=lambda c: colorsys.rgb_to_hls(*c)[1])[len(fills) // 2]
 
 
@@ -143,7 +145,7 @@ def build_hue_shift_map(paths: list, target_rgb: tuple) -> dict:
     fills = [tuple(p["fill"][:3]) for p in paths]
     if not fills:
         return {}
-    ref_rgb = _median_fill(paths, lum_threshold=0.3)
+    ref_rgb = _median_fill(paths, lum_min=0.3, lum_max=0.85)
     rh, rl, rs = colorsys.rgb_to_hls(*ref_rgb)
     th, tl, ts = colorsys.rgb_to_hls(*target_rgb)
     h_delta = _wrap_hue_delta(th - rh)
@@ -178,7 +180,7 @@ def build_luminance_aware_map(paths: list, target_rgb: tuple) -> dict:
 
     # Threshold 0.3: exclude bevel/shadow fills (#231915, L≈0.11) from reference.
     # Without this, groups with many keys (post 135-key coord map) get wrong ref.
-    ref_rgb = _median_fill(paths, lum_threshold=0.3)
+    ref_rgb = _median_fill(paths, lum_min=0.3, lum_max=0.85)
     rh, rl, rs = colorsys.rgb_to_hls(*ref_rgb)
     th, tl, ts = colorsys.rgb_to_hls(*target_rgb)
     h_delta = _wrap_hue_delta(th - rh)
