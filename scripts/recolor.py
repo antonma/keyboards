@@ -115,10 +115,18 @@ def gather_group_paths(page, group: str, coord_map: dict) -> list:
     ]
 
 
-def _median_fill(paths: list):
-    """Return the median-luminance fill RGB from a list of paths."""
+def _median_fill(paths: list, lum_threshold: float = 0.0):
+    """Return the median-luminance fill RGB, skipping very dark fills if threshold set.
+
+    Without threshold, dark shadow/bevel fills (#231915, L≈0.11) can skew the median
+    away from the actual keycap body luminance when many keys are in the group.
+    """
     import colorsys
     fills = [tuple(p["fill"][:3]) for p in paths]
+    if lum_threshold > 0.0:
+        bright = [f for f in fills if colorsys.rgb_to_hls(*f)[1] >= lum_threshold]
+        if bright:
+            fills = bright
     return sorted(fills, key=lambda c: colorsys.rgb_to_hls(*c)[1])[len(fills) // 2]
 
 
@@ -135,7 +143,7 @@ def build_hue_shift_map(paths: list, target_rgb: tuple) -> dict:
     fills = [tuple(p["fill"][:3]) for p in paths]
     if not fills:
         return {}
-    ref_rgb = _median_fill(paths)
+    ref_rgb = _median_fill(paths, lum_threshold=0.3)
     rh, rl, rs = colorsys.rgb_to_hls(*ref_rgb)
     th, tl, ts = colorsys.rgb_to_hls(*target_rgb)
     h_delta = _wrap_hue_delta(th - rh)
@@ -168,7 +176,9 @@ def build_luminance_aware_map(paths: list, target_rgb: tuple) -> dict:
     if not fills:
         return {}
 
-    ref_rgb = _median_fill(paths)
+    # Threshold 0.3: exclude bevel/shadow fills (#231915, L≈0.11) from reference.
+    # Without this, groups with many keys (post 135-key coord map) get wrong ref.
+    ref_rgb = _median_fill(paths, lum_threshold=0.3)
     rh, rl, rs = colorsys.rgb_to_hls(*ref_rgb)
     th, tl, ts = colorsys.rgb_to_hls(*target_rgb)
     h_delta = _wrap_hue_delta(th - rh)
@@ -178,23 +188,25 @@ def build_luminance_aware_map(paths: list, target_rgb: tuple) -> dict:
     lums = [colorsys.rgb_to_hls(*f)[1] for f in fills]
     shifted = [l + l_delta for l in lums]
 
+    _MIN_L = 0.03  # floor: prevents pure-black fills on very dark targets
+
     if any(l < 0.0 or l > 1.0 for l in shifted):
-        # Proportional squeeze: map each fill's deviation from ref onto target
-        # luminance, scaling so the widest excursion just touches 0 or 1.
+        # Proportional squeeze: map deviations from ref onto target luminance,
+        # incorporating the floor so the darkest fill lands at _MIN_L, not 0.
         lum_min, lum_max = min(lums), max(lums)
-        dev_low  = rl - lum_min   # max downward deviation from ref
-        dev_high = lum_max - rl   # max upward deviation from ref
-        head_low  = tl            # headroom below target before hitting 0
-        head_high = 1.0 - tl      # headroom above target before hitting 1
+        dev_low  = rl - lum_min           # max downward deviation from ref
+        dev_high = lum_max - rl           # max upward deviation from ref
+        head_low  = tl - _MIN_L           # usable headroom below target
+        head_high = 1.0 - tl              # headroom above target
         scale_low  = (head_low  / dev_low)  if dev_low  > 1e-6 else 1.0
         scale_high = (head_high / dev_high) if dev_high > 1e-6 else 1.0
         scale = min(scale_low, scale_high, 1.0)
 
         def shifted_lum(orig_l: float) -> float:
-            return max(0.0, min(1.0, tl + (orig_l - rl) * scale))
+            return max(_MIN_L, min(1.0, tl + (orig_l - rl) * scale))
     else:
         def shifted_lum(orig_l: float) -> float:
-            return max(0.0, min(1.0, orig_l + l_delta))
+            return max(_MIN_L, min(1.0, orig_l + l_delta))
 
     def transform(src: tuple) -> tuple:
         sh, sl, ss = colorsys.rgb_to_hls(*src[:3])

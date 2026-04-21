@@ -5,8 +5,10 @@
   "source_pdf": "135 Cherry 全五面.pdf",
   "page_width": 1570.0,
   "page_height": 1122.5,
-  "key_count": 104,
-  "note": "Auto-extracted via extract_cherry_coords.py. Verify key IDs against physical layout before first build. side_views are for 全五面 5-face printing (recolor solid only, MVP).",
+  "key_count": 135,
+  "main_key_count": 104,
+  "alt_key_count": 31,
+  "note": "Auto-extracted via extract_cherry_coords.py. 104 main keys (基础) + 31 alternate keys (増補). Alternates included in 'keys' so recolor ops cover them automatically.",
   "keys": [
     {
       "x0": 136.7,
@@ -1567,9 +1569,7 @@
       "name": "NUM_DOT",
       "group": "num",
       "width_u": 1.0
-    }
-  ],
-  "side_views": [
+    },
     {
       "x0": 137.8,
       "y0": 530.1,
@@ -1580,10 +1580,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#C9C1AA",
-      "id": "front_1",
-      "name": "front_1",
-      "view": "front",
-      "group": "side",
+      "id": "alt_mod1",
+      "name": "ALT_MOD1",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1596,10 +1595,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#D6C8AE",
-      "id": "front_2",
-      "name": "front_2",
-      "view": "front",
-      "group": "side",
+      "id": "alt_mod2",
+      "name": "ALT_MOD2",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1612,10 +1610,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#D8C8AF",
-      "id": "front_3",
-      "name": "front_3",
-      "view": "front",
-      "group": "side",
+      "id": "alt_mod3",
+      "name": "ALT_MOD3",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1628,10 +1625,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#D6C7AE",
-      "id": "front_4",
-      "name": "front_4",
-      "view": "front",
-      "group": "side",
+      "id": "alt_mod4",
+      "name": "ALT_MOD4",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1644,10 +1640,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#CEC4B3",
-      "id": "front_5",
-      "name": "front_5",
-      "view": "front",
-      "group": "side",
+      "id": "alt_mod5",
+      "name": "ALT_MOD5",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1660,10 +1655,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#C8B69C",
-      "id": "front_6",
-      "name": "front_6",
-      "view": "front",
-      "group": "side",
+      "id": "alt_mod6",
+      "name": "ALT_MOD6",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1676,10 +1670,9 @@
       "width": 375.2,
       "height": 51.4,
       "fill_hex": "#C9C0A7",
-      "id": "front_7",
-      "name": "front_7",
-      "view": "front",
-      "group": "side",
+      "id": "alt_space_7u",
+      "name": "ALT_SPACE_7U",
+      "group": "spacebar",
       "width_u": 7.3
     },
     {
@@ -1692,10 +1685,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#DACCB2",
-      "id": "back_1",
-      "name": "back_1",
-      "view": "back",
-      "group": "side",
+      "id": "alt_alpha1",
+      "name": "ALT_ALPHA1",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1708,10 +1700,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#A0A8A0",
-      "id": "back_2",
-      "name": "back_2",
-      "view": "back",
-      "group": "side",
+      "id": "alt_alpha2",
+      "name": "ALT_ALPHA2",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1724,10 +1715,9 @@
       "width": 78.7,
       "height": 106.2,
       "fill_hex": "#B5B5A6",
-      "id": "left_1",
-      "name": "left_1",
-      "view": "left",
-      "group": "side",
+      "id": "alt_enter_iso",
+      "name": "ALT_ENTER_ISO",
+      "group": "accent",
       "width_u": 1.53
     },
     {
@@ -1740,10 +1730,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#C9C0A7",
-      "id": "right_1",
-      "name": "right_1",
-      "view": "right",
-      "group": "side",
+      "id": "alt_alpha3",
+      "name": "ALT_ALPHA3",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1756,10 +1745,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#D9CAB3",
-      "id": "right_2",
-      "name": "right_2",
-      "view": "right",
-      "group": "side",
+      "id": "alt_alpha4",
+      "name": "ALT_ALPHA4",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1772,10 +1760,9 @@
       "width": 92.1,
       "height": 51.4,
       "fill_hex": "#A7A88F",
-      "id": "right_3",
-      "name": "right_3",
-      "view": "right",
-      "group": "side",
+      "id": "alt_shift_175a",
+      "name": "ALT_SHIFT_175A",
+      "group": "mod",
       "width_u": 1.79
     },
     {
@@ -1788,10 +1775,9 @@
       "width": 92.1,
       "height": 51.4,
       "fill_hex": "#A7A88F",
-      "id": "right_4",
-      "name": "right_4",
-      "view": "right",
-      "group": "side",
+      "id": "alt_shift_175b",
+      "name": "ALT_SHIFT_175B",
+      "group": "mod",
       "width_u": 1.79
     },
     {
@@ -1804,10 +1790,9 @@
       "width": 51.4,
       "height": 51.4,
       "fill_hex": "#CABFA8",
-      "id": "right_5",
-      "name": "right_5",
-      "view": "right",
-      "group": "side",
+      "id": "alt_alpha5",
+      "name": "ALT_ALPHA5",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1820,10 +1805,9 @@
       "width": 64.8,
       "height": 51.4,
       "fill_hex": "#C9C1AA",
-      "id": "alternates_1",
-      "name": "alternates_1",
-      "view": "alternates",
-      "group": "side",
+      "id": "alt_mod_125",
+      "name": "ALT_MOD_125",
+      "group": "mod",
       "width_u": 1.26
     },
     {
@@ -1836,10 +1820,9 @@
       "width": 51.4,
       "height": 51.4,
       "fill_hex": "#CDBCA0",
-      "id": "alternates_2",
-      "name": "alternates_2",
-      "view": "alternates",
-      "group": "side",
+      "id": "alt_alpha6",
+      "name": "ALT_ALPHA6",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1852,10 +1835,9 @@
       "width": 92.7,
       "height": 51.4,
       "fill_hex": "#C9C1AA",
-      "id": "alternates_3",
-      "name": "alternates_3",
-      "view": "alternates",
-      "group": "side",
+      "id": "alt_mod_175c",
+      "name": "ALT_MOD_175C",
+      "group": "mod",
       "width_u": 1.8
     },
     {
@@ -1868,10 +1850,9 @@
       "width": 106.1,
       "height": 51.4,
       "fill_hex": "#DACCB2",
-      "id": "alternates_4",
-      "name": "alternates_4",
-      "view": "alternates",
-      "group": "side",
+      "id": "alt_mod_2u",
+      "name": "ALT_MOD_2U",
+      "group": "mod",
       "width_u": 2.06
     },
     {
@@ -1884,10 +1865,9 @@
       "width": 51.7,
       "height": 51.4,
       "fill_hex": "#D9CAB3",
-      "id": "side6_1",
-      "name": "side6_1",
-      "view": "side6",
-      "group": "side",
+      "id": "alt_a1",
+      "name": "ALT_A1",
+      "group": "alpha",
       "width_u": 1.01
     },
     {
@@ -1900,10 +1880,9 @@
       "width": 51.7,
       "height": 51.4,
       "fill_hex": "#C6BEA6",
-      "id": "side6_2",
-      "name": "side6_2",
-      "view": "side6",
-      "group": "side",
+      "id": "alt_a2",
+      "name": "ALT_A2",
+      "group": "alpha",
       "width_u": 1.01
     },
     {
@@ -1916,10 +1895,9 @@
       "width": 51.7,
       "height": 51.4,
       "fill_hex": "#CFBFA5",
-      "id": "side6_3",
-      "name": "side6_3",
-      "view": "side6",
-      "group": "side",
+      "id": "alt_a3",
+      "name": "ALT_A3",
+      "group": "alpha",
       "width_u": 1.01
     },
     {
@@ -1932,10 +1910,9 @@
       "width": 51.7,
       "height": 51.4,
       "fill_hex": "#D9C9B3",
-      "id": "side6_4",
-      "name": "side6_4",
-      "view": "side6",
-      "group": "side",
+      "id": "alt_a4",
+      "name": "ALT_A4",
+      "group": "alpha",
       "width_u": 1.01
     },
     {
@@ -1948,10 +1925,9 @@
       "width": 51.7,
       "height": 51.4,
       "fill_hex": "#DBC8B0",
-      "id": "side6_5",
-      "name": "side6_5",
-      "view": "side6",
-      "group": "side",
+      "id": "alt_a5",
+      "name": "ALT_A5",
+      "group": "alpha",
       "width_u": 1.01
     },
     {
@@ -1964,10 +1940,9 @@
       "width": 51.7,
       "height": 51.4,
       "fill_hex": "#CCBDA6",
-      "id": "side6_6",
-      "name": "side6_6",
-      "view": "side6",
-      "group": "side",
+      "id": "alt_a6",
+      "name": "ALT_A6",
+      "group": "alpha",
       "width_u": 1.01
     },
     {
@@ -1980,10 +1955,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#C9C1AA",
-      "id": "side6_7",
-      "name": "side6_7",
-      "view": "side6",
-      "group": "side",
+      "id": "alt_a7",
+      "name": "ALT_A7",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -1996,10 +1970,9 @@
       "width": 51.6,
       "height": 51.4,
       "fill_hex": "#D9CAB3",
-      "id": "side6_8",
-      "name": "side6_8",
-      "view": "side6",
-      "group": "side",
+      "id": "alt_a8",
+      "name": "ALT_A8",
+      "group": "alpha",
       "width_u": 1.0
     },
     {
@@ -2012,10 +1985,9 @@
       "width": 78.3,
       "height": 51.4,
       "fill_hex": "#C3B093",
-      "id": "side7_1",
-      "name": "side7_1",
-      "view": "side7",
-      "group": "side",
+      "id": "alt_mod_15a",
+      "name": "ALT_MOD_15A",
+      "group": "mod",
       "width_u": 1.52
     },
     {
@@ -2028,10 +2000,9 @@
       "width": 78.3,
       "height": 51.4,
       "fill_hex": "#C4B9A2",
-      "id": "side7_2",
-      "name": "side7_2",
-      "view": "side7",
-      "group": "side",
+      "id": "alt_mod_15b",
+      "name": "ALT_MOD_15B",
+      "group": "mod",
       "width_u": 1.52
     },
     {
@@ -2044,10 +2015,9 @@
       "width": 78.3,
       "height": 51.4,
       "fill_hex": "#C6BEA6",
-      "id": "side7_3",
-      "name": "side7_3",
-      "view": "side7",
-      "group": "side",
+      "id": "alt_mod_15c",
+      "name": "ALT_MOD_15C",
+      "group": "mod",
       "width_u": 1.52
     },
     {
@@ -2060,10 +2030,9 @@
       "width": 78.3,
       "height": 51.4,
       "fill_hex": "#D9C7AF",
-      "id": "side7_4",
-      "name": "side7_4",
-      "view": "side7",
-      "group": "side",
+      "id": "alt_mod_15d",
+      "name": "ALT_MOD_15D",
+      "group": "mod",
       "width_u": 1.52
     }
   ]

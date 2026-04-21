@@ -27,7 +27,7 @@ OUTPUT_MAP  = REPO / "layouts" / "cherry-135-coordinate-map.json"
 MIN_KEY_W = 45.0
 MIN_KEY_H = 45.0
 ROW_CLUSTER_TOL = 20.0   # fills within 20pt Y are in the same row
-MAIN_AREA_MAX_Y = 520.0  # top-view keys; fills below this are side/extra views
+MAIN_AREA_MAX_Y = 520.0  # top-view (基础 main layout) keys; fills below = alternates
 
 
 # ── ISO-DE full keyboard layout table ─────────────────────────────────────────
@@ -99,10 +99,66 @@ ROW_LAYOUTS = [
     ],
 ]
 
-# ── Extra-area side-view groups (y ≥ MAIN_AREA_MAX_Y) ─────────────────────────
-# Row groupings for side/extra keys — assigned view tags only, no ISO-DE IDs yet.
-# For MVP, these are recolored as a whole via their y-cluster index.
-SIDE_VIEW_GROUPS = ["front", "back", "left", "right", "alternates"]
+# ── Alternate / 増補 layout (y ≥ MAIN_AREA_MAX_Y) ────────────────────────────
+#
+# 31 additional compatibility keys shown in the lower section of the template.
+# These are assigned to existing groups (alpha/mod/accent/spacebar) so that
+# recolor ops automatically include them without changes to build configs.
+#
+# Group assignment rules:
+#   ≥ 6u wide          → spacebar
+#   1.5u wide × 2u tall → accent (ISO-style Enter alternate)
+#   ≥ 1.25u wide        → mod  (shift/caps/ctrl/backspace variants)
+#   1u wide             → alpha (small alternates)
+#
+# Measurements (51.4 pt = 1u):
+#   Row 1 (y≈556): 6 × 1u   + 1 × 7.3u spacebar
+#   Row 2 (y≈609): 2 × 1u
+#   Row 3 (y≈636): 1 × 1.53u × 2u-tall ISO-Enter alternate
+#   Row 4 (y≈664): 1u, 1u, 1.79u, 1.79u, 1u
+#   Row 5 (y≈792): 1.26u, 1u, 1.8u, 2.06u
+#   Row 6 (y≈856): 8 × 1u
+#   Row 7 (y≈913): 4 × 1.52u
+
+ALTERNATE_ROW_LAYOUTS = [
+    # Row 1: 6 × 1u alternates + 7u spacebar
+    [
+        ("alt_mod1",       "alpha"), ("alt_mod2",       "alpha"), ("alt_mod3",      "alpha"),
+        ("alt_mod4",       "alpha"), ("alt_mod5",       "alpha"), ("alt_mod6",      "alpha"),
+        ("alt_space_7u",   "spacebar"),
+    ],
+    # Row 2: 2 × 1u alternates
+    [
+        ("alt_alpha1",     "alpha"), ("alt_alpha2",     "alpha"),
+    ],
+    # Row 3: 1.53u × 2u-tall ISO Enter alternate
+    [
+        ("alt_enter_iso",  "accent"),
+    ],
+    # Row 4: 1u, 1u, 1.79u, 1.79u, 1u
+    [
+        ("alt_alpha3",     "alpha"),  ("alt_alpha4",    "alpha"),
+        ("alt_shift_175a", "mod"),    ("alt_shift_175b","mod"),
+        ("alt_alpha5",     "alpha"),
+    ],
+    # Row 5: 1.26u, 1u, 1.8u, 2.06u
+    [
+        ("alt_mod_125",    "mod"),    ("alt_alpha6",    "alpha"),
+        ("alt_mod_175c",   "mod"),    ("alt_mod_2u",    "mod"),
+    ],
+    # Row 6: 8 × 1u
+    [
+        ("alt_a1",         "alpha"), ("alt_a2",         "alpha"),
+        ("alt_a3",         "alpha"), ("alt_a4",         "alpha"),
+        ("alt_a5",         "alpha"), ("alt_a6",         "alpha"),
+        ("alt_a7",         "alpha"), ("alt_a8",         "alpha"),
+    ],
+    # Row 7: 4 × 1.52u
+    [
+        ("alt_mod_15a",    "mod"),   ("alt_mod_15b",    "mod"),
+        ("alt_mod_15c",    "mod"),   ("alt_mod_15d",    "mod"),
+    ],
+]
 
 
 # ── Extraction ────────────────────────────────────────────────────────────────
@@ -205,19 +261,41 @@ def assign_ids(main_rows: list[list]) -> list:
     return keys
 
 
-def assign_side_ids(side_rows: list[list]) -> list:
-    """Assign side-view entries (positional IDs, view tag from SIDE_VIEW_GROUPS)."""
-    sides = []
-    for row_idx, row_fills in enumerate(side_rows):
-        view = SIDE_VIEW_GROUPS[row_idx] if row_idx < len(SIDE_VIEW_GROUPS) else f"side{row_idx+1}"
-        for col_idx, f in enumerate(row_fills):
-            f["id"]   = f"{view}_{col_idx+1}"
-            f["name"] = f["id"]
-            f["view"] = view
-            f["group"] = "side"
+def assign_alt_ids(alt_rows: list[list]) -> list:
+    """Assign IDs and groups to 増補 alternate rows using ALTERNATE_ROW_LAYOUTS."""
+    keys = []
+    for row_idx, row_fills in enumerate(alt_rows):
+        if row_idx >= len(ALTERNATE_ROW_LAYOUTS):
+            for col_idx, f in enumerate(row_fills):
+                f["id"]      = f"alt_r{row_idx+1}c{col_idx+1}"
+                f["name"]    = f["id"].upper()
+                f["group"]   = "alpha"
+                f["width_u"] = width_u(f["width"])
+                keys.append(f)
+            continue
+
+        layout = ALTERNATE_ROW_LAYOUTS[row_idx]
+        if len(row_fills) != len(layout):
+            print(
+                f"  WARN Alt row {row_idx+1}: expected {len(layout)} keys, "
+                f"got {len(row_fills)} — using positional IDs alt_r{row_idx+1}cN"
+            )
+            for col_idx, f in enumerate(row_fills):
+                f["id"]      = f"alt_r{row_idx+1}c{col_idx+1}"
+                f["name"]    = f["id"].upper()
+                f["group"]   = "alpha"
+                f["width_u"] = width_u(f["width"])
+                keys.append(f)
+            continue
+
+        for f, (key_id, group) in zip(row_fills, layout):
+            f["id"]      = key_id
+            f["name"]    = key_id.upper()
+            f["group"]   = group
             f["width_u"] = width_u(f["width"])
-            sides.append(f)
-    return sides
+            keys.append(f)
+
+    return keys
 
 
 # ── Build coord map ───────────────────────────────────────────────────────────
@@ -243,21 +321,22 @@ def build_coord_map(pdf_path: Path, analyze_only: bool = False) -> dict:
     print(f"  Side area (y≥{MAIN_AREA_MAX_Y}) : {len(side_fills)}")
 
     main_rows = cluster_rows(main_fills)
-    side_rows = cluster_rows(side_fills)
+    alt_rows  = cluster_rows(side_fills)
 
-    print(f"\n  Main rows : {len(main_rows)}")
+    print(f"\n  Main rows (基础) : {len(main_rows)}")
     for i, row in enumerate(main_rows):
         print(f"    Row {i+1:2d}: {len(row):3d} keys  y≈{row[0]['cy']:.0f}")
 
-    print(f"\n  Side rows : {len(side_rows)}")
-    for i, row in enumerate(side_rows):
-        print(f"    Row {i+1:2d}: {len(row):3d} fills y≈{row[0]['cy']:.0f}")
+    print(f"\n  Alt rows (増補) : {len(alt_rows)}")
+    for i, row in enumerate(alt_rows):
+        print(f"    Row {i+1:2d}: {len(row):3d} keys  y≈{row[0]['cy']:.0f}")
 
     if analyze_only:
         return {}
 
-    keys  = assign_ids(main_rows)
-    sides = assign_side_ids(side_rows)
+    main_keys = assign_ids(main_rows)
+    alt_keys  = assign_alt_ids(alt_rows)
+    all_keys  = main_keys + alt_keys
 
     coord_map = {
         "keyboard":    "Cherry135",
@@ -266,14 +345,15 @@ def build_coord_map(pdf_path: Path, analyze_only: bool = False) -> dict:
         "source_pdf":  pdf_path.name,
         "page_width":  pw,
         "page_height": ph,
-        "key_count":   len(keys),
+        "key_count":   len(all_keys),
+        "main_key_count": len(main_keys),
+        "alt_key_count":  len(alt_keys),
         "note": (
             "Auto-extracted via extract_cherry_coords.py. "
-            "Verify key IDs against physical layout before first build. "
-            "side_views are for 全五面 5-face printing (recolor solid only, MVP)."
+            "104 main keys (基础) + 31 alternate keys (増補). "
+            "Alternates included in 'keys' so recolor ops cover them automatically."
         ),
-        "keys":       keys,
-        "side_views": sides,
+        "keys": all_keys,
     }
     return coord_map
 
@@ -309,8 +389,9 @@ def main():
     out.write_text(json.dumps(coord_map, indent=2, ensure_ascii=False), encoding="utf-8")
 
     print(f"\nWritten: {out}")
-    print(f"  Keys       : {coord_map['key_count']}")
-    print(f"  Side views : {len(coord_map['side_views'])}")
+    print(f"  Main keys (基础) : {coord_map['main_key_count']}")
+    print(f"  Alt keys  (増補) : {coord_map['alt_key_count']}")
+    print(f"  Total            : {coord_map['key_count']}")
     print("Done.")
 
 
