@@ -4,11 +4,17 @@ recolor.py — Group-based keycap recolor using coordinate map
 Overdraw strategy: draws new filled paths on top of existing paths.
 Supports both CMYK (GK75) and RGB (Cherry 135) templates via PyMuPDF.
 
-Two recolor modes:
-  solid      — overdraw all fills in group with one flat target colour
-  hue_shift  — shift hue+saturation of each fill by the delta between the
-               group's median-luminance colour and the target; luminance
-               preserved → 3D shading depth intact (useful for Cherry RGB)
+Three recolor modes:
+  solid                — overdraw all fills in group with one flat target colour
+  hue_shift            — shift hue+saturation of each fill by the delta between
+                         the group's median-luminance colour and the target;
+                         luminance preserved → 3D shading depth intact (Cherry RGB,
+                         light targets L>0.5)
+  luminance_aware_shift — shift hue, saturation AND luminance together; relative
+                          luminance differences between fills are preserved (scaled
+                          proportionally around target luminance when clipping would
+                          occur); best for dark targets (L<0.5) where hue_shift
+                          would produce invisible variation
 
 Usage:
     py -3 scripts/recolor.py \\
@@ -31,6 +37,14 @@ Usage:
         --mode      hue_shift \\
         --ops       alpha:body:#161820 mod:body:#1E2830 \\
         --output    templates/cherry-terminal-v2-wip.pdf
+
+    # Cherry RGB with luminance_aware_shift (dark targets):
+    py -3 scripts/recolor.py \\
+        --input     "templates/135 Cherry 全五面.pdf" \\
+        --coord-map layouts/cherry-135-coordinate-map.json \\
+        --mode      luminance_aware_shift \\
+        --ops       alpha:body:#121E13 mod:body:#131813 \\
+        --output    templates/cherry-terminal-v2-lumaware.pdf
 
     py -3 scripts/recolor.py --help
 
@@ -101,25 +115,95 @@ def gather_group_paths(page, group: str, coord_map: dict) -> list:
     ]
 
 
+def _median_fill(paths: list):
+    """Return the median-luminance fill RGB from a list of paths."""
+    import colorsys
+    fills = [tuple(p["fill"][:3]) for p in paths]
+    return sorted(fills, key=lambda c: colorsys.rgb_to_hls(*c)[1])[len(fills) // 2]
+
+
+def _wrap_hue_delta(delta: float) -> float:
+    """Normalise a hue delta (0-1 range) to [-0.5, +0.5]."""
+    return (delta + 0.5) % 1.0 - 0.5
+
+
 def build_hue_shift_map(paths: list, target_rgb: tuple) -> dict:
-    """Map path id → shifted RGB.  Median-luminance fill is the reference colour."""
+    """Map path id → shifted RGB.  Median-luminance fill is the reference colour.
+    Luminance is preserved; only hue+saturation are shifted."""
     import colorsys
 
     fills = [tuple(p["fill"][:3]) for p in paths]
     if not fills:
         return {}
-    sorted_by_lum = sorted(fills, key=lambda c: colorsys.rgb_to_hls(*c)[1])
-    ref_rgb = sorted_by_lum[len(sorted_by_lum) // 2]
+    ref_rgb = _median_fill(paths)
+    rh, rl, rs = colorsys.rgb_to_hls(*ref_rgb)
+    th, tl, ts = colorsys.rgb_to_hls(*target_rgb)
+    h_delta = _wrap_hue_delta(th - rh)
+    s_delta = ts - rs
 
     def shift(src: tuple) -> tuple:
-        rh, rl, rs = colorsys.rgb_to_hls(*ref_rgb)
-        th, tl, ts = colorsys.rgb_to_hls(*target_rgb)
         sh, sl, ss = colorsys.rgb_to_hls(*src[:3])
-        new_h = (sh + (th - rh)) % 1.0
-        new_s = max(0.0, min(1.0, ss + (ts - rs)))
-        return colorsys.hls_to_rgb(new_h, sl, new_s)
+        new_h = (sh + h_delta) % 1.0
+        new_s = max(0.0, min(1.0, ss + s_delta))
+        return colorsys.hls_to_rgb(new_h, sl, new_s)  # luminance unchanged
 
     return {id(p): shift(tuple(p["fill"][:3])) for p in paths}
+
+
+def build_luminance_aware_map(paths: list, target_rgb: tuple) -> dict:
+    """Map path id → shifted RGB.  Shifts hue, saturation AND luminance together.
+
+    Relative luminance differences between fills are preserved.  When shifting
+    to a very dark target would clip some fills below 0, the luminance variation
+    is squeezed proportionally around the target luminance so no fill goes black.
+
+    Edge cases handled:
+    - Hue wrap-around: delta normalised to [-0.5, +0.5] before application.
+    - Clipping: proportional squeeze rather than hard clip → variation survives.
+    - Near-grey fills (sat≈0): hue delta applied anyway for consistency.
+    """
+    import colorsys
+
+    fills = [tuple(p["fill"][:3]) for p in paths]
+    if not fills:
+        return {}
+
+    ref_rgb = _median_fill(paths)
+    rh, rl, rs = colorsys.rgb_to_hls(*ref_rgb)
+    th, tl, ts = colorsys.rgb_to_hls(*target_rgb)
+    h_delta = _wrap_hue_delta(th - rh)
+    s_delta = ts - rs
+    l_delta = tl - rl
+
+    lums = [colorsys.rgb_to_hls(*f)[1] for f in fills]
+    shifted = [l + l_delta for l in lums]
+
+    if any(l < 0.0 or l > 1.0 for l in shifted):
+        # Proportional squeeze: map each fill's deviation from ref onto target
+        # luminance, scaling so the widest excursion just touches 0 or 1.
+        lum_min, lum_max = min(lums), max(lums)
+        dev_low  = rl - lum_min   # max downward deviation from ref
+        dev_high = lum_max - rl   # max upward deviation from ref
+        head_low  = tl            # headroom below target before hitting 0
+        head_high = 1.0 - tl      # headroom above target before hitting 1
+        scale_low  = (head_low  / dev_low)  if dev_low  > 1e-6 else 1.0
+        scale_high = (head_high / dev_high) if dev_high > 1e-6 else 1.0
+        scale = min(scale_low, scale_high, 1.0)
+
+        def shifted_lum(orig_l: float) -> float:
+            return max(0.0, min(1.0, tl + (orig_l - rl) * scale))
+    else:
+        def shifted_lum(orig_l: float) -> float:
+            return max(0.0, min(1.0, orig_l + l_delta))
+
+    def transform(src: tuple) -> tuple:
+        sh, sl, ss = colorsys.rgb_to_hls(*src[:3])
+        new_h = (sh + h_delta) % 1.0
+        new_l = shifted_lum(sl)
+        new_s = max(0.0, min(1.0, ss + s_delta))
+        return colorsys.hls_to_rgb(new_h, new_l, new_s)
+
+    return {id(p): transform(tuple(p["fill"][:3])) for p in paths}
 
 
 def gather_group_stroke_paths(page, group: str, coord_map: dict) -> list:
@@ -173,6 +257,8 @@ def apply_recolor(doc, group: str, color_hex: str, coord_map: dict,
 
     if mode == "hue_shift":
         color_map = build_hue_shift_map(group_paths, target_rgb)
+    elif mode == "luminance_aware_shift":
+        color_map = build_luminance_aware_map(group_paths, target_rgb)
     else:
         color_map = {id(p): target_rgb for p in group_paths}
 
@@ -226,8 +312,13 @@ def main():
     p.add_argument("--color",     help="Target color hex (e.g. #161820)")
     p.add_argument("--ops",       nargs="+",
                    help="Multiple operations: group:property:#RRGGBB ...")
-    p.add_argument("--mode",      choices=["solid", "hue_shift"], default="solid",
-                   help="solid: flat overdraw (default). hue_shift: preserve 3D shading (Cherry RGB).")
+    p.add_argument("--mode",
+                   choices=["solid", "hue_shift", "luminance_aware_shift"],
+                   default="solid",
+                   help=("solid: flat overdraw (default). "
+                         "hue_shift: preserve 3D shading, luminance unchanged (Cherry RGB, L>0.5). "
+                         "luminance_aware_shift: shift hue+sat+lum together, keeps per-key variation "
+                         "(Cherry RGB, dark targets L<0.5)."))
     p.add_argument("--coord-map", default=str(DEFAULT_COORD_MAP),
                    help="Path to coordinate map JSON (default: layouts/keycap-coordinate-map.json)")
     args = p.parse_args()
