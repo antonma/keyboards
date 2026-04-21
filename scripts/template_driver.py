@@ -12,6 +12,12 @@ Usage:
     with TemplateDriver.for_template(pdf_path, coord_map_path) as drv:
         drv.recolor("alpha", "#161820", mode="solid")
         drv.export(output_path)
+
+Per-key design API (Phase 2):
+    with TemplateDriver.for_template(pdf_path, coord_map_path) as drv:
+        drv.recolor_key("1", "#121E13", mode="luminance_aware_shift")
+        drv.set_legend("1", main={"text": "1", "color": (0.32, 0.69, 0.36), "font_path": "...", "size": 18})
+        drv.export(output_path)
 """
 
 import colorsys
@@ -21,7 +27,11 @@ import sys
 from abc import ABC, abstractmethod
 from pathlib import Path
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+# Reconfigure in-place (no new wrapper) — avoids GC closing buffer when imported
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+elif hasattr(sys.stdout, "buffer"):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 COLOR_TOLERANCE = 30 / 255.0
 
@@ -96,6 +106,12 @@ class TemplateDriver(ABC):
 
     def key_bboxes(self, group: str) -> list:
         return [(k["x0"], k["y0"], k["x1"], k["y1"]) for k in self.keys_for_group(group)]
+
+    def key_by_id(self, key_id: str) -> dict | None:
+        for k in self.get_coordinate_map()["keys"]:
+            if k["id"] == key_id:
+                return k
+        return None
 
     @abstractmethod
     def recolor(self, group: str, color_hex: str, mode: str = "solid") -> int:
@@ -204,6 +220,34 @@ class PdfDriver(TemplateDriver):
             )
         shape.commit()
 
+    def _gather_key_paths(self, key_id: str) -> list:
+        """Return fill paths whose center falls inside the single key with given id."""
+        key = self.key_by_id(key_id)
+        if key is None:
+            return []
+        page = self._doc[0]
+        kb = (key["x0"], key["y0"], key["x1"], key["y1"])
+        return [
+            p for p in page.get_drawings()
+            if p.get("fill") and len(p["fill"]) >= 3 and p.get("rect") is not None
+            and self._rect_center_in_bbox(p["rect"], kb)
+        ]
+
+    def _gather_key_stroke_paths(self, key_id: str) -> list:
+        """Return stroke-only paths inside a single key bbox."""
+        key = self.key_by_id(key_id)
+        if key is None:
+            return []
+        page = self._doc[0]
+        kb = (key["x0"], key["y0"], key["x1"], key["y1"])
+        return [
+            p for p in page.get_drawings()
+            if p.get("color") and len(p["color"]) >= 3
+            and not (p.get("fill") and len(p.get("fill", [])) >= 3)
+            and p.get("rect") is not None
+            and self._rect_center_in_bbox(p["rect"], kb)
+        ]
+
     def recolor(self, group: str, color_hex: str, mode: str = "solid") -> int:
         group_paths = self._gather_group_paths(group)
         if not group_paths:
@@ -218,6 +262,103 @@ class PdfDriver(TemplateDriver):
             color_map = {id(p): target_rgb for p in group_paths}
 
         return self._overdraw_paths(group_paths, color_map)
+
+    def recolor_key(self, key_id: str, color_hex: str, mode: str = "solid") -> int:
+        """Recolor fills of a single key. Returns count of paths overdrawn."""
+        key_paths = self._gather_key_paths(key_id)
+        if not key_paths:
+            return 0
+        target_rgb = hex_to_rgb(color_hex)
+        if mode == "hue_shift":
+            color_map = self._build_hue_shift_map(key_paths, target_rgb)
+        elif mode == "luminance_aware_shift":
+            color_map = self._build_luminance_aware_map(key_paths, target_rgb)
+        else:
+            color_map = {id(p): target_rgb for p in key_paths}
+        return self._overdraw_paths(key_paths, color_map)
+
+    def set_legend(self, key_id: str, main: dict | None = None, sub: dict | None = None):
+        """Overlay legend text on a key using fitz.TextWriter.
+
+        main / sub dicts: {"text": str, "color": (r,g,b), "font_path": str, "size": float}
+        Positions text at key center (cx, cy) from coord map.
+        """
+        if not main and not sub:
+            return
+        key = self.key_by_id(key_id)
+        if key is None:
+            return
+
+        import fitz
+        page = self._doc[0]
+        cx, cy = key["cx"], key["cy"]
+
+        def _draw_text(spec: dict, y_offset: float):
+            text = spec.get("text", "")
+            if not text:
+                return
+            font_path = spec.get("font_path", "")
+            size = spec.get("size", 18)
+            color = spec.get("color", (1.0, 1.0, 1.0))
+
+            font = fitz.Font(fontfile=font_path) if font_path else fitz.Font("helv")
+            text_w = font.text_length(text, fontsize=size)
+            x = cx - text_w / 2
+            y = cy + y_offset + size * 0.35
+            writer = fitz.TextWriter(page.rect)
+            writer.append(fitz.Point(x, y), text, font=font, fontsize=size)
+            writer.write_text(page, color=color)
+
+        if main and sub:
+            _draw_text(main, y_offset=-sub["size"] * 0.5)
+            _draw_text(sub,  y_offset=main["size"] * 0.5)
+        elif main:
+            _draw_text(main, y_offset=0.0)
+        elif sub:
+            _draw_text(sub,  y_offset=0.0)
+
+    def _build_luminance_aware_map(self, paths: list, target_rgb: tuple) -> dict:
+        """Shift hue, sat and lum together with proportional squeeze to avoid clipping."""
+        fills = [tuple(p["fill"][:3]) for p in paths]
+        if not fills:
+            return {}
+        lums = [colorsys.rgb_to_hls(*f)[1] for f in fills]
+        fills_by_lum = sorted(fills, key=lambda c: colorsys.rgb_to_hls(*c)[1])
+        ref_rgb = fills_by_lum[len(fills_by_lum) // 2]
+        rh, rl, rs = colorsys.rgb_to_hls(*ref_rgb)
+        th, tl, ts = colorsys.rgb_to_hls(*target_rgb)
+        h_delta = ((th - rh) + 0.5) % 1.0 - 0.5
+        s_delta = ts - rs
+        l_delta = tl - rl
+
+        shifted = [l + l_delta for l in lums]
+        _MIN_L = 0.03
+
+        if any(l < 0.0 or l > 1.0 for l in shifted):
+            lum_min, lum_max = min(lums), max(lums)
+            dev_low  = rl - lum_min
+            dev_high = lum_max - rl
+            head_low  = tl - _MIN_L
+            head_high = 1.0 - tl
+            scale_low  = (head_low  / dev_low)  if dev_low  > 1e-6 else 1.0
+            scale_high = (head_high / dev_high) if dev_high > 1e-6 else 1.0
+            scale = min(scale_low, scale_high, 1.0)
+
+            def shifted_lum(orig_l: float) -> float:
+                return max(_MIN_L, min(1.0, tl + (orig_l - rl) * scale))
+        else:
+            def shifted_lum(orig_l: float) -> float:
+                return max(_MIN_L, min(1.0, orig_l + l_delta))
+
+        def transform(src: tuple) -> tuple:
+            sh, sl, ss = colorsys.rgb_to_hls(*src[:3])
+            return colorsys.hls_to_rgb(
+                (sh + h_delta) % 1.0,
+                shifted_lum(sl),
+                max(0.0, min(1.0, ss + s_delta)),
+            )
+
+        return {id(p): transform(tuple(p["fill"][:3])) for p in paths}
 
     def _build_hue_shift_map(self, paths: list, target_rgb: tuple) -> dict:
         """Shift hue+sat of each path's fill by the delta between reference and target.
@@ -249,11 +390,14 @@ class PdfRgbDriver(PdfDriver):
         # Gather stroke paths BEFORE overdraw — get_drawings() re-parses the
         # content stream, and freshly committed shapes can trip MuPDF's parser.
         stroke_paths = self._gather_group_stroke_paths(group)
-
         count = super().recolor(group, color_hex, mode)
+        if stroke_paths:
+            self._re_emit_strokes(stroke_paths)
+        return count
 
-        # Re-emit strokes on top: Cherry profile 3D shading comes from stroke
-        # lines drawn after fills in the original stream; overdraw buries them.
+    def recolor_key(self, key_id: str, color_hex: str, mode: str = "solid") -> int:
+        stroke_paths = self._gather_key_stroke_paths(key_id)
+        count = super().recolor_key(key_id, color_hex, mode)
         if stroke_paths:
             self._re_emit_strokes(stroke_paths)
         return count

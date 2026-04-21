@@ -1,0 +1,22 @@
+# Terminal v2 — Font stack
+# Font files live in fonts/ at repo root (checked in for reproducibility).
+# Fallback: Segoe UI Symbol for Unicode arrows on systems without JetBrains Mono.
+fonts:
+  primary:
+    family: "JetBrains Mono"
+    file: "fonts/JetBrainsMono-Regular.ttf"
+    weight: 500
+    default_size: 18
+
+  secondary:
+    family: "JetBrains Mono"
+    file: "fonts/JetBrainsMono-Light.ttf"
+    weight: 300
+    default_size: 12
+
+  icon:
+    # Unicode symbols (arrows, modifier glyphs) — must cover U+21B5, U+21E7, etc.
+    family: "Segoe UI Symbol"
+    file: "C:/Windows/Fonts/seguisym.ttf"
+    weight: 400
+    default_size: 16

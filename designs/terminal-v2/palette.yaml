@@ -1,0 +1,8 @@
+# Terminal v2 — Phosphor Green Matrix
+# Canonical palette: all color references in key-design.json point here.
+colors:
+  body_alpha:   "#121E13"   # Alpha, F-Row, Nav, Num — deep phosphor green
+  body_mod:     "#131813"   # Modifiers, Enter, Backspace, Space — near-black green
+
+  legend_main:  "#51B05D"   # Primary legends — phosphor green glow
+  legend_dim:   "#2D6234"   # Sub-legends, Fn-layer symbols — dim green

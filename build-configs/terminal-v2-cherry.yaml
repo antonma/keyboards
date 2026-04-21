@@ -1,81 +1,40 @@
-# Build config: Terminal v2 — Cherry 135 全五面 port
+# Build config: Terminal v2 — Cherry 135 全五面 (Per-Key-Design-System v2)
 # Design: Phosphor Green Matrix, ISO-DE full keyboard + numpad
 # Template: Cherry 135 全五面 (RGB, 1570x1122pt landscape)
-# Reference: terminal-v2.yaml (GK75 original)
 #
-# Smoke test (dry-run):
-#   py -3 scripts/build_design.py --design terminal-v2-cherry --dry-run
+# Per-Key-System: palette + fonts + legends kommen aus designs/terminal-v2/
+# Statt group-based color_operations jetzt: apply_per_key_design.py
 #
-# Solid vs hue_shift visual comparison:
-#   Set recolor_mode: solid for flat colours
-#   Set recolor_mode: hue_shift to preserve Cherry 3D shading
+# Build:
+#   py -3 scripts/apply_per_key_design.py \
+#       --design terminal-v2 \
+#       --input  "templates/135 Cherry 全五面.pdf" \
+#       --output templates/terminal-v2-cherry-v2.pdf \
+#       --mode   luminance_aware_shift
+#
+# Body-only (ohne Legenden, für schnellen Farb-Check):
+#   py -3 scripts/apply_per_key_design.py ... --no-legends
+#
+# Legacy group-based build (v1 behaviour, für Vergleich):
+#   py -3 scripts/build_design.py --design terminal-v2-cherry-legacy
 
 design_name: terminal-v2-cherry
 base_template_pdf: "templates/135 Cherry 全五面.pdf"
 coordinate_map: layouts/cherry-135-coordinate-map.json
 
-palette:
-  body_alpha:   "#121F13"
-  body_mod:     "#161813"
-  body_fkey:    "#121F13"
-  body_nav:     "#161813"
-  body_num:     "#121F13"
-  body_space:   "#121F13"
-  legend_alpha: "#50B05E"
-  legend_mod:   "#284A35"
+# Per-Key-Design-System — canonical source of truth
+design_path: designs/terminal-v2/
+recolor_mode: luminance_aware_shift
 
 # Artwork: Top-view only for smoke test (full artworks can be added later)
 artworks: []
-
-color_operations:
-  # alpha keys — phosphor dark green body
-  - group: alpha
-    property: body
-    color: "#121F13"
-    recolor_mode: solid
-
-  # modifier keys — slightly different shade
-  - group: mod
-    property: body
-    color: "#161813"
-    recolor_mode: solid
-
-  # function key row
-  - group: fkey
-    property: body
-    color: "#121F13"
-    recolor_mode: solid
-
-  # navigation cluster (ins/del/home/end/pgup/pgdn/arrows + prtsc/scroll/pause)
-  - group: nav
-    property: body
-    color: "#161813"
-    recolor_mode: solid
-
-  # numpad
-  - group: num
-    property: body
-    color: "#121F13"
-    recolor_mode: solid
-
-  # spacebar
-  - group: spacebar
-    property: body
-    color: "#121F13"
-    recolor_mode: solid
-
-  # accent keys (Enter top+bottom, ESC) — slightly lighter green
-  - group: accent
-    property: body
-    color: "#1A2E1B"
-    recolor_mode: solid
 
 # sides: MVP — plain body colour (Phase 2: dedicated artwork per face)
 sides:
   mode: solid_body_color
 
 quality_baseline:
-  # Cherry 135 baseline from template analysis (2026-04-21)
+  # Cherry 135 baseline (2026-04-21); after per-key recolor fills increase
   stroke_count: 3358
   fill_count: 460
   tolerance_pct: 1.5

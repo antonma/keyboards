@@ -1,0 +1,1588 @@
+{
+  "version": 1,
+  "design": "terminal-v2",
+  "coord_map": "cherry-135-coordinate-map.json",
+  "keys": {
+    "esc": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "ESC",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f1": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F1",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f2": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F2",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f3": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F3",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f4": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F4",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f5": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F5",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f6": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F6",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f7": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F7",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f8": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F8",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f9": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F9",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f10": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F10",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f11": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F11",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f12": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F12",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "prtsc": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "PRT SC",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "scr": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "SCR LK",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "pause": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "PAUSE",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "grave": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "^",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "°",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "1": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "1",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "2": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "2",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "\"",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "3": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "3",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "§",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "4": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "4",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "$",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "5": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "5",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "%",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "6": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "6",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "&",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "7": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "7",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "/",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "8": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "8",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "(",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "9": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "9",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": ")",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "0": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "0",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "=",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "ss": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "ß",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "?",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "dead_ac": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "´",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "`",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "bksp": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "⟵",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "ins": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "INS",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "home": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "POS 1",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "pgup": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Bild\n↑",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "numlk": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "NUM\nLK",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num_div": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "/",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num_mul": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "*",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num_sub": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "-",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "tab": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "↹",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "q": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Q",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "w": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "W",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "e": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "E",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "r": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "R",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "t": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "T",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "z": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Z",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "u": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "U",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "i": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "I",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "o": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "O",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "p": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "P",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "ue": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Ü",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "plus": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "+",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": "*",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "enter_top": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "↵",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "del": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "ENTF",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "end": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "ENDE",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "pgdn": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Bild\n↓",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num7": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "7",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num8": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "8",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num9": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "9",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num_add": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "+",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "caps": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "⇪",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "a": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "A",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "s": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "S",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "d": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "D",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "f": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "g": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "G",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "h": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "H",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "j": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "J",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "k": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "K",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "l": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "L",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "oe": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Ö",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "ae": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Ä",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "enter_bot": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num4": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "4",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num5": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "5",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num6": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "6",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "lshift": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "⇧",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "less": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "<",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": ">",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "y": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Y",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "x": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "X",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "c": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "C",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "v": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "V",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "b": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "B",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "n": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "N",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "m": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "M",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "comma": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": ",",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": ";",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "period": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": ".",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        },
+        "sub": {
+          "text": ":",
+          "color": "legend_dim",
+          "font": "primary",
+          "size": 12
+        }
+      }
+    },
+    "rshift": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "⇧",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "up": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "↑",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "num1": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "1",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num2": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "2",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num3": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "3",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num_enter": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "↵",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "lctrl": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "STRG",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "lwin": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "WIN",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "lalt": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "ALT",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "space": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "ralt": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "ALT GR",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "rwin": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "WIN",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "menu": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "MENU",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "rctrl": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "STRG",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "left": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "←",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "down": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "↓",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "right": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "→",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "num0": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "0",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "num_dot": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": ".",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod1": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod2": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod3": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod4": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod5": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod6": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_space_7u": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_alpha1": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_alpha2": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_enter_iso": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "↵",
+          "color": "legend_main",
+          "font": "icon",
+          "size": 16
+        }
+      }
+    },
+    "alt_alpha3": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_alpha4": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_shift_175a": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_shift_175b": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_alpha5": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod_125": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_alpha6": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod_175c": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod_2u": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_a1": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_a2": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_a3": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_a4": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_a5": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_a6": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_a7": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_a8": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod_15a": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod_15b": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod_15c": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "alt_mod_15d": {
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    }
+  }
+}
