@@ -152,6 +152,18 @@ class PdfDriver(TemplateDriver):
             and any(self._rect_center_in_bbox(p["rect"], kb) for kb in bboxes)
         ]
 
+    def _gather_group_stroke_paths(self, group: str) -> list:
+        """Return all stroke-only paths within group key bboxes (no fill)."""
+        page = self._doc[0]
+        bboxes = self.key_bboxes(group)
+        return [
+            p for p in page.get_drawings()
+            if p.get("color") and len(p["color"]) >= 3
+            and not (p.get("fill") and len(p.get("fill", [])) >= 3)
+            and p.get("rect") is not None
+            and any(self._rect_center_in_bbox(p["rect"], kb) for kb in bboxes)
+        ]
+
     def _overdraw_paths(self, paths: list, color_map: dict) -> int:
         import fitz
         page = self._doc[0]
@@ -170,6 +182,27 @@ class PdfDriver(TemplateDriver):
             count += 1
         shape.commit()
         return count
+
+    def _re_emit_strokes(self, stroke_paths: list):
+        """Re-draw stroke paths on top to restore Z-order after fill overdraw."""
+        page = self._doc[0]
+        shape = page.new_shape()
+        for path in stroke_paths:
+            sc = path.get("color")
+            if not sc or len(sc) < 3:
+                continue
+            for item in path.get("items", []):
+                if item[0] == "l":    shape.draw_line(item[1], item[2])
+                elif item[0] == "c":  shape.draw_bezier(item[1], item[2], item[3], item[4])
+                elif item[0] == "re": shape.draw_rect(item[1])
+                elif item[0] == "qu": shape.draw_quad(item[1])
+            shape.finish(
+                fill=None,
+                color=sc[:3],
+                width=path.get("width", 0.5),
+                even_odd=False,
+            )
+        shape.commit()
 
     def recolor(self, group: str, color_hex: str, mode: str = "solid") -> int:
         group_paths = self._gather_group_paths(group)
@@ -211,7 +244,19 @@ class PdfDriver(TemplateDriver):
 
 class PdfRgbDriver(PdfDriver):
     """Driver for Cherry 135 全五面 — pure RGB, full hue_shift support."""
-    pass
+
+    def recolor(self, group: str, color_hex: str, mode: str = "solid") -> int:
+        # Gather stroke paths BEFORE overdraw — get_drawings() re-parses the
+        # content stream, and freshly committed shapes can trip MuPDF's parser.
+        stroke_paths = self._gather_group_stroke_paths(group)
+
+        count = super().recolor(group, color_hex, mode)
+
+        # Re-emit strokes on top: Cherry profile 3D shading comes from stroke
+        # lines drawn after fills in the original stream; overdraw buries them.
+        if stroke_paths:
+            self._re_emit_strokes(stroke_paths)
+        return count
 
 
 class PdfCmykDriver(PdfDriver):

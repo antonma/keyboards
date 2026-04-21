@@ -122,7 +122,41 @@ def build_hue_shift_map(paths: list, target_rgb: tuple) -> dict:
     return {id(p): shift(tuple(p["fill"][:3])) for p in paths}
 
 
-def apply_recolor(doc, group: str, color_hex: str, coord_map: dict, mode: str = "solid") -> int:
+def gather_group_stroke_paths(page, group: str, coord_map: dict) -> list:
+    """Stroke-only paths within group key bboxes (no fill)."""
+    key_bboxes = group_bboxes(coord_map, group)
+    return [
+        p for p in page.get_drawings()
+        if p.get("color") and len(p["color"]) >= 3
+        and not (p.get("fill") and len(p.get("fill", [])) >= 3)
+        and p.get("rect") is not None
+        and any(rect_contains_center(p["rect"], kb) for kb in key_bboxes)
+    ]
+
+
+def re_emit_strokes(page, stroke_paths: list):
+    """Re-draw stroke paths on top to restore Z-order after fill overdraw."""
+    shape = page.new_shape()
+    for path in stroke_paths:
+        sc = path.get("color")
+        if not sc or len(sc) < 3:
+            continue
+        for item in path.get("items", []):
+            if item[0] == "l":    shape.draw_line(item[1], item[2])
+            elif item[0] == "c":  shape.draw_bezier(item[1], item[2], item[3], item[4])
+            elif item[0] == "re": shape.draw_rect(item[1])
+            elif item[0] == "qu": shape.draw_quad(item[1])
+        shape.finish(
+            fill=None,
+            color=sc[:3],
+            width=path.get("width", 0.5),
+            even_odd=False,
+        )
+    shape.commit()
+
+
+def apply_recolor(doc, group: str, color_hex: str, coord_map: dict,
+                  mode: str = "solid", restore_strokes: bool = False) -> int:
     import fitz
 
     page = doc[0]
@@ -130,6 +164,10 @@ def apply_recolor(doc, group: str, color_hex: str, coord_map: dict, mode: str = 
     if not group_paths:
         print(f"  WARN: No fill paths found for group '{group}'")
         return 0
+
+    # Gather stroke paths BEFORE overdraw — get_drawings() re-parses the
+    # content stream, and freshly committed shapes can trip MuPDF's parser.
+    _stroke_paths_snapshot = gather_group_stroke_paths(page, group, coord_map) if restore_strokes else []
 
     target_rgb = hex_to_rgb_float(color_hex)
 
@@ -158,6 +196,11 @@ def apply_recolor(doc, group: str, color_hex: str, coord_map: dict, mode: str = 
         count += 1
 
     shape.commit()
+
+    # Cherry RGB: re-emit pre-gathered strokes on top.
+    if restore_strokes and _stroke_paths_snapshot:
+        re_emit_strokes(page, _stroke_paths_snapshot)
+
     return count
 
 
@@ -215,6 +258,7 @@ def main():
 
     coord_map = load_coord_map(coord_map_path)
     ops = parse_ops(args.ops) if args.ops else [(args.group, args.property, args.color)]
+    restore_strokes = coord_map.get("color_model", "CMYK").upper() == "RGB"
 
     print(f"recolor")
     print(f"  Input     : {input_pdf}")
@@ -222,13 +266,15 @@ def main():
     print(f"  Coord map : {coord_map_path.name}")
     print(f"  Mode      : {args.mode}")
     print(f"  Ops       : {len(ops)}")
+    print(f"  Restore strokes: {restore_strokes}")
     print()
 
     import fitz
     doc = fitz.open(str(input_pdf))
 
     for group, prop, color in ops:
-        count = apply_recolor(doc, group, color, coord_map, mode=args.mode)
+        count = apply_recolor(doc, group, color, coord_map, mode=args.mode,
+                              restore_strokes=restore_strokes)
         print(f"  {group:12s} {prop:6s} → {color}  ({count} paths overdrawn)")
 
     output_pdf.parent.mkdir(parents=True, exist_ok=True)
