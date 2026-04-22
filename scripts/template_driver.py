@@ -146,6 +146,9 @@ class PdfDriver(TemplateDriver):
             print("ERROR: PyMuPDF not installed. Run: py -3 -m pip install pymupdf", file=sys.stderr)
             raise
         self._doc = fitz.open(str(template_path))
+        # Font cache: font_path → fitz.Font instance. Reusing the same object
+        # ensures PyMuPDF embeds the font only once instead of once per key.
+        self._font_cache: dict = {}
 
     def close(self):
         if hasattr(self, "_doc") and self._doc:
@@ -301,7 +304,13 @@ class PdfDriver(TemplateDriver):
             size = spec.get("size", 18)
             color = spec.get("color", (1.0, 1.0, 1.0))
 
-            font = fitz.Font(fontfile=font_path) if font_path else fitz.Font("helv")
+            # Reuse cached Font instance so PyMuPDF embeds the font only once.
+            cache_key = font_path or "__helv__"
+            if cache_key not in self._font_cache:
+                self._font_cache[cache_key] = (
+                    fitz.Font(fontfile=font_path) if font_path else fitz.Font("helv")
+                )
+            font = self._font_cache[cache_key]
             text_w = font.text_length(text, fontsize=size)
             x = cx - text_w / 2
             y = cy + y_offset + size * 0.35

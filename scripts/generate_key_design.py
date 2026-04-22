@@ -21,6 +21,8 @@ Usage:
     py -3 scripts/generate_key_design.py --design terminal-v2
     py -3 scripts/generate_key_design.py --design terminal-v2 --force
     py -3 scripts/generate_key_design.py --design terminal-v2 --dry-run
+    py -3 scripts/generate_key_design.py --design sakura-drift \\
+        --include designs/_shared/75-iso-de-base-kit.yaml
 """
 
 import argparse
@@ -33,6 +35,28 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_COORD_MAP = REPO / "layouts" / "cherry-135-coordinate-map.json"
+
+
+def load_include_set(include_path: Path) -> set[str]:
+    """Load a base-kit YAML and return the set of key IDs to generate.
+
+    Handles YAML integer keys (1, 2 ... 0) by converting to str.
+    """
+    try:
+        import yaml
+        with open(include_path, encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+    except ImportError:
+        print("ERROR: PyYAML required for --include. Install with: pip install pyyaml",
+              file=sys.stderr)
+        sys.exit(1)
+
+    include_groups = data.get("include") or {}
+    ids: set[str] = set()
+    for group_ids in include_groups.values():
+        for kid in (group_ids or []):
+            ids.add(str(kid))
+    return ids
 
 # ── ISO-DE legend table ────────────────────────────────────────────────────────
 # key_id → (main_text, sub_text_or_None, font_ref)
@@ -244,6 +268,10 @@ def main():
     p.add_argument("--design",    required=True, help="Design name (e.g. terminal-v2)")
     p.add_argument("--coord-map", default=str(DEFAULT_COORD_MAP),
                    help="Path to coordinate map JSON")
+    p.add_argument("--include", default=None,
+                   help="Path to base-kit YAML (e.g. designs/_shared/75-iso-de-base-kit.yaml). "
+                        "Only keys listed there are written to key-design.json; "
+                        "all others are omitted (they stay original-beige in the template).")
     p.add_argument("--force",   action="store_true",
                    help="Overwrite existing entries (default: keep existing)")
     p.add_argument("--dry-run", action="store_true",
@@ -265,6 +293,20 @@ def main():
     with open(coord_map_path, encoding="utf-8") as f:
         coord_map = json.load(f)
 
+    # Load include set if provided
+    include_set: set[str] | None = None
+    include_file_name: str | None = None
+    if args.include:
+        include_path = Path(args.include)
+        if not include_path.is_absolute():
+            include_path = REPO / include_path
+        if not include_path.exists():
+            print(f"ERROR: Include file not found: {include_path}", file=sys.stderr)
+            sys.exit(1)
+        include_set = load_include_set(include_path)
+        include_file_name = include_path.name
+        print(f"  Include   : {len(include_set)} keys from {include_file_name}")
+
     output_path = design_dir / "key-design.json"
 
     existing: dict = {}
@@ -274,10 +316,13 @@ def main():
         print(f"  Existing entries: {len(existing)} (use --force to overwrite)")
 
     keys_out: dict = {}
-    added, skipped = 0, 0
+    added, skipped, excluded = 0, 0, 0
 
     for key in coord_map["keys"]:
         key_id = key["id"]
+        if include_set is not None and key_id not in include_set:
+            excluded += 1
+            continue
         if key_id in existing and not args.force:
             keys_out[key_id] = existing[key_id]
             skipped += 1
@@ -286,15 +331,18 @@ def main():
             added += 1
 
     result = {
-        "version":  1,
-        "design":   args.design,
-        "coord_map": coord_map_path.name,
-        "keys":     keys_out,
+        "version":    1,
+        "design":     args.design,
+        "coord_map":  coord_map_path.name,
+        "include_file": include_file_name,
+        "keys":       keys_out,
     }
 
     print(f"generate_key_design")
     print(f"  Design    : {args.design}")
     print(f"  Coord map : {coord_map_path.name}")
+    if include_set is not None:
+        print(f"  Mode      : base-kit ({len(include_set)} include, {excluded} excluded/beige)")
     print(f"  Keys      : {len(keys_out)} total ({added} generated, {skipped} kept)")
     if args.dry_run:
         print("\n[dry-run] Not writing output.")

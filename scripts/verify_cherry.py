@@ -19,6 +19,11 @@ Usage:
     py -3 scripts/verify_cherry.py templates/terminal-v2-cherry-v2.pdf \\
         --design terminal-v2 \\
         --coord-map layouts/cherry-135-coordinate-map.json
+
+    # Base-kit mode: also verifies non-included keys retain original template color
+    py -3 scripts/verify_cherry.py templates/terminal-v2-cherry-v3.pdf \\
+        --design terminal-v2 \\
+        --include designs/_shared/75-iso-de-base-kit.yaml
 """
 
 import argparse
@@ -30,13 +35,33 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 REPO = Path(__file__).resolve().parent.parent
 
+
+def load_include_set(include_path: Path) -> set[str]:
+    """Load a base-kit YAML and return the set of included key IDs."""
+    try:
+        import yaml
+        with open(include_path, encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+    except ImportError:
+        print("ERROR: PyYAML required for --include. pip install pyyaml", file=sys.stderr)
+        sys.exit(1)
+    include_groups = data.get("include") or {}
+    ids: set[str] = set()
+    for group_ids in include_groups.values():
+        for kid in (group_ids or []):
+            ids.add(str(kid))
+    return ids
+
 # Baseline from template analysis (2026-04-21, 7-group full recolor)
 BASELINE_FILLS_ORIGINAL = 460       # fills in the original Cherry template
 BASELINE_STROKES_ORIGINAL = 3358    # strokes in the original Cherry template
 # After a full 7-group recolor: 201 new fills + 2551 new strokes (re-emitted)
 # Allow ±5% tolerance on stroke count
 STROKE_TOLERANCE_PCT = 5.0
-MAX_FILE_SIZE_KB = 2048
+# Cherry PDFs with per-key legends embed font files (JetBrains Mono + Segoe UI Symbol).
+# Segoe UI Symbol alone adds ~1.3 MB compressed (full font, no subsetting in PyMuPDF).
+# Limit is for raster detection only — a PDF above 4 MB likely contains embedded images.
+MAX_FILE_SIZE_KB = 4096
 
 
 def rgb_float_to_hex(r, g, b) -> str:
@@ -96,12 +121,20 @@ def check(label: str, passed: bool, detail: str = "") -> bool:
     return passed
 
 
-def check_per_key_coverage(pdf_path: Path, design_dir: Path, coord_map_path: Path) -> tuple[int, list]:
+def check_per_key_coverage(
+    pdf_path: Path,
+    design_dir: Path,
+    coord_map_path: Path,
+    include_set: "set[str] | None" = None,
+) -> tuple[int, list]:
     """Strict per-key check: every key in key-design.json has a correctly-colored body fill.
 
     'Correctly colored' means the topmost large fill (area > 500pt²) in the key bbox
     is NOT the original template color (no beige #C9C1AA-family remains as top fill).
     Palette body colors must appear as the topmost body fill for each key.
+
+    When include_set is provided (base-kit mode), also checks that keys NOT in the
+    include set still carry their original template fill_hex (they should be untouched).
 
     Returns (failures_count, list_of_wrong_key_ids).
     """
@@ -209,7 +242,46 @@ def check_per_key_coverage(pdf_path: Path, design_dir: Path, coord_map_path: Pat
     if wrong:
         detail += f"; wrong color: {wrong[:5]}" + (" ..." if len(wrong) > 5 else "")
     check("Per-key body colors match palette (strict)", passed, detail)
-    return (0 if passed else 1), failed
+    total_failures = 0 if passed else 1
+
+    # Base-kit mode: non-included keys must retain their original template fill_hex
+    if include_set is not None:
+        non_included = [k for k in coord_map["keys"] if k["id"] not in include_set]
+        wrong_originals: list[str] = []
+        for key_meta in non_included:
+            key_id = key_meta["id"]
+            orig_hex = key_meta.get("fill_hex", "")
+            if not orig_hex:
+                continue
+            body_fills = []
+            for i, d in enumerate(drawings):
+                if not (d.get("fill") and len(d["fill"]) >= 3 and d.get("rect")):
+                    continue
+                r = d["rect"]
+                area = (r.x1 - r.x0) * (r.y1 - r.y0)
+                if area < 500:
+                    continue
+                if center_in_bbox(r, key_meta):
+                    body_fills.append((i, tuple(d["fill"][:3])))
+            if not body_fills:
+                continue
+            topmost = max(body_fills, key=lambda x: x[0])[1]
+            h = orig_hex.lstrip("#")
+            expected = (int(h[0:2], 16) / 255, int(h[2:4], 16) / 255, int(h[4:6], 16) / 255)
+            if not color_match(topmost, expected, tol=20 / 255):
+                wrong_originals.append(key_id)
+        non_ok = len(non_included) - len(wrong_originals)
+        non_passed = len(wrong_originals) == 0
+        non_detail = f"{non_ok}/{len(non_included)} non-included keys retain original color"
+        if wrong_originals:
+            non_detail += f"; recolored unexpectedly: {wrong_originals[:5]}"
+            if len(wrong_originals) > 5:
+                non_detail += " ..."
+        check("Non-included keys retain original template color (base-kit)", non_passed, non_detail)
+        if not non_passed:
+            total_failures += 1
+
+    return total_failures, failed
 
 
 def check_palette_colors(pdf_path: Path, design_dir: Path) -> int:
@@ -282,6 +354,9 @@ def main():
                    help="Design name (e.g. terminal-v2) — enables per-key checks 6+7")
     p.add_argument("--coord-map", default=str(REPO / "layouts" / "cherry-135-coordinate-map.json"),
                    help="Coordinate map JSON for per-key coverage check")
+    p.add_argument("--include", default=None,
+                   help="Path to base-kit YAML (e.g. designs/_shared/75-iso-de-base-kit.yaml). "
+                        "Enables base-kit mode: additionally checks non-included keys are untouched.")
     args = p.parse_args()
 
     pdf_path = Path(args.pdf)
@@ -335,8 +410,8 @@ def main():
                  f"{stats['cmyk_fills']} CMYK fills found"):
         failures += 1
 
-    # 4. File size
-    if not check("File size < 2 MB",
+    # 4. File size (4 MB cap: Fonts add ~1.5 MB; > 4 MB = likely embedded raster)
+    if not check("File size < 4 MB",
                  stats["size_kb"] < MAX_FILE_SIZE_KB,
                  f"{stats['size_kb']} KB"):
         failures += 1
@@ -355,8 +430,19 @@ def main():
         if not coord_map_path.is_absolute():
             coord_map_path = REPO / coord_map_path
 
+        # Load include set for base-kit mode
+        include_set = None
+        if args.include:
+            include_path = Path(args.include)
+            if not include_path.is_absolute():
+                include_path = REPO / include_path
+            include_set = load_include_set(include_path)
+            print(f"  Base-kit mode: {len(include_set)} included keys, checking untouched remainder")
+
         print()
-        cov_failures, _ = check_per_key_coverage(pdf_path, design_dir, coord_map_path)
+        cov_failures, _ = check_per_key_coverage(
+            pdf_path, design_dir, coord_map_path, include_set=include_set
+        )
         failures += cov_failures
         failures += check_palette_colors(pdf_path, design_dir)
 

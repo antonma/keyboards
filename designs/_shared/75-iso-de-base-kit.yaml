@@ -1,0 +1,120 @@
+# 75% ISO-DE Base Kit — Key-Include-Liste
+# Shared von allen Pilot-Designs (Sakura Drift, The Well, Oni Mask)
+# Keys die NICHT in dieser Liste stehen bleiben im Cherry-Template als Original-Beige.
+# Quelle: layouts/cherry-135-coordinate-map.json Key-IDs
+#
+# Gesamt: 82 Key-IDs (79 logische Keys, enter_top+enter_bot = 1 Taste / 2 IDs)
+version: 1
+layout: "75-iso-de"
+include:
+  fn_row:
+    - esc
+    - f1
+    - f2
+    - f3
+    - f4
+    - f5
+    - f6
+    - f7
+    - f8
+    - f9
+    - f10
+    - f11
+    - f12
+
+  numbers:
+    - grave
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+    - "6"
+    - "7"
+    - "8"
+    - "9"
+    - "0"
+    - ss
+    - dead_ac
+
+  alphas:
+    - q
+    - w
+    - e
+    - r
+    - t
+    - z
+    - u
+    - i
+    - o
+    - p
+    - ue
+    - plus
+    - a
+    - s
+    - d
+    - f
+    - g
+    - h
+    - j
+    - k
+    - l
+    - oe
+    - ae
+    - less
+    - y
+    - x
+    - c
+    - v
+    - b
+    - n
+    - m
+    - comma
+    - period
+
+  primary_mods:
+    - bksp
+    - tab
+    - caps
+    - enter_top
+    - enter_bot
+
+  shifts:
+    - lshift
+    - rshift
+
+  mods_left:
+    - lctrl
+    - lwin
+    - lalt
+
+  mods_right:
+    # ralt = AltGr, rwin = Fn-Position (75%-Mapping), rctrl = Strg rechts
+    - ralt
+    - rwin
+    - rctrl
+
+  spacebar:
+    - space
+
+  nav:
+    - del
+    - home
+    - pgup
+    - pgdn
+    - end
+
+  arrows:
+    - up
+    - left
+    - down
+    - right
+
+# Explizit exkludiert (bleiben Original-Beige):
+# - Numpad (numlk, num_div, num_mul, num_sub, num7-num0, num_add, num_enter, num_dot)
+# - Full-size Nav (ins, prtsc, scr, pause)
+# - Alt-Spacebars (alt_space_7u, alt_enter_iso)
+# - Alternate Mods (alt_mod1-6, alt_mod_125, alt_mod_175c, alt_mod_2u)
+# - Alternate Alphas (alt_alpha1-6, alt_a1-a8)
+# - Alternate Shifts (alt_shift_175a/b)
+# - menu, rwin-Alternativen (alt_mod_15a-15d)
