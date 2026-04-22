@@ -1,0 +1,25 @@
+# 75% ISO-DE Compat Kit — Akko / 3084B Plus und ähnliche Boards
+# Erweitert das Base-Kit um MENU + Compat-Tasten (DRUCK/ROLLEN/PAUSE/EINFG).
+# Geeignet für Boards mit mehr als 3 rechten Mods oder Sonderblock-Keys.
+#
+# Boards:      Akko 3084B Plus, Keychron Q2, GMMK Pro + ähnliche 75%-Layouts
+# Base-Kit:    designs/_shared/75-iso-de-base-kit.yaml (79 Keys = Minimum)
+# Gesamt:      84 Keys (79 + menu + 4 Compat-Keys)
+version: 1
+layout: "75-iso-de-compat-akko"
+extends: "75-iso-de-base-kit"
+
+additional_keys:
+  mods_extra:
+    - menu        # Context-Menu-Taste (zwischen FN und STRG rechts)
+
+  compat:
+    # Compat-Keys im Alternates-Block (werden eingefärbt aber nicht umpositioniert)
+    # Labels: DRUCK / ROLLEN / PAUSE / EINFG (Deutsche Konvention, wie STRG/ENTF)
+    - alt_a1      # DRUCK  (PrintScreen)
+    - alt_a2      # ROLLEN (ScrollLock)
+    - alt_a3      # PAUSE  (Pause/Break)
+    - alt_a4      # EINFG  (Insert)
+
+# Explizit exkludiert (weiterhin Original-Beige, nicht Teil dieses Kits):
+# - Numpad, Full-size-Nav, Alt-Shifts, weitere Alt-Mods/Alphas
