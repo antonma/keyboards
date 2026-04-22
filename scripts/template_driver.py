@@ -317,14 +317,30 @@ class PdfDriver(TemplateDriver):
         elif sub:
             _draw_text(sub,  y_offset=0.0)
 
+    @staticmethod
+    def _median_body_fill(paths: list, lum_min: float = 0.3, lum_max: float = 0.85) -> tuple:
+        """Return median-luminance fill, excluding dark shadow/bevel (L<0.3) and
+        specular highlights (L>0.85) that corrupt the reference hue.
+        Falls back to unfiltered median if filtering leaves nothing.
+        """
+        fills = [tuple(p["fill"][:3]) for p in paths]
+        filtered = [f for f in fills
+                    if lum_min <= colorsys.rgb_to_hls(*f)[1] <= lum_max]
+        candidates = filtered if filtered else fills
+        return sorted(candidates, key=lambda c: colorsys.rgb_to_hls(*c)[1])[len(candidates) // 2]
+
     def _build_luminance_aware_map(self, paths: list, target_rgb: tuple) -> dict:
-        """Shift hue, sat and lum together with proportional squeeze to avoid clipping."""
+        """Shift hue, sat and lum together with proportional squeeze to avoid clipping.
+
+        Reference = median-luminance body fill (L 0.3–0.85) so dark detail marks
+        (L≈0.1) in alt_* keys do not corrupt the reference and cause the body fill
+        to remain nearly unchanged.
+        """
         fills = [tuple(p["fill"][:3]) for p in paths]
         if not fills:
             return {}
         lums = [colorsys.rgb_to_hls(*f)[1] for f in fills]
-        fills_by_lum = sorted(fills, key=lambda c: colorsys.rgb_to_hls(*c)[1])
-        ref_rgb = fills_by_lum[len(fills_by_lum) // 2]
+        ref_rgb = self._median_body_fill(paths)
         rh, rl, rs = colorsys.rgb_to_hls(*ref_rgb)
         th, tl, ts = colorsys.rgb_to_hls(*target_rgb)
         h_delta = ((th - rh) + 0.5) % 1.0 - 0.5
@@ -363,13 +379,10 @@ class PdfDriver(TemplateDriver):
     def _build_hue_shift_map(self, paths: list, target_rgb: tuple) -> dict:
         """Shift hue+sat of each path's fill by the delta between reference and target.
 
-        Reference = median-luminance fill across the group → best proxy for base keycap colour.
+        Reference = median-luminance body fill (L 0.3–0.85).
         Luminance per path is preserved → 3D shading depth intact.
         """
-        fills = [tuple(p["fill"][:3]) for p in paths]
-        fills_by_lum = sorted(fills, key=lambda c: colorsys.rgb_to_hls(*c)[1])
-        ref_rgb = fills_by_lum[len(fills_by_lum) // 2]
-
+        ref_rgb = self._median_body_fill(paths)
         return {
             id(p): hue_shift_color(tuple(p["fill"][:3]), ref_rgb, target_rgb)
             for p in paths

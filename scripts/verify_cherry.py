@@ -97,13 +97,19 @@ def check(label: str, passed: bool, detail: str = "") -> bool:
 
 
 def check_per_key_coverage(pdf_path: Path, design_dir: Path, coord_map_path: Path) -> tuple[int, list]:
-    """Check that every key in key-design.json has at least one fill path in the PDF.
+    """Strict per-key check: every key in key-design.json has a correctly-colored body fill.
 
-    Returns (failures_count, list_of_uncovered_key_ids).
+    'Correctly colored' means the topmost large fill (area > 500pt²) in the key bbox
+    is NOT the original template color (no beige #C9C1AA-family remains as top fill).
+    Palette body colors must appear as the topmost body fill for each key.
+
+    Returns (failures_count, list_of_wrong_key_ids).
     """
     import json
+    import colorsys
 
     key_design_path = design_dir / "key-design.json"
+    palette_path    = design_dir / "palette.yaml"
     if not key_design_path.exists():
         print(f"  SKIP Per-key coverage: key-design.json not found in {design_dir}")
         return 0, []
@@ -116,7 +122,30 @@ def check_per_key_coverage(pdf_path: Path, design_dir: Path, coord_map_path: Pat
     with open(coord_map_path, encoding="utf-8") as f:
         coord_map = json.load(f)
 
-    key_bboxes = {k["id"]: (k["x0"], k["y0"], k["x1"], k["y1"]) for k in coord_map["keys"]}
+    # Load expected body colors from palette
+    palette_body: dict[str, tuple] = {}
+    if palette_path.exists():
+        try:
+            import yaml
+            with open(palette_path, encoding="utf-8") as f:
+                raw = yaml.safe_load(f)
+        except ImportError:
+            raw = {}
+            with open(palette_path, encoding="utf-8") as f:
+                for line in f:
+                    s = line.strip()
+                    if s and not s.startswith("#") and ":" in s:
+                        k, _, v = s.partition(":")
+                        raw[k.strip()] = v.strip().strip('"').strip("'")
+        colors = raw.get("colors") or raw
+        for k, v in colors.items():
+            if k.startswith("body_"):
+                h = str(v).lstrip("#")
+                palette_body[k] = (int(h[0:2],16)/255, int(h[2:4],16)/255, int(h[4:6],16)/255)
+
+    key_bboxes   = {k["id"]: k for k in coord_map["keys"]}
+    key_body_ref = {kid: spec.get("body_color","body_alpha")
+                    for kid, spec in key_design.get("keys",{}).items()}
 
     try:
         import fitz
@@ -126,33 +155,61 @@ def check_per_key_coverage(pdf_path: Path, design_dir: Path, coord_map_path: Pat
 
     doc = fitz.open(str(pdf_path))
     page = doc[0]
-    drawings = page.get_drawings()
+    drawings = list(page.get_drawings())
     doc.close()
 
-    fill_paths = [d for d in drawings if d.get("fill") and len(d["fill"]) >= 3 and d.get("rect")]
-
-    def center_in_bbox(rect, bbox, margin=2.0):
+    def center_in_bbox(rect, key, margin=2.0):
         cx = (rect.x0 + rect.x1) / 2
         cy = (rect.y0 + rect.y1) / 2
-        x0, y0, x1, y1 = bbox
-        return (x0 - margin) <= cx <= (x1 + margin) and (y0 - margin) <= cy <= (y1 + margin)
+        return (key["x0"]-margin) <= cx <= (key["x1"]+margin) and (key["y0"]-margin) <= cy <= (key["y1"]+margin)
 
-    uncovered = []
-    for key_id in key_design.get("keys", {}):
-        kb = key_bboxes.get(key_id)
-        if kb is None:
-            continue
-        if not any(center_in_bbox(p["rect"], kb) for p in fill_paths):
-            uncovered.append(key_id)
+    def color_match(c1: tuple, c2: tuple, tol: float = 15/255) -> bool:
+        return all(abs(a - b) <= tol for a, b in zip(c1, c2))
 
+    wrong: list[str] = []
+    uncovered: list[str] = []
     total_keys = len(key_design.get("keys", {}))
-    covered = total_keys - len(uncovered)
-    passed = len(uncovered) == 0
-    detail = f"{covered}/{total_keys} keys have fills"
+
+    for key_id, spec in key_design.get("keys", {}).items():
+        key_meta = key_bboxes.get(key_id)
+        if key_meta is None:
+            continue
+
+        # Gather fills in this key's bbox, keep only large ones (body fills)
+        body_fills = []
+        for i, d in enumerate(drawings):
+            if not (d.get("fill") and len(d["fill"]) >= 3 and d.get("rect")):
+                continue
+            r = d["rect"]
+            area = (r.x1 - r.x0) * (r.y1 - r.y0)
+            if area < 500:
+                continue
+            if center_in_bbox(r, key_meta):
+                body_fills.append((i, tuple(d["fill"][:3])))
+
+        if not body_fills:
+            uncovered.append(key_id)
+            continue
+
+        # Topmost large fill (highest stream index) = what the viewer renders on top
+        topmost_color = max(body_fills, key=lambda x: x[0])[1]
+
+        # Check it matches the expected palette body color
+        body_ref = key_body_ref.get(key_id, "body_alpha")
+        expected = palette_body.get(body_ref)
+        if expected is not None and not color_match(topmost_color, expected):
+            wrong.append(key_id)
+
+    failed = wrong + uncovered
+    total_ok = total_keys - len(failed)
+    passed = len(failed) == 0
+    detail = f"{total_ok}/{total_keys} keys correctly colored"
     if uncovered:
-        detail += f"; missing: {uncovered[:8]}" + (" ..." if len(uncovered) > 8 else "")
-    check("Per-key coverage (all keys have fills)", passed, detail)
-    return (0 if passed else 1), uncovered
+        detail += f"; no fills: {uncovered[:5]}"
+    if wrong:
+        detail += f"; wrong color: {wrong[:5]}" + (" ..." if len(wrong) > 5 else "")
+    check("Per-key body colors match palette (strict)", passed, detail)
+    return (0 if passed else 1), failed
 
 
 def check_palette_colors(pdf_path: Path, design_dir: Path) -> int:
