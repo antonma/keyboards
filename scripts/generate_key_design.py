@@ -253,6 +253,16 @@ FONT_LEGEND_COLOR: dict[str, str] = {
 
 SUB_LEGEND_COLOR = "legend_dim"
 
+# Groups where ALL text-labeled primary legends get a fixed size (Anton: alle gleich groß).
+# 14pt = largest size that fits 5-char labels on 1u keys (51.4pt) with 4pt offset.
+# Icon-labeled keys (tab/caps/shift/bksp/enter) are excluded — they use their own size.
+MOD_PRIMARY_GROUPS: frozenset[str] = frozenset({
+    "mods_left", "mods_right", "nav", "compat",
+    # cherry-135 equivalents
+    "mod", "accent",
+})
+MOD_PRIMARY_SIZE = 14
+
 
 # ── Build key spec ─────────────────────────────────────────────────────────────
 
@@ -273,6 +283,15 @@ def build_key_spec(key: dict) -> dict:
             main_text, sub_text, font_ref = legend_row
             tertiary_text = None
 
+    # Fixed size for mod/nav/compat text labels so all Steuerungstasten look uniform.
+    # Icon-based labels (font_ref == "icon") keep their own size (16pt).
+    if font_ref == "primary" and group in MOD_PRIMARY_GROUPS:
+        main_size = MOD_PRIMARY_SIZE
+    elif font_ref == "primary":
+        main_size = 18
+    else:
+        main_size = 16  # icon
+
     spec: dict = {
         "body_color": body_color,
         "legend": {
@@ -280,7 +299,7 @@ def build_key_spec(key: dict) -> dict:
                 "text": main_text,
                 "color": FONT_LEGEND_COLOR.get(font_ref, "legend_main"),
                 "font":  font_ref,
-                "size":  18 if font_ref == "primary" else 16,
+                "size":  main_size,
             }
         },
     }
