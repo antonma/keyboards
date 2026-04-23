@@ -289,7 +289,7 @@ class PdfDriver(TemplateDriver):
             color_map = {id(p): target_rgb for p in key_paths}
         return self._overdraw_paths(key_paths, color_map)
 
-    _ANCHOR_OFFSET = 8.0   # pt from keycap edge
+    _ANCHOR_OFFSET = 4.0   # pt from keycap edge (tunable starting value)
     _MIN_FONT_SIZE = 10.0  # auto-fit floor
 
     def set_legend(self, key_id: str, main: dict | None = None,
@@ -299,13 +299,14 @@ class PdfDriver(TemplateDriver):
         main / sub / tertiary dicts:
             {"text": str, "color": (r,g,b), "font_path": str, "size": float}
 
-        Anchor system (per Handoff 9bb89869):
-          main      → topleft   (x0+off, y0+off)
+        Anchor system (per Handoff 7a5beff4):
+          main      → topleft    (x0+off, y0+off)
           sub       → bottomleft (x0+off, y1-off)
           tertiary  → bottomright (x1-off, y1-off)
 
-        Exception: enter_top primary is centered in its bbox.
-        Auto-fit: font size reduced until text fits within keycap width - 2*off.
+        Exception: enter_top primary is centered in the top half of its bbox.
+        Auto-fit: font size reduced 1pt at a time until text fits within key_w - 2*off.
+        Each label gets its own fresh TextWriter instance (separate content stream).
         """
         if not main and not sub and not tertiary:
             return
@@ -316,7 +317,7 @@ class PdfDriver(TemplateDriver):
         import fitz
         page = self._doc[0]
         x0, y0, x1, y1 = key["x0"], key["y0"], key["x1"], key["y1"]
-        cx, cy = key["cx"], key["cy"]
+        cx = key["cx"]
         key_w = x1 - x0
         off = self._ANCHOR_OFFSET
 
@@ -329,7 +330,7 @@ class PdfDriver(TemplateDriver):
             return self._font_cache[cache_key]
 
         def _auto_fit_size(text: str, font, default_size: float) -> float:
-            size = default_size
+            size = float(int(default_size))  # ensure integer step start
             while size >= self._MIN_FONT_SIZE:
                 if font.text_length(text, fontsize=size) <= key_w - 2 * off:
                     return size
@@ -347,11 +348,14 @@ class PdfDriver(TemplateDriver):
             font = _get_font(font_path)
 
             if anchor == "primary" and key_id == "enter_top":
-                # Special: center the ↵ glyph in the enter_top bbox
+                # enter_top: center ↵ in the TOP half of the L-shape bbox
+                # The coord-map gives the full L-shape bbox for both enter_top and enter_bot.
+                # Top half center = y0 + (y1-y0)/4
                 size = raw_size
                 text_w = font.text_length(text, fontsize=size)
+                center_y = y0 + (y1 - y0) / 4
                 px = cx - text_w / 2
-                py = cy + size * 0.35
+                py = center_y + size * 0.35
             elif anchor == "primary":
                 size = _auto_fit_size(text, font, raw_size)
                 text_w = font.text_length(text, fontsize=size)
@@ -370,6 +374,7 @@ class PdfDriver(TemplateDriver):
             else:
                 return
 
+            # Fresh TextWriter per label — each gets its own PDF content stream
             writer = fitz.TextWriter(page.rect)
             writer.append(fitz.Point(px, py), text, font=font, fontsize=size)
             writer.write_text(page, color=color)

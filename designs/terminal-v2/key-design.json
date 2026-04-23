@@ -1052,7 +1052,7 @@
       "body_color": "body_mod",
       "legend": {
         "main": {
-          "text": "ALT GR",
+          "text": "ALTGR",
           "color": "legend_main",
           "font": "primary",
           "size": 18
@@ -1129,7 +1129,7 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "ROLLEN",
+          "text": "ROLL",
           "color": "legend_main",
           "font": "primary",
           "size": 18

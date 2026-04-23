@@ -157,8 +157,8 @@ ISO_DE_LEGENDS: dict[str, tuple[str, str | None, str, str | None]] = {
     "rctrl":  ("STRG", None, "primary", None),
     "lwin":   ("WIN",  None, "primary", None),
     "rwin":   ("WIN",  None, "primary", None),
-    "lalt":   ("ALT",  None, "primary", None),
-    "ralt":   ("ALT GR", None, "primary", None),
+    "lalt":   ("ALT",   None, "primary", None),
+    "ralt":   ("ALTGR", None, "primary", None),  # 6-char "ALT GR" → 5-char "ALTGR" (fits 1u @ 14pt)
     "fn":     ("FN",   None, "primary", None),
     "menu":   ("MENU", None, "primary", None),
 
@@ -178,7 +178,7 @@ ISO_DE_LEGENDS: dict[str, tuple[str, str | None, str, str | None]] = {
     "ins":    ("EINFG",  None, "primary", None),
     # Compat keys (Antons-template Alternates-Block)
     "prt_sc": ("DRUCK",  None, "primary", None),
-    "scr_lk": ("ROLLEN", None, "primary", None),
+    "scr_lk": ("ROLL",   None, "primary", None),  # 6 chars ROLLEN → 4 chars ROLL (fits 1u @ 18pt)
     "home":   ("POS 1",  None, "primary", None),
     "pgup":   ("Bild↑",  None, "primary", None),  # single-line per ADR
     "del":    ("ENTF",   None, "primary", None),
