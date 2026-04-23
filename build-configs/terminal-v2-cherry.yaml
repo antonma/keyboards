@@ -1,6 +1,6 @@
-# Build config: Terminal v2 — Cherry 135 全五面 (Per-Key-Design-System v2)
+# Build config: Terminal v2 — Cherry 135 ISO-DE (Per-Key-Design-System v2)
 # Design: Phosphor Green Matrix, ISO-DE full keyboard + numpad
-# Template: Cherry 135 全五面 (RGB, 1570x1122pt landscape)
+# Template: cherry-135-iso-de.pdf (modifiziertes ISO-DE Master-Template)
 #
 # Per-Key-System: palette + fonts + legends kommen aus designs/terminal-v2/
 # Statt group-based color_operations jetzt: apply_per_key_design.py
@@ -8,19 +8,17 @@
 # Build:
 #   py -3 scripts/apply_per_key_design.py \
 #       --design terminal-v2 \
-#       --input  "templates/135 Cherry 全五面.pdf" \
+#       --input  templates/cherry-135-iso-de.pdf \
 #       --output templates/terminal-v2-cherry-v2.pdf \
+#       --coord-map layouts/cherry-135-iso-de-coordinate-map.json \
 #       --mode   luminance_aware_shift
 #
 # Body-only (ohne Legenden, für schnellen Farb-Check):
 #   py -3 scripts/apply_per_key_design.py ... --no-legends
-#
-# Legacy group-based build (v1 behaviour, für Vergleich):
-#   py -3 scripts/build_design.py --design terminal-v2-cherry-legacy
 
 design_name: terminal-v2-cherry
-base_template_pdf: "templates/135 Cherry 全五面.pdf"
-coordinate_map: layouts/cherry-135-coordinate-map.json
+base_template_pdf: templates/cherry-135-iso-de.pdf
+coordinate_map: layouts/cherry-135-iso-de-coordinate-map.json
 
 # Per-Key-Design-System — canonical source of truth
 design_path: designs/terminal-v2/
@@ -34,8 +32,8 @@ sides:
   mode: solid_body_color
 
 quality_baseline:
-  # Cherry 135 baseline (2026-04-21); after per-key recolor fills increase
-  stroke_count: 3358
-  fill_count: 460
-  tolerance_pct: 1.5
+  # cherry-135-iso-de.pdf baseline (2026-04-23); 4514 total drawings
+  stroke_count: 4514
+  fill_count: 160
+  tolerance_pct: 2.0
   color_model: RGB

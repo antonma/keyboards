@@ -1,7 +1,7 @@
 {
   "version": 1,
   "design": "terminal-v2",
-  "coord_map": "cherry-135-coordinate-map.json",
+  "coord_map": "cherry-135-iso-de-coordinate-map.json",
   "include_file": "75-iso-de-base-kit.yaml",
   "keys": {
     "esc": {
@@ -147,7 +147,7 @@
         }
       }
     },
-    "grave": {
+    "caret": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
@@ -328,7 +328,7 @@
         }
       }
     },
-    "ss": {
+    "sz": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
@@ -345,7 +345,7 @@
         }
       }
     },
-    "dead_ac": {
+    "acute": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
@@ -362,7 +362,7 @@
         }
       }
     },
-    "bksp": {
+    "bs": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -544,7 +544,7 @@
         }
       }
     },
-    "enter_top": {
+    "enter": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -720,18 +720,7 @@
         }
       }
     },
-    "enter_bot": {
-      "body_color": "body_mod",
-      "legend": {
-        "main": {
-          "text": "",
-          "color": "legend_main",
-          "font": "primary",
-          "size": 18
-        }
-      }
-    },
-    "lshift": {
+    "shift_l": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -870,7 +859,7 @@
         }
       }
     },
-    "rshift": {
+    "shift_r": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -892,7 +881,7 @@
         }
       }
     },
-    "lctrl": {
+    "ctrl_l": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -903,7 +892,7 @@
         }
       }
     },
-    "lwin": {
+    "win": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -914,7 +903,7 @@
         }
       }
     },
-    "lalt": {
+    "alt_l": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -936,7 +925,7 @@
         }
       }
     },
-    "ralt": {
+    "altgr": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -947,18 +936,18 @@
         }
       }
     },
-    "rwin": {
+    "fn": {
       "body_color": "body_mod",
       "legend": {
         "main": {
-          "text": "WIN",
+          "text": "FN",
           "color": "legend_main",
           "font": "primary",
           "size": 18
         }
       }
     },
-    "rctrl": {
+    "ctrl_r": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -1002,5 +991,6 @@
         }
       }
     }
-  }
+  },
+  "key_count": 81
 }
