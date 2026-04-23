@@ -2,7 +2,7 @@
   "version": 1,
   "design": "terminal-v2",
   "coord_map": "iso-de-75-anton-coordinate-map.json",
-  "include_file": "75-iso-de-base-kit.yaml",
+  "include_file": null,
   "keys": {
     "esc": {
       "body_color": "body_alpha",
@@ -170,7 +170,7 @@
         "sub": {
           "text": "°",
           "color": "legend_dim",
-          "font": "primary",
+          "font": "secondary",
           "size": 12
         }
       }
@@ -179,10 +179,16 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "1",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": "!",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
         }
       }
     },
@@ -190,10 +196,22 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "2",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": "\"",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
+        },
+        "tertiary": {
+          "text": "²",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -201,10 +219,22 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "3",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": "§",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
+        },
+        "tertiary": {
+          "text": "³",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -212,10 +242,16 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "4",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": "$",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
         }
       }
     },
@@ -223,10 +259,16 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "5",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": "%",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
         }
       }
     },
@@ -234,10 +276,16 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "6",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": "&",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
         }
       }
     },
@@ -245,10 +293,22 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "7",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": "/",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
+        },
+        "tertiary": {
+          "text": "{",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -256,10 +316,22 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "8",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": "(",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
+        },
+        "tertiary": {
+          "text": "[",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -267,10 +339,22 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "9",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": ")",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
+        },
+        "tertiary": {
+          "text": "]",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -278,10 +362,22 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "0",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": "=",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
+        },
+        "tertiary": {
+          "text": "}",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -297,8 +393,14 @@
         "sub": {
           "text": "?",
           "color": "legend_dim",
-          "font": "primary",
+          "font": "secondary",
           "size": 12
+        },
+        "tertiary": {
+          "text": "\\",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -314,7 +416,7 @@
         "sub": {
           "text": "`",
           "color": "legend_dim",
-          "font": "primary",
+          "font": "secondary",
           "size": 12
         }
       }
@@ -360,6 +462,12 @@
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "tertiary": {
+          "text": "@",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -382,6 +490,12 @@
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "tertiary": {
+          "text": "€",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -462,17 +576,6 @@
         }
       }
     },
-    "ue": {
-      "body_color": "body_alpha",
-      "legend": {
-        "main": {
-          "text": "Ü",
-          "color": "legend_main",
-          "font": "primary",
-          "size": 18
-        }
-      }
-    },
     "plus": {
       "body_color": "body_alpha",
       "legend": {
@@ -485,8 +588,14 @@
         "sub": {
           "text": "*",
           "color": "legend_dim",
-          "font": "primary",
+          "font": "secondary",
           "size": 12
+        },
+        "tertiary": {
+          "text": "~",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -516,7 +625,18 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "Bild\n↑",
+          "text": "Bild↑",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "ue": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Ü",
           "color": "legend_main",
           "font": "primary",
           "size": 18
@@ -659,10 +779,16 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "#",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": "'",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
         }
       }
     },
@@ -670,7 +796,7 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "Bild\n↓",
+          "text": "Bild↓",
           "color": "legend_main",
           "font": "primary",
           "size": 18
@@ -700,8 +826,14 @@
         "sub": {
           "text": ">",
           "color": "legend_dim",
-          "font": "primary",
+          "font": "secondary",
           "size": 12
+        },
+        "tertiary": {
+          "text": "|",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -779,6 +911,12 @@
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "tertiary": {
+          "text": "µ",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 10
         }
       }
     },
@@ -794,7 +932,7 @@
         "sub": {
           "text": ";",
           "color": "legend_dim",
-          "font": "primary",
+          "font": "secondary",
           "size": 12
         }
       }
@@ -811,7 +949,7 @@
         "sub": {
           "text": ":",
           "color": "legend_dim",
-          "font": "primary",
+          "font": "secondary",
           "size": 12
         }
       }
@@ -820,10 +958,16 @@
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "",
+          "text": "-",
           "color": "legend_main",
           "font": "primary",
           "size": 18
+        },
+        "sub": {
+          "text": "_",
+          "color": "legend_dim",
+          "font": "secondary",
+          "size": 12
         }
       }
     },
@@ -919,7 +1063,7 @@
       "body_color": "body_mod",
       "legend": {
         "main": {
-          "text": "",
+          "text": "FN",
           "color": "legend_main",
           "font": "primary",
           "size": 18
@@ -967,6 +1111,61 @@
           "color": "legend_main",
           "font": "icon",
           "size": 16
+        }
+      }
+    },
+    "prt_sc": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "DRUCK",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "scr_lk": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "ROLLEN",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "pause": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "PAUSE",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "ins": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "EINFG",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "menu": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "MENU",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
         }
       }
     }

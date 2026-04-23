@@ -188,8 +188,9 @@ def main():
                 continue
 
             legend_spec = spec.get("legend", {})
-            main_raw = legend_spec.get("main")
-            sub_raw  = legend_spec.get("sub")
+            main_raw      = legend_spec.get("main")
+            sub_raw       = legend_spec.get("sub")
+            tertiary_raw  = legend_spec.get("tertiary")
 
             def resolve_legend(raw: dict | None) -> dict | None:
                 if not raw or not raw.get("text"):
@@ -203,11 +204,12 @@ def main():
                     "size":      raw.get("size", 18),
                 }
 
-            main = resolve_legend(main_raw)
-            sub  = resolve_legend(sub_raw)
+            main     = resolve_legend(main_raw)
+            sub      = resolve_legend(sub_raw)
+            tertiary = resolve_legend(tertiary_raw)
 
-            if main or sub:
-                drv.set_legend(key_id, main=main, sub=sub)
+            if main or sub or tertiary:
+                drv.set_legend(key_id, main=main, sub=sub, tertiary=tertiary)
                 legend_count += 1
 
         output_pdf.parent.mkdir(parents=True, exist_ok=True)

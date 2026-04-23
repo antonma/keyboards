@@ -8,10 +8,15 @@
 # Build:
 #   py -3 scripts/apply_per_key_design.py \
 #       --design terminal-v2 \
-#       --input  templates/Antons-template.pdf \
-#       --output templates/terminal-v2-anton-v1.pdf \
+#       --input  templates/Antons-template-clean.pdf \
+#       --output templates/terminal-v2-anton-v2.pdf \
 #       --coord-map layouts/iso-de-75-anton-coordinate-map.json \
 #       --mode   luminance_aware_shift
+#
+# Verify:
+#   py -3 scripts/verify_cherry.py templates/terminal-v2-anton-v2.pdf \
+#       --baseline-strokes 2169 --baseline-fills 108 \
+#       --design terminal-v2 --coord-map layouts/iso-de-75-anton-coordinate-map.json
 #
 # Body-only (ohne Legenden, für schnellen Farb-Check):
 #   py -3 scripts/apply_per_key_design.py ... --no-legends
@@ -32,8 +37,10 @@ sides:
   mode: solid_body_color
 
 quality_baseline:
-  # Antons-template.pdf baseline (2026-04-23); 2390 total drawings
-  stroke_count: 2390
-  fill_count: 197
+  # Antons-template-clean.pdf baseline (2026-04-23); 2277 original drawings
+  # strokes: 2169 (re-emitted, identical to original)
+  # fills: 108 original → 196 after full 89-key recolor
+  stroke_count: 2169
+  fill_count: 108
   tolerance_pct: 5.0
   color_model: RGB

@@ -289,13 +289,25 @@ class PdfDriver(TemplateDriver):
             color_map = {id(p): target_rgb for p in key_paths}
         return self._overdraw_paths(key_paths, color_map)
 
-    def set_legend(self, key_id: str, main: dict | None = None, sub: dict | None = None):
+    _ANCHOR_OFFSET = 8.0   # pt from keycap edge
+    _MIN_FONT_SIZE = 10.0  # auto-fit floor
+
+    def set_legend(self, key_id: str, main: dict | None = None,
+                   sub: dict | None = None, tertiary: dict | None = None):
         """Overlay legend text on a key using fitz.TextWriter.
 
-        main / sub dicts: {"text": str, "color": (r,g,b), "font_path": str, "size": float}
-        Positions text at key center (cx, cy) from coord map.
+        main / sub / tertiary dicts:
+            {"text": str, "color": (r,g,b), "font_path": str, "size": float}
+
+        Anchor system (per Handoff 9bb89869):
+          main      → topleft   (x0+off, y0+off)
+          sub       → bottomleft (x0+off, y1-off)
+          tertiary  → bottomright (x1-off, y1-off)
+
+        Exception: enter_top primary is centered in its bbox.
+        Auto-fit: font size reduced until text fits within keycap width - 2*off.
         """
-        if not main and not sub:
+        if not main and not sub and not tertiary:
             return
         key = self.key_by_id(key_id)
         if key is None:
@@ -303,37 +315,71 @@ class PdfDriver(TemplateDriver):
 
         import fitz
         page = self._doc[0]
+        x0, y0, x1, y1 = key["x0"], key["y0"], key["x1"], key["y1"]
         cx, cy = key["cx"], key["cy"]
+        key_w = x1 - x0
+        off = self._ANCHOR_OFFSET
 
-        def _draw_text(spec: dict, y_offset: float):
-            text = spec.get("text", "")
-            if not text:
-                return
-            font_path = spec.get("font_path", "")
-            size = spec.get("size", 18)
-            color = spec.get("color", (1.0, 1.0, 1.0))
-
-            # Reuse cached Font instance so PyMuPDF embeds the font only once.
+        def _get_font(font_path: str):
             cache_key = font_path or "__helv__"
             if cache_key not in self._font_cache:
                 self._font_cache[cache_key] = (
                     fitz.Font(fontfile=font_path) if font_path else fitz.Font("helv")
                 )
-            font = self._font_cache[cache_key]
-            text_w = font.text_length(text, fontsize=size)
-            x = cx - text_w / 2
-            y = cy + y_offset + size * 0.35
+            return self._font_cache[cache_key]
+
+        def _auto_fit_size(text: str, font, default_size: float) -> float:
+            size = default_size
+            while size >= self._MIN_FONT_SIZE:
+                if font.text_length(text, fontsize=size) <= key_w - 2 * off:
+                    return size
+                size -= 1.0
+            return self._MIN_FONT_SIZE
+
+        def _draw_anchored(spec: dict, anchor: str):
+            text = spec.get("text", "")
+            if not text:
+                return
+            font_path = spec.get("font_path", "")
+            raw_size = float(spec.get("size", 18))
+            color = spec.get("color", (1.0, 1.0, 1.0))
+
+            font = _get_font(font_path)
+
+            if anchor == "primary" and key_id == "enter_top":
+                # Special: center the ↵ glyph in the enter_top bbox
+                size = raw_size
+                text_w = font.text_length(text, fontsize=size)
+                px = cx - text_w / 2
+                py = cy + size * 0.35
+            elif anchor == "primary":
+                size = _auto_fit_size(text, font, raw_size)
+                text_w = font.text_length(text, fontsize=size)
+                px = x0 + off
+                py = y0 + off + size * 0.75   # baseline below top edge
+            elif anchor == "sub":
+                size = _auto_fit_size(text, font, raw_size)
+                text_w = font.text_length(text, fontsize=size)
+                px = x0 + off
+                py = y1 - off                  # baseline near bottom edge
+            elif anchor == "tertiary":
+                size = _auto_fit_size(text, font, raw_size)
+                text_w = font.text_length(text, fontsize=size)
+                px = x1 - off - text_w
+                py = y1 - off
+            else:
+                return
+
             writer = fitz.TextWriter(page.rect)
-            writer.append(fitz.Point(x, y), text, font=font, fontsize=size)
+            writer.append(fitz.Point(px, py), text, font=font, fontsize=size)
             writer.write_text(page, color=color)
 
-        if main and sub:
-            _draw_text(main, y_offset=-sub["size"] * 0.5)
-            _draw_text(sub,  y_offset=main["size"] * 0.5)
-        elif main:
-            _draw_text(main, y_offset=0.0)
-        elif sub:
-            _draw_text(sub,  y_offset=0.0)
+        if main:
+            _draw_anchored(main, "primary")
+        if sub:
+            _draw_anchored(sub, "sub")
+        if tertiary:
+            _draw_anchored(tertiary, "tertiary")
 
     @staticmethod
     def _median_body_fill(paths: list, lum_min: float = 0.3, lum_max: float = 0.85) -> tuple:

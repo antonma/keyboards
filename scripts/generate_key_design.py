@@ -10,9 +10,10 @@ Writes:
   - designs/<design>/key-design.json
 
 The output JSON specifies per-key:
-  - body_color:   palette color reference key
-  - legend.main:  primary legend (text, color ref, font ref, size)
-  - legend.sub:   secondary legend (optional — number row shift chars, etc.)
+  - body_color:       palette color reference key
+  - legend.main:      primary legend   (topleft anchor)
+  - legend.sub:       secondary legend (bottomleft anchor, optional)
+  - legend.tertiary:  AltGr legend     (bottomright anchor, optional)
 
 Script is idempotent: running again only adds keys that are not yet present.
 Existing entries are NOT overwritten, so manual corrections survive re-runs.
@@ -59,137 +60,153 @@ def load_include_set(include_path: Path) -> set[str]:
     return ids
 
 # ── ISO-DE legend table ────────────────────────────────────────────────────────
-# key_id → (main_text, sub_text_or_None, font_ref)
+# key_id → (main_text, sub_text_or_None, font_ref, tertiary_text_or_None)
 # font_ref: "primary" = JetBrains Mono, "icon" = Segoe UI Symbol (for arrows/symbols)
+# tertiary: AltGr character, rendered bottomright; None = no AltGr layer
 
-ISO_DE_LEGENDS: dict[str, tuple[str, str | None, str]] = {
+ISO_DE_LEGENDS: dict[str, tuple[str, str | None, str, str | None]] = {
     # F-key row
-    "esc":  ("ESC",  None,  "primary"),
-    "f1":   ("F1",   None,  "primary"),
-    "f2":   ("F2",   None,  "primary"),
-    "f3":   ("F3",   None,  "primary"),
-    "f4":   ("F4",   None,  "primary"),
-    "f5":   ("F5",   None,  "primary"),
-    "f6":   ("F6",   None,  "primary"),
-    "f7":   ("F7",   None,  "primary"),
-    "f8":   ("F8",   None,  "primary"),
-    "f9":   ("F9",   None,  "primary"),
-    "f10":  ("F10",  None,  "primary"),
-    "f11":  ("F11",  None,  "primary"),
-    "f12":  ("F12",  None,  "primary"),
+    "esc":  ("ESC",  None,  "primary", None),
+    "f1":   ("F1",   None,  "primary", None),
+    "f2":   ("F2",   None,  "primary", None),
+    "f3":   ("F3",   None,  "primary", None),
+    "f4":   ("F4",   None,  "primary", None),
+    "f5":   ("F5",   None,  "primary", None),
+    "f6":   ("F6",   None,  "primary", None),
+    "f7":   ("F7",   None,  "primary", None),
+    "f8":   ("F8",   None,  "primary", None),
+    "f9":   ("F9",   None,  "primary", None),
+    "f10":  ("F10",  None,  "primary", None),
+    "f11":  ("F11",  None,  "primary", None),
+    "f12":  ("F12",  None,  "primary", None),
 
-    # Number row (alpha group, ISO-DE)
-    # sub = shifted character shown smaller below/above main legend
-    "grave":   ("^",   "°",   "primary"),
-    "1":       ("1",   None,  "primary"),   # ! omitted by design decision
-    "2":       ("2",   '"',   "primary"),
-    "3":       ("3",   "§",   "primary"),
-    "4":       ("4",   "$",   "primary"),
-    "5":       ("5",   "%",   "primary"),
-    "6":       ("6",   "&",   "primary"),
-    "7":       ("7",   "/",   "primary"),
-    "8":       ("8",   "(",   "primary"),
-    "9":       ("9",   ")",   "primary"),
-    "0":       ("0",   "=",   "primary"),
-    "ss":      ("ß",   "?",   "primary"),
-    "dead_ac": ("´",   "`",   "primary"),
+    # Number row — Anton coord-map IDs (iso-de-75-anton-coordinate-map.json)
+    # ISO-DE QWERTZ ground truth, per Handoff 9bb89869
+    "grave":   ("^",  "°",  "primary", None),
+    "num_1":   ("1",  "!",  "primary", None),
+    "num_2":   ("2",  '"',  "primary", "²"),   # U+00B2
+    "num_3":   ("3",  "§",  "primary", "³"),   # U+00B3
+    "num_4":   ("4",  "$",  "primary", None),
+    "num_5":   ("5",  "%",  "primary", None),
+    "num_6":   ("6",  "&",  "primary", None),
+    "num_7":   ("7",  "/",  "primary", "{"),
+    "num_8":   ("8",  "(",  "primary", "["),
+    "num_9":   ("9",  ")",  "primary", "]"),
+    "num_0":   ("0",  "=",  "primary", "}"),
+    "ss":      ("ß",  "?",  "primary", "\\"),
+    "dead_ac": ("´",  "`",  "primary", None),
+    "hash":    ("#",  "'",  "primary", None),   # apostrophe as secondary
+    "dash":    ("-",  "_",  "primary", None),
 
-    # QWERTZ alpha rows
-    "q":   ("Q",   None, "primary"),
-    "w":   ("W",   None, "primary"),
-    "e":   ("E",   None, "primary"),
-    "r":   ("R",   None, "primary"),
-    "t":   ("T",   None, "primary"),
-    "z":   ("Z",   None, "primary"),
-    "u":   ("U",   None, "primary"),
-    "i":   ("I",   None, "primary"),
-    "o":   ("O",   None, "primary"),
-    "p":   ("P",   None, "primary"),
-    "ue":  ("Ü",   None, "primary"),
-    "plus":("+",   "*",  "primary"),
+    # Legacy IDs (cherry-135-coordinate-map.json uses bare digits)
+    "1":  ("1",  "!",  "primary", None),
+    "2":  ("2",  '"',  "primary", "²"),
+    "3":  ("3",  "§",  "primary", "³"),
+    "4":  ("4",  "$",  "primary", None),
+    "5":  ("5",  "%",  "primary", None),
+    "6":  ("6",  "&",  "primary", None),
+    "7":  ("7",  "/",  "primary", "{"),
+    "8":  ("8",  "(",  "primary", "["),
+    "9":  ("9",  ")",  "primary", "]"),
+    "0":  ("0",  "=",  "primary", "}"),
 
-    "a":   ("A",   None, "primary"),
-    "s":   ("S",   None, "primary"),
-    "d":   ("D",   None, "primary"),
-    "f":   ("F",   None, "primary"),
-    "g":   ("G",   None, "primary"),
-    "h":   ("H",   None, "primary"),
-    "j":   ("J",   None, "primary"),
-    "k":   ("K",   None, "primary"),
-    "l":   ("L",   None, "primary"),
-    "oe":  ("Ö",   None, "primary"),
-    "ae":  ("Ä",   None, "primary"),
-    "less":("<",   ">",  "primary"),
+    # QWERTZ alpha rows — AltGr tertiaries where applicable
+    "q":   ("Q",  None, "primary", "@"),
+    "w":   ("W",  None, "primary", None),
+    "e":   ("E",  None, "primary", "€"),   # U+20AC
+    "r":   ("R",  None, "primary", None),
+    "t":   ("T",  None, "primary", None),
+    "z":   ("Z",  None, "primary", None),
+    "u":   ("U",  None, "primary", None),
+    "i":   ("I",  None, "primary", None),
+    "o":   ("O",  None, "primary", None),
+    "p":   ("P",  None, "primary", None),
+    "ue":  ("Ü",  None, "primary", None),
+    "plus":("+",  "*",  "primary", "~"),
 
-    "y":      ("Y",   None, "primary"),
-    "x":      ("X",   None, "primary"),
-    "c":      ("C",   None, "primary"),
-    "v":      ("V",   None, "primary"),
-    "b":      ("B",   None, "primary"),
-    "n":      ("N",   None, "primary"),
-    "m":      ("M",   None, "primary"),
-    "comma":  (",",   ";",  "primary"),
-    "period": (".",   ":",  "primary"),
+    "a":   ("A",  None, "primary", None),
+    "s":   ("S",  None, "primary", None),
+    "d":   ("D",  None, "primary", None),
+    "f":   ("F",  None, "primary", None),
+    "g":   ("G",  None, "primary", None),
+    "h":   ("H",  None, "primary", None),
+    "j":   ("J",  None, "primary", None),
+    "k":   ("K",  None, "primary", None),
+    "l":   ("L",  None, "primary", None),
+    "oe":  ("Ö",  None, "primary", None),
+    "ae":  ("Ä",  None, "primary", None),
+    "less":("<",  ">",  "primary", "|"),
+
+    "y":      ("Y",  None, "primary", None),
+    "x":      ("X",  None, "primary", None),
+    "c":      ("C",  None, "primary", None),
+    "v":      ("V",  None, "primary", None),
+    "b":      ("B",  None, "primary", None),
+    "n":      ("N",  None, "primary", None),
+    "m":      ("M",  None, "primary", "µ"),   # U+00B5
+    "comma":  (",",  ";",  "primary", None),
+    "period": (".",  ":",  "primary", None),
 
     # Modifier keys — canonical ISO-DE symbols (CLAUDE.md)
-    "bksp":   ("⟵",   None, "icon"),    # U+27F5 LONG LEFTWARDS ARROW
-    "tab":    ("↹",   None, "icon"),    # U+21B9 LEFTWARDS ARROW TO BAR OVER RIGHTWARDS ARROW TO BAR
-    "caps":   ("⇪",   None, "icon"),    # U+21EA UPWARDS WHITE ARROW FROM BAR
-    "lshift": ("⇧",   None, "icon"),    # U+21E7 UPWARDS WHITE ARROW
-    "rshift": ("⇧",   None, "icon"),
-    "lctrl":  ("STRG", None, "primary"),
-    "rctrl":  ("STRG", None, "primary"),
-    "lwin":   ("WIN",  None, "primary"),
-    "rwin":   ("WIN",  None, "primary"),
-    "lalt":   ("ALT",  None, "primary"),
-    "ralt":   ("ALT GR", None, "primary"),
-    "menu":   ("MENU", None, "primary"),
+    "bksp":   ("⟵",    None, "icon",    None),  # U+27F5
+    "tab":    ("↹",    None, "icon",    None),  # U+21B9
+    "caps":   ("⇪",    None, "icon",    None),  # U+21EA
+    "lshift": ("⇧",    None, "icon",    None),  # U+21E7
+    "rshift": ("⇧",    None, "icon",    None),
+    "lctrl":  ("STRG", None, "primary", None),
+    "rctrl":  ("STRG", None, "primary", None),
+    "lwin":   ("WIN",  None, "primary", None),
+    "rwin":   ("WIN",  None, "primary", None),
+    "lalt":   ("ALT",  None, "primary", None),
+    "ralt":   ("ALT GR", None, "primary", None),
+    "fn":     ("FN",   None, "primary", None),
+    "menu":   ("MENU", None, "primary", None),
 
     # Accent keys (Enter top/bottom halves + alt enter)
-    "enter_top": ("↵",  None, "icon"),  # U+21B5 DOWNWARDS ARROW WITH CORNER LEFTWARDS
-    "enter_bot": ("",   None, "primary"),  # bottom half carries no text
-    "alt_enter_iso": ("↵", None, "icon"),
+    "enter_top":     ("↵", None, "icon",    None),  # U+21B5; centered exception in anchor system
+    "enter_bot":     ("",  None, "primary", None),
+    "alt_enter_iso": ("↵", None, "icon",    None),
 
     # Spacebar
-    "space":       ("",  None, "primary"),
-    "alt_space_7u":("",  None, "primary"),
+    "space":        ("", None, "primary", None),
+    "alt_space_7u": ("", None, "primary", None),
 
     # Navigation cluster
-    "prtsc": ("PRT SC", None, "primary"),
-    "scr":   ("SCR LK", None, "primary"),
-    "pause": ("PAUSE",  None, "primary"),
-    "ins":   ("EINFG",  None, "primary"),   # German: Einfügen
+    "prtsc":  ("PRT SC", None, "primary", None),
+    "scr":    ("SCR LK", None, "primary", None),
+    "pause":  ("PAUSE",  None, "primary", None),
+    "ins":    ("EINFG",  None, "primary", None),
     # Compat keys (Antons-template Alternates-Block)
-    "prt_sc": ("DRUCK",  None, "primary"),  # German: Druck (Print Screen)
-    "scr_lk": ("ROLLEN", None, "primary"),  # German: Rollen (Scroll Lock)
-    "home":  ("POS 1",  None, "primary"),    # canonical German Home = POS 1
-    "pgup":  ("Bild\n↑", None, "primary"),  # Bild↑ two-line
-    "del":   ("ENTF",   None, "primary"),    # canonical German Delete = ENTF
-    "end":   ("ENDE",   None, "primary"),
-    "pgdn":  ("Bild\n↓", None, "primary"),  # Bild↓ two-line
-    "up":    ("↑",      None, "icon"),
-    "left":  ("←",      None, "icon"),
-    "down":  ("↓",      None, "icon"),
-    "right": ("→",      None, "icon"),
+    "prt_sc": ("DRUCK",  None, "primary", None),
+    "scr_lk": ("ROLLEN", None, "primary", None),
+    "home":   ("POS 1",  None, "primary", None),
+    "pgup":   ("Bild↑",  None, "primary", None),  # single-line per ADR
+    "del":    ("ENTF",   None, "primary", None),
+    "end":    ("ENDE",   None, "primary", None),
+    "pgdn":   ("Bild↓",  None, "primary", None),  # single-line per ADR
+    "up":     ("↑",      None, "icon",    None),
+    "left":   ("←",      None, "icon",    None),
+    "down":   ("↓",      None, "icon",    None),
+    "right":  ("→",      None, "icon",    None),
 
     # Numpad
-    "numlk":    ("NUM\nLK",  None, "primary"),
-    "num_div":  ("/",        None, "primary"),
-    "num_mul":  ("*",        None, "primary"),
-    "num_sub":  ("-",        None, "primary"),
-    "num7":     ("7",        None, "primary"),
-    "num8":     ("8",        None, "primary"),
-    "num9":     ("9",        None, "primary"),
-    "num_add":  ("+",        None, "primary"),
-    "num4":     ("4",        None, "primary"),
-    "num5":     ("5",        None, "primary"),
-    "num6":     ("6",        None, "primary"),
-    "num1":     ("1",        None, "primary"),
-    "num2":     ("2",        None, "primary"),
-    "num3":     ("3",        None, "primary"),
-    "num_enter":("↵",        None, "icon"),
-    "num0":     ("0",        None, "primary"),
-    "num_dot":  (".",        None, "primary"),
+    "numlk":    ("NUM LK", None, "primary", None),
+    "num_div":  ("/",      None, "primary", None),
+    "num_mul":  ("*",      None, "primary", None),
+    "num_sub":  ("-",      None, "primary", None),
+    "num7":     ("7",      None, "primary", None),
+    "num8":     ("8",      None, "primary", None),
+    "num9":     ("9",      None, "primary", None),
+    "num_add":  ("+",      None, "primary", None),
+    "num4":     ("4",      None, "primary", None),
+    "num5":     ("5",      None, "primary", None),
+    "num6":     ("6",      None, "primary", None),
+    "num1":     ("1",      None, "primary", None),
+    "num2":     ("2",      None, "primary", None),
+    "num3":     ("3",      None, "primary", None),
+    "num_enter":("↵",      None, "icon",    None),
+    "num0":     ("0",      None, "primary", None),
+    "num_dot":  (".",      None, "primary", None),
 }
 
 # ── Body color assignment ──────────────────────────────────────────────────────
@@ -248,9 +265,13 @@ def build_key_spec(key: dict) -> dict:
     legend_row = ISO_DE_LEGENDS.get(key_id)
     if legend_row is None:
         # Unknown key — blank spec, Anton fills manually
-        main_text, sub_text, font_ref = ("", None, "primary")
+        main_text, sub_text, font_ref, tertiary_text = ("", None, "primary", None)
     else:
-        main_text, sub_text, font_ref = legend_row
+        if len(legend_row) == 4:
+            main_text, sub_text, font_ref, tertiary_text = legend_row
+        else:
+            main_text, sub_text, font_ref = legend_row
+            tertiary_text = None
 
     spec: dict = {
         "body_color": body_color,
@@ -268,8 +289,16 @@ def build_key_spec(key: dict) -> dict:
         spec["legend"]["sub"] = {
             "text":  sub_text,
             "color": SUB_LEGEND_COLOR,
-            "font":  "primary",
+            "font":  "secondary",
             "size":  12,
+        }
+
+    if tertiary_text is not None:
+        spec["legend"]["tertiary"] = {
+            "text":  tertiary_text,
+            "color": SUB_LEGEND_COLOR,
+            "font":  "secondary",
+            "size":  10,
         }
 
     return spec
