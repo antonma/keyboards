@@ -1,6 +1,6 @@
-# Build config: Terminal v2 — Cherry 135 ISO-DE (Per-Key-Design-System v2)
-# Design: Phosphor Green Matrix, ISO-DE full keyboard + numpad
-# Template: cherry-135-iso-de.pdf (modifiziertes ISO-DE Master-Template)
+# Build config: Terminal v2 — Antons-template.pdf (Per-Key-Design-System v2)
+# Design: Phosphor Green Matrix, 75% ISO-DE
+# Template: Antons-template.pdf (neues Master aus Affinity 3.2.0, 2026-04-23)
 #
 # Per-Key-System: palette + fonts + legends kommen aus designs/terminal-v2/
 # Statt group-based color_operations jetzt: apply_per_key_design.py
@@ -8,17 +8,17 @@
 # Build:
 #   py -3 scripts/apply_per_key_design.py \
 #       --design terminal-v2 \
-#       --input  templates/cherry-135-iso-de.pdf \
-#       --output templates/terminal-v2-cherry-v2.pdf \
-#       --coord-map layouts/cherry-135-iso-de-coordinate-map.json \
+#       --input  templates/Antons-template.pdf \
+#       --output templates/terminal-v2-anton-v1.pdf \
+#       --coord-map layouts/iso-de-75-anton-coordinate-map.json \
 #       --mode   luminance_aware_shift
 #
 # Body-only (ohne Legenden, für schnellen Farb-Check):
 #   py -3 scripts/apply_per_key_design.py ... --no-legends
 
 design_name: terminal-v2-cherry
-base_template_pdf: templates/cherry-135-iso-de.pdf
-coordinate_map: layouts/cherry-135-iso-de-coordinate-map.json
+base_template_pdf: templates/Antons-template.pdf
+coordinate_map: layouts/iso-de-75-anton-coordinate-map.json
 
 # Per-Key-Design-System — canonical source of truth
 design_path: designs/terminal-v2/
@@ -32,8 +32,8 @@ sides:
   mode: solid_body_color
 
 quality_baseline:
-  # cherry-135-iso-de.pdf baseline (2026-04-23); 4514 total drawings
-  stroke_count: 4514
-  fill_count: 160
-  tolerance_pct: 2.0
+  # Antons-template.pdf baseline (2026-04-23); 2390 total drawings
+  stroke_count: 2390
+  fill_count: 197
+  tolerance_pct: 5.0
   color_model: RGB

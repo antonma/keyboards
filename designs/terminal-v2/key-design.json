@@ -1,7 +1,7 @@
 {
   "version": 1,
   "design": "terminal-v2",
-  "coord_map": "cherry-135-iso-de-coordinate-map.json",
+  "coord_map": "iso-de-75-anton-coordinate-map.json",
   "include_file": "75-iso-de-base-kit.yaml",
   "keys": {
     "esc": {
@@ -147,7 +147,18 @@
         }
       }
     },
-    "caret": {
+    "del": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "ENTF",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "grave": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
@@ -164,171 +175,117 @@
         }
       }
     },
-    "1": {
+    "num_1": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "1",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
         }
       }
     },
-    "2": {
+    "num_2": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "2",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
-        },
-        "sub": {
-          "text": "\"",
-          "color": "legend_dim",
-          "font": "primary",
-          "size": 12
         }
       }
     },
-    "3": {
+    "num_3": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "3",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
-        },
-        "sub": {
-          "text": "§",
-          "color": "legend_dim",
-          "font": "primary",
-          "size": 12
         }
       }
     },
-    "4": {
+    "num_4": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "4",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
-        },
-        "sub": {
-          "text": "$",
-          "color": "legend_dim",
-          "font": "primary",
-          "size": 12
         }
       }
     },
-    "5": {
+    "num_5": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "5",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
-        },
-        "sub": {
-          "text": "%",
-          "color": "legend_dim",
-          "font": "primary",
-          "size": 12
         }
       }
     },
-    "6": {
+    "num_6": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "6",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
-        },
-        "sub": {
-          "text": "&",
-          "color": "legend_dim",
-          "font": "primary",
-          "size": 12
         }
       }
     },
-    "7": {
+    "num_7": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "7",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
-        },
-        "sub": {
-          "text": "/",
-          "color": "legend_dim",
-          "font": "primary",
-          "size": 12
         }
       }
     },
-    "8": {
+    "num_8": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "8",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
-        },
-        "sub": {
-          "text": "(",
-          "color": "legend_dim",
-          "font": "primary",
-          "size": 12
         }
       }
     },
-    "9": {
+    "num_9": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "9",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
-        },
-        "sub": {
-          "text": ")",
-          "color": "legend_dim",
-          "font": "primary",
-          "size": 12
         }
       }
     },
-    "0": {
+    "num_0": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "0",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
-        },
-        "sub": {
-          "text": "=",
-          "color": "legend_dim",
-          "font": "primary",
-          "size": 12
         }
       }
     },
-    "sz": {
+    "ss": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
@@ -345,7 +302,7 @@
         }
       }
     },
-    "acute": {
+    "dead_ac": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
@@ -362,7 +319,7 @@
         }
       }
     },
-    "bs": {
+    "bksp": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -378,17 +335,6 @@
       "legend": {
         "main": {
           "text": "POS 1",
-          "color": "legend_main",
-          "font": "primary",
-          "size": 18
-        }
-      }
-    },
-    "pgup": {
-      "body_color": "body_alpha",
-      "legend": {
-        "main": {
-          "text": "Bild\n↑",
           "color": "legend_main",
           "font": "primary",
           "size": 18
@@ -544,7 +490,7 @@
         }
       }
     },
-    "enter": {
+    "enter_top": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -555,33 +501,22 @@
         }
       }
     },
-    "del": {
-      "body_color": "body_alpha",
+    "enter_bot": {
+      "body_color": "body_mod",
       "legend": {
         "main": {
-          "text": "ENTF",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
         }
       }
     },
-    "end": {
+    "pgup": {
       "body_color": "body_alpha",
       "legend": {
         "main": {
-          "text": "ENDE",
-          "color": "legend_main",
-          "font": "primary",
-          "size": 18
-        }
-      }
-    },
-    "pgdn": {
-      "body_color": "body_alpha",
-      "legend": {
-        "main": {
-          "text": "Bild\n↓",
+          "text": "Bild\n↑",
           "color": "legend_main",
           "font": "primary",
           "size": 18
@@ -720,7 +655,29 @@
         }
       }
     },
-    "shift_l": {
+    "hash": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "pgdn": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Bild\n↓",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "lshift": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -859,7 +816,18 @@
         }
       }
     },
-    "shift_r": {
+    "dash": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "rshift": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -881,7 +849,18 @@
         }
       }
     },
-    "ctrl_l": {
+    "end": {
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "ENDE",
+          "color": "legend_main",
+          "font": "primary",
+          "size": 18
+        }
+      }
+    },
+    "lctrl": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -892,7 +871,7 @@
         }
       }
     },
-    "win": {
+    "lwin": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -903,7 +882,7 @@
         }
       }
     },
-    "alt_l": {
+    "lalt": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -925,7 +904,7 @@
         }
       }
     },
-    "altgr": {
+    "ralt": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -940,14 +919,14 @@
       "body_color": "body_mod",
       "legend": {
         "main": {
-          "text": "FN",
+          "text": "",
           "color": "legend_main",
           "font": "primary",
           "size": 18
         }
       }
     },
-    "ctrl_r": {
+    "rctrl": {
       "body_color": "body_mod",
       "legend": {
         "main": {
@@ -991,6 +970,5 @@
         }
       }
     }
-  },
-  "key_count": 81
+  }
 }

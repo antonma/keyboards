@@ -149,6 +149,9 @@ class PdfDriver(TemplateDriver):
         # Font cache: font_path → fitz.Font instance. Reusing the same object
         # ensures PyMuPDF embeds the font only once instead of once per key.
         self._font_cache: dict = {}
+        # Dedup: track fill path bboxes already overdrawn (prevents double-recolor
+        # when multiple key IDs share the same physical fill, e.g. ISO Enter).
+        self._recolored_fill_bboxes: set = set()
 
     def close(self):
         if hasattr(self, "_doc") and self._doc:
@@ -192,6 +195,12 @@ class PdfDriver(TemplateDriver):
             color = color_map.get(id(path))
             if color is None:
                 continue
+            # Dedup: skip fills already overdrawn (e.g. ISO Enter shared by enter_top/enter_bot)
+            bbox_key = (round(path["rect"].x0), round(path["rect"].y0),
+                        round(path["rect"].x1), round(path["rect"].y1))
+            if bbox_key in self._recolored_fill_bboxes:
+                continue
+            self._recolored_fill_bboxes.add(bbox_key)
             for item in path.get("items", []):
                 if item[0] == "l":    shape.draw_line(item[1], item[2])
                 elif item[0] == "c":  shape.draw_bezier(item[1], item[2], item[3], item[4])

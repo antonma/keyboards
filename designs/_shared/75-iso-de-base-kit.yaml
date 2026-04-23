@@ -24,16 +24,16 @@ include:
 
   numbers:
     - grave
-    - "1"
-    - "2"
-    - "3"
-    - "4"
-    - "5"
-    - "6"
-    - "7"
-    - "8"
-    - "9"
-    - "0"
+    - num_1
+    - num_2
+    - num_3
+    - num_4
+    - num_5
+    - num_6
+    - num_7
+    - num_8
+    - num_9
+    - num_0
     - ss
     - dead_ac
 
@@ -71,6 +71,8 @@ include:
     - m
     - comma
     - period
+    - dash
+    - hash
 
   primary_mods:
     - bksp
@@ -89,9 +91,9 @@ include:
     - lalt
 
   mods_right:
-    # ralt = AltGr, rwin = Fn-Position (75%-Mapping), rctrl = Strg rechts
+    # ralt = AltGr, fn = Fn-Taste (75%-Mapping), rctrl = Strg rechts
     - ralt
-    - rwin
+    - fn
     - rctrl
 
   spacebar:

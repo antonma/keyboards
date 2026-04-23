@@ -193,6 +193,7 @@ ISO_DE_LEGENDS: dict[str, tuple[str, str | None, str]] = {
 # Group default, then per-id overrides
 
 GROUP_BODY_COLOR: dict[str, str] = {
+    # cherry-135 group names
     "alpha":    "body_alpha",
     "fkey":     "body_alpha",
     "nav":      "body_alpha",
@@ -200,6 +201,15 @@ GROUP_BODY_COLOR: dict[str, str] = {
     "mod":      "body_mod",
     "accent":   "body_mod",
     "spacebar": "body_mod",
+    # 75-iso-de (Antons-template) group names
+    "fn_row":       "body_alpha",
+    "numbers":      "body_alpha",
+    "alphas":       "body_alpha",
+    "arrows":       "body_alpha",
+    "primary_mods": "body_mod",
+    "shifts":       "body_mod",
+    "mods_left":    "body_mod",
+    "mods_right":   "body_mod",
 }
 
 # alt_mod* keys are physically modifier-sized keycaps despite being in alpha group

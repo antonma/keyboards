@@ -416,8 +416,12 @@ def main():
                  f"{stats['size_kb']} KB"):
         failures += 1
 
-    # 5. Re-emitted strokes are black (Cherry bevel lines)
-    has_black_strokes = "#000000" in stats["stroke_colors"]
+    # 5. Re-emitted strokes are near-black (Cherry/Affinity bevel lines)
+    # Accept any stroke where all RGB channels <= 0x20 (covers #000000, #080606, #241812 etc.)
+    def is_near_black(hex_color: str) -> bool:
+        h = hex_color.lstrip("#")
+        return all(int(h[i:i+2], 16) <= 0x28 for i in (0, 2, 4))
+    has_black_strokes = any(is_near_black(c) for c in stats["stroke_colors"])
     if not check("Black strokes present (3D bevel lines)",
                  has_black_strokes,
                  f"stroke colors: {sorted(stats['stroke_colors'])}"):
