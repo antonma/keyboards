@@ -158,7 +158,10 @@ ISO_DE_LEGENDS: dict[str, tuple[str, str | None, str]] = {
     "prtsc": ("PRT SC", None, "primary"),
     "scr":   ("SCR LK", None, "primary"),
     "pause": ("PAUSE",  None, "primary"),
-    "ins":   ("INS",    None, "primary"),
+    "ins":   ("EINFG",  None, "primary"),   # German: Einfügen
+    # Compat keys (Antons-template Alternates-Block)
+    "prt_sc": ("DRUCK",  None, "primary"),  # German: Druck (Print Screen)
+    "scr_lk": ("ROLLEN", None, "primary"),  # German: Rollen (Scroll Lock)
     "home":  ("POS 1",  None, "primary"),    # canonical German Home = POS 1
     "pgup":  ("Bild\n↑", None, "primary"),  # Bild↑ two-line
     "del":   ("ENTF",   None, "primary"),    # canonical German Delete = ENTF
@@ -210,6 +213,7 @@ GROUP_BODY_COLOR: dict[str, str] = {
     "shifts":       "body_mod",
     "mods_left":    "body_mod",
     "mods_right":   "body_mod",
+    "compat":       "body_alpha",
 }
 
 # alt_mod* keys are physically modifier-sized keycaps despite being in alpha group

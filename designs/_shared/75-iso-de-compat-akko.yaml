@@ -1,23 +1,23 @@
-# 75% ISO-DE Compat Kit — Akko / 3084B Plus und ähnliche Boards
-# Erweitert das Base-Kit um Compat-Tasten (DRUCK/ROLLEN/PAUSE/EINFG).
-# Geeignet für Boards mit dediziertem PrintScreen/ScrollLock/Pause/Insert-Block.
+# 75% ISO-DE Compat Kit — Boards mit DRUCK/ROLLEN/PAUSE/EINFG/MENU
+# Erweitert das Base-Kit um 5 Compat-Tasten aus dem Alternates-Block.
+# Geeignet für Boards mit dediziertem PrintScreen/ScrollLock/Pause/Insert/Menu-Block.
 #
-# Boards:      Akko 3084B Plus, Keychron Q2, GMMK Pro + ähnliche 75%-Layouts
-# Base-Kit:    designs/_shared/75-iso-de-base-kit.yaml (79 Keys = Minimum)
-# Gesamt:      83 Keys (79 + 4 Compat-Keys)
+# Boards:      Akko 3084B Plus, Keychron Q2, GMMK Pro und Boards mit MENU-Taste
+# Base-Kit:    designs/_shared/75-iso-de-base-kit.yaml (84 Keys)
+# Gesamt:      89 Keys (84 + 5 Compat-Keys)
 version: 1
-layout: "75-iso-de-compat-akko"
+layout: "75-iso-de-compat"
 extends: "75-iso-de-base-kit"
 
 additional_keys:
   compat:
-    # Compat-Keys im Alternates-Block (werden eingefärbt aber nicht umpositioniert)
-    # Labels: DRUCK / ROLLEN / PAUSE / EINFG (Deutsche Konvention, wie STRG/ENTF)
-    - alt_a1      # DRUCK  (PrintScreen)
-    - alt_a2      # ROLLEN (ScrollLock)
-    - alt_a3      # PAUSE  (Pause/Break)
-    - alt_a4      # EINFG  (Insert)
+    # Compat-Keys im Alternates-Block (werden eingefärbt und beschriftet)
+    # Labels: DRUCK / ROLLEN / PAUSE / EINFG / MENU (Deutsche Konvention)
+    - prt_sc      # DRUCK  (PrintScreen)
+    - scr_lk      # ROLLEN (ScrollLock)
+    - pause       # PAUSE  (Pause/Break)
+    - ins         # EINFG  (Insert)
+    - menu        # MENU   (Application/Context Menu)
 
 # Explizit exkludiert (weiterhin Original-Beige, nicht Teil dieses Kits):
-# - menu (nicht im Template; 75%-Standardlayout hat kein MENU zwischen FN und STRG)
 # - Numpad, Full-size-Nav, Alt-Shifts, weitere Alt-Mods/Alphas

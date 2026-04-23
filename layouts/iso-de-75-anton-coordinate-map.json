@@ -6,7 +6,7 @@
   "page_height": 1122.7,
   "unit_px": 51.4,
   "note": "Key-IDs aus Affinity key_ids-Ebene in Antons-template-with-ids.pdf extrahiert",
-  "key_count": 84,
+  "key_count": 89,
   "keys": [
     {
       "id": "esc",
@@ -569,20 +569,6 @@
       "width_u": 1.0
     },
     {
-      "id": "ue",
-      "name": "Ü",
-      "group": "alphas",
-      "x0": 756.1,
-      "y0": 245.1,
-      "x1": 807.5,
-      "y1": 296.5,
-      "cx": 781.8,
-      "cy": 270.8,
-      "width": 51.4,
-      "height": 51.4,
-      "width_u": 1.0
-    },
-    {
       "id": "plus",
       "name": "+",
       "group": "alphas",
@@ -634,6 +620,20 @@
       "y1": 297.8,
       "cx": 975.3,
       "cy": 272.1,
+      "width": 51.4,
+      "height": 51.4,
+      "width_u": 1.0
+    },
+    {
+      "id": "ue",
+      "name": "Ü",
+      "group": "alphas",
+      "x0": 759.3,
+      "y0": 251.1,
+      "x1": 810.7,
+      "y1": 302.5,
+      "cx": 785.0,
+      "cy": 276.8,
       "width": 51.4,
       "height": 51.4,
       "width_u": 1.0
@@ -1181,6 +1181,76 @@
       "cx": 972.1,
       "cy": 450.0,
       "width": 51.4,
+      "height": 51.4,
+      "width_u": 1.0
+    },
+    {
+      "id": "prt_sc",
+      "name": "Druck",
+      "group": "compat",
+      "x0": 137.8,
+      "y0": 583.5,
+      "x1": 189.4,
+      "y1": 634.9,
+      "cx": 163.6,
+      "cy": 609.2,
+      "width": 51.6,
+      "height": 51.4,
+      "width_u": 1.0
+    },
+    {
+      "id": "scr_lk",
+      "name": "Rollen",
+      "group": "compat",
+      "x0": 191.7,
+      "y0": 583.5,
+      "x1": 243.3,
+      "y1": 634.9,
+      "cx": 217.5,
+      "cy": 609.2,
+      "width": 51.6,
+      "height": 51.4,
+      "width_u": 1.0
+    },
+    {
+      "id": "pause",
+      "name": "Pause",
+      "group": "compat",
+      "x0": 244.6,
+      "y0": 584.1,
+      "x1": 296.3,
+      "y1": 635.5,
+      "cx": 270.4,
+      "cy": 609.8,
+      "width": 51.6,
+      "height": 51.4,
+      "width_u": 1.0
+    },
+    {
+      "id": "ins",
+      "name": "Einfg",
+      "group": "compat",
+      "x0": 137.8,
+      "y0": 637.8,
+      "x1": 189.4,
+      "y1": 689.2,
+      "cx": 163.6,
+      "cy": 663.5,
+      "width": 51.6,
+      "height": 51.4,
+      "width_u": 1.0
+    },
+    {
+      "id": "menu",
+      "name": "Menu",
+      "group": "compat",
+      "x0": 191.7,
+      "y0": 637.8,
+      "x1": 243.3,
+      "y1": 689.2,
+      "cx": 217.5,
+      "cy": 663.5,
+      "width": 51.6,
       "height": 51.4,
       "width_u": 1.0
     }

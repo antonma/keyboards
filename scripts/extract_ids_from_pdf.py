@@ -18,7 +18,7 @@ import fitz  # PyMuPDF
 INPUT_PDF = "templates/Antons-template-with-ids.pdf"
 OUTPUT_JSON = "layouts/iso-de-75-anton-coordinate-map.json"
 
-# Soll-Liste 84 Key-IDs (nach Handoff-Spec; count korrigiert auf 84)
+# Soll-Liste 89 Key-IDs (84 Base-Kit + 5 Compat)
 EXPECTED_IDS = {
     # fn_row
     "esc", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11", "f12",
@@ -37,6 +37,8 @@ EXPECTED_IDS = {
     "del", "home", "pgup", "pgdn", "end",
     # Arrows
     "up", "down", "left", "right",
+    # Compat (Alternates-Block: DRUCK, ROLLEN, PAUSE, EINFG, MENU)
+    "prt_sc", "scr_lk", "pause", "ins", "menu",
 }
 
 # Gruppen-Zuordnung
@@ -55,6 +57,9 @@ GROUP_MAP = {
     "space": "spacebar",
     "del": "nav", "home": "nav", "pgup": "nav", "pgdn": "nav", "end": "nav",
     "up": "arrows", "down": "arrows", "left": "arrows", "right": "arrows",
+    # Compat keys
+    "prt_sc": "compat", "scr_lk": "compat", "pause": "compat",
+    "ins": "compat", "menu": "compat",
 }
 # Alle anderen → alphas
 ALPHA_IDS = {
@@ -86,6 +91,9 @@ NAME_MAP = {
     "space": "Space", "ralt": "AltGr", "fn": "Fn", "rctrl": "Ctrl R",
     "del": "Del", "home": "Home", "pgup": "PgUp", "pgdn": "PgDn", "end": "End",
     "up": "↑", "down": "↓", "left": "←", "right": "→",
+    # Compat
+    "prt_sc": "Druck", "scr_lk": "Rollen", "pause": "Pause",
+    "ins": "Einfg", "menu": "Menu",
 }
 
 # ── Extraction ────────────────────────────────────────────────────────────────
