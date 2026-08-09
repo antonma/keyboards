@@ -4,3 +4,48 @@ docs/package.json
 docs/package-lock.json
 docs/screenshot.js
 docs/enter-zoom-*.png
+
+# Temp-/Build-Artefakte
+*.af~lock~
+*~
+__pycache__/
+*.pyc
+Info/
+
+# --- Lokal-only: ueber GitHubs 100-MB-Limit, koennen nicht gepusht werden ---
+feedback/Oni-Mask-Alpine-Images.zip
+feedback/Oni-Mask/Oni-Mask-6.zip
+feedback/Alpine/Alpine-6.zip
+feedback/Alpine/Alpine-2.png
+feedback/Alpine/Alpine-3.png
+feedback/Alpine/Alpine-4.png
+feedback/Alpine/Alpine-5.png
+feedback/Oni-Mask/Oni-Mask-1.png
+feedback/Oni-Mask/Oni-Mask-2.png
+feedback/Oni-Mask/Oni-Mask-3.png
+feedback/Oni-Mask/Oni-Mask-4.png
+feedback/Oni-Mask/Oni-Mask-5.png
+feedback/Oni-Mask/Oni-Mask-6.png
+templates/Antons-template_basis_3.af
+templates/anton-tree-of-life_v1.af
+templates/Antons-template_FINAL_anchored_v3_no_shifts_clipped.af
+templates/Antons-template_FINAL_anchored_v3_no_shifts_clipped_WORK_atmospheric_wash.af
+templates/Antons-template_FINAL_anchored_v3_no_shifts_clipped_WORK_atmospheric_wash_VAR_B_bleed.af
+templates/Antons-template_ONI_v2.af
+templates/Antons-template_ONI_v3.af
+templates/Antons-template_PFALZ_v1.af
+templates/hersteller/Alpine/DELTASET-Alpine-131.af
+templates/hersteller/Alpine/Alpine_v2.4.af
+templates/hersteller/Alpine/Alpine_v2.5.af
+templates/hersteller/Alpine/Alpine_v2.5_temp.af
+templates/hersteller/Bluestone/Bluestone_MOA_v1.af
+templates/hersteller/Bluestone/Bluestone_XDA_v1.af
+templates/hersteller/Bluestone/Bluestone_XDA_v1.1.af
+templates/hersteller/Bluestone/Bluestone_XDA_v1.2.af
+templates/hersteller/Bluestone/Hello_MOA_v1.af
+templates/hersteller/Mystic Rose.zip
+templates/hersteller/Mystic Rose/mystic-rose_2.af
+templates/hersteller/Mystic Rose/mystic-rose_3.af
+templates/hersteller/NeonDrive.zip
+templates/hersteller/NeonDrive/Neon Drive_v1.af
+templates/hersteller/Sakura/Sakura-template_v7.psd

@@ -1,0 +1,150 @@
+# Sakura Drift — Color Palette
+# Pro Farbe: HEX + CMYK (Druckangabe fuer Hersteller-Handoff)
+# Stand: 2026-04-24
+# Referenzbild: references/sakura-drift/sakura-drift-keybord.png (Ideogram, 2026-04-22)
+
+design: sakura-drift
+version: 2
+theme: "Japanese Sakura — Pastel Cream + Pink + Rose-Gold"
+
+# ------------------------------------------------------------------------
+# BODY COLORS — Keycap-Grundfarben
+# ------------------------------------------------------------------------
+body_colors:
+  body_alpha:
+    hex: "#F1ECE7"
+    cmyk: [2, 3, 6, 0]
+    name: "Soft Cream"
+    lightness: 0.93
+    usage: "Alphas (Q-Z, A-L, Y-M, Ae/Oe/Ue/Ss), Zahlenreihe, Escape"
+    note: "Einzelne Alphas haben gemaltes Sakura-Petal-Overlay (siehe key-design.json)"
+
+  body_mod:
+    hex: "#ECC6C3"
+    cmyk: [5, 25, 18, 0]
+    name: "Soft Pink"
+    lightness: 0.82
+    usage: "Modifiers (Tab, Caps, Shifts, Strg, Win, Alt, AltGr, Fn, Backspace)"
+
+  body_nav:
+    hex: "#CE8E93"
+    cmyk: [12, 48, 34, 0]
+    name: "Rose Pink"
+    lightness: 0.62
+    usage: "Nav-Cluster (Entf, Bild-Auf, Bild-Ab, Pos1, Ende, Einfg) + 5 Compat-Keys"
+    note: "Im Ideogram-Master sind Nav und Mod gleich pink — Spec trennt beide absichtlich (Hersteller-Flexibilitaet)"
+
+  body_accent:
+    hex: "#FFFFFF"
+    cmyk: [0, 0, 0, 0]
+    name: "White"
+    lightness: 1.00
+    usage: "Spacebar + ISO-Enter + Arrow-Keys (traegt Sakura-Branch-Artwork)"
+    note: "Urspruengliche Spec hatte body_accent als Brown #816855 — Ideogram-Master zeigt Weiss mit Artwork als bessere Loesung"
+
+# ------------------------------------------------------------------------
+# F-ROW GRADIENT — Rose-Gold uebergangsreihe
+# ------------------------------------------------------------------------
+# 13 Keys von Esc bis F12. Esc ist cream (body_alpha).
+# F1-F12 bilden einen Gradient von hell zu dunkel zu hell wieder.
+# Zentrum (F5-F8) am dunkelsten, Raender (F1, F12) am hellsten.
+# WARNUNG: Gradient-Rendering auf PBT Dye-Sub ist Manufacturer-Risiko.
+# Wenn Hersteller sagt "nur solid" -> Fallback auf einheitliches rose_gold_mid.
+f_row_gradient:
+  rose_gold_light:
+    hex: "#E8C4A8"
+    cmyk: [4, 25, 32, 0]
+    name: "Rose-Gold Light"
+    usage: "F1, F2, F11, F12"
+
+  rose_gold_mid_light:
+    hex: "#D9A888"
+    cmyk: [8, 38, 45, 0]
+    name: "Rose-Gold Mid-Light"
+    usage: "F3, F4, F9, F10"
+
+  rose_gold_mid:
+    hex: "#C89073"
+    cmyk: [14, 48, 55, 2]
+    name: "Rose-Gold Mid (Fallback einheitlich)"
+    usage: "F5, F6 + Fallback fuer alle F-Keys wenn Gradient nicht druckbar"
+
+  rose_gold_dark:
+    hex: "#B87D60"
+    cmyk: [20, 58, 65, 6]
+    name: "Rose-Gold Dark"
+    usage: "F7, F8 (dunkelster Punkt im Gradient)"
+
+# ------------------------------------------------------------------------
+# LEGEND COLORS — A/B-Test in Affinity
+# ------------------------------------------------------------------------
+# Zwei Varianten werden in Affinity getestet; Gewinner wird zur finalen Wahl.
+# Bis zur Entscheidung: beide Farben in den Spec-Files vorhanden.
+legend_colors:
+  legend_warm_brown:
+    hex: "#5A3A2A"
+    cmyk: [40, 60, 75, 50]
+    name: "Warm Brown"
+    lightness: 0.23
+    usage: "Primary legends (Variante A — einheitlich auf allen Keys)"
+    note: "Aus Laura-ADR; konsistent mit DM-Serif-Aesthetik"
+
+  legend_dim_brown:
+    hex: "#8A6A4A"
+    cmyk: [30, 45, 60, 25]
+    name: "Dim Warm Brown"
+    lightness: 0.45
+    usage: "Sub-legends (Zahlen-Sekundaer: § $ % & / etc.) + AltGr-Tertiaries"
+
+  legend_white:
+    hex: "#FFFFFF"
+    cmyk: [0, 0, 0, 0]
+    name: "White"
+    lightness: 1.00
+    usage: "Primary legends auf body_mod + body_nav (Variante B — Kontrast auf Pink)"
+    note: "Ideogram-Master zeigt weisse Legenden auf Pink-Keys — testen ob besser als Variante A"
+
+# ------------------------------------------------------------------------
+# LEGEND-FARBWAHL-REGELN — zwei Varianten
+# ------------------------------------------------------------------------
+legend_variants:
+  variant_a_uniform_brown:
+    description: "Alle Legenden in warm brown, unabhaengig von Body-Farbe"
+    mapping:
+      on_body_alpha: "legend_warm_brown"
+      on_body_mod: "legend_warm_brown"
+      on_body_nav: "legend_warm_brown"
+      on_body_accent: "legend_warm_brown"
+      on_f_row: "legend_warm_brown"
+      sub_legends: "legend_dim_brown"
+      altgr_tertiaries: "legend_dim_brown"
+
+  variant_b_contrast_white:
+    description: "Weisse Legenden auf Pink-Keys, Braun auf Cream, passt zu Ideogram-Master"
+    mapping:
+      on_body_alpha: "legend_warm_brown"
+      on_body_mod: "legend_white"
+      on_body_nav: "legend_white"
+      on_body_accent: "legend_warm_brown"
+      on_f_row: "legend_warm_brown"
+      sub_legends: "legend_dim_brown"  # auf cream
+      altgr_tertiaries: "legend_dim_brown"
+
+# Vorlaeufiger Default (Affinity-Test-Reihenfolge):
+default_variant: "variant_b_contrast_white"
+
+# ------------------------------------------------------------------------
+# QUALITY GATE NOTES
+# ------------------------------------------------------------------------
+quality_gate:
+  color_model: "CMYK (Affinity Export) — KEIN RGB-Mix zulassen"
+  contrast_check:
+    - pair: "legend_warm_brown on body_accent (White)"
+      delta_l: 0.77
+      verdict: "OK"
+    - pair: "legend_warm_brown on body_nav (Rose #CE8E93)"
+      delta_l: 0.39
+      verdict: "grenzwertig — Variant B (white) vermutlich besser"
+    - pair: "legend_white on body_mod (Pink #ECC6C3)"
+      delta_l: 0.18
+      verdict: "niedrig — Variant B visuell testen"

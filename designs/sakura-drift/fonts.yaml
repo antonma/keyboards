@@ -1,0 +1,95 @@
+# Sakura Drift — Font Specification
+# Provisorische Wahl: DM Serif Display (im Repo unter fonts/DM_Serif_Display/)
+# Anton testet in Affinity, ob das bei Keycap-Groesse gut aussieht.
+# Fallback-Optionen unten dokumentiert, falls DM Serif zu duenn/duenn wirkt.
+# Stand: 2026-04-24
+
+design: sakura-drift
+version: 1
+
+# ------------------------------------------------------------------------
+# PRIMARY — Haupt-Legenden (QWERTZ, Zahlen, Modifier-Text)
+# ------------------------------------------------------------------------
+primary:
+  family: "DM Serif Display"
+  file: "fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf"
+  weight: 400
+  style: regular
+  default_size: 16  # pt bei Cherry-Keycap ca. 14x14mm
+  # Falls bei Keycap-Groesse zu duenn wirkt: 18 oder 20 testen
+  fallback_if_not_readable:
+    - family: "DM Serif Display"
+      adjustment: "size 18 oder 20"
+    - family: "Playfair Display"
+      weight: 600
+      note: "staerkerer Serif mit mehr Stand"
+    - family: "Cormorant Garamond"
+      weight: 500
+      note: "eleganter Klassiker"
+  usage: "Alphas (Q-Z, QWERTZ), Ae/Oe/Ue/Ss, Esc, Zahlen 1-0, Modifier-Text (STRG, WIN, ALT, ALT GR, FN), Nav-Text (EINFG, ENTF, POS 1, ENDE, Bild↑, Bild↓), Compat-Text (DRUCK, ROLLEN, PAUSE, MENU)"
+
+# ------------------------------------------------------------------------
+# SECONDARY — Sub-Legenden (Zahlen-Sekundaer wie § $ % & /)
+# ------------------------------------------------------------------------
+secondary:
+  family: "DM Serif Display"   # gleiche Familie, kleinere Groesse
+  file: "fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf"
+  weight: 400
+  style: regular
+  default_size: 10
+  # Falls DM Serif Text verfuegbar waere, hier wechseln (optimiert fuer kleine Groessen)
+  fallback_if_not_readable:
+    - family: "DM Serif Text"
+      weight: 400
+      note: "optimiert fuer kleine Groessen — falls nachgeladen"
+  usage: "Zahlen-Sekundaer-Zeichen in oberer Reihe (\" § $ % & / ( ) = ? `)"
+
+# ------------------------------------------------------------------------
+# TERTIARY — AltGr-Zeichen (²³{}[]\\@€µ~|)
+# ------------------------------------------------------------------------
+tertiary:
+  family: "DM Serif Display"
+  file: "fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf"
+  weight: 400
+  style: regular
+  default_size: 8
+  position: "bottom-right"
+  note: "AltGr-Zeichen kleiner unten rechts auf der Keycap"
+  usage: "AltGr-Belegung: ² ³ { [ ] } \\ @ € µ ~ |"
+
+# ------------------------------------------------------------------------
+# ICON — Symbole fuer Modifier ohne Text (Shift, Enter, Backspace, Tab, Caps, Arrows)
+# ------------------------------------------------------------------------
+icon:
+  family: "Segoe UI Symbol"
+  file: "C:/Windows/Fonts/seguisym.ttf"   # Windows-System-Font
+  weight: 400
+  default_size: 14
+  note: "Unicode-Symbole; auf Mac/Linux ggf. Fallback auf 'Noto Sans Symbols' oder 'Symbola'"
+  unicode_map:
+    shift: "\u21E7"     # ⇧
+    enter: "\u21B5"     # ↵
+    backspace: "\u27F5" # ⟵
+    caps_lock: "\u21EA" # ⇪
+    tab: "\u21B9"       # ↹
+    arrow_up: "\u2191"    # ↑
+    arrow_down: "\u2193"  # ↓
+    arrow_left: "\u2190"  # ←
+    arrow_right: "\u2192" # →
+  usage: "tab, caps, lshift, rshift, iso_enter, backspace, arrow_up/down/left/right"
+
+# ------------------------------------------------------------------------
+# TESTING NOTES
+# ------------------------------------------------------------------------
+affinity_test_plan:
+  step_1: "DM Serif Display bei default_size=16 auf Cherry-Keycap pruefen (Alpha 'Q' exemplarisch)"
+  step_2: "Falls zu duenn: size 18 testen — Stand und Lesbarkeit verbessern sich"
+  step_3: "Unicode-Symbole (Shift/Enter/Bksp) in DM Serif Display testen — falls Renderer Zeichen fehlen, Segoe UI Symbol als icon-Font verwenden"
+  step_4: "Ergebnis als Entscheidung ins Brain DB schreiben (ADR: Sakura Font Choice)"
+
+# ------------------------------------------------------------------------
+# LICENSE
+# ------------------------------------------------------------------------
+license:
+  dm_serif_display: "SIL Open Font License 1.1 — OK fuer kommerzielle Nutzung"
+  segoe_ui_symbol: "Nur Microsoft Windows — Hersteller rendert ggf. mit Noto Sans Symbols als Ersatz"

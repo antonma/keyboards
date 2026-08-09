@@ -1,0 +1,1414 @@
+{
+  "design": "sakura-drift",
+  "version": 2,
+  "schema": "design-reference-and-handoff",
+  "description": "Per-Key Design Spec fuer Sakura Drift. Dual-use: (1) Referenz fuer Affinity-Designer-Arbeit, (2) Handoff-Dokument fuer Hersteller (Wang Blossom / AFLION). Enthaelt KEINE Koordinaten — die liegen in layouts/iso-de-75-anton-coordinate-map.json. Diese Datei ist Single Source of Truth fuer Key-Legenden, Body-Farben pro Key, Font-Zuweisung, und dekorative Overlays.",
+  "reference_image": "references/sakura-drift/sakura-drift-keybord.png",
+  "reference_date": "2026-04-22",
+  "last_updated": "2026-04-24",
+  "palette_file": "designs/sakura-drift/palette.yaml",
+  "fonts_file": "designs/sakura-drift/fonts.yaml",
+  "coord_map_file": "layouts/iso-de-75-anton-coordinate-map.json",
+  "base_kit_file": "designs/_shared/75-iso-de-base-kit.yaml",
+  "compat_file": "designs/_shared/75-iso-de-compat-akko.yaml",
+  "design_notes": {
+    "body_groups": "4 Body-Farbgruppen + F-Row-Gradient (5 Farbtoene)",
+    "legend_variants": "A = einheitlich warm brown, B = weiss auf pink/rose, braun auf cream/white/rose-gold. Affinity-Test entscheidet.",
+    "sakura_petals": "7 Alphas mit einzelnem gemalten Petal-Overlay (Q, P, D, L, Ae, C, V, N laut Ideogram-Master)",
+    "artwork_keys": "Spacebar (voll) + ISO-Enter (klein) tragen Sakura-Branch-Artwork — Anton fuegt selbst in Affinity ein",
+    "f_row_gradient": "F1-F12 in 4 Rose-Gold-Abstufungen; Hersteller-Risiko: falls kein Gradient moeglich, Fallback auf rose_gold_mid",
+    "compat_keys": "5 Keys im Alternates-Block (DRUCK, ROLLEN, PAUSE, EINFG, MENU) in body_nav (gleich wie Nav-Cluster)"
+  },
+  "key_count": 88,
+  "keys": [
+    {
+      "id": "esc",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "ESC",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f1",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_light",
+      "legend": {
+        "main": {
+          "text": "F1",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f2",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_light",
+      "legend": {
+        "main": {
+          "text": "F2",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f3",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_mid_light",
+      "legend": {
+        "main": {
+          "text": "F3",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f4",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_mid_light",
+      "legend": {
+        "main": {
+          "text": "F4",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f5",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_mid",
+      "legend": {
+        "main": {
+          "text": "F5",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f6",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_mid",
+      "legend": {
+        "main": {
+          "text": "F6",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f7",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_dark",
+      "legend": {
+        "main": {
+          "text": "F7",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f8",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_dark",
+      "legend": {
+        "main": {
+          "text": "F8",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f9",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_mid_light",
+      "legend": {
+        "main": {
+          "text": "F9",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f10",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_mid_light",
+      "legend": {
+        "main": {
+          "text": "F10",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f11",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_light",
+      "legend": {
+        "main": {
+          "text": "F11",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "f12",
+      "group": "fkey",
+      "width_u": 1.0,
+      "body_color": "rose_gold_light",
+      "legend": {
+        "main": {
+          "text": "F12",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "caret",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "^",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "°",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        }
+      },
+      "note": "dead key; sub=degree"
+    },
+    {
+      "id": "num_1",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "1",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "num_2",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "2",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "\"",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        },
+        "altgr": {
+          "text": "²",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      },
+      "note": "altgr=superscript 2"
+    },
+    {
+      "id": "num_3",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "3",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "§",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        },
+        "altgr": {
+          "text": "³",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      },
+      "note": "sub=section sign; altgr=superscript 3"
+    },
+    {
+      "id": "num_4",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "4",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "$",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        }
+      }
+    },
+    {
+      "id": "num_5",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "5",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "%",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        }
+      }
+    },
+    {
+      "id": "num_6",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "6",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "&",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        }
+      }
+    },
+    {
+      "id": "num_7",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "7",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "/",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        },
+        "altgr": {
+          "text": "{",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      }
+    },
+    {
+      "id": "num_8",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "8",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "(",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        },
+        "altgr": {
+          "text": "[",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      }
+    },
+    {
+      "id": "num_9",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "9",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": ")",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        },
+        "altgr": {
+          "text": "]",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      }
+    },
+    {
+      "id": "num_0",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "0",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "=",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        },
+        "altgr": {
+          "text": "}",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      }
+    },
+    {
+      "id": "ss",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "ß",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "?",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        },
+        "altgr": {
+          "text": "\\",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      },
+      "note": "Eszett"
+    },
+    {
+      "id": "acute",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "´",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "`",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        }
+      },
+      "note": "dead key"
+    },
+    {
+      "id": "tab",
+      "group": "primary_mod",
+      "width_u": 1.5,
+      "body_color": "body_mod",
+      "note": "icon=Tab U+21B9"
+    },
+    {
+      "id": "q",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Q",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "altgr": {
+          "text": "@",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      },
+      "sakura_petal": true
+    },
+    {
+      "id": "w",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "W",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "e",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "E",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "altgr": {
+          "text": "€",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      },
+      "note": "altgr=Euro"
+    },
+    {
+      "id": "r",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "R",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "t",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "T",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "z",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Z",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "u",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "U",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "i",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "I",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "o",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "O",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "p",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "P",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      },
+      "sakura_petal": true
+    },
+    {
+      "id": "ue",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Ü",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      },
+      "note": "Umlaut Ue"
+    },
+    {
+      "id": "plus",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "+",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "*",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        },
+        "altgr": {
+          "text": "~",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      }
+    },
+    {
+      "id": "caps",
+      "group": "primary_mod",
+      "width_u": 1.75,
+      "body_color": "body_mod",
+      "note": "icon=CapsLock U+21EA"
+    },
+    {
+      "id": "a",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "A",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "s",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "S",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "d",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "D",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      },
+      "sakura_petal": true
+    },
+    {
+      "id": "f",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "F",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "g",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "G",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "h",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "H",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "j",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "J",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "k",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "K",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "l",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "L",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      },
+      "sakura_petal": true
+    },
+    {
+      "id": "oe",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Ö",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      },
+      "note": "Umlaut Oe"
+    },
+    {
+      "id": "ae",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Ä",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      },
+      "sakura_petal": true,
+      "note": "Umlaut Ae"
+    },
+    {
+      "id": "enter",
+      "group": "primary_mod",
+      "width_u": 1.25,
+      "body_color": "body_accent",
+      "artwork": "sakura-branch-small",
+      "note": "L-shaped ISO-Enter; main icon U+21B5; spans rows 1-2; carries sakura-branch artwork (top-right)"
+    },
+    {
+      "id": "iso_bracket",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "#",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "'",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        }
+      }
+    },
+    {
+      "id": "shift_l",
+      "group": "shift",
+      "width_u": 1.25,
+      "body_color": "body_mod",
+      "note": "icon=Shift U+21E7"
+    },
+    {
+      "id": "less",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "<",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": ">",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        },
+        "altgr": {
+          "text": "|",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      }
+    },
+    {
+      "id": "y",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "Y",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "x",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "X",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "c",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "C",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      },
+      "sakura_petal": true
+    },
+    {
+      "id": "v",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "V",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      },
+      "sakura_petal": true
+    },
+    {
+      "id": "b",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "B",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      }
+    },
+    {
+      "id": "n",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "N",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        }
+      },
+      "sakura_petal": true
+    },
+    {
+      "id": "m",
+      "group": "alpha",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "M",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "altgr": {
+          "text": "µ",
+          "font": "tertiary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "bottom-right"
+        }
+      },
+      "note": "altgr=micro sign"
+    },
+    {
+      "id": "comma",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": ",",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": ";",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        }
+      }
+    },
+    {
+      "id": "period",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": ".",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": ":",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        }
+      }
+    },
+    {
+      "id": "minus",
+      "group": "number",
+      "width_u": 1.0,
+      "body_color": "body_alpha",
+      "legend": {
+        "main": {
+          "text": "-",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_warm_brown"
+        },
+        "sub": {
+          "text": "_",
+          "font": "secondary",
+          "color_variant_a": "legend_dim_brown",
+          "color_variant_b": "legend_dim_brown",
+          "position": "top-left"
+        }
+      }
+    },
+    {
+      "id": "shift_r",
+      "group": "shift",
+      "width_u": 1.75,
+      "body_color": "body_mod",
+      "note": "icon=Shift U+21E7"
+    },
+    {
+      "id": "bs",
+      "group": "primary_mod",
+      "width_u": 2.0,
+      "body_color": "body_mod",
+      "note": "icon=Backspace U+27F5; 2u wide (standard)"
+    },
+    {
+      "id": "ctrl_l",
+      "group": "mod_left",
+      "width_u": 1.25,
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "STRG",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "win",
+      "group": "mod_left",
+      "width_u": 1.25,
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "WIN",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      },
+      "note": "Label 'WIN' — falls Linux-SKU spaeter: 'SUPER' oder Logo"
+    },
+    {
+      "id": "alt_l",
+      "group": "mod_left",
+      "width_u": 1.25,
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "ALT",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "space",
+      "group": "spacebar",
+      "width_u": 6.25,
+      "body_color": "body_accent",
+      "artwork": "sakura-branch-full",
+      "note": "Spacebar traegt Kirschblueten-Ast-Artwork (Anton fuegt selbst ein)"
+    },
+    {
+      "id": "altgr",
+      "group": "mod_right",
+      "width_u": 1.25,
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "ALT GR",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "fn",
+      "group": "mod_right",
+      "width_u": 1.25,
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "FN",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "ctrl_r",
+      "group": "mod_right",
+      "width_u": 1.25,
+      "body_color": "body_mod",
+      "legend": {
+        "main": {
+          "text": "STRG",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "del",
+      "group": "nav",
+      "width_u": 1.0,
+      "body_color": "body_nav",
+      "legend": {
+        "main": {
+          "text": "ENTF",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "pgup",
+      "group": "nav",
+      "width_u": 1.0,
+      "body_color": "body_nav",
+      "legend": {
+        "main": {
+          "text": "Bild\n↑",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      },
+      "note": "two-line label"
+    },
+    {
+      "id": "pgdn",
+      "group": "nav",
+      "width_u": 1.0,
+      "body_color": "body_nav",
+      "legend": {
+        "main": {
+          "text": "Bild\n↓",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      },
+      "note": "two-line label"
+    },
+    {
+      "id": "home",
+      "group": "nav",
+      "width_u": 1.0,
+      "body_color": "body_nav",
+      "legend": {
+        "main": {
+          "text": "POS 1",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "end",
+      "group": "nav",
+      "width_u": 1.0,
+      "body_color": "body_nav",
+      "legend": {
+        "main": {
+          "text": "ENDE",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "up",
+      "group": "arrow",
+      "width_u": 1.0,
+      "body_color": "body_accent",
+      "note": "icon=U+2191"
+    },
+    {
+      "id": "down",
+      "group": "arrow",
+      "width_u": 1.0,
+      "body_color": "body_accent",
+      "note": "icon=U+2193"
+    },
+    {
+      "id": "left",
+      "group": "arrow",
+      "width_u": 1.0,
+      "body_color": "body_accent",
+      "note": "icon=U+2190"
+    },
+    {
+      "id": "right",
+      "group": "arrow",
+      "width_u": 1.0,
+      "body_color": "body_accent",
+      "note": "icon=U+2192"
+    },
+    {
+      "id": "prt_sc",
+      "group": "compat",
+      "width_u": 1.0,
+      "body_color": "body_nav",
+      "legend": {
+        "main": {
+          "text": "DRUCK",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "scr_lk",
+      "group": "compat",
+      "width_u": 1.0,
+      "body_color": "body_nav",
+      "legend": {
+        "main": {
+          "text": "ROLLEN",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "pause",
+      "group": "compat",
+      "width_u": 1.0,
+      "body_color": "body_nav",
+      "legend": {
+        "main": {
+          "text": "PAUSE",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "ins",
+      "group": "compat",
+      "width_u": 1.0,
+      "body_color": "body_nav",
+      "legend": {
+        "main": {
+          "text": "EINFG",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    },
+    {
+      "id": "menu",
+      "group": "compat",
+      "width_u": 1.0,
+      "body_color": "body_nav",
+      "legend": {
+        "main": {
+          "text": "MENU",
+          "font": "primary",
+          "color_variant_a": "legend_warm_brown",
+          "color_variant_b": "legend_white"
+        }
+      }
+    }
+  ],
+  "key_count_note": "88 Keys gesamt. Falls die Coord-Map ISO-Enter als zwei separate IDs (enter_top + enter_bot) haelt, entsprechend splitten — beide erben dann body_color und artwork vom aktuellen 'enter' Eintrag. Das ergibt die im Handoff 2026-04-23 (d7ef14e9) erwaehnten 89 Keys."
+}
