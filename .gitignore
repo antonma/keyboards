@@ -1,4 +1,6 @@
-.claude/
+# .claude bleibt lokal (settings*.json), nur die Subagenten-Definitionen werden versioniert
+.claude/*
+!.claude/agents/
 docs/node_modules/
 docs/package.json
 docs/package-lock.json

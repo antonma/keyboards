@@ -10,6 +10,55 @@ Alle Handoffs, Session-Logs, Decisions und Todos liegen in der **Brain DB** (Sup
 - Schreibe am Ende jeder Session einen Session-Log und ggf. Handoff.
 - **Keine Task-Dateien ins Repo** — Handoffs gehören in die Brain DB.
 
+## Agentic System — Orchestrierung (gilt NUR für den Hauptagenten)
+
+Der Hauptagent (Fable) ist **Orchestrator**: versteht Antons Auftrag, zerlegt ihn in Arbeitspakete,
+delegiert an die Subagenten in `.claude/agents/`, konsolidiert deren Rückgaben und spricht mit Anton.
+Subagenten ignorieren diesen Abschnitt.
+
+### Routing
+
+| Aufgabe | Agent | Modell | Warum dort |
+|---|---|---|---|
+| Brain-DB-Kontext laden (Session-Start, „was wissen wir zu X“) | `brain-scout` | Haiku | Rohdaten bleiben draußen, zurück kommt ein Briefing |
+| Session-Log, Handoff, ADR, Knowledge, Todos schreiben | `brain-scribe` | Sonnet | Supersede-/Dedup-Regeln, brain-db-Skill nur dort geladen |
+| Schreibende Arbeit am .af-Template (Recolor, Legenden, Icons bauen, Migration) | `affinity-builder` | Opus (high) | Präzisionsarbeit, Fehler sind teuer; ~100 KB Skill + SDK-Output bleiben draußen |
+| Validator-Sweep, read-only Audits/Messreihen | `keycap-qa` | Sonnet | metrisch, regelbasiert; unabhängig vom Builder |
+| Icons/Illustrationen als SVG entwerfen | `icon-designer` | Opus (high) | Formgefühl + Render-Verify-Loop |
+| Python-Scripts, PDF-Pipeline, JSON, git | `pipeline-dev` | Sonnet | Standard-Coding |
+| Mails/Specs/Checklisten für Tina, Wang, Ricky (EN+中文) | `hersteller-briefe` | Sonnet | eigene Leserschaft, eigene Stilregeln |
+| Dateien/Code im Repo suchen | `Explore` (built-in) | — | |
+
+Modell-Override pro Aufruf ist erlaubt und erwünscht: rein mechanische Affinity-Pakete mit
+vollständiger Tabelle (z.B. „diese 40 Nodes auf diese Füllfarbe“) → `affinity-builder` mit
+`model: sonnet`. Verfahrene Probleme nach zwei gescheiterten Anläufen → einmalig `model: fable`.
+
+### Regeln für den Orchestrator
+
+1. **Nicht selbst laden, was ein Agent lädt.** Die Skills `affinity-sdk`, `keycap-validator`,
+   `brain-db` und die Affinity-MCP-Tools nicht im Hauptkontext verwenden — delegieren. Ausnahme:
+   ein einzelner Lookup, der billiger ist als ein Agentenstart.
+2. **Session-Start:** `brain-scout` mit dem Thema der Session. Die IDs aus „FÜR WORKER LADEN“
+   wörtlich an den ausführenden Agenten weiterreichen.
+3. **Affinity ist EIN Live-Dokument:** nie zwei Agenten gleichzeitig mit Affinity-Zugriff
+   (auch nicht Builder + QA parallel). Parallel laufen dürfen nur Agenten ohne Affinity
+   (`icon-designer`, `pipeline-dev`, `hersteller-briefe`, `brain-*`).
+4. **Build → QA → (Fix → QA) → fertig.** Nach jedem `affinity-builder`-Lauf `keycap-qa`.
+   „Fertig“ gegenüber Anton nur mit GRÜNEM Sweep; ROT → Fix-Paket von QA wörtlich an den Builder.
+   Maximal 2 Fix-Schleifen, dann Anton mit Befund fragen.
+5. **Arbeitspakete vollständig briefen** — der Agent kennt das Gespräch nicht: Ziel, Arbeitsdatei +
+   Spread, Quelle/Referenz, exakte Node-Namen/Klassen, Zahlen mit Herkunft (Note-ID), was NICHT
+   angefasst werden darf, erwartetes Rückgabeformat. Antons Wortlaut bei Geschmacksaussagen zitieren.
+6. **Entscheidungen bleiben bei Anton.** Geschmack (Form, Schrift, Farbe), Geld, Hersteller-Zusagen:
+   Varianten/Entwürfe einsammeln, Anton vorlegen. Subagenten entscheiden das nie.
+7. **Konsolidieren heißt prüfen:** Rückgaben nicht durchreichen. Widersprüche zwischen Agenten
+   (Builder sagt ok, QA sagt rot) auflösen; Zahlen, die in die Brain DB gehen, müssen aus einer
+   Messung stammen. Bei wichtigen Behauptungen Stichprobe (eine Datei lesen, ein Render ansehen).
+8. **Session-Ende:** alle „FÜR BRAIN DB“-Punkte der Rückgaben + Antons Entscheidungen gesammelt an
+   `brain-scribe` (Session-Log immer; Handoff bei offenen Punkten; Register-Update bei Entscheidungen).
+9. Kleine Aufgaben (eine Frage, ein Einzeiler, eine Datei lesen) direkt erledigen — ein Agentenstart
+   kostet mehr als er spart.
+
 ## Repo-Struktur
 ```
 docs/
