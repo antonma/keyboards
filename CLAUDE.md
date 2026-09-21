@@ -23,7 +23,7 @@ Subagenten ignorieren diesen Abschnitt.
 | Brain-DB-Kontext laden (Session-Start, „was wissen wir zu X“) | `brain-scout` | Haiku | Rohdaten bleiben draußen, zurück kommt ein Briefing |
 | Session-Log, Handoff, ADR, Knowledge, Todos schreiben | `brain-scribe` | Sonnet | Supersede-/Dedup-Regeln, brain-db-Skill nur dort geladen |
 | Schreibende Arbeit am .af-Template (Recolor, Legenden, Icons bauen, Migration) | `affinity-builder` | Opus (high) | Präzisionsarbeit, Fehler sind teuer; ~100 KB Skill + SDK-Output bleiben draußen |
-| Validator-Sweep, read-only Audits/Messreihen | `keycap-qa` | Sonnet | metrisch, regelbasiert; unabhängig vom Builder |
+| Release-Sweep (nur vor Release) + beauftragte read-only Messungen | `keycap-qa` | Sonnet | metrisch, regelbasiert; unabhängig vom Builder |
 | Icons/Illustrationen als SVG entwerfen | `icon-designer` | Opus (high) | Formgefühl + Render-Verify-Loop |
 | Python-Scripts, PDF-Pipeline, JSON, git | `pipeline-dev` | Sonnet | Standard-Coding |
 | Mails/Specs/Checklisten für Tina, Wang, Ricky (EN+中文) | `hersteller-briefe` | Sonnet | eigene Leserschaft, eigene Stilregeln |
@@ -43,12 +43,19 @@ vollständiger Tabelle (z.B. „diese 40 Nodes auf diese Füllfarbe“) → `aff
 3. **Affinity ist EIN Live-Dokument:** nie zwei Agenten gleichzeitig mit Affinity-Zugriff
    (auch nicht Builder + QA parallel). Parallel laufen dürfen nur Agenten ohne Affinity
    (`icon-designer`, `pipeline-dev`, `hersteller-briefe`, `brain-*`).
-4. **Build → QA → (Fix → QA) → fertig.** Nach jedem `affinity-builder`-Lauf `keycap-qa`.
-   „Fertig“ gegenüber Anton nur mit GRÜNEM Sweep; ROT → Fix-Paket von QA wörtlich an den Builder.
-   Maximal 2 Fix-Schleifen, dann Anton mit Befund fragen.
-5. **Arbeitspakete vollständig briefen** — der Agent kennt das Gespräch nicht: Ziel, Arbeitsdatei +
-   Spread, Quelle/Referenz, exakte Node-Namen/Klassen, Zahlen mit Herkunft (Note-ID), was NICHT
-   angefasst werden darf, erwartetes Rückgabeformat. Antons Wortlaut bei Geschmacksaussagen zitieren.
+4. **Build → Builder-Selbstcheck → Anton sieht das Render.** KEIN `keycap-qa`-Lauf nach jedem
+   Affinity-Task (Antons Vorgabe 2026-09-21: der Sweep dauert zu lange für jede Designänderung).
+   Der volle Sweep läuft nur (a) vor Release/Hersteller-Versand (Ablauf siehe „Affinity-Dateien
+   und Git“), (b) auf Antons Wunsch, (c) wenn der Builder SELBSTCHECK ✗ meldet. Die `FÜR QA`-Punkte
+   der Builder-Rückgaben bis zum Release sammeln und dem Sweep mitgeben. „Fertig für Release“ nur
+   mit GRÜNEM Sweep; ROT → Fix-Paket von QA wörtlich an den Builder, maximal 2 Fix-Schleifen,
+   dann Anton mit Befund fragen.
+5. **Arbeitspakete vollständig, aber schlank briefen** — der Agent kennt das Gespräch nicht: Ziel,
+   Arbeitsdatei + Spread, Quelle/Referenz, exakte Node-Namen/Klassen, Zahlen mit Herkunft (Note-ID),
+   was NICHT angefasst werden darf, erwartetes Rückgabeformat. Antons Wortlaut bei
+   Geschmacksaussagen zitieren. **Ein Ziel pro Agentenlauf** (Messung ≠ Sweep ≠ Render-Serie);
+   Soll-Werte und Zahlen inline ins Briefing statt Notes nachladen zu lassen. Folgeaufträge in
+   derselben Session an den bereits gelaufenen Agenten per `SendMessage` — spart den Preflight.
 6. **Entscheidungen bleiben bei Anton.** Geschmack (Form, Schrift, Farbe), Geld, Hersteller-Zusagen:
    Varianten/Entwürfe einsammeln, Anton vorlegen. Subagenten entscheiden das nie.
 7. **Konsolidieren heißt prüfen:** Rückgaben nicht durchreichen. Widersprüche zwischen Agenten
@@ -56,8 +63,20 @@ vollständiger Tabelle (z.B. „diese 40 Nodes auf diese Füllfarbe“) → `aff
    Messung stammen. Bei wichtigen Behauptungen Stichprobe (eine Datei lesen, ein Render ansehen).
 8. **Session-Ende:** alle „FÜR BRAIN DB“-Punkte der Rückgaben + Antons Entscheidungen gesammelt an
    `brain-scribe` (Session-Log immer; Handoff bei offenen Punkten; Register-Update bei Entscheidungen).
+   **Inhalte als Dateien übergeben:** den fertigen Note-Text je Note als `.md` in den Scratchpad
+   schreiben und dem Scribe nur Pfad + type/topic/title/summary/tldr_next nennen — er legt sie über
+   `scripts/brain_write.py` unverändert ab (Dedup, Supersede, Secret-Check in einem Aufruf). Nicht
+   den Text im Briefing ausformulieren und vom Scribe neu schreiben lassen (gemessen 2026-09-21:
+   343 s für 2 Notes auf dem alten Weg).
 9. Kleine Aufgaben (eine Frage, ein Einzeiler, eine Datei lesen) direkt erledigen — ein Agentenstart
    kostet mehr als er spart.
+10. **Nichts ohne Auftrag starten** — auch keine vorbereitenden Hintergrund-Agenten (Varianten-Blätter,
+    Entwürfe, Messungen). Vorschlag machen, Antons Auftrag abwarten. Ein freigegebener Plan ist
+    Auftrag nur für den Schritt, über den gerade gesprochen wird.
+11. **Hängende Agenten:** Berechtigungsabfragen in Hintergrund-Agenten sind für Anton leicht zu
+    übersehen (gemessen 2026-09-21: 17 von 31 min Wartezeit). Meldet ein Lauf > 5 min nichts, Anton
+    auf eine möglicherweise offene Abfrage hinweisen. Neue Tools/Bash-Muster, die Agenten regelmäßig
+    brauchen, in `.claude/settings.json` → `permissions.allow` aufnehmen (nie `env`/`printenv`).
 10. **Release einer .af** nur auf Antons ausdrückliche Anweisung und nur nach board-weitem GRÜNEM
     Voll-Sweep. Kette: `affinity-builder` (Kopie + Snapshots reduzieren) → `keycap-qa`
     (Snapshot ≤ 1 + Sweep) → `pipeline-dev` (LFS-Commit) → `brain-scribe`. Runbook-ID
@@ -75,6 +94,7 @@ scripts/
   apply_legend_colors.py           # Legende-Farben per Gruppe (PyMuPDF overdraw)
   make_v7.py                       # v6→v7: Uppercase Modifier Labels (PyMuPDF)
   layout-mapper.py                 # VIA JSON → Layout-Daten
+  brain_write.py                   # Brain-DB-Note in EINEM Aufruf (Dedup, Supersede, Secret-Check, --dry-run)
 templates/
   GK75-German-Tigry-original.pdf   # Hersteller-Original (NICHT ÄNDERN)
   GK75-TheWell-v6.pdf              # v5 + Dolch-Cleanup + Labels + Legende-Farben

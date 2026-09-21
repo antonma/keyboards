@@ -13,7 +13,9 @@ die Datenbank und änderst keine Repo-Dateien.
 
 ## Zugriff
 
-- URL: `https://cqmioavtrvxsjtdkffja.supabase.co` — Key liegt in `$SUPABASE_KEY` (nie ausgeben).
+- URL: `https://cqmioavtrvxsjtdkffja.supabase.co` — Key liegt in `$SUPABASE_KEY`. Er IST gesetzt:
+  nicht testen, **nie** ausgeben (kein `env`, `printenv`, `set`, `echo $SUPABASE_KEY`). Scheitert
+  ein curl mit 401: genau das melden — nicht nach Credentials suchen.
 - Header immer: `-H "apikey: $SUPABASE_KEY" -H "Authorization: Bearer $SUPABASE_KEY"`
 - **Windows-Kodierung:** curl-Ausgabe NIE direkt in Python pipen (zerstört Umlaute/中文).
   Immer `-o <datei>.json` schreiben und mit `py -3` lesen (`open(f, encoding='utf-8')`),
@@ -23,18 +25,20 @@ die Datenbank und änderst keine Repo-Dateien.
 ## Rezepte
 
 ```bash
-B="https://cqmioavtrvxsjtdkffja.supabase.co"; H=(-H "apikey: $SUPABASE_KEY" -H "Authorization: Bearer $SUPABASE_KEY")
+# Jeder Aufruf ist EIN Befehl, der mit `curl` beginnt (passt auf das Allow-Muster `Bash(curl *)`).
+# Keine Variablenzuweisungen (B=…, H=(…)), kein `$(…)`, keine mehrzeiligen Blöcke — die bleiben
+# unsichtbar in einer Berechtigungsabfrage hängen (gemessen: bis 8 min pro Aufruf).
 # Offene Handoffs (View-Spalten: next_action, blocked)
-curl -s "$B/rest/v1/active_handoffs?select=id,topic,title,summary,next_action,blocked,updated_at&project=eq.keycap-shop&order=updated_at.desc&limit=50" "${H[@]}" -o hand.json
+curl -s "https://cqmioavtrvxsjtdkffja.supabase.co/rest/v1/active_handoffs?select=id,topic,title,summary,next_action,blocked,updated_at&project=eq.keycap-shop&order=updated_at.desc&limit=50" -H "apikey: $SUPABASE_KEY" -H "Authorization: Bearer $SUPABASE_KEY" -o hand.json
 # Gültiges Wissen zu einem Topic (decision | knowledge | how-to-use | preference | state)
-curl -s "$B/rest/v1/notes?select=id,type,topic,title,summary,updated_at&project=eq.keycap-shop&topic=eq.<topic>&status=eq.open&superseded_by=is.null&order=updated_at.desc" "${H[@]}" -o kb.json
+curl -s "https://cqmioavtrvxsjtdkffja.supabase.co/rest/v1/notes?select=id,type,topic,title,summary,updated_at&project=eq.keycap-shop&topic=eq.<topic>&status=eq.open&superseded_by=is.null&order=updated_at.desc" -H "apikey: $SUPABASE_KEY" -H "Authorization: Bearer $SUPABASE_KEY" -o kb.json
 # Volle Note per ID
-curl -s "$B/rest/v1/notes?select=id,type,title,content&id=eq.<uuid>" "${H[@]}" -o note.json
+curl -s "https://cqmioavtrvxsjtdkffja.supabase.co/rest/v1/notes?select=id,type,title,content&id=eq.<uuid>" -H "apikey: $SUPABASE_KEY" -H "Authorization: Bearer $SUPABASE_KEY" -o note.json
 # Hybrid-Suche (Bedeutung + Stichwort) — Standard für „was wissen wir zu X?"
-curl -s "$B/functions/v1/search-notes" -H "Authorization: Bearer $SUPABASE_KEY" -H "Content-Type: application/json" \
+curl -s "https://cqmioavtrvxsjtdkffja.supabase.co/functions/v1/search-notes" -H "Authorization: Bearer $SUPABASE_KEY" -H "Content-Type: application/json" \
   -d '{"query":"<freitext>","mode":"hybrid","count":8,"project":"keycap-shop"}' -o search.json
 # Offene Todos
-curl -s "$B/rest/v1/open_todos?select=type,title,priority&project=eq.keycap-shop" "${H[@]}" -o todos.json
+curl -s "https://cqmioavtrvxsjtdkffja.supabase.co/rest/v1/open_todos?select=type,title,priority&project=eq.keycap-shop" -H "apikey: $SUPABASE_KEY" -H "Authorization: Bearer $SUPABASE_KEY" -o todos.json
 ```
 
 ## Vorgehen
