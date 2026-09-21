@@ -58,6 +58,10 @@ vollständiger Tabelle (z.B. „diese 40 Nodes auf diese Füllfarbe“) → `aff
    `brain-scribe` (Session-Log immer; Handoff bei offenen Punkten; Register-Update bei Entscheidungen).
 9. Kleine Aufgaben (eine Frage, ein Einzeiler, eine Datei lesen) direkt erledigen — ein Agentenstart
    kostet mehr als er spart.
+10. **Release einer .af** nur auf Antons ausdrückliche Anweisung und nur nach board-weitem GRÜNEM
+    Voll-Sweep. Kette: `affinity-builder` (Kopie + Snapshots reduzieren) → `keycap-qa`
+    (Snapshot ≤ 1 + Sweep) → `pipeline-dev` (LFS-Commit) → `brain-scribe`. Runbook-ID
+    `78b7f7f7-bca0-4e12-b547-bd9bc0e10443` allen beteiligten Agenten wörtlich mitgeben.
 
 ## Repo-Struktur
 ```
@@ -96,6 +100,9 @@ inventory/                         # Keycap-Inventar
   2. Dort alle Snapshots bis auf einen reduzieren, ohne Verlauf speichern.
   3. `keycap-qa` prüft read-only: Snapshot-Anzahl ≤ 1 + Voll-Sweep GRÜN.
   4. Erst danach commit + push.
+- Handlungsanweisung für alle Agenten (design-übergreifend): Brain-DB-RUNBOOK
+  `78b7f7f7-bca0-4e12-b547-bd9bc0e10443` (topic `af-release-runbook`). Begründung: ADR
+  `c4033da7-a085-471f-ac1d-51e58218779d`.
 
 ## PDF-Keycap-Templates bearbeiten
 

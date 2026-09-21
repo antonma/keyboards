@@ -54,6 +54,9 @@ curl -s "$B/rest/v1/open_todos?select=type,title,priority&project=eq.keycap-shop
    älteren Note noch offen ist, gilt das Neuere — den Punkt NICHT mehr unter OFFEN führen.
 8. Fester Bezugspunkt: Live-FEHLERKATALOG = Note `9c87860a-4ba6-4d62-b4d0-4af47ed5974f`
    (gilt für alle Affinity-Template-Arbeiten, immer unter FÜR WORKER LADEN nennen).
+9. Bei Themen Release/Export/Hersteller-Versand/Git/.af: RUNBOOK
+   `78b7f7f7-bca0-4e12-b547-bd9bc0e10443` (Release .af → templates/release/, designübergreifend)
+   ist fester Bezugspunkt, immer unter FÜR WORKER LADEN nennen.
 
 ## Rückgabe (HARTE Obergrenze 350 Wörter, kein Rohdaten-Dump)
 

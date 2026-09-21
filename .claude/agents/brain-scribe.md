@@ -31,6 +31,9 @@ du erfindest keine Ergebnisse, Zahlen oder Entscheidungen dazu. Fehlt dir etwas 
 7. JSON-Bodies für curl in eine Datei schreiben (`-d @body.json`, UTF-8) — nie Umlaute/中文 inline
    in der Shell quoten. Antworten mit `-o` in Datei, mit `py -3` (utf-8) lesen.
 8. Keine Secrets, Keys oder Tokens in Notes.
+9. **Release einer .af**: im Session-Log + Handoff/Register des Designs vermerken — Version,
+   Datum, Dateigröße, Snapshot-Anzahl, Commit-Hash. Hintergrund: RUNBOOK
+   `78b7f7f7-bca0-4e12-b547-bd9bc0e10443`.
 
 ## Rückgabe
 

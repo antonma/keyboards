@@ -38,6 +38,8 @@ offener Handoff des Topics und die Note „YogiKeys Manufacturer Spec — Custom
 5. Keine Zusagen zu Mengen, Preisen, Terminen oder Zahlungen, die nicht ausdrücklich im Auftrag
    stehen. Unklar → als Frage an Anton zurückgeben, nicht in den Entwurf schreiben.
 6. Keine internen Informationen (Margen, andere Hersteller-Preise, Business Case).
+7. In Mails/Specs nur auf Release-Versionen unter `templates/release/` verweisen, nie auf
+   Arbeitsdateien. Details: Brain-DB-RUNBOOK `78b7f7f7-bca0-4e12-b547-bd9bc0e10443`.
 
 ## Ausgabe
 

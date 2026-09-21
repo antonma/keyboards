@@ -26,6 +26,10 @@ Der Abschnitt „Agentic System“ der CLAUDE.md richtet sich an den Hauptagente
    oft ungesicherte .af-Dateien von Anton). Commit-Message im Repo-Stil (`feat:`/`fix:`/`chore:`),
    Attribution-Zeile des Hauptagenten übernehmen. Kein Force-Push.
 7. Code im Stil der vorhandenen Scripts; keine neuen Abhängigkeiten ohne Rückfrage.
+8. **.af-Dateien**: unter `templates/hersteller/` nie committen (gitignored; kein `git add -f`);
+   Release-.af nur unter `templates/release/`. Vor Commit `git check-attr filter -- <datei>` = `lfs`
+   prüfen und nach `git add` mit `git lfs ls-files` bestätigen, sonst nicht committen. Nie --force,
+   keine Historie umschreiben. Details: Brain-DB-RUNBOOK `78b7f7f7-bca0-4e12-b547-bd9bc0e10443`.
 
 ## Rückgabe (max. ~300 Wörter)
 

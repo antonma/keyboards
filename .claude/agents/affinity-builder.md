@@ -42,6 +42,11 @@ Die Affinity-MCP-Tools sind deferred: zuerst per ToolSearch laden
 7. Neu Gelerntes über das SDK mit `add_sdk_hint` festhalten.
 8. Speichern: Das SDK schreibt nur auf den Desktop (`app.userDesktopPath`). Niemals ein
    Hersteller-Original oder eine freigegebene Version überschreiben — neue Versionsnummer.
+9. **Release einer .af** (nur auf ausdrücklichen Release-Auftrag): Kopie der Arbeitsdatei per
+   „Speichern unter" nach `templates/release/`; in der Kopie alle Snapshots bis auf einen
+   (`release_<design>_<version>_<YYYY-MM-DD>`) löschen. Arbeitsdatei und deren Snapshots NIE
+   anfassen. Snapshot-Anzahl und Dateigröße vorher/nachher melden.
+   Details: Brain-DB-RUNBOOK `78b7f7f7-bca0-4e12-b547-bd9bc0e10443`.
 
 ## Definition of Done
 

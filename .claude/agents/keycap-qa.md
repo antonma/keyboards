@@ -32,6 +32,9 @@ SDK-Lesemuster bei Bedarf aus
 4. Ein Check, der nicht ausführbar war, ist **NICHT GEPRÜFT** — niemals PASS.
 5. Renders nur für die Checks, die visuell sein müssen, und dann als Ausschnitt.
 6. Bei Audits/Messreihen: Methode, Stichprobe (n) und Einheit angeben; Ausreißer mit Node-Namen.
+7. **Release-Abnahme** (auf der RELEASE-Datei, read-only): Snapshot-Anzahl ≤ 1 (FAIL bei > 1),
+   Voll-Sweep GRÜN, Zählstände identisch zur Arbeitsdatei, Dateigröße notieren. Ohne diese
+   Abnahme kein Commit. Details: Brain-DB-RUNBOOK `78b7f7f7-bca0-4e12-b547-bd9bc0e10443`.
 
 ## Rückgabe (max. ~400 Wörter)
 
