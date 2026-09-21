@@ -14,6 +14,12 @@ __pycache__/
 *.pyc
 Info/
 
+# --- Arbeits-.af unter templates/hersteller/ nicht mehr ins Git (Variante B, 2026-09) ---
+# Grund: GitHubs 100-MB-Limit, Snapshots blaehen Affinity-Dateien stark auf.
+# Bereits getrackte .af bleiben getrackt (diese Regel untrackt nichts automatisch).
+# Meilenstein-/Hersteller-Versionen gehoeren nach templates/release/ (Git LFS, siehe .gitattributes).
+templates/hersteller/**/*.af
+
 # --- Lokal-only: ueber GitHubs 100-MB-Limit, koennen nicht gepusht werden ---
 feedback/Oni-Mask-Alpine-Images.zip
 feedback/Oni-Mask/Oni-Mask-6.zip

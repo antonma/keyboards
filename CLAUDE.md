@@ -75,6 +75,8 @@ templates/
   GK75-German-Tigry-original.pdf   # Hersteller-Original (NICHT ÄNDERN)
   GK75-TheWell-v6.pdf              # v5 + Dolch-Cleanup + Labels + Legende-Farben
   GK75-TheWell-v7.pdf              # v6 + Uppercase Modifier Labels (aktuell)
+  hersteller/                      # Arbeits-.af pro Hersteller/Design (gitignored, s.u.)
+  release/                         # Meilenstein-.af für Hersteller-Versand (Git LFS, s.u.)
 designs/the-well/
   the-well-design-document-EN.docx
   the-well-design-document-CN.docx
@@ -82,6 +84,18 @@ layouts/                           # Keyboard-Layout JSON-Daten
 via-raw/                           # VIA JSON-Rohdaten
 inventory/                         # Keycap-Inventar
 ```
+
+## Affinity-Dateien (.af) und Git
+
+- Arbeits-.af unter `templates/hersteller/` sind **gitignored** (GitHub-Limit 100 MB,
+  Snapshots blähen die Dateien stark auf). Bereits getrackte Altdateien dort bleiben
+  vorerst getrackt — bewusst nicht automatisch entfernt.
+- Release-.af nur unter `templates/release/`, versioniert über **Git LFS**.
+- Regel **max. 1 Snapshot** pro Release-Datei + Ablauf (Details: `templates/release/README.md`):
+  1. `affinity-builder` erzeugt Kopie der Arbeitsdatei nach `templates/release/`.
+  2. Dort alle Snapshots bis auf einen reduzieren, ohne Verlauf speichern.
+  3. `keycap-qa` prüft read-only: Snapshot-Anzahl ≤ 1 + Voll-Sweep GRÜN.
+  4. Erst danach commit + push.
 
 ## PDF-Keycap-Templates bearbeiten
 
@@ -291,7 +305,7 @@ Font für alle Labels: **Segoe UI Symbol** (`C:\Windows\Fonts\seguisym.ttf`)
 ## GitHub
 - Repo: antonma/keyboards (Branch: master)
 - Token: in Brain DB / Claude Memory gespeichert
-- Push nach jeder Dateiänderung
+- Push nach jeder Dateiänderung (gilt nicht für .af-Arbeitsdateien unter templates/hersteller/)
 
 ## Build-Framework (E2E Automation)
 
