@@ -85,7 +85,7 @@ vollständiger Tabelle (z.B. „diese 40 Nodes auf diese Füllfarbe“) → `aff
 ## Repo-Struktur
 ```
 docs/
-  keycap-layouts-iso-de.html       # ← KANONISCHE LABEL-REFERENZ (alle 16 Layouts)
+  archive/keycap-layouts-iso-de.html  # ARCHIV — Label-Referenz der alten PDF-Pipeline, nicht mehr maßgeblich
 scripts/
   recolor_template.py              # Füllfarben ersetzen (pikepdf, CMYK)
   cleanup_dolch_remnants.py        # Orphaned Paths entfernen (pikepdf stream excision)
@@ -107,6 +107,7 @@ designs/the-well/
 layouts/                           # Keyboard-Layout JSON-Daten
 via-raw/                           # VIA JSON-Rohdaten
 inventory/                         # Keycap-Inventar
+qc/                                # QC-Inventare je Design (Node-Namen, Legenden) — maßgeblich für Affinity-Designs
 ```
 
 ## Affinity-Dateien (.af) und Git
@@ -288,10 +289,11 @@ Nav-Spalte (rechts, x≈963–1015):
 
 ## Cherry ISO-DE Layout Konventionen
 
+> **Altbestand der GK75-PDF-Pipeline (The Well).** Für Affinity-Designs (Alpine, Hello, …) gelten das Inventar `qc/inventory_<design>_*.md` und die Decisions des Designs in der Brain DB. Bei Widerspruch gewinnen diese.
+
 ### Modifier-Labels — Symbole und Text
 
-**Kanonische Referenz: `docs/keycap-layouts-iso-de.html`** — dort sind alle Labels definiert.
-Bei Zweifel immer HTML prüfen.
+Historische Referenz: `docs/archive/keycap-layouts-iso-de.html` (nur PDF-Pipeline).
 
 | Taste     | Label  | Unicode  | Farbe    |
 |----------|--------|----------|----------|

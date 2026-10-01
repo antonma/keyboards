@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-GK75-TheWell-v6 → v7: Modifier/Nav labels uppercase (matches keycap-layouts-iso-de.html)
+GK75-TheWell-v6 → v7: Modifier/Nav labels uppercase (matches docs/archive/keycap-layouts-iso-de.html)
 
 Changes:
   Esc   → ESC    (#2A3540 on accent key)
