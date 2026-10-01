@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DELTASET Quality Check v1</title>
+<style>
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 297mm;
+    height: 210mm;
+    font-family: "Noto Sans", "Segoe UI", Arial, "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+    color: #111;
+  }
+  body {
+    padding: 8mm;
+  }
+  .sheet {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---- Header ---- */
+  .header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 3px solid #111;
+    padding-bottom: 2mm;
+    margin-bottom: 2.5mm;
+  }
+  .header .title-en {
+    font-size: 22pt;
+    font-weight: 800;
+    margin: 0;
+  }
+  .header .title-cn {
+    font-size: 16pt;
+    font-weight: 700;
+    margin-left: 3mm;
+  }
+  .header .fields {
+    font-size: 13pt;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .header .fields span.blank {
+    display: inline-block;
+    min-width: 22mm;
+    border-bottom: 1.5px solid #111;
+    margin: 0 3mm 0 1mm;
+  }
+
+  /* ---- Blocks ---- */
+  .block {
+    margin-bottom: 1.8mm;
+  }
+  .block-title {
+    display: flex;
+    align-items: baseline;
+    gap: 3mm;
+    background: #111;
+    color: #fff;
+    padding: 1mm 3mm;
+    border-radius: 2mm;
+    margin-bottom: 1.3mm;
+  }
+  .block-title .en {
+    font-size: 14pt;
+    font-weight: 800;
+    letter-spacing: 0.3pt;
+  }
+  .block-title .cn {
+    font-size: 12pt;
+    font-weight: 700;
+  }
+  .block-title .sample {
+    margin-left: auto;
+    font-size: 11pt;
+    font-weight: 500;
+    opacity: 0.9;
+  }
+
+  .rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2mm;
+  }
+
+  .row {
+    display: flex;
+    align-items: stretch;
+    gap: 3mm;
+    border: 1.5px solid #ccc;
+    border-radius: 2mm;
+    padding: 1.3mm 3mm;
+  }
+  .row .num {
+    flex: 0 0 8mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18pt;
+    font-weight: 800;
+    color: #444;
+  }
+  .row .text {
+    flex: 0 0 62mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5mm;
+  }
+  .row .text .en {
+    font-size: 14pt;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+  .row .text .cn {
+    font-size: 12pt;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .row .text .hint {
+    font-size: 9pt;
+    color: #666;
+    font-weight: 400;
+    margin-top: 0.5mm;
+  }
+
+  .imgpair {
+    flex: 1 1 auto;
+    display: flex;
+    gap: 3mm;
+    align-items: center;
+  }
+  .imgbox-wrap {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5mm;
+  }
+  .imgbox {
+    width: 100%;
+    max-width: 60mm;
+    height: 21mm;
+    min-width: 45mm;
+    border-radius: 1.5mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .imgbox.good {
+    border: 2.5px solid #1a8a3c;
+  }
+  .imgbox.bad {
+    border: 2.5px solid #c0182a;
+  }
+  .imgbox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .placeholder {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg, #e8e8e8, #e8e8e8 6px, #f4f4f4 6px, #f4f4f4 12px);
+    border: 1.5px dashed #999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #555;
+    font-size: 8pt;
+    font-family: "Consolas", monospace;
+    padding: 1mm;
+  }
+  .placeholder .fname {
+    font-weight: 700;
+    font-size: 8.5pt;
+    color: #333;
+  }
+  .placeholder .path {
+    font-size: 6.5pt;
+    color: #888;
+    margin-top: 0.8mm;
+    word-break: break-all;
+  }
+  .imglabel {
+    font-size: 8pt;
+    font-weight: 700;
+  }
+  .imglabel.good { color: #1a8a3c; }
+  .imglabel.bad { color: #c0182a; }
+
+  .checkbox-col {
+    flex: 0 0 20mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2mm;
+  }
+  .cb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5mm;
+  }
+  .cb .box {
+    width: 8mm;
+    height: 8mm;
+    border: 2px solid #111;
+    border-radius: 1mm;
+  }
+  .cb .lbl {
+    font-size: 9pt;
+    font-weight: 700;
+  }
+  .cb.ok .lbl { color: #1a8a3c; }
+  .cb.nok .lbl { color: #c0182a; }
+
+  /* ---- Footer ---- */
+  .footer {
+    margin-top: auto;
+    border-top: 3px solid #111;
+    padding-top: 1.8mm;
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+  .footer .icon {
+    font-size: 20pt;
+    font-weight: 900;
+    color: #c0182a;
+    flex: 0 0 auto;
+  }
+  .footer .text {
+    font-size: 12pt;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .footer .text .cn {
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <span class="title-en">DELTASET Quality Check</span>
+      <span class="title-cn">质量检查</span>
+    </div>
+    <div class="fields">
+      Set: <span class="blank"></span>
+      Date: <span class="blank"></span>
+      Worker: <span class="blank"></span>
+    </div>
+  </div>
+
+  <!-- Block A -->
+  <div class="block">
+    <div class="block-title">
+      <span class="en">A) DURING PRODUCTION</span>
+      <span class="cn">生产中</span>
+      <span class="sample">sample 5 caps per color | 每种颜色抽查5个</span>
+    </div>
+    <div class="rows">
+
+      <!-- Row 1 -->
+      <div class="row">
+        <div class="num">1</div>
+        <div class="text">
+          <div class="en">Legend centered?</div>
+          <div class="cn">字符居中?</div>
+        </div>
+        <div class="imgpair">
+          <div class="imgbox-wrap">
+            <div class="imgbox good">
+              <img src="img/good_alpha.jpg" alt="good_alpha.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="placeholder" style="display:none;">
+                <div class="fname">good_alpha.jpg</div>
+                <div class="path">qc/checklist/img/good_alpha.jpg</div>
+              </div>
+            </div>
+            <span class="imglabel good">&#10003; good</span>
+          </div>
+          <div class="imgbox-wrap">
+            <div class="imgbox bad">
+              <img src="img/bad_shift_right.jpg" alt="bad_shift_right.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="placeholder" style="display:none;">
+                <div class="fname">bad_shift_right.jpg</div>
+                <div class="path">qc/checklist/img/bad_shift_right.jpg</div>
+              </div>
+            </div>
+            <span class="imglabel bad">&#10007; bad</span>
+          </div>
+        </div>
+        <div class="checkbox-col">
+          <div class="cb ok"><div class="box"></div><div class="lbl">OK</div></div>
+          <div class="cb nok"><div class="box"></div><div class="lbl">NOK</div></div>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="row">
+        <div class="num">2</div>
+        <div class="text">
+          <div class="en">Legend sharp &amp; complete, no marks?</div>
+          <div class="cn">字符清晰完整, 无杂点?</div>
+        </div>
+        <div class="imgpair">
+          <div class="imgbox-wrap">
+            <div class="imgbox good">
+              <img src="img/good_alpha_sharp.jpg" alt="good_alpha_sharp.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="placeholder" style="display:none;">
+                <div class="fname">good_alpha_sharp.jpg</div>
+                <div class="path">qc/checklist/img/good_alpha_sharp.jpg</div>
+              </div>
+            </div>
+            <span class="imglabel good">&#10003; good</span>
+          </div>
+          <div class="imgbox-wrap">
+            <div class="imgbox bad">
+              <img src="img/bad_stray_marks.jpg" alt="bad_stray_marks.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="placeholder" style="display:none;">
+                <div class="fname">bad_stray_marks.jpg</div>
+                <div class="path">qc/checklist/img/bad_stray_marks.jpg</div>
+              </div>
+            </div>
+            <span class="imglabel bad">&#10007; bad</span>
+          </div>
+        </div>
+        <div class="checkbox-col">
+          <div class="cb ok"><div class="box"></div><div class="lbl">OK</div></div>
+          <div class="cb nok"><div class="box"></div><div class="lbl">NOK</div></div>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="row">
+        <div class="num">3</div>
+        <div class="text">
+          <div class="en">Color same as reference cap?</div>
+          <div class="cn">颜色与样品一致?</div>
+        </div>
+        <div class="imgpair">
+          <div class="imgbox-wrap">
+            <div class="imgbox good">
+              <img src="img/good_color_match.jpg" alt="good_color_match.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="placeholder" style="display:none;">
+                <div class="fname">good_color_match.jpg</div>
+                <div class="path">qc/checklist/img/good_color_match.jpg</div>
+              </div>
+            </div>
+            <span class="imglabel good">&#10003; good</span>
+          </div>
+          <div class="imgbox-wrap">
+            <div class="imgbox bad">
+              <img src="img/bad_color_mismatch.jpg" alt="bad_color_mismatch.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="placeholder" style="display:none;">
+                <div class="fname">bad_color_mismatch.jpg</div>
+                <div class="path">qc/checklist/img/bad_color_mismatch.jpg</div>
+              </div>
+            </div>
+            <span class="imglabel bad">&#10007; bad</span>
+          </div>
+        </div>
+        <div class="checkbox-col">
+          <div class="cb ok"><div class="box"></div><div class="lbl">OK</div></div>
+          <div class="cb nok"><div class="box"></div><div class="lbl">NOK</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Block B -->
+  <div class="block">
+    <div class="block-title">
+      <span class="en">B) BEFORE PACKING</span>
+      <span class="cn">包装前</span>
+      <span class="sample">every set | 每套</span>
+    </div>
+    <div class="rows">
+
+      <!-- Row 4 -->
+      <div class="row">
+        <div class="num">4</div>
+        <div class="text">
+          <div class="en">All caps present, right position?</div>
+          <div class="cn">键帽齐全, 位置正确?</div>
+          <div class="hint">see layout sheet | 参见键位图</div>
+        </div>
+        <div class="imgpair">
+          <div class="imgbox-wrap">
+            <div class="imgbox good">
+              <img src="img/good_tray_full.jpg" alt="good_tray_full.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="placeholder" style="display:none;">
+                <div class="fname">good_tray_full.jpg</div>
+                <div class="path">qc/checklist/img/good_tray_full.jpg</div>
+              </div>
+            </div>
+            <span class="imglabel good">&#10003; good</span>
+          </div>
+          <div class="imgbox-wrap">
+            <div class="imgbox bad">
+              <img src="img/bad_tray_gap.jpg" alt="bad_tray_gap.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="placeholder" style="display:none;">
+                <div class="fname">bad_tray_gap.jpg</div>
+                <div class="path">qc/checklist/img/bad_tray_gap.jpg</div>
+              </div>
+            </div>
+            <span class="imglabel bad">&#10007; bad</span>
+          </div>
+        </div>
+        <div class="checkbox-col">
+          <div class="cb ok"><div class="box"></div><div class="lbl">OK</div></div>
+          <div class="cb nok"><div class="box"></div><div class="lbl">NOK</div></div>
+        </div>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="row">
+        <div class="num">5</div>
+        <div class="text">
+          <div class="en">Same profile on every key?</div>
+          <div class="cn">每个键高度一致?</div>
+        </div>
+        <div class="imgpair">
+          <div class="imgbox-wrap">
+            <div class="imgbox good">
+              <img src="img/good_iso_enter.jpg" alt="good_iso_enter.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="placeholder" style="display:none;">
+                <div class="fname">good_iso_enter.jpg</div>
+                <div class="path">qc/checklist/img/good_iso_enter.jpg</div>
+              </div>
+            </div>
+            <span class="imglabel good">&#10003; good</span>
+          </div>
+          <div class="imgbox-wrap">
+            <div class="imgbox bad">
+              <img src="img/bad_iso_enter_profile.jpg" alt="bad_iso_enter_profile.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="placeholder" style="display:none;">
+                <div class="fname">bad_iso_enter_profile.jpg</div>
+                <div class="path">qc/checklist/img/bad_iso_enter_profile.jpg</div>
+              </div>
+            </div>
+            <span class="imglabel bad">&#10007; bad</span>
+          </div>
+        </div>
+        <div class="checkbox-col">
+          <div class="cb ok"><div class="box"></div><div class="lbl">OK</div></div>
+          <div class="cb nok"><div class="box"></div><div class="lbl">NOK</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="icon">&#10007;</div>
+    <div class="text">
+      If &#10007;: put cap aside, take photo, send to Tina.<br>
+      <span class="cn">发现问题: 单独放置, 拍照发给Tina.</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

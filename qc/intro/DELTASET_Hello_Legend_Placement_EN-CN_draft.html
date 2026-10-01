@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DELTASET Hello — Legend Placement Guide (draft)</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    font-family: "Segoe UI", Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+    color: #1a1a1a;
+    font-size: 9.6px;
+    line-height: 1.42;
+  }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 14mm 16mm 10mm 16mm;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .head { display: flex; justify-content: space-between; align-items: flex-start; }
+  .head .brand { font-size: 25px; font-weight: 800; letter-spacing: 0.5px; }
+  .head .meta { text-align: right; font-size: 9px; color: #6b6b6b; line-height: 1.5; }
+  .titleline { margin-top: 5px; font-size: 11.5px; }
+  .titleline b { font-weight: 700; }
+  .rule { border: none; border-top: 1px solid #d8d8d8; margin: 7px 0 8px 0; }
+
+  h2.section { color: #C8102E; font-size: 12.5px; font-weight: 700; margin: 0 0 5px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
+  .cols p { margin: 0 0 6px 0; }
+
+  .callout {
+    border: 1.3px solid #C8102E; background: #FBEDEF; border-radius: 3px;
+    padding: 8px 11px; margin: 4px 0 10px 0;
+  }
+  .callout .cols p { margin: 0 0 4px 0; }
+  .callout b { color: #C8102E; }
+
+  table.spec { width: 100%; border-collapse: collapse; margin: 5px 0 6px 0; font-size: 8.8px; }
+  table.spec th { background: #f2f2f2; text-align: left; font-weight: 700; padding: 3.5px 6px; border-bottom: 1.5px solid #999; }
+  table.spec td { padding: 3px 6px; border-bottom: 0.6px solid #e2e2e2; vertical-align: top; }
+  table.spec tr:nth-child(even) td { background: #fafafa; }
+  .num { text-align: right; white-space: nowrap; }
+
+  .noteBox {
+    font-size: 8.5px; color: #444; background: #f4f4f4;
+    border-left: 3px solid #999; padding: 5px 8px; margin: 4px 0 8px 0;
+  }
+  .noteBox b { color: #222; }
+
+  .tolerance {
+    font-size: 8.8px; font-weight: 700; border: 1px dashed #999;
+    padding: 3.5px 8px; display: inline-block; margin: 3px 0; color: #444;
+  }
+
+  .diagram-main { display: flex; justify-content: center; align-items: flex-start; gap: 14px; margin: 4px 0 4px 0; }
+  .diagram-main .box { text-align: center; }
+  .diagram-main svg { border: 1px solid #ddd; background: #fff; display:block; }
+  .cap { font-size: 7.6px; color: #777; margin-top: 3px; max-width: 82mm; }
+
+  .diagram-row { text-align: center; margin: 2px 0 6px 0; }
+  .diagram-row svg { border: 1px solid #ddd; background: #fff; }
+  .row-cap { font-size: 7.6px; color: #999; margin-top: 2px; }
+
+  .foot {
+    margin-top: auto; border-top: 1px solid #d8d8d8; padding-top: 4px;
+    display: flex; justify-content: space-between; font-size: 8px; color: #7a7a7a;
+  }
+  .clusterKeys { font-size: 8.6px; }
+  .legendline { font-size: 8px; color:#666; margin: 2px 0 0 0; }
+  .swatch { display:inline-block; width:8px; height:8px; margin-right:3px; vertical-align:middle; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- PAGE 1 — Purpose + Anchor rule + Board overview -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="head">
+    <div class="brand">DELTASET</div>
+    <div class="meta">字符定位与印刷转移指南 draft<br>ISO-DE + ANSI · MOA · solid</div>
+  </div>
+  <div class="titleline">&ldquo;Hello&rdquo; Keycap Set &nbsp;&middot;&nbsp; Legend Placement Guide &nbsp;&middot;&nbsp; <b>draft</b></div>
+  <hr class="rule">
+
+  <div class="cols">
+    <div>
+      <p><b>Purpose.</b> This guide gives the artwork designer who builds the print file the exact
+      position of every legend and icon on every keycap, grouped into four clusters. These
+      positions are <b>binding</b> for the print file &mdash; please build to them.</p>
+      <p>If anything in this guide looks like it will not work with your print process, please ask
+      <b>before</b> producing the print file. Do not silently change a position.</p>
+    </div>
+    <div>
+      <p><b>用途。</b>本指南为制作印刷文件的设计师提供每个键帽上每个字符与图标的准确位置，
+      分为四个分组。文件中的这些位置是<b>约束性的</b>——请按此制作。</p>
+      <p>如果本指南中的任何内容与你们的印刷流程不符，请在制作印刷文件<b>之前</b>提出问题。
+      请勿自行改动位置。</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h2 class="section" style="margin-bottom:4px;">Anchor rule — please read this first / 定位基准 —— 请先读这一段</h2>
+    <div class="cols">
+      <div>
+        <p>The anchor is a <b>reference line</b> &mdash; the top of the character block (cap-height
+        line) or the bottom (baseline) &mdash; measured from the printable face edge. It is
+        <b>not</b> the visible outline of each individual glyph.</p>
+        <p>Characters like a minus sign, an underscore, &ldquo;&sup2;&rdquo;/&ldquo;&sup3;&rdquo;,
+        a tilde, or an umlaut naturally have a different ink outline than a letter like
+        &ldquo;M&rdquo; &mdash; they sit correctly on the reference line even though their outline
+        looks shorter, taller, or shifted. That is normal font behaviour, not a placement error.</p>
+        <p><b>Please align every legend and icon to the offset numbers in the tables below, not to
+        how the individual glyph outline &ldquo;looks&rdquo; centred.</b></p>
+      </div>
+      <div>
+        <p>定位基准是一条<b>参考线</b>——字符块的顶部（字高基准线）或底部（基线）——
+        从键帽可印刷表面边缘量起。<b>不是</b>每个字符本身的可见轮廓。</p>
+        <p>减号、下划线、上标&ldquo;&sup2;&rdquo;/&ldquo;&sup3;&rdquo;、波浪号或变音符号的
+        墨迹轮廓自然会和字母&ldquo;M&rdquo;不同——即使轮廓看起来更短、更高或有偏移，
+        它们在基准线上的位置仍然是正确的。这是字体本身的正常表现，不是定位错误。</p>
+        <p><b>请按下方表格中的边距数值对齐每个字符与图标，不要按单个字符轮廓&ldquo;看起来
+        居中&rdquo;去调整。</b></p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section" style="font-size:11px;">Board overview &nbsp;/&nbsp; 整板参考图</h2>
+  <div style="text-align:center; margin-top:2px;">
+    <img src="img/hello_board_preview.png" style="width:150mm;border:1px solid #ddd;">
+    <div class="row-cap">Concept render — for orientation only, not a colour or material reference. Cluster positions are on the following pages.<br>
+    仅供方位参考，非颜色或材质基准。各分组的具体位置见后续页面。</div>
+  </div>
+
+  <div class="foot">
+    <span>DELTASET &middot; premium ISO-DE keycaps &middot; Hello &middot; Legend Placement Guide (draft)</span>
+    <span>Page 1</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 — Cluster 1: Main legends -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="head">
+    <div class="brand">DELTASET</div>
+    <div class="meta">字符定位与印刷转移指南 draft<br>ISO-DE + ANSI · MOA · solid</div>
+  </div>
+  <div class="titleline">&ldquo;Hello&rdquo; Keycap Set &nbsp;&middot;&nbsp; Legend Placement Guide &nbsp;&middot;&nbsp; <b>draft</b></div>
+  <hr class="rule">
+
+  <h2 class="section">1 Main legends &nbsp;/&nbsp; 1 主字符</h2>
+  <div class="cols">
+    <div class="clusterKeys">
+      <p><b>Keys:</b> letters, umlauts (Ä Ö Ü), digits row, numpad digits, ß, punctuation/special
+      characters (# ^ &acute; &lt; &minus; ; : +), F1&ndash;F12, Esc.</p>
+    </div>
+    <div class="clusterKeys">
+      <p><b>涉及按键：</b>字母、变音字母（Ä Ö Ü）、数字排、小键盘数字、ß、标点/特殊符号
+      （# ^ &acute; &lt; &minus; ; : +）、F1&ndash;F12、Esc。</p>
+    </div>
+  </div>
+
+  <div class="diagram-main">
+    <div class="box">
+      <svg viewBox="0 0 242 241" width="221" height="220">
+        <image href="img/hello_c1_key_lines.png" x="0" y="0" width="242" height="241"/>
+        <rect x="13" y="13" width="216" height="215" fill="none" stroke="#00A651" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="23" y1="13" x2="23" y2="70.4" stroke="#C8102E" stroke-width="1.4"/>
+        <line x1="18" y1="13" x2="28" y2="13" stroke="#C8102E" stroke-width="1.4"/>
+        <line x1="18" y1="70.4" x2="28" y2="70.4" stroke="#C8102E" stroke-width="1.4"/>
+        <text x="30" y="45" font-size="11" fill="#C8102E" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">4.86</text>
+        <line x1="175" y1="70.4" x2="175" y2="118.9" stroke="#0060B0" stroke-width="1.4"/>
+        <line x1="170" y1="70.4" x2="180" y2="70.4" stroke="#0060B0" stroke-width="1.4"/>
+        <line x1="170" y1="118.9" x2="180" y2="118.9" stroke="#0060B0" stroke-width="1.4"/>
+        <text x="183" y="98" font-size="10" fill="#0060B0" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">h 4.11</text>
+        <line x1="121" y1="0" x2="121" y2="241" stroke="#999" stroke-width="0.7" stroke-dasharray="3,3"/>
+      </svg>
+      <div class="cap">Cluster 1 &mdash; letter, top-center anchor (top offset 4.86&nbsp;mm,
+      height 4.11&nbsp;mm). Green dashed line = printable face edge (reference for all offsets).<br>
+      字母，顶部居中定位（上边距4.86&nbsp;mm，字高4.11&nbsp;mm）。绿色虚线=可印刷表面边缘
+      （所有边距的基准）。</div>
+    </div>
+  </div>
+  <div class="diagram-row">
+    <svg viewBox="0 0 914 241" width="170mm" height="44.8mm">
+      <image href="img/hello_c1_row_lines.png" x="0" y="0" width="914" height="241"/>
+    </svg>
+    <div class="row-cap">Row context K &nbsp;L &nbsp;Ö &nbsp;Ä &mdash; same top-center anchor across the row, umlaut dots sit slightly higher (taller legend box).<br>
+    同排 K、L、Ö、Ä 参考图——全排均为顶部居中定位，变音字母因上方两点而字高略高。</div>
+  </div>
+
+  <table class="spec">
+    <tr><th>Sub-class / 子类</th><th>Anchor / 定位基准</th><th class="num">Top offset<br>上边距</th><th class="num">Left offset<br>左边距</th><th class="num">Height<br>字高</th></tr>
+    <tr>
+      <td>Letters, umlauts, numpad digits<br>字母、变音字母、小键盘数字</td>
+      <td>Top-center (top edge + horizontal center)<br>顶部居中（上边缘+水平居中）</td>
+      <td class="num">4.86&nbsp;mm</td><td class="num">&mdash;</td><td class="num">4.11&nbsp;mm (median)</td>
+    </tr>
+    <tr>
+      <td>Number row + punctuation needing room for a sub-character<br>数字排+需为上档符预留空间的标点</td>
+      <td>Top-left (top edge + left edge)<br>顶部左对齐（上边缘+左边缘）</td>
+      <td class="num">4.86&nbsp;mm</td><td class="num">5.29&nbsp;mm</td><td class="num">varies by glyph<br>随字符而异</td>
+    </tr>
+    <tr>
+      <td>F1&ndash;F12 (word legend)<br>F1&ndash;F12（字词标签）</td>
+      <td>Top-center<br>顶部居中</td>
+      <td class="num">4.56&nbsp;mm</td><td class="num">&mdash;</td><td class="num">8.81&nbsp;mm</td>
+    </tr>
+    <tr>
+      <td>Esc (own shape)<br>Esc（独立形态）</td>
+      <td>Top-center<br>顶部居中</td>
+      <td class="num">4.92&nbsp;mm</td><td class="num">&mdash;</td><td class="num">8.10&nbsp;mm</td>
+    </tr>
+  </table>
+  <div class="noteBox"><b>Typographic note / 排版说明：</b> a minus sign, colon, underscore,
+  umlaut or superscript character has a different ink outline than a letter &mdash; shorter,
+  taller, or placed higher. These characters still sit correctly once aligned to the offsets
+  above; please do not re-centre them by eye.
+  &nbsp;/&nbsp; 减号、冒号、下划线、变音符号或上标字符的墨迹轮廓与字母不同——可能更短、
+  更高或位置更靠上。只要按上述边距对齐，这些字符的位置就是正确的；请勿凭肉眼重新居中。</div>
+
+  <div class="tolerance">Tolerance / 公差: &plusmn; ___ mm &nbsp;(Anton to confirm / 待安东确认)</div>
+
+  <div class="foot">
+    <span>DELTASET &middot; premium ISO-DE keycaps &middot; Hello &middot; Legend Placement Guide (draft)</span>
+    <span>Page 2</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 3 — Cluster 2: Shift & AltGr legends -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="head">
+    <div class="brand">DELTASET</div>
+    <div class="meta">字符定位与印刷转移指南 draft<br>ISO-DE + ANSI · MOA · solid</div>
+  </div>
+  <div class="titleline">&ldquo;Hello&rdquo; Keycap Set &nbsp;&middot;&nbsp; Legend Placement Guide &nbsp;&middot;&nbsp; <b>draft</b></div>
+  <hr class="rule">
+
+  <h2 class="section">2 Shift &amp; AltGr legends &nbsp;/&nbsp; 2 上档符与 AltGr 符</h2>
+  <div class="cols">
+    <div class="clusterKeys">
+      <p><b>Keys:</b> every key with a second (Shift) or third (AltGr) character &mdash; number
+      row, ß, and the punctuation keys (# ^ &acute; &lt; &minus; ; : +).</p>
+    </div>
+    <div class="clusterKeys">
+      <p><b>涉及按键：</b>所有带有第二档（Shift）或第三档（AltGr）字符的按键——数字排、ß、
+      以及标点按键（# ^ &acute; &lt; &minus; ; : +）。</p>
+    </div>
+  </div>
+
+  <div class="diagram-main">
+    <div class="box">
+      <svg viewBox="0 0 242 242" width="221" height="221">
+        <image href="img/hello_c2_key_lines.png" x="0" y="0" width="242" height="242"/>
+        <rect x="13" y="13" width="216" height="216" fill="none" stroke="#00A651" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="219" y1="13" x2="219" y2="70.4" stroke="#C8102E" stroke-width="1.3"/>
+        <line x1="214" y1="13" x2="224" y2="13" stroke="#C8102E" stroke-width="1.3"/>
+        <line x1="214" y1="70.4" x2="224" y2="70.4" stroke="#C8102E" stroke-width="1.3"/>
+        <text x="150" y="10" font-size="9" fill="#C8102E" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">top 4.86 (Shift)</text>
+        <line x1="195" y1="70.4" x2="195" y2="106.1" stroke="#0060B0" stroke-width="1.3"/>
+        <line x1="190" y1="70.4" x2="200" y2="70.4" stroke="#0060B0" stroke-width="1.3"/>
+        <line x1="190" y1="106.1" x2="200" y2="106.1" stroke="#0060B0" stroke-width="1.3"/>
+        <text x="140" y="90" font-size="9" fill="#0060B0" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">h 3.02</text>
+        <line x1="219" y1="167.7" x2="219" y2="229" stroke="#8A2BE2" stroke-width="1.3"/>
+        <line x1="214" y1="167.7" x2="224" y2="167.7" stroke="#8A2BE2" stroke-width="1.3"/>
+        <line x1="214" y1="229" x2="224" y2="229" stroke="#8A2BE2" stroke-width="1.3"/>
+        <text x="145" y="233" font-size="9" fill="#8A2BE2" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">bottom 5.19 (AltGr)</text>
+        <line x1="195" y1="128.6" x2="195" y2="167.7" stroke="#E07A00" stroke-width="1.3"/>
+        <line x1="190" y1="128.6" x2="200" y2="128.6" stroke="#E07A00" stroke-width="1.3"/>
+        <line x1="190" y1="167.7" x2="200" y2="167.7" stroke="#E07A00" stroke-width="1.3"/>
+        <text x="140" y="150" font-size="9" fill="#E07A00" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">h 3.31</text>
+        <line x1="229" y1="20" x2="166.5" y2="20" stroke="#00838F" stroke-width="1.2"/>
+        <line x1="229" y1="16" x2="229" y2="24" stroke="#00838F" stroke-width="1.2"/>
+        <line x1="166.5" y1="16" x2="166.5" y2="24" stroke="#00838F" stroke-width="1.2"/>
+        <text x="150" y="32" font-size="8.5" fill="#00838F" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">right 5.29</text>
+      </svg>
+      <div class="cap">Cluster 2 &mdash; &ldquo;7&rdquo; key: main &ldquo;7&rdquo;, Shift-sub
+      &ldquo;/&rdquo; top-right, AltGr &ldquo;{&rdquo; bottom-right. Green dashed = face edge.<br>
+      &ldquo;7&rdquo;键：主字符&ldquo;7&rdquo;、Shift上档符&ldquo;/&rdquo;（右上）、
+      AltGr符&ldquo;{&rdquo;（右下）。绿色虚线=键帽表面边缘。</div>
+    </div>
+  </div>
+  <div class="diagram-row">
+    <svg viewBox="0 0 1138 242" width="170mm" height="36.2mm">
+      <image href="img/hello_c2_row_lines.png" x="0" y="0" width="1138" height="242"/>
+    </svg>
+    <div class="row-cap">Row context, number row 1&ndash;5 &mdash; same Shift-sub / AltGr anchor pattern across the row.<br>
+    数字排1&ndash;5参考图——同排均采用相同的Shift上档符/AltGr符定位方式。</div>
+  </div>
+
+  <table class="spec">
+    <tr><th>Legend / 字符</th><th>Anchor / 定位基准</th><th class="num">Top offset<br>上边距</th><th class="num">Bottom offset<br>下边距</th><th class="num">Right offset<br>右边距</th><th class="num">Height<br>字高</th></tr>
+    <tr>
+      <td>Shift-sub<br>Shift 上档符</td>
+      <td>Top-right (top edge + right edge)<br>右上（上边缘+右边缘）</td>
+      <td class="num">4.86&nbsp;mm</td><td class="num">&mdash;</td><td class="num">5.29&nbsp;mm</td>
+      <td class="num">3.02&nbsp;mm (median)</td>
+    </tr>
+    <tr>
+      <td>AltGr<br>AltGr 符</td>
+      <td>Bottom-right (bottom edge + right edge), sits directly below the Shift-sub<br>
+      右下（下边缘+右边缘），位于 Shift 上档符正下方</td>
+      <td class="num">&mdash;</td><td class="num">5.19&nbsp;mm</td><td class="num">5.29&nbsp;mm</td>
+      <td class="num">3.31&nbsp;mm (median)</td>
+    </tr>
+  </table>
+  <div class="noteBox"><b>Typographic note / 排版说明：</b> superscript characters
+  (&ldquo;&sup2;&rdquo;, &ldquo;&sup3;&rdquo;) and the &ldquo;=&rdquo; AltGr sit higher and
+  shorter than a full-height character &mdash; correct once aligned to the bottom/right offsets
+  above. A minus sign as a sub-character is a short flat stroke &mdash; also normal on the same
+  anchor line.
+  &nbsp;/&nbsp; 上标字符（&ldquo;&sup2;&rdquo;、&ldquo;&sup3;&rdquo;）以及&ldquo;=&rdquo;的
+  AltGr 字符比全高字符更高更短——只要按上方下边距/右边距对齐即为正确。减号作为上档符时是一条
+  短的水平细线——同样在同一基准线上，属于正常情况。</div>
+
+  <div class="tolerance">Tolerance / 公差: &plusmn; ___ mm &nbsp;(Anton to confirm / 待安东确认)</div>
+
+  <div class="foot">
+    <span>DELTASET &middot; premium ISO-DE keycaps &middot; Hello &middot; Legend Placement Guide (draft)</span>
+    <span>Page 3</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 4 — Cluster 3: Icons -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="head">
+    <div class="brand">DELTASET</div>
+    <div class="meta">字符定位与印刷转移指南 draft<br>ISO-DE + ANSI · MOA · solid</div>
+  </div>
+  <div class="titleline">&ldquo;Hello&rdquo; Keycap Set &nbsp;&middot;&nbsp; Legend Placement Guide &nbsp;&middot;&nbsp; <b>draft</b></div>
+  <hr class="rule">
+
+  <h2 class="section">3 Icons &nbsp;/&nbsp; 3 图标</h2>
+  <div class="cols">
+    <div class="clusterKeys">
+      <p><b>Keys:</b> modifiers (Ctrl, Alt, AltGr, Win, Menu, Fn, all Shift widths, Caps Lock),
+      navigation cluster (Pos1, Ende, Bild&uarr;, Bild&darr;, Einf, Entf, Num Lock, Pause, Rollen,
+      Druck), arrow keys, Tab, Backspace, Enter (ISO) and Numpad Enter.</p>
+    </div>
+    <div class="clusterKeys">
+      <p><b>涉及按键：</b>功能修饰键（Ctrl、Alt、AltGr、Win、Menu、Fn、所有 Shift 宽度、Caps
+      Lock）、导航区（Pos1、Ende、Bild&uarr;、Bild&darr;、Einf、Entf、Num Lock、Pause、Rollen、
+      Druck）、方向键、Tab、Backspace、回车（ISO）及小键盘回车。</p>
+    </div>
+  </div>
+
+  <div class="diagram-main">
+    <div class="box">
+      <svg viewBox="0 0 242 242" width="221" height="221">
+        <image href="img/hello_c3_key_lines.png" x="0" y="0" width="242" height="242"/>
+        <rect x="13" y="13" width="216" height="216" fill="none" stroke="#00A651" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="23" y1="13" x2="23" y2="66.9" stroke="#C8102E" stroke-width="1.4"/>
+        <line x1="18" y1="13" x2="28" y2="13" stroke="#C8102E" stroke-width="1.4"/>
+        <line x1="18" y1="66.9" x2="28" y2="66.9" stroke="#C8102E" stroke-width="1.4"/>
+        <text x="30" y="43" font-size="11" fill="#C8102E" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">4.56</text>
+        <line x1="195" y1="66.9" x2="195" y2="170.9" stroke="#0060B0" stroke-width="1.4"/>
+        <line x1="190" y1="66.9" x2="200" y2="66.9" stroke="#0060B0" stroke-width="1.4"/>
+        <line x1="190" y1="170.9" x2="200" y2="170.9" stroke="#0060B0" stroke-width="1.4"/>
+        <text x="180" y="122" font-size="10" fill="#0060B0" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">h 8.81</text>
+        <line x1="121" y1="0" x2="121" y2="242" stroke="#999" stroke-width="0.7" stroke-dasharray="3,3"/>
+      </svg>
+      <div class="cap">Cluster 3 &mdash; arrow-up icon, top-center anchor (top offset 4.56&nbsp;mm,
+      height 8.81&nbsp;mm). Same rule for every icon in this cluster regardless of key width.<br>
+      向上箭头图标，顶部居中定位（上边距4.56&nbsp;mm，图标高8.81&nbsp;mm）。本分组所有图标均按此规则，
+      与按键宽度无关。</div>
+    </div>
+  </div>
+  <div class="diagram-row">
+    <svg viewBox="0 0 2045 242" width="170mm" height="20.1mm">
+      <image href="img/hello_c3_row_lines.png" x="0" y="0" width="2045" height="242"/>
+    </svg>
+    <div class="row-cap">Row context: Shift-L, Backspace/Pos1, Entf, arrow-up &mdash; icon stays centred and at the same top offset across all key widths.<br>
+    左Shift、Backspace/Pos1、Entf、方向键上 参考图——无论按键宽度如何，图标均保持居中且上边距一致。</div>
+  </div>
+
+  <table class="spec">
+    <tr><th>Anchor / 定位基准</th><th class="num">Top offset<br>上边距</th><th class="num">Height<br>图标高</th><th class="num">Side margin (1U)<br>侧边距（1U）</th></tr>
+    <tr>
+      <td>Top-center, centred on the visible cap face regardless of key width<br>
+      顶部居中，无论按键宽度如何均在可见键帽表面上居中</td>
+      <td class="num">4.56&nbsp;mm</td>
+      <td class="num">8.81&nbsp;mm</td>
+      <td class="num">&asymp;4.73&nbsp;mm</td>
+    </tr>
+  </table>
+  <div class="noteBox"><b>Shape-driven exceptions / 因键帽形状产生的例外：</b> ISO Enter
+  (L-shaped, 2 rows) has a top offset of 5.17&nbsp;mm and Numpad Enter (2U-tall ring) has a top
+  offset of 14.15&nbsp;mm &mdash; both reflect the taller/irregular cap shape, not a different
+  rule. The icon is still centred and uses the same 8.81&nbsp;mm height.
+  &nbsp;/&nbsp; ISO 回车（L 形、两行高）上边距为5.17&nbsp;mm，小键盘回车（2U 高的回车环）
+  上边距为14.15&nbsp;mm——两者均是因为键帽更高/形状特殊，而非另一套规则。图标依然居中，
+  图标高度同为8.81&nbsp;mm。</div>
+
+  <div class="tolerance">Tolerance / 公差: &plusmn; ___ mm &nbsp;(Anton to confirm / 待安东确认)</div>
+
+  <div class="foot">
+    <span>DELTASET &middot; premium ISO-DE keycaps &middot; Hello &middot; Legend Placement Guide (draft)</span>
+    <span>Page 4</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 5 — Cluster 4: Special caps + closing note -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="head">
+    <div class="brand">DELTASET</div>
+    <div class="meta">字符定位与印刷转移指南 draft<br>ISO-DE + ANSI · MOA · solid</div>
+  </div>
+  <div class="titleline">&ldquo;Hello&rdquo; Keycap Set &nbsp;&middot;&nbsp; Legend Placement Guide &nbsp;&middot;&nbsp; <b>draft</b></div>
+  <hr class="rule">
+
+  <h2 class="section">4 Special caps &nbsp;/&nbsp; 4 特殊键帽</h2>
+  <div class="cols">
+    <div class="clusterKeys">
+      <p><b>Keys:</b> the 11 novelty caps (vinyl, EQ, note, headphones, mic, dial, volume up,
+      note 2, cassette, heart, volume down). Each has its own motif artwork, so the height differs
+      per cap &mdash; that is intended.</p>
+    </div>
+    <div class="clusterKeys">
+      <p><b>涉及按键：</b>11 个异形键帽（唱片、均衡器、音符、耳机、麦克风、拨盘、音量加、
+      音符2、磁带、心形、音量减）。每个键帽有各自的图案，因此图标高度各不相同——这是设计
+      预期的结果。</p>
+    </div>
+  </div>
+
+  <div class="diagram-row" style="margin-top:2px;">
+    <svg viewBox="0 0 914 242" width="170mm" height="45mm">
+      <image href="img/hello_c4_lines.png" x="0" y="0" width="914" height="242"/>
+      <rect x="13" y="13" width="216" height="216" fill="none" stroke="#00A651" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="23" y1="13" x2="23" y2="66.9" stroke="#C8102E" stroke-width="1.4"/>
+      <line x1="18" y1="13" x2="28" y2="13" stroke="#C8102E" stroke-width="1.4"/>
+      <line x1="18" y1="66.9" x2="28" y2="66.9" stroke="#C8102E" stroke-width="1.4"/>
+      <text x="31" y="43" font-size="11" fill="#C8102E" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">4.56</text>
+      <line x1="195" y1="66.9" x2="195" y2="170.9" stroke="#0060B0" stroke-width="1.4"/>
+      <line x1="190" y1="66.9" x2="200" y2="66.9" stroke="#0060B0" stroke-width="1.4"/>
+      <line x1="190" y1="170.9" x2="200" y2="170.9" stroke="#0060B0" stroke-width="1.4"/>
+      <text x="180" y="122" font-size="10" fill="#0060B0" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">h 8.81</text>
+      <line x1="23" y1="170.9" x2="23" y2="229" stroke="#8A2BE2" stroke-width="1.4"/>
+      <line x1="18" y1="170.9" x2="28" y2="170.9" stroke="#8A2BE2" stroke-width="1.4"/>
+      <line x1="18" y1="229" x2="28" y2="229" stroke="#8A2BE2" stroke-width="1.4"/>
+      <text x="31" y="202" font-size="9" fill="#8A2BE2" font-weight="700" paint-order="stroke fill" stroke="#fff" stroke-width="3" stroke-linejoin="round">4.89</text>
+    </svg>
+    <div class="row-cap">Overlay shown on &ldquo;Note&rdquo; (leftmost cap) as an example &mdash;
+    centred, top offset 4.56&nbsp;mm, height 8.81&nbsp;mm, bottom offset 4.89&nbsp;mm. The other
+    10 caps use the same centring rule with motif-dependent height, see table below.<br>
+    以最左侧的&ldquo;音符&rdquo;键帽为例标注——居中，上边距4.56&nbsp;mm，图标高8.81&nbsp;mm，
+    下边距4.89&nbsp;mm。其余10个键帽采用相同的居中规则，图标高度随图案而异，见下表。</div>
+  </div>
+
+  <table class="spec">
+    <tr><th>Cap / 键帽</th><th class="num">Top offset<br>上边距</th><th class="num">Bottom offset<br>下边距</th><th class="num">Height<br>图标高</th></tr>
+    <tr><td>Vinyl 唱片</td><td class="num">4.56&nbsp;mm</td><td class="num">4.89&nbsp;mm</td><td class="num">8.81&nbsp;mm</td></tr>
+    <tr><td>EQ 均衡器</td><td class="num">4.56&nbsp;mm</td><td class="num">4.89&nbsp;mm</td><td class="num">8.81&nbsp;mm</td></tr>
+    <tr><td>Note 音符</td><td class="num">4.56&nbsp;mm</td><td class="num">4.89&nbsp;mm</td><td class="num">8.81&nbsp;mm</td></tr>
+    <tr><td>Headphones 耳机</td><td class="num">5.66&nbsp;mm</td><td class="num">6.00&nbsp;mm</td><td class="num">6.60&nbsp;mm</td></tr>
+    <tr><td>Mic 麦克风</td><td class="num">4.56&nbsp;mm</td><td class="num">4.89&nbsp;mm</td><td class="num">8.81&nbsp;mm</td></tr>
+    <tr><td>Dial 拨盘</td><td class="num">4.56&nbsp;mm</td><td class="num">4.89&nbsp;mm</td><td class="num">8.81&nbsp;mm</td></tr>
+    <tr><td>Volume up 音量加</td><td class="num">5.39&nbsp;mm</td><td class="num">5.72&nbsp;mm</td><td class="num">7.16&nbsp;mm</td></tr>
+    <tr><td>Note 2 音符2</td><td class="num">5.28&nbsp;mm</td><td class="num">5.61&nbsp;mm</td><td class="num">7.38&nbsp;mm</td></tr>
+    <tr><td>Cassette 磁带</td><td class="num">5.92&nbsp;mm</td><td class="num">6.25&nbsp;mm</td><td class="num">6.10&nbsp;mm</td></tr>
+    <tr><td>Heart 心形</td><td class="num">5.07&nbsp;mm</td><td class="num">5.40&nbsp;mm</td><td class="num">7.79&nbsp;mm</td></tr>
+    <tr><td>Volume down 音量减</td><td class="num">5.39&nbsp;mm</td><td class="num">5.72&nbsp;mm</td><td class="num">7.16&nbsp;mm</td></tr>
+  </table>
+  <p style="font-size:8.3px;color:#555;margin:2px 0 6px 0;">All 11 novelty caps are horizontally
+  centred (no left/right offset). The artwork is already centred in the source file &mdash; please
+  keep it exactly as delivered, do not re-centre by eye.
+  &nbsp;/&nbsp; 全部11个异形键帽均水平居中（无左右偏移）。图案在源文件中已经居中——请按原样保留，
+  不要凭肉眼重新居中。</p>
+
+  <div class="tolerance">Tolerance / 公差: &plusmn; ___ mm &nbsp;(Anton to confirm / 待安东确认)</div>
+
+  <hr class="rule" style="margin-top:10px;">
+  <h2 class="section" style="font-size:11px;">Factory floor QC &nbsp;/&nbsp; 产线品检</h2>
+  <div class="cols">
+    <div><p>The factory floor team checks the printed caps against these same four clusters, but
+      using a separate, illustrated QC checklist made for workers (not this document). If a
+      printed sample does not match the offsets above, please flag it before mass production.</p></div>
+    <div><p>产线工人使用另一份专为工人制作的、带插图的品检清单，按相同的四个分组核对已印刷的
+      键帽（并非本文件）。如果打样结果与上述边距数值不符，请在批量生产前提出。</p></div>
+  </div>
+
+  <div class="foot">
+    <span>DELTASET &middot; premium ISO-DE keycaps &middot; Hello &middot; Legend Placement Guide (draft)</span>
+    <span>Page 5</span>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" width="1500" height="1000">
+<rect width="1500" height="1000" fill="#F4F1EC"/>
+<g stroke="#B9B0A4" stroke-width="5" stroke-linecap="round"><line x1="340.0" y1="485.3" x2="408.0" y2="485.3"/><line x1="1092.0" y1="485.3" x2="1160.0" y2="485.3"/><line x1="750.0" y1="75.3" x2="750.0" y2="143.3"/><line x1="750.0" y1="827.3" x2="750.0" y2="895.3"/></g><rect x="436.40" y="202.40" width="640.00" height="640.00" rx="96.00" fill="#3A2A1E" fill-opacity="0.13"/>
+<rect x="430.00" y="180.00" width="640.00" height="640.00" rx="96.00" fill="#786757" stroke="#534335" stroke-width="5.12"/>
+<rect x="503.60" y="238.88" width="492.80" height="492.80" rx="76.80" fill="#8A7868" stroke="#6B5A4B" stroke-width="3.20"/>
+<rect x="535.60" y="270.82" width="428.80" height="428.80" rx="64.00" fill="none" stroke="#958272" stroke-width="3.84"/><line x1="750.0" y1="125.3" x2="750.0" y2="845.3" stroke="#B9B0A4" stroke-width="3" stroke-dasharray="10 8"/><g transform="rotate(18 750.0 485.28)"><g transform="rotate(-18 724.1 570.8)"><ellipse cx="724.1" cy="570.8" rx="51.8" ry="37.6" fill="#E8DDC8"/></g><rect x="754.8" y="355.7" width="19.4" height="215.1" fill="#E8DDC8"/><path d="M754.8,355.7 C842.3,371.2 852.6,433.4 785.3,464.5 C816.4,412.7 800.8,381.6 754.8,392.0 Z" fill="#E8DDC8"/></g>
+</svg>
