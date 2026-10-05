@@ -19,7 +19,7 @@ Rechte Strg heißt `key_ctrl_r_r1`, rechtes Fn `key_fn_r_r1` (Seite + Reihe).
 **Zählung je Reihe:** R6 23 · R5 21 · R4 21 · R3 23 · R2 24 · R1 19 = 131
 
 Zonen: Snow 244,241,235 · Onyx 30,30,34 · Brake-red 200,16,46 · Ash-Rosé 176,118,128.
-Legendentypen: Vektor-Glyph (Alpha/Numerik/Sonderzeichen, Ink 26,26,30; AltGr `_gr` Brake-red) ·
+Legendentypen: Vektor-Glyph (Alpha/Numerik/Sonderzeichen, Ink 30,30,34 seit 2026-10-05, vorher 26,26,30 — Anton: ein Dunkelton für alle einfarbigen dunklen Tinten inkl. Enter-/Esc-Zeichen und Ash-Badges; AltGr `_gr` Brake-red) ·
 Dot-Matrix (`_pixels`, ContainerNode aus Einzelpunkten) · EmbeddedDoc (`key_empty_r6_icon`, Delta-Logo).
 Die Spalte „Lage“ des alten Inventars entfällt, die Reihe ersetzt sie. Ink-Farben der Dot-Matrix-Icons
 wurden nur stichprobenhaft gemessen (n=2, siehe altes Inventar).
