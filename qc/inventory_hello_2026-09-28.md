@@ -125,7 +125,7 @@ AltGr (Node/Ink) | Lage.
 | key_menu_face | 1.21×0.96 | Terracotta | key_menu (Menü-Icon), Ink | – | – | Board Bottom-Zeile |
 | key_space_face | 6.19×0.96 | Espresso | key_space + key_space_eq (Delta-Logo/Equalizer), Gold | – | – | Board Bottom-Zeile (Leertaste) |
 | key_numpad_0_face | 1.95×0.96 | Cream | key_numpad_0 "0", Ink | – | – | Board Bottom-Zeile |
-| key_numpad_entf_face | 0.96×0.96 | Cream | icon_numpad_entf (Entf), Ink | – | – | Board Bottom-Zeile |
+| key_numpad_dot_face | 0.96×0.96 | Cream | key_numpad_dot ".", Ink (seit 2026-10-05 in Hello_MOA_v1.33.af, vorher icon_numpad_entf; oben, horizontal zentriert wie Numpad-Ziffern; Face am 2026-10-05 von key_numpad_entf_face umbenannt) | – | – | Board Bottom-Zeile |
 | key_arrow_down_face | 0.96×0.96 | Espresso | key_arrow_down "↓", Gold | – | – | Board Bottom-Zeile |
 | key_arrow_left_face | 0.96×0.96 | Espresso | key_arrow_left "←", Gold | – | – | Board Bottom-Zeile |
 | key_arrow_right_face | 0.96×0.96 | Espresso | key_arrow_right "→", Gold | – | – | Board Bottom-Zeile |
@@ -142,7 +142,7 @@ AltGr (Node/Ink) | Lage.
 | novelty_mic_face (key_mic_face) | 0.96×0.96 | Taupe | novelty_mic (Mikrofon), Ink | – | – | Novelty-Spare |
 | key_note_2_face (novelty_note2) | 0.96×0.96 | Taupe | novelty_note2 (Noten-Variante), Ink | – | – | Novelty-Spare |
 | key_cassette_face | 0.96×0.96 | Rosé | novelty_cassette (Kassette), Ink | – | – | Novelty-Spare |
-| key_head_set_face | 0.96×0.96 | Rosé | novelty_headphones (Kopfhörer), Ink | – | – | Novelty-Spare |
+| key_numpad_0_1u_face | 0.96×0.96 | Cream | key_numpad_0_1u "0", Ink | – | – | Novelty-Spare (Platz der früheren key_head_set_face; seit 2026-10-05 in Hello_MOA_v1.33.af, key_head_set_face + novelty_headphones entfernt) |
 | key_heart_face | 0.96×0.96 | Rosé | novelty_heart (Herz), Ink | – | – | Novelty-Spare |
 | key_vol_up_face | 0.96×0.96 | Rosé | novelty_vol_up (Lautstärke+), Ink | – | – | Novelty-Spare |
 | key_vol_down_face | 0.96×0.96 | Rosé | novelty_vol_down (Lautstärke-), Ink | – | – | Novelty-Spare |
