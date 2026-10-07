@@ -82,7 +82,7 @@ vollständiger Tabelle (z.B. „diese 40 Nodes auf diese Füllfarbe“) → `aff
     `keycap-qa` (Snapshot ≤ 1 + Sweep) → `pipeline-dev` (Introduction + QC-Checkliste bauen und
     in den Ordner kopieren, LFS-Commit) → `brain-scribe`. Release = Ordner
     `templates/release/<design>/<version>_<datum>/` mit 4 Dateien, s. README. Runbook-ID
-    `78b7f7f7-bca0-4e12-b547-bd9bc0e10443` allen beteiligten Agenten wörtlich mitgeben.
+    `37132aff-c14b-48bb-aeaa-eaa30e68401d` allen beteiligten Agenten wörtlich mitgeben.
 
 ## Repo-Struktur
 ```
@@ -123,12 +123,12 @@ qc/                                # QC-Inventare je Design (Node-Namen, Legende
   .af/.pdf). Alles über **Git LFS**. Flache `release_*.af` im Ordner = historisch, unverändert.
 - Regel **max. 1 Snapshot** pro Release-.af + Ablauf (Details: `templates/release/README.md`):
   1. `affinity-builder` kopiert die Arbeitsdatei in den Release-Ordner, reduziert Snapshots auf
-     ≤ 1 (ohne Verlauf speichern) und exportiert das Druck-PDF.
+     ≤ 1 (per „Save As“, Handschritt durch Anton — kein SDK-Weg) und exportiert das Druck-PDF.
   2. `keycap-qa` prüft read-only: Snapshot-Anzahl ≤ 1 + Voll-Sweep GRÜN.
   3. `pipeline-dev` baut Introduction + QC-Checkliste, kopiert sie in den Ordner, LFS-Commit + Push.
   4. Introductions ohne „-draft“ erst nach Antons Versandfreigabe.
 - Handlungsanweisung für alle Agenten (design-übergreifend): Brain-DB-RUNBOOK
-  `78b7f7f7-bca0-4e12-b547-bd9bc0e10443` (topic `af-release-runbook`). Begründung: ADR
+  `37132aff-c14b-48bb-aeaa-eaa30e68401d` (topic `af-release-runbook`). Begründung: ADR
   `c4033da7-a085-471f-ac1d-51e58218779d`.
 
 ## PDF-Keycap-Templates bearbeiten

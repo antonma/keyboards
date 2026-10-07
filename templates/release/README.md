@@ -33,7 +33,7 @@ Binärformat) — deshalb ist der QA-Schritt Pflicht.
 
 ## Release-Kette
 1. `affinity-builder`: Kopie der Arbeits-.af in den neuen Release-Ordner (Speichern unter),
-   Snapshots auf ≤ 1 reduzieren, ohne Verlauf speichern, **PDF-Export** der .af (Druck-PDF).
+   Snapshots auf ≤ 1 reduzieren, per „Save As“ (Handschritt Anton), **PDF-Export** der .af (Druck-PDF).
    Arbeitsdatei bleibt unverändert.
 2. `keycap-qa`: read-only, Snapshot-Anzahl ≤ 1 + Voll-Sweep GRÜN, Dateigröße notieren.
 3. `pipeline-dev`: Project Introduction und QC-Checkliste aktuell bauen, unversioniert in den
