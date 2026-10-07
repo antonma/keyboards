@@ -1,0 +1,153 @@
+# Project Introduction — Alpine / Rücklicht (EN + 中文)
+# Textquelle fuer scripts/build_introduction.py --design alpine
+# Stand: Release Alpine 139 (2026-10-05); Text 1:1 aus DELTASET_Alpine_Project_Introduction_EN-CN_v3_11.pdf, mit den
+# Korrekturen von Anton (2026-10-05): Material/Profil entfernt, Tastenzahlen aus dem Template,
+# Layout-Aussage ISO-DE und ANSI-DE, Zusatzkappen-Aufschluesselung, Operatoren "+ - * /".
+#
+# Platzhalter in Texten: {total} {main} {extra} {n_zones} {version}
+#                        {caps:ZONE} {hex:ZONE} {pantone:ZONE}   (ZONE = Name aus `zones`)
+# **fett** nur in EN-Text.
+
+design: alpine
+version: v3.12-draft              # "-draft" bleibt bis zur Versandfreigabe stehen
+title: “Alpine / Rücklicht” Keycap Set
+doc_label: Project Introduction
+cn_doc_label: 项目介绍
+tagline: ISO-DE / ANSI-DE
+footer: DELTASET · premium ISO-ANSI-DE keycaps · Alpine / Ruecklicht · Introduction {version}
+
+hero:
+  image: assets/alpine_concept.png
+  caption: Concept render — Alpine / Rücklicht (illustrative reference, not a production / material template).
+
+# Tastenzahlen laut Template (qc/inventory_alpine_2026-10-04.md: Hauptboard 108, Zusatzkappen 23)
+total_caps: 131
+main_caps: 108
+extra_caps: 23
+# Aufschluesselung der 23 Zusatzkappen (Summe wird von --check geprueft)
+extra_breakdown:
+  shift_widths_1u_1.25u_1.75u_2u: 4
+  iso_enter: 1
+  less_and_hash_1u: 2
+  navigation_duplicates: 8
+  one_u_null_strg_menu_alt_fn: 5
+  fancy: 3
+
+zones:
+  - {name: Snow,      pantone: Warm Gray 1 C, hex: "#F4F1EB", caps: 82}
+  - {name: Onyx,      pantone: 426 C,         hex: "#1E1E22", caps: 40}
+  - {name: Brake-red, pantone: 186 C,         hex: "#C8102E", caps: 5}
+  - {name: Ash-Rosé,  pantone: 6037 C,        hex: "#B07680", caps: 4}
+
+blocks:
+  - section: concept
+    title: {en: Concept, cn: 概念}
+    body:
+      # Layout-Aussage laut Anton: ISO-DE und ANSI-DE.
+      - en: >-
+          Premium limited keycap set for German layouts — supports ISO-DE and ANSI-DE. Design theme
+          **“Rücklicht”** (taillight): a backlit, dot-matrix legend aesthetic.
+        cn: >-
+          高端限量键帽套装，面向德语布局，支持 ISO-DE 与 ANSI-DE。设计主题为「Rücklicht」（尾灯）：背光点阵字符的美学风格。
+
+  # Abschnitt "Construction — Pudding / four-sided transparent" entfaellt (Anton: Material und Profil weglassen)
+
+  - section: legends
+    title: {en: Legends, cn: 字符与图例}
+    body:
+      - en: >-
+          Primary legends use a dot-matrix “Rücklicht” glow system (a per-pixel glow ramp, like an
+          illuminated display); letters and AltGr glyphs are solid vector labels. **Exception:** the
+          four hero legends (Esc, Enter, ISO Enter, Numpad Enter) sit on Brake-red caps and are printed
+          **flat in Onyx, without a glow ramp** — a glow reads only as light-on-dark. Legends must be
+          durable and non-removable.
+        cn: >-
+          主要字符采用点阵「Rücklicht」发光系统（逐像素的发光渐变，类似发光显示屏）；字母与 AltGr 符号为实心矢量字符。例外：四个主视觉字符（Esc、回车、ISO 回车、小键盘回车）位于 Brake-red 键帽上，采用 Onyx 纯色印刷，无发光渐变 —— 发光效果仅在深色底上才成立。字符须耐久、不可脱落。
+
+  - section: colours
+    title:
+      en: Colours — {n_zones} zones, {total} caps
+      cn: 颜色 —— {n_zones} 个区域，{total} 个键帽
+    body:
+      - en: >-
+          Snow {hex:Snow} (**{caps:Snow}** caps) · Onyx {hex:Onyx} (**{caps:Onyx}**) · Brake-red
+          {hex:Brake-red} ({caps:Brake-red}: Esc, Enter, ISO Enter, Numpad Enter, Delta key) · Ash-Rosé
+          {hex:Ash-Rosé} ({caps:Ash-Rosé} accent caps). AltGr legends are printed in Brake-red as well.
+          The four numpad operator glyphs (+ - * /) are solid Snow {hex:Snow} on Onyx caps. On Onyx caps,
+          unlit dots equal the cap colour (invisible); on Snow caps they form a visible dot-grid.
+        cn: >-
+          Snow {hex:Snow}（{caps:Snow} 键）· Onyx {hex:Onyx}（{caps:Onyx}）· Brake-red {hex:Brake-red}（{caps:Brake-red}：Esc、回车、ISO 回车、小键盘回车、Delta 键）· Ash-Rosé {hex:Ash-Rosé}（{caps:Ash-Rosé} 个点缀键帽）。AltGr 字符同样使用 Brake-red。小键盘四个运算符字符（+ - * /）为 Onyx 键帽上的 Snow {hex:Snow} 实心字符。在 Onyx 键帽上，未点亮的点等于键帽颜色（不可见）；在 Snow 键帽上它们形成可见的点阵网格。
+
+  - zone_table: true
+
+  - section: legend_system
+    title: {en: "Legends — positions and inks", cn: 字符 —— 位置与油墨}
+    body:
+      # Die frueheren Zahlen (97/53/4/7/1/1, Punktgroessen) entfernt: nicht belegt (Anton 2026-10-07).
+      - en: >-
+          Zone assignment: **Snow** — letters, digits, symbols, spacebar, arrows, navigation keys, numpad digits.
+          **Onyx** — F-row, modifiers, Tab, Caps, Shift keys, Backspace, NumLock, numpad operators, Insert / Delete / Exit, fancy caps.
+          **Brake-red** — Esc, Enter, ISO Enter, Numpad Enter, Delta brand cap. **Ash-Rosé** — # (1.5U), 1.25U Shift, Menu, Fn (1U).
+        cn: >-
+          区域分配：Snow —— 字母、数字、符号、空格、方向键、导航键、小键盘数字。Onyx —— F 行、修饰键、Tab、Caps、Shift 键、退格、NumLock、小键盘运算符、Insert / Delete / Exit、个性键帽。Brake-red —— Esc、回车、ISO 回车、小键盘回车、Delta 品牌键帽。Ash-Rosé —— #（1.5U）、1.25U Shift、Menu、Fn（1U）。
+      - en: >-
+          Punctuation (. , ; :), the numpad dot and the hyphen sit on the upper label line of the cap,
+          like the other upper legends. Legend positions in the release file are final — please do not
+          re-center or re-position them.
+        cn: >-
+          标点（. , ; :）、小键盘句点与连字符位于键帽上方的字符基线，与其他上方字符一致。发布文件中的字符位置为最终位置，请勿重新居中或移动。
+
+  - section: size
+    title: {en: Size, cn: 尺寸}
+    body:
+      # Tastenzahlen laut Template: Hauptboard 108 + Zusatzkappen 23 = 131.
+      # Stabilisator-Liste abgeleitet aus qc/inventory_*: alle Kappen >= 2U und alle hohen Kappen (Face-Mass -> Nenn-U gerundet)
+      - en: >-
+          Full-size German layout including numpad, supporting ISO-DE and ANSI-DE: the main board has
+          {main} caps (17 of them numpad). The set ships **{total} keycaps** — the complete board plus
+          {extra} additional caps (four Shift widths: 1U, 1.25U, 1.75U and 2U; an ISO Enter; < and # as
+          1U caps; eight navigation duplicates; five 1U caps: Numpad 0, Strg, Menü, Alt and Fn; and
+          three fancy caps). 1U pitch 19.05 mm. Stabilised keys: 2U Backspace, 2.25U Enter, 2.25U L-Shift, 2.75U R-Shift, 6.25U Spacebar, Numpad + and Numpad Enter (1U × 2U), 2U Numpad 0; additional caps: ISO Enter (1.5U × 2U) and 2U Shift.
+        cn: >-
+          全尺寸德语布局，含小键盘，支持 ISO-DE 与 ANSI-DE：主键盘共 {main} 个键帽（其中 17 个为小键盘）。套装共含 {total} 个键帽 —— 整块键盘外加 {extra} 个附加键帽（四种 Shift 宽度：1U、1.25U、1.75U 与 2U；一个 ISO 回车；1U 的 < 与 #；八个导航键重复键；五个 1U 键帽：小键盘 0、Strg、Menü、Alt 与 Fn；以及三个个性键帽）。1U 间距 19.05 mm。带卫星轴的按键：2U 退格、2.25U 回车、2.25U 左 Shift、2.75U 右 Shift、6.25U 空格、小键盘 + 与小键盘回车（1U × 2U）、2U 小键盘 0；附加键帽：ISO 回车（1.5U × 2U）与 2U Shift。
+
+  - section: next
+    title: {en: Next, cn: 后续}
+    body:
+      - en: >-
+          A full bilingual QA & print-transfer guide follows — with per-key alignment diagrams,
+          verified colours, the legend mechanisms, a per-cap reference table, and a QA acceptance
+          checklist.
+        cn: >-
+          随后提供完整的双语（EN/中文）QA 与印刷转移指南 —— 包含逐键对齐图、已验证颜色、字符机制、逐帽参考表以及 QA 验收检查清单。
+
+  - section: illustrator
+    gap: 0
+    title:
+      en: Opening the design file (Affinity PDF) in Adobe Illustrator
+      cn: 在 Adobe Illustrator 中打开设计文件（Affinity PDF）
+    body:
+      - en: >-
+          1. File → Open and select the PDF exported from Affinity (for a multi-page file, pick the
+          page in the dialog). To place it into an existing document instead: File → Place → select
+          the PDF → choose the page → Embed.
+        cn: >-
+          1. 文件 → 打开，选择从 Affinity 导出的 PDF（多页文件请在对话框中选择页面）。若要置入现有文档：文件 → 置入 → 选择 PDF → 选择页面 → 嵌入。
+      - en: >-
+          2. The artwork opens as fully editable vector paths — keycap shapes, dot-matrix legends and
+          vector labels are separate objects.
+        cn: >-
+          2. 图稿将作为完全可编辑的矢量路径打开 —— 键帽形状、点阵字符与矢量字符均为独立对象。
+      - en: >-
+          3. Text is exported as curves / outlines, so no fonts need installing and letters cannot shift.
+        cn: >-
+          3. 文本已转为曲线 / 轮廓，无需安装字体，字母也不会移位。
+      - en: >-
+          4. Check colours under Window → Swatches and confirm the document colour mode fits your
+          workflow (RGB / CMYK).
+        cn: >-
+          4. 在 窗口 → 色板 中检查颜色，并确认文档颜色模式符合您的流程（RGB / CMYK）。
+      - en: >-
+          5. If layers are present, open Window → Layers to keep the structure.
+        cn: >-
+          5. 若含图层，打开 窗口 → 图层 以保留结构。

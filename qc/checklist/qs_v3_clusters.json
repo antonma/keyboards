@@ -1,0 +1,3482 @@
+{
+ "meta": {
+  "stand": "2026-10-05",
+  "quelle_zuordnung": "qc/cluster_tastenliste_2026-10-04.md (finaler Schnitt, Anton), gegen die neuen bboxes geprueft",
+  "quelle_legenden": "qc/inventory_alpine_2026-10-04.md, qc/inventory_hello_2026-09-28.md (Hauptlegende); Shift-/AltGr-Zeichen = Standard-DE-Belegung (im Inventar nur als Sub-/_gr-Node ohne Zeichen)",
+  "hinweis_rows": "alpine: rows aus dem Node-Namen (_rN, bei Zwei-Reihen-Kappen obere Reihe zuerst)"
+ },
+ "clusters": [
+  {
+   "id": 1,
+   "name": "Alpha-Buchstaben (A–Z, Ä Ö Ü)"
+  },
+  {
+   "id": 2,
+   "name": "Zahlen und Sonderzeichen"
+  },
+  {
+   "id": 3,
+   "name": "F-Reihe (F1–F12)"
+  },
+  {
+   "id": 4,
+   "name": "Mod"
+  },
+  {
+   "id": 5,
+   "name": "Shift"
+  },
+  {
+   "id": 6,
+   "name": "Steuerung (inkl. NumLock)"
+  },
+  {
+   "id": 7,
+   "name": "Enter"
+  },
+  {
+   "id": 8,
+   "name": "Delta-Icon, Esc, Novelty + Leertaste"
+  },
+  {
+   "id": 9,
+   "name": "Pfeile"
+  },
+  {
+   "id": 10,
+   "name": "Ziffernblock (ohne Enter, NumLock; inkl. Punkt)"
+  }
+ ],
+ "sets": {
+  "alpine": {
+   "label": "Alpine 139",
+   "board": "alpine_139_board_clean.png",
+   "bboxes": "alpine_139_bboxes.json",
+   "bboxes_count": 131,
+   "soll": 131,
+   "summe": 131,
+   "summenprobe_ok": true,
+   "je_cluster": {
+    "1": 29,
+    "2": 20,
+    "3": 12,
+    "4": 14,
+    "5": 6,
+    "6": 20,
+    "7": 3,
+    "8": 7,
+    "9": 4,
+    "10": 16
+   },
+   "doppelt": [],
+   "offen": [],
+   "keys": [
+    {
+     "name": "key_q_r4_face",
+     "cluster": 1,
+     "legend": "Q",
+     "altgr": "@",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      1342,
+      1224,
+      1556,
+      1438
+     ]
+    },
+    {
+     "name": "key_w_r4_face",
+     "cluster": 1,
+     "legend": "W",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      1567,
+      1224,
+      1782,
+      1438
+     ]
+    },
+    {
+     "name": "key_e_r4_face",
+     "cluster": 1,
+     "legend": "E",
+     "altgr": "€",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      1792,
+      1224,
+      2006,
+      1438
+     ]
+    },
+    {
+     "name": "key_r_r4_face",
+     "cluster": 1,
+     "legend": "R",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      2018,
+      1224,
+      2232,
+      1438
+     ]
+    },
+    {
+     "name": "key_t_r4_face",
+     "cluster": 1,
+     "legend": "T",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      2246,
+      1224,
+      2461,
+      1438
+     ]
+    },
+    {
+     "name": "key_z_r4_face",
+     "cluster": 1,
+     "legend": "Z",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      2467,
+      1224,
+      2682,
+      1438
+     ]
+    },
+    {
+     "name": "key_u_r4_face",
+     "cluster": 1,
+     "legend": "U",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      2692,
+      1224,
+      2906,
+      1438
+     ]
+    },
+    {
+     "name": "key_i_r4_face",
+     "cluster": 1,
+     "legend": "I",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      2918,
+      1224,
+      3132,
+      1438
+     ]
+    },
+    {
+     "name": "key_o_r4_face",
+     "cluster": 1,
+     "legend": "O",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      3143,
+      1224,
+      3357,
+      1438
+     ]
+    },
+    {
+     "name": "key_p_r4_face",
+     "cluster": 1,
+     "legend": "P",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      3368,
+      1224,
+      3582,
+      1438
+     ]
+    },
+    {
+     "name": "key_ue_r4_face",
+     "cluster": 1,
+     "legend": "Ü",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      3593,
+      1224,
+      3807,
+      1438
+     ]
+    },
+    {
+     "name": "key_a_r3_face",
+     "cluster": 1,
+     "legend": "A",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      1405,
+      1449,
+      1619,
+      1663
+     ]
+    },
+    {
+     "name": "key_s_r3_face",
+     "cluster": 1,
+     "legend": "S",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      1630,
+      1449,
+      1844,
+      1663
+     ]
+    },
+    {
+     "name": "key_d_r3_face",
+     "cluster": 1,
+     "legend": "D",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      1855,
+      1449,
+      2069,
+      1663
+     ]
+    },
+    {
+     "name": "key_f_r3_face",
+     "cluster": 1,
+     "legend": "F",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      2080,
+      1449,
+      2295,
+      1663
+     ]
+    },
+    {
+     "name": "key_g_r3_face",
+     "cluster": 1,
+     "legend": "G",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      2305,
+      1449,
+      2519,
+      1663
+     ]
+    },
+    {
+     "name": "key_h_r3_face",
+     "cluster": 1,
+     "legend": "H",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      2526,
+      1449,
+      2740,
+      1663
+     ]
+    },
+    {
+     "name": "key_j_r3_face",
+     "cluster": 1,
+     "legend": "J",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      2751,
+      1449,
+      2965,
+      1663
+     ]
+    },
+    {
+     "name": "key_k_r3_face",
+     "cluster": 1,
+     "legend": "K",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      2976,
+      1449,
+      3190,
+      1663
+     ]
+    },
+    {
+     "name": "key_l_r3_face",
+     "cluster": 1,
+     "legend": "L",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      3201,
+      1449,
+      3415,
+      1663
+     ]
+    },
+    {
+     "name": "key_oe_r3_face",
+     "cluster": 1,
+     "legend": "Ö",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      3426,
+      1449,
+      3640,
+      1663
+     ]
+    },
+    {
+     "name": "key_ae_r3_face",
+     "cluster": 1,
+     "legend": "Ä",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      3650,
+      1449,
+      3864,
+      1663
+     ]
+    },
+    {
+     "name": "key_y_r2_face",
+     "cluster": 1,
+     "legend": "Y",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      1516,
+      1673,
+      1730,
+      1887
+     ]
+    },
+    {
+     "name": "key_x_r2_face",
+     "cluster": 1,
+     "legend": "X",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      1741,
+      1673,
+      1955,
+      1887
+     ]
+    },
+    {
+     "name": "key_c_r2_face",
+     "cluster": 1,
+     "legend": "C",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      1966,
+      1673,
+      2180,
+      1887
+     ]
+    },
+    {
+     "name": "key_v_r2_face",
+     "cluster": 1,
+     "legend": "V",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      2191,
+      1673,
+      2405,
+      1887
+     ]
+    },
+    {
+     "name": "key_b_r2_face",
+     "cluster": 1,
+     "legend": "B",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      2416,
+      1673,
+      2630,
+      1887
+     ]
+    },
+    {
+     "name": "key_n_r2_face",
+     "cluster": 1,
+     "legend": "N",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      2641,
+      1673,
+      2855,
+      1887
+     ]
+    },
+    {
+     "name": "key_m_r2_face",
+     "cluster": 1,
+     "legend": "M",
+     "altgr": "µ",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      2862,
+      1673,
+      3076,
+      1887
+     ]
+    },
+    {
+     "name": "key_caret_r5_face",
+     "cluster": 2,
+     "legend": "^",
+     "sub": "°",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      1008,
+      1000,
+      1222,
+      1215
+     ]
+    },
+    {
+     "name": "key_num_1_r5_face",
+     "cluster": 2,
+     "legend": "1",
+     "sub": "!",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      1233,
+      1000,
+      1447,
+      1215
+     ]
+    },
+    {
+     "name": "key_num_2_r5_face",
+     "cluster": 2,
+     "legend": "2",
+     "sub": "\"",
+     "altgr": "²",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      1458,
+      1000,
+      1672,
+      1215
+     ]
+    },
+    {
+     "name": "key_num_3_r5_face",
+     "cluster": 2,
+     "legend": "3",
+     "sub": "§",
+     "altgr": "³",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      1683,
+      1000,
+      1898,
+      1215
+     ]
+    },
+    {
+     "name": "key_num_4_r5_face",
+     "cluster": 2,
+     "legend": "4",
+     "sub": "$",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      1908,
+      1000,
+      2122,
+      1215
+     ]
+    },
+    {
+     "name": "key_num_5_r5_face",
+     "cluster": 2,
+     "legend": "5",
+     "sub": "%",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      2133,
+      1000,
+      2347,
+      1215
+     ]
+    },
+    {
+     "name": "key_num_6_r5_face",
+     "cluster": 2,
+     "legend": "6",
+     "sub": "&",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      2358,
+      1000,
+      2572,
+      1215
+     ]
+    },
+    {
+     "name": "key_num_7_r5_face",
+     "cluster": 2,
+     "legend": "7",
+     "sub": "/",
+     "altgr": "{",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      2584,
+      1000,
+      2798,
+      1215
+     ]
+    },
+    {
+     "name": "key_num_8_r5_face",
+     "cluster": 2,
+     "legend": "8",
+     "sub": "(",
+     "altgr": "[",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      2808,
+      1000,
+      3022,
+      1215
+     ]
+    },
+    {
+     "name": "key_num_9_r5_face",
+     "cluster": 2,
+     "legend": "9",
+     "sub": ")",
+     "altgr": "]",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      3033,
+      1000,
+      3247,
+      1215
+     ]
+    },
+    {
+     "name": "key_num_0_r5_face",
+     "cluster": 2,
+     "legend": "0",
+     "sub": "=",
+     "altgr": "}",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      3258,
+      1000,
+      3472,
+      1215
+     ]
+    },
+    {
+     "name": "key_ss_r5_face",
+     "cluster": 2,
+     "legend": "ß",
+     "sub": "?",
+     "altgr": "\\",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      3484,
+      1000,
+      3698,
+      1215
+     ]
+    },
+    {
+     "name": "key_acute_r5_face",
+     "cluster": 2,
+     "legend": "´",
+     "sub": "`",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      3707,
+      1000,
+      3921,
+      1215
+     ]
+    },
+    {
+     "name": "key_plus_r4_face",
+     "cluster": 2,
+     "legend": "+",
+     "sub": "*",
+     "altgr": "~",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      3817,
+      1224,
+      4031,
+      1438
+     ]
+    },
+    {
+     "name": "key_hash_r4_face",
+     "cluster": 2,
+     "legend": "#",
+     "sub": "'",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      4040,
+      1224,
+      4367,
+      1438
+     ]
+    },
+    {
+     "name": "key_hash_r3_face",
+     "cluster": 2,
+     "legend": "#",
+     "sub": "'",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      1928,
+      2997,
+      2142,
+      3211
+     ]
+    },
+    {
+     "name": "key_semicolon_r2_face",
+     "cluster": 2,
+     "legend": ",",
+     "sub": ";",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      3087,
+      1673,
+      3301,
+      1887
+     ]
+    },
+    {
+     "name": "key_colon_r2_face",
+     "cluster": 2,
+     "legend": ".",
+     "sub": ":",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      3312,
+      1673,
+      3526,
+      1887
+     ]
+    },
+    {
+     "name": "key_dash_r2_face",
+     "cluster": 2,
+     "legend": "-",
+     "sub": "_",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      3537,
+      1673,
+      3751,
+      1887
+     ]
+    },
+    {
+     "name": "key_less_r2_face",
+     "cluster": 2,
+     "legend": "<",
+     "sub": ">",
+     "altgr": "|",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      1914,
+      3278,
+      2128,
+      3492
+     ]
+    },
+    {
+     "name": "key_f1_r6_face",
+     "cluster": 3,
+     "legend": "F1",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      1458,
+      678,
+      1672,
+      893
+     ]
+    },
+    {
+     "name": "key_f2_r6_face",
+     "cluster": 3,
+     "legend": "F2",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      1683,
+      678,
+      1897,
+      893
+     ]
+    },
+    {
+     "name": "key_f3_r6_face",
+     "cluster": 3,
+     "legend": "F3",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      1908,
+      678,
+      2122,
+      893
+     ]
+    },
+    {
+     "name": "key_f4_r6_face",
+     "cluster": 3,
+     "legend": "F4",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      2133,
+      678,
+      2347,
+      893
+     ]
+    },
+    {
+     "name": "key_f5_r6_face",
+     "cluster": 3,
+     "legend": "F5",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      2471,
+      678,
+      2685,
+      893
+     ]
+    },
+    {
+     "name": "key_f6_r6_face",
+     "cluster": 3,
+     "legend": "F6",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      2696,
+      678,
+      2910,
+      893
+     ]
+    },
+    {
+     "name": "key_f7_r6_face",
+     "cluster": 3,
+     "legend": "F7",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      2921,
+      678,
+      3135,
+      893
+     ]
+    },
+    {
+     "name": "key_f8_r6_face",
+     "cluster": 3,
+     "legend": "F8",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      3146,
+      678,
+      3360,
+      893
+     ]
+    },
+    {
+     "name": "key_f9_r6_face",
+     "cluster": 3,
+     "legend": "F9",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      3477,
+      678,
+      3692,
+      893
+     ]
+    },
+    {
+     "name": "key_f10_r6_face",
+     "cluster": 3,
+     "legend": "F10",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      3703,
+      678,
+      3917,
+      893
+     ]
+    },
+    {
+     "name": "key_f11_r6_face",
+     "cluster": 3,
+     "legend": "F11",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      3928,
+      678,
+      4142,
+      893
+     ]
+    },
+    {
+     "name": "key_f12_r6_face",
+     "cluster": 3,
+     "legend": "F12",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      4153,
+      678,
+      4367,
+      893
+     ]
+    },
+    {
+     "name": "key_backspace_r5_face",
+     "cluster": 4,
+     "legend": "⟵",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      3931,
+      1000,
+      4371,
+      1215
+     ]
+    },
+    {
+     "name": "key_tab_r4_face",
+     "cluster": 4,
+     "legend": "↹",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      1007,
+      1224,
+      1334,
+      1438
+     ]
+    },
+    {
+     "name": "key_caps_r3_face",
+     "cluster": 4,
+     "legend": "⇪",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      1009,
+      1449,
+      1394,
+      1663
+     ]
+    },
+    {
+     "name": "key_ctrl_l_r1_face",
+     "cluster": 4,
+     "legend": "STRG",
+     "rows": [
+      "R1"
+     ],
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs STRG (Inventar: STRG)",
+     "bbox": [
+      1014,
+      1898,
+      1280,
+      2112
+     ]
+    },
+    {
+     "name": "key_win_r1_face",
+     "cluster": 4,
+     "legend": "WIN",
+     "rows": [
+      "R1"
+     ],
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs WIN (Inventar: WIN)",
+     "bbox": [
+      1295,
+      1898,
+      1561,
+      2112
+     ]
+    },
+    {
+     "name": "key_alt_r1_face",
+     "cluster": 4,
+     "legend": "ALT",
+     "rows": [
+      "R1"
+     ],
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs ALT (Inventar: ALT)",
+     "bbox": [
+      1574,
+      1898,
+      1841,
+      2112
+     ]
+    },
+    {
+     "name": "key_altgr_r1_face",
+     "cluster": 4,
+     "legend": "ALT",
+     "rows": [
+      "R1"
+     ],
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs ALT (Inventar: ALT)",
+     "bbox": [
+      3258,
+      1898,
+      3524,
+      2112
+     ]
+    },
+    {
+     "name": "key_fn_r_r1_face",
+     "cluster": 4,
+     "legend": "Fn",
+     "rows": [
+      "R1"
+     ],
+     "bbox": [
+      3541,
+      1898,
+      3807,
+      2112
+     ]
+    },
+    {
+     "name": "key_menu_r1_face",
+     "cluster": 4,
+     "legend": "Menü (Icon)",
+     "rows": [
+      "R1"
+     ],
+     "bbox": [
+      3821,
+      1898,
+      4088,
+      2112
+     ]
+    },
+    {
+     "name": "key_ctrl_r_r1_face",
+     "cluster": 4,
+     "legend": "STRG",
+     "rows": [
+      "R1"
+     ],
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs STRG (Inventar: STRG)",
+     "bbox": [
+      4102,
+      1898,
+      4369,
+      2112
+     ]
+    },
+    {
+     "name": "key_strg_r1_face",
+     "cluster": 4,
+     "legend": "STRG",
+     "rows": [
+      "R1"
+     ],
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs STRG (Inventar: STRG)",
+     "bbox": [
+      1237,
+      3568,
+      1451,
+      3783
+     ]
+    },
+    {
+     "name": "key_menu_1u_r1_face",
+     "cluster": 4,
+     "legend": "Menü (Icon)",
+     "rows": [
+      "R1"
+     ],
+     "bbox": [
+      1911,
+      3568,
+      2125,
+      3783
+     ]
+    },
+    {
+     "name": "key_alt_1u_r1_face",
+     "cluster": 4,
+     "legend": "ALT",
+     "rows": [
+      "R1"
+     ],
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs ALT (Inventar: ALT)",
+     "bbox": [
+      1462,
+      3568,
+      1676,
+      3783
+     ]
+    },
+    {
+     "name": "key_fn_r1_face",
+     "cluster": 4,
+     "legend": "FN",
+     "rows": [
+      "R1"
+     ],
+     "bbox": [
+      1686,
+      3568,
+      1901,
+      3783
+     ]
+    },
+    {
+     "name": "key_shift_l_r2_face",
+     "cluster": 5,
+     "legend": "⇧",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      1010,
+      1673,
+      1507,
+      1887
+     ]
+    },
+    {
+     "name": "key_shift_r_r2_face",
+     "cluster": 5,
+     "legend": "⇧",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      3761,
+      1673,
+      4364,
+      1887
+     ]
+    },
+    {
+     "name": "key_1u_shift_r2_face",
+     "cluster": 5,
+     "legend": "⇧",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      1681,
+      3278,
+      1895,
+      3492
+     ]
+    },
+    {
+     "name": "key_1.25u_shift_r2_face",
+     "cluster": 5,
+     "legend": "⇧",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      2143,
+      3278,
+      2409,
+      3492
+     ]
+    },
+    {
+     "name": "key_1.75u_shift_r2_face",
+     "cluster": 5,
+     "legend": "⇧",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      2429,
+      3278,
+      2814,
+      3492
+     ]
+    },
+    {
+     "name": "key_2u_shift_r2_face",
+     "cluster": 5,
+     "legend": "⇧",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      2850,
+      3278,
+      3290,
+      3492
+     ]
+    },
+    {
+     "name": "key_druck_r6_face",
+     "cluster": 6,
+     "legend": "Druck (Icon)",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      4457,
+      678,
+      4672,
+      893
+     ]
+    },
+    {
+     "name": "key_rollen_r6_face",
+     "cluster": 6,
+     "legend": "Rollen (Icon)",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      4682,
+      678,
+      4896,
+      893
+     ]
+    },
+    {
+     "name": "key_pause_r6_face",
+     "cluster": 6,
+     "legend": "Pause (Icon)",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      4908,
+      678,
+      5122,
+      893
+     ]
+    },
+    {
+     "name": "key_einf_r6_face",
+     "cluster": 6,
+     "legend": "Einfg (Icon)",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      5197,
+      678,
+      5411,
+      893
+     ]
+    },
+    {
+     "name": "key_entf_r6_face",
+     "cluster": 6,
+     "legend": "Entf (Icon)",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      5647,
+      678,
+      5862,
+      893
+     ]
+    },
+    {
+     "name": "key_einf_r5_face",
+     "cluster": 6,
+     "legend": "Einfg (Icon)",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      4457,
+      1000,
+      4672,
+      1215
+     ]
+    },
+    {
+     "name": "key_pos1_r5_face",
+     "cluster": 6,
+     "legend": "Pos1 (Icon)",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      4682,
+      1000,
+      4896,
+      1215
+     ]
+    },
+    {
+     "name": "key_bild_up_r5_face",
+     "cluster": 6,
+     "legend": "Bild↑ (Icon)",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      4908,
+      1000,
+      5122,
+      1215
+     ]
+    },
+    {
+     "name": "key_numlock_r5_face",
+     "cluster": 6,
+     "legend": "NumLock (Icon)",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      5197,
+      1000,
+      5411,
+      1215
+     ]
+    },
+    {
+     "name": "key_entf_r4_face",
+     "cluster": 6,
+     "legend": "Entf (Icon)",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      4457,
+      1224,
+      4672,
+      1438
+     ]
+    },
+    {
+     "name": "key_ende_r4_face",
+     "cluster": 6,
+     "legend": "Ende (Icon)",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      4682,
+      1224,
+      4896,
+      1438
+     ]
+    },
+    {
+     "name": "key_bild_down_r4_face",
+     "cluster": 6,
+     "legend": "Bild↓ (Icon)",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      4908,
+      1224,
+      5122,
+      1438
+     ]
+    },
+    {
+     "name": "key_bild_up_r4_face",
+     "cluster": 6,
+     "legend": "Bild↑ (Icon)",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      1012,
+      2710,
+      1226,
+      2924
+     ]
+    },
+    {
+     "name": "key_bild_down_r3_face",
+     "cluster": 6,
+     "legend": "Bild↓ (Icon)",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      1012,
+      2997,
+      1226,
+      3211
+     ]
+    },
+    {
+     "name": "key_entf_r3_face",
+     "cluster": 6,
+     "legend": "Entf (Icon)",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      1466,
+      2997,
+      1681,
+      3211
+     ]
+    },
+    {
+     "name": "key_bild_up_r3_face",
+     "cluster": 6,
+     "legend": "Bild↑ (Icon)",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      1236,
+      2997,
+      1451,
+      3211
+     ]
+    },
+    {
+     "name": "key_ende_r3_face",
+     "cluster": 6,
+     "legend": "Ende (Icon)",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      1696,
+      2997,
+      1910,
+      3211
+     ]
+    },
+    {
+     "name": "key_bild_down_r2_face",
+     "cluster": 6,
+     "legend": "Bild↓ (Icon)",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      1009,
+      3278,
+      1224,
+      3492
+     ]
+    },
+    {
+     "name": "key_ende_r2_face",
+     "cluster": 6,
+     "legend": "Ende (Icon)",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      1234,
+      3278,
+      1448,
+      3492
+     ]
+    },
+    {
+     "name": "key_entf_r2_face",
+     "cluster": 6,
+     "legend": "Entf (Icon)",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      1459,
+      3278,
+      1673,
+      3492
+     ]
+    },
+    {
+     "name": "key_enter_r3_face",
+     "cluster": 7,
+     "legend": "↵",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      3874,
+      1449,
+      4371,
+      1663
+     ]
+    },
+    {
+     "name": "key_ISO_Enter_r4_r3_face",
+     "cluster": 7,
+     "legend": "↵",
+     "rows": [
+      "R4",
+      "R3"
+     ],
+     "bbox": [
+      2107,
+      2758,
+      2439,
+      3201
+     ]
+    },
+    {
+     "name": "key_numpad_enter_r2_r1_face",
+     "cluster": 7,
+     "legend": "↵",
+     "rows": [
+      "R2",
+      "R1"
+     ],
+     "bbox": [
+      5873,
+      1673,
+      6087,
+      2112
+     ]
+    },
+    {
+     "name": "key_esc_r6_face",
+     "cluster": 8,
+     "legend": "ESC",
+     "rows": [
+      "R6"
+     ],
+     "hinweis": "Board-Export 139 zeigt ein Symbol (kein lesbarer Schriftzug ESC); Inventar: Dot-Matrix \"ESC\"",
+     "bbox": [
+      1009,
+      678,
+      1223,
+      893
+     ]
+    },
+    {
+     "name": "key_empty_r6_face",
+     "cluster": 8,
+     "legend": "Delta-Logo",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      5423,
+      678,
+      5637,
+      893
+     ]
+    },
+    {
+     "name": "key_exit_r6_face",
+     "cluster": 8,
+     "legend": "Exit/Power (Icon)",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      5873,
+      678,
+      6087,
+      893
+     ]
+    },
+    {
+     "name": "key_fancy_1_r6_face",
+     "cluster": 8,
+     "legend": "Fancy-Icon 1",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      1020,
+      2423,
+      1235,
+      2637
+     ]
+    },
+    {
+     "name": "key_fancy_2_r6_face",
+     "cluster": 8,
+     "legend": "Fancy-Icon 2",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      1247,
+      2423,
+      1461,
+      2637
+     ]
+    },
+    {
+     "name": "key_fancy_3_r6_face",
+     "cluster": 8,
+     "legend": "Fancy-Icon 3",
+     "rows": [
+      "R6"
+     ],
+     "bbox": [
+      1476,
+      2423,
+      1690,
+      2637
+     ]
+    },
+    {
+     "name": "key_space_r1_face",
+     "cluster": 8,
+     "legend": "Delta-Logo/Equalizer",
+     "rows": [
+      "R1"
+     ],
+     "bbox": [
+      1855,
+      1898,
+      3250,
+      2112
+     ]
+    },
+    {
+     "name": "key_arrow_up_r2_face",
+     "cluster": 9,
+     "legend": "↑",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      4682,
+      1673,
+      4896,
+      1887
+     ]
+    },
+    {
+     "name": "key_arrow_left_r1_face",
+     "cluster": 9,
+     "legend": "←",
+     "rows": [
+      "R1"
+     ],
+     "bbox": [
+      4457,
+      1898,
+      4672,
+      2112
+     ]
+    },
+    {
+     "name": "key_arrow_down_r1_face",
+     "cluster": 9,
+     "legend": "↓",
+     "rows": [
+      "R1"
+     ],
+     "bbox": [
+      4682,
+      1898,
+      4896,
+      2112
+     ]
+    },
+    {
+     "name": "key_arrow_right_r1_face",
+     "cluster": 9,
+     "legend": "→",
+     "rows": [
+      "R1"
+     ],
+     "bbox": [
+      4908,
+      1898,
+      5122,
+      2112
+     ]
+    },
+    {
+     "name": "key_numpad_div_r5_face",
+     "cluster": 10,
+     "legend": "/",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      5423,
+      1000,
+      5637,
+      1215
+     ]
+    },
+    {
+     "name": "key_numpad_mul_r5_face",
+     "cluster": 10,
+     "legend": "*",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      5647,
+      1000,
+      5862,
+      1215
+     ]
+    },
+    {
+     "name": "key_numpad_sub_r5_face",
+     "cluster": 10,
+     "legend": "-",
+     "rows": [
+      "R5"
+     ],
+     "bbox": [
+      5873,
+      1000,
+      6087,
+      1215
+     ]
+    },
+    {
+     "name": "key_numpad_7_r4_face",
+     "cluster": 10,
+     "legend": "7",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      5197,
+      1224,
+      5411,
+      1438
+     ]
+    },
+    {
+     "name": "key_numpad_8_r4_face",
+     "cluster": 10,
+     "legend": "8",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      5423,
+      1224,
+      5637,
+      1438
+     ]
+    },
+    {
+     "name": "key_numpad_9_r4_face",
+     "cluster": 10,
+     "legend": "9",
+     "rows": [
+      "R4"
+     ],
+     "bbox": [
+      5647,
+      1224,
+      5862,
+      1438
+     ]
+    },
+    {
+     "name": "key_numpad_plus_r4_r3_face",
+     "cluster": 10,
+     "legend": "+",
+     "rows": [
+      "R4",
+      "R3"
+     ],
+     "bbox": [
+      5873,
+      1224,
+      6087,
+      1663
+     ]
+    },
+    {
+     "name": "key_numpad_4_r3_face",
+     "cluster": 10,
+     "legend": "4",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      5197,
+      1449,
+      5411,
+      1663
+     ]
+    },
+    {
+     "name": "key_numpad_5_r3_face",
+     "cluster": 10,
+     "legend": "5",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      5423,
+      1449,
+      5637,
+      1663
+     ]
+    },
+    {
+     "name": "key_numpad_6_r3_face",
+     "cluster": 10,
+     "legend": "6",
+     "rows": [
+      "R3"
+     ],
+     "bbox": [
+      5647,
+      1449,
+      5862,
+      1663
+     ]
+    },
+    {
+     "name": "key_numpad_1_r2_face",
+     "cluster": 10,
+     "legend": "1",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      5197,
+      1673,
+      5411,
+      1887
+     ]
+    },
+    {
+     "name": "key_numpad_2_r2_face",
+     "cluster": 10,
+     "legend": "2",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      5423,
+      1673,
+      5637,
+      1887
+     ]
+    },
+    {
+     "name": "key_numpad_3_r2_face",
+     "cluster": 10,
+     "legend": "3",
+     "rows": [
+      "R2"
+     ],
+     "bbox": [
+      5647,
+      1673,
+      5862,
+      1887
+     ]
+    },
+    {
+     "name": "key_numpad_0_r1_face",
+     "cluster": 10,
+     "legend": "0",
+     "rows": [
+      "R1"
+     ],
+     "bbox": [
+      5197,
+      1898,
+      5637,
+      2112
+     ]
+    },
+    {
+     "name": "key_numpad_dot_r1_face",
+     "cluster": 10,
+     "legend": ".",
+     "rows": [
+      "R1"
+     ],
+     "bbox": [
+      5647,
+      1898,
+      5862,
+      2112
+     ]
+    },
+    {
+     "name": "key_numpad_0_1u_r1_face",
+     "cluster": 10,
+     "legend": "0",
+     "rows": [
+      "R1"
+     ],
+     "bbox": [
+      1011,
+      3568,
+      1225,
+      3783
+     ]
+    }
+   ]
+  },
+  "hello": {
+   "label": "Hello v1.36",
+   "board": "hello_v136_board_clean.png",
+   "bboxes": "hello_v136_bboxes.json",
+   "bboxes_count": 133,
+   "soll": 133,
+   "summe": 133,
+   "summenprobe_ok": true,
+   "je_cluster": {
+    "1": 29,
+    "2": 20,
+    "3": 12,
+    "4": 14,
+    "5": 6,
+    "6": 15,
+    "7": 3,
+    "8": 14,
+    "9": 4,
+    "10": 16
+   },
+   "doppelt": [],
+   "offen": [],
+   "keys": [
+    {
+     "name": "key_q_face",
+     "cluster": 1,
+     "legend": "Q",
+     "altgr": "@",
+     "bbox": [
+      730,
+      1515,
+      946,
+      1730
+     ]
+    },
+    {
+     "name": "key_w_face",
+     "cluster": 1,
+     "legend": "W",
+     "bbox": [
+      954,
+      1515,
+      1170,
+      1730
+     ]
+    },
+    {
+     "name": "key_e_face",
+     "cluster": 1,
+     "legend": "E",
+     "altgr": "€",
+     "bbox": [
+      1178,
+      1515,
+      1394,
+      1730
+     ]
+    },
+    {
+     "name": "key_r_face",
+     "cluster": 1,
+     "legend": "R",
+     "bbox": [
+      1402,
+      1515,
+      1618,
+      1730
+     ]
+    },
+    {
+     "name": "key_t_face",
+     "cluster": 1,
+     "legend": "T",
+     "bbox": [
+      1626,
+      1515,
+      1842,
+      1730
+     ]
+    },
+    {
+     "name": "key_z_face",
+     "cluster": 1,
+     "legend": "Z",
+     "bbox": [
+      1850,
+      1515,
+      2066,
+      1730
+     ]
+    },
+    {
+     "name": "key_u_face",
+     "cluster": 1,
+     "legend": "U",
+     "bbox": [
+      2074,
+      1515,
+      2290,
+      1730
+     ]
+    },
+    {
+     "name": "key_i_face",
+     "cluster": 1,
+     "legend": "I",
+     "bbox": [
+      2298,
+      1515,
+      2514,
+      1730
+     ]
+    },
+    {
+     "name": "key_o_face",
+     "cluster": 1,
+     "legend": "O",
+     "bbox": [
+      2522,
+      1515,
+      2737,
+      1730
+     ]
+    },
+    {
+     "name": "key_p_face",
+     "cluster": 1,
+     "legend": "P",
+     "bbox": [
+      2746,
+      1515,
+      2961,
+      1730
+     ]
+    },
+    {
+     "name": "key_ue_face",
+     "cluster": 1,
+     "legend": "Ü",
+     "bbox": [
+      2970,
+      1515,
+      3185,
+      1730
+     ]
+    },
+    {
+     "name": "key_a_face",
+     "cluster": 1,
+     "legend": "A",
+     "bbox": [
+      785,
+      1738,
+      1001,
+      1953
+     ]
+    },
+    {
+     "name": "key_s_face",
+     "cluster": 1,
+     "legend": "S",
+     "bbox": [
+      1009,
+      1738,
+      1225,
+      1953
+     ]
+    },
+    {
+     "name": "key_d_face",
+     "cluster": 1,
+     "legend": "D",
+     "bbox": [
+      1233,
+      1738,
+      1449,
+      1953
+     ]
+    },
+    {
+     "name": "key_f_face",
+     "cluster": 1,
+     "legend": "F",
+     "bbox": [
+      1457,
+      1738,
+      1673,
+      1953
+     ]
+    },
+    {
+     "name": "key_g_face",
+     "cluster": 1,
+     "legend": "G",
+     "bbox": [
+      1681,
+      1738,
+      1897,
+      1953
+     ]
+    },
+    {
+     "name": "key_h_face",
+     "cluster": 1,
+     "legend": "H",
+     "bbox": [
+      1905,
+      1738,
+      2121,
+      1953
+     ]
+    },
+    {
+     "name": "key_j_face",
+     "cluster": 1,
+     "legend": "J",
+     "bbox": [
+      2129,
+      1738,
+      2345,
+      1953
+     ]
+    },
+    {
+     "name": "key_k_face",
+     "cluster": 1,
+     "legend": "K",
+     "bbox": [
+      2353,
+      1738,
+      2569,
+      1953
+     ]
+    },
+    {
+     "name": "key_l_face",
+     "cluster": 1,
+     "legend": "L",
+     "bbox": [
+      2577,
+      1738,
+      2793,
+      1953
+     ]
+    },
+    {
+     "name": "key_oe_face",
+     "cluster": 1,
+     "legend": "Ö",
+     "bbox": [
+      2801,
+      1738,
+      3017,
+      1953
+     ]
+    },
+    {
+     "name": "key_ae_face",
+     "cluster": 1,
+     "legend": "Ä",
+     "bbox": [
+      3025,
+      1738,
+      3241,
+      1953
+     ]
+    },
+    {
+     "name": "key_y_face",
+     "cluster": 1,
+     "legend": "Y",
+     "bbox": [
+      899,
+      1961,
+      1115,
+      2177
+     ]
+    },
+    {
+     "name": "key_x_face",
+     "cluster": 1,
+     "legend": "X",
+     "bbox": [
+      1123,
+      1961,
+      1338,
+      2177
+     ]
+    },
+    {
+     "name": "key_c_face",
+     "cluster": 1,
+     "legend": "C",
+     "bbox": [
+      1346,
+      1961,
+      1562,
+      2177
+     ]
+    },
+    {
+     "name": "key_v_face",
+     "cluster": 1,
+     "legend": "V",
+     "bbox": [
+      1570,
+      1961,
+      1786,
+      2177
+     ]
+    },
+    {
+     "name": "key_b_face",
+     "cluster": 1,
+     "legend": "B",
+     "bbox": [
+      1794,
+      1961,
+      2010,
+      2177
+     ]
+    },
+    {
+     "name": "key_n_face",
+     "cluster": 1,
+     "legend": "N",
+     "bbox": [
+      2018,
+      1961,
+      2234,
+      2177
+     ]
+    },
+    {
+     "name": "key_m_face",
+     "cluster": 1,
+     "legend": "M",
+     "altgr": "µ",
+     "bbox": [
+      2242,
+      1961,
+      2457,
+      2177
+     ]
+    },
+    {
+     "name": "key_caret_face",
+     "cluster": 2,
+     "legend": "^",
+     "sub": "°",
+     "bbox": [
+      394,
+      1291,
+      610,
+      1507
+     ]
+    },
+    {
+     "name": "key_num_1_face",
+     "cluster": 2,
+     "legend": "1",
+     "sub": "!",
+     "bbox": [
+      618,
+      1291,
+      834,
+      1507
+     ]
+    },
+    {
+     "name": "key_num_2_face",
+     "cluster": 2,
+     "legend": "2",
+     "sub": "\"",
+     "altgr": "²",
+     "bbox": [
+      842,
+      1291,
+      1058,
+      1507
+     ]
+    },
+    {
+     "name": "key_num_3_face",
+     "cluster": 2,
+     "legend": "3",
+     "sub": "§",
+     "altgr": "³",
+     "bbox": [
+      1066,
+      1291,
+      1282,
+      1507
+     ]
+    },
+    {
+     "name": "key_num_4_face",
+     "cluster": 2,
+     "legend": "4",
+     "sub": "$",
+     "bbox": [
+      1290,
+      1291,
+      1506,
+      1507
+     ]
+    },
+    {
+     "name": "key_num_5_face",
+     "cluster": 2,
+     "legend": "5",
+     "sub": "%",
+     "bbox": [
+      1514,
+      1291,
+      1730,
+      1507
+     ]
+    },
+    {
+     "name": "key_num_6_face",
+     "cluster": 2,
+     "legend": "6",
+     "sub": "&",
+     "bbox": [
+      1738,
+      1291,
+      1954,
+      1507
+     ]
+    },
+    {
+     "name": "key_num_7_face",
+     "cluster": 2,
+     "legend": "7",
+     "sub": "/",
+     "altgr": "{",
+     "bbox": [
+      1962,
+      1291,
+      2178,
+      1507
+     ]
+    },
+    {
+     "name": "key_num_8_face",
+     "cluster": 2,
+     "legend": "8",
+     "sub": "(",
+     "altgr": "[",
+     "bbox": [
+      2186,
+      1291,
+      2402,
+      1507
+     ]
+    },
+    {
+     "name": "key_num_9_face",
+     "cluster": 2,
+     "legend": "9",
+     "sub": ")",
+     "altgr": "]",
+     "bbox": [
+      2410,
+      1291,
+      2626,
+      1507
+     ]
+    },
+    {
+     "name": "key_num_0_face",
+     "cluster": 2,
+     "legend": "0",
+     "sub": "=",
+     "altgr": "}",
+     "bbox": [
+      2634,
+      1291,
+      2849,
+      1507
+     ]
+    },
+    {
+     "name": "key_ss_face",
+     "cluster": 2,
+     "legend": "ß",
+     "sub": "?",
+     "altgr": "\\",
+     "bbox": [
+      2858,
+      1291,
+      3073,
+      1507
+     ]
+    },
+    {
+     "name": "key_acute_face",
+     "cluster": 2,
+     "legend": "´",
+     "sub": "`",
+     "bbox": [
+      3082,
+      1291,
+      3297,
+      1507
+     ]
+    },
+    {
+     "name": "key_plus_face",
+     "cluster": 2,
+     "legend": "+",
+     "sub": "*",
+     "altgr": "~",
+     "bbox": [
+      3194,
+      1515,
+      3409,
+      1730
+     ]
+    },
+    {
+     "name": "key_hash_ansi",
+     "cluster": 2,
+     "legend": "#",
+     "sub": "'",
+     "bbox": [
+      3417,
+      1515,
+      3745,
+      1730
+     ]
+    },
+    {
+     "name": "key_semicolon_face",
+     "cluster": 2,
+     "legend": ",",
+     "sub": ";",
+     "bbox": [
+      2465,
+      1961,
+      2681,
+      2177
+     ]
+    },
+    {
+     "name": "key_colon_face",
+     "cluster": 2,
+     "legend": ".",
+     "sub": ":",
+     "bbox": [
+      2689,
+      1961,
+      2905,
+      2177
+     ]
+    },
+    {
+     "name": "key_dash_face",
+     "cluster": 2,
+     "legend": "-",
+     "sub": "_",
+     "bbox": [
+      2913,
+      1961,
+      3129,
+      2177
+     ]
+    },
+    {
+     "name": "key_hash_face",
+     "cluster": 2,
+     "legend": "#",
+     "sub": "'",
+     "bbox": [
+      933,
+      3775,
+      1149,
+      3991
+     ]
+    },
+    {
+     "name": "key_less_face",
+     "cluster": 2,
+     "legend": "<",
+     "sub": ">",
+     "altgr": "|",
+     "bbox": [
+      703,
+      3775,
+      919,
+      3991
+     ]
+    },
+    {
+     "name": "key_f1_face",
+     "cluster": 3,
+     "legend": "F1",
+     "bbox": [
+      843,
+      956,
+      1058,
+      1172
+     ]
+    },
+    {
+     "name": "key_f2_face",
+     "cluster": 3,
+     "legend": "F2",
+     "bbox": [
+      1066,
+      956,
+      1282,
+      1172
+     ]
+    },
+    {
+     "name": "key_f3_face",
+     "cluster": 3,
+     "legend": "F3",
+     "bbox": [
+      1289,
+      956,
+      1505,
+      1172
+     ]
+    },
+    {
+     "name": "key_f4_face",
+     "cluster": 3,
+     "legend": "F4",
+     "bbox": [
+      1512,
+      956,
+      1728,
+      1172
+     ]
+    },
+    {
+     "name": "key_f5_face",
+     "cluster": 3,
+     "legend": "F5",
+     "bbox": [
+      1852,
+      956,
+      2068,
+      1172
+     ]
+    },
+    {
+     "name": "key_f6_face",
+     "cluster": 3,
+     "legend": "F6",
+     "bbox": [
+      2076,
+      956,
+      2291,
+      1172
+     ]
+    },
+    {
+     "name": "key_f7_face",
+     "cluster": 3,
+     "legend": "F7",
+     "bbox": [
+      2299,
+      956,
+      2514,
+      1172
+     ]
+    },
+    {
+     "name": "key_f8_face",
+     "cluster": 3,
+     "legend": "F8",
+     "bbox": [
+      2522,
+      956,
+      2738,
+      1172
+     ]
+    },
+    {
+     "name": "key_f9_face",
+     "cluster": 3,
+     "legend": "F9",
+     "bbox": [
+      2854,
+      956,
+      3070,
+      1172
+     ]
+    },
+    {
+     "name": "key_f10_face",
+     "cluster": 3,
+     "legend": "F10",
+     "bbox": [
+      3077,
+      956,
+      3293,
+      1172
+     ]
+    },
+    {
+     "name": "key_f11_face",
+     "cluster": 3,
+     "legend": "F11",
+     "bbox": [
+      3301,
+      956,
+      3516,
+      1172
+     ]
+    },
+    {
+     "name": "key_f12_face",
+     "cluster": 3,
+     "legend": "F12",
+     "bbox": [
+      3524,
+      956,
+      3739,
+      1172
+     ]
+    },
+    {
+     "name": "key_backspace_face",
+     "cluster": 4,
+     "legend": "⟵",
+     "bbox": [
+      3306,
+      1291,
+      3744,
+      1507
+     ]
+    },
+    {
+     "name": "key_tab_face",
+     "cluster": 4,
+     "legend": "↹",
+     "bbox": [
+      394,
+      1515,
+      722,
+      1730
+     ]
+    },
+    {
+     "name": "key_caps_face",
+     "cluster": 4,
+     "legend": "⇪",
+     "bbox": [
+      394,
+      1738,
+      777,
+      1954
+     ]
+    },
+    {
+     "name": "key_ctrl_l_face",
+     "cluster": 4,
+     "legend": "STRG",
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs STRG (Inventar: STRG)",
+     "bbox": [
+      394,
+      2184,
+      666,
+      2400
+     ]
+    },
+    {
+     "name": "key_win_face",
+     "cluster": 4,
+     "legend": "WIN",
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs WIN (Inventar: WIN)",
+     "bbox": [
+      674,
+      2184,
+      946,
+      2400
+     ]
+    },
+    {
+     "name": "key_alt_face",
+     "cluster": 4,
+     "legend": "ALT",
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs ALT (Inventar: ALT)",
+     "bbox": [
+      954,
+      2184,
+      1226,
+      2400
+     ]
+    },
+    {
+     "name": "key_fn_face",
+     "cluster": 4,
+     "legend": "FN",
+     "bbox": [
+      2912,
+      2184,
+      3185,
+      2400
+     ]
+    },
+    {
+     "name": "key_altgr_face",
+     "cluster": 4,
+     "legend": "ALT",
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs ALT (Inventar: ALT)",
+     "bbox": [
+      2633,
+      2184,
+      2905,
+      2400
+     ]
+    },
+    {
+     "name": "key_ctrl_r_face",
+     "cluster": 4,
+     "legend": "STRG",
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs STRG (Inventar: STRG)",
+     "bbox": [
+      3472,
+      2184,
+      3744,
+      2400
+     ]
+    },
+    {
+     "name": "key_menu_face",
+     "cluster": 4,
+     "legend": "Menü (Icon)",
+     "bbox": [
+      3192,
+      2184,
+      3464,
+      2400
+     ]
+    },
+    {
+     "name": "key_fn_1u_face",
+     "cluster": 4,
+     "legend": "FN",
+     "bbox": [
+      703,
+      3522,
+      919,
+      3738
+     ]
+    },
+    {
+     "name": "key_menu_1u_face",
+     "cluster": 4,
+     "legend": "Menü (Icon)",
+     "bbox": [
+      933,
+      3522,
+      1149,
+      3738
+     ]
+    },
+    {
+     "name": "key_alt_1u_face",
+     "cluster": 4,
+     "legend": "ALT",
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs ALT (Inventar: ALT)",
+     "bbox": [
+      474,
+      3522,
+      689,
+      3738
+     ]
+    },
+    {
+     "name": "key_ctrl_1u_face",
+     "cluster": 4,
+     "legend": "STRG",
+     "hinweis": "Board-Export zeigt ein Symbol statt des Schriftzugs STRG (Inventar: STRG)",
+     "bbox": [
+      1163,
+      3522,
+      1378,
+      3738
+     ]
+    },
+    {
+     "name": "key_shift_l_face",
+     "cluster": 5,
+     "legend": "⇧",
+     "bbox": [
+      394,
+      1961,
+      891,
+      2177
+     ]
+    },
+    {
+     "name": "key_shift_r_2.75_face",
+     "cluster": 5,
+     "legend": "⇧",
+     "bbox": [
+      3137,
+      1961,
+      3744,
+      2177
+     ]
+    },
+    {
+     "name": "key_shift_1.75u_face",
+     "cluster": 5,
+     "legend": "⇧",
+     "bbox": [
+      1849,
+      3522,
+      2231,
+      3738
+     ]
+    },
+    {
+     "name": "key_shift_1.25u_face",
+     "cluster": 5,
+     "legend": "⇧",
+     "bbox": [
+      2250,
+      3522,
+      2522,
+      3738
+     ]
+    },
+    {
+     "name": "key_shift_2u_face",
+     "cluster": 5,
+     "legend": "⇧",
+     "bbox": [
+      1390,
+      3522,
+      1829,
+      3738
+     ]
+    },
+    {
+     "name": "key_shift_1u_face_new",
+     "cluster": 5,
+     "legend": "⇧",
+     "bbox": [
+      474,
+      3775,
+      689,
+      3991
+     ]
+    },
+    {
+     "name": "key_hero_3",
+     "cluster": 6,
+     "legend": "Entf (Icon)",
+     "bbox": [
+      4997,
+      956,
+      5213,
+      1172
+     ]
+    },
+    {
+     "name": "key_hero_4",
+     "cluster": 6,
+     "legend": "Entf (Icon)",
+     "bbox": [
+      5220,
+      956,
+      5435,
+      1172
+     ]
+    },
+    {
+     "name": "key_druck_face",
+     "cluster": 6,
+     "legend": "Druck (Icon)",
+     "bbox": [
+      3819,
+      956,
+      4034,
+      1172
+     ]
+    },
+    {
+     "name": "key_pause_face",
+     "cluster": 6,
+     "legend": "Pause (Icon)",
+     "bbox": [
+      4266,
+      956,
+      4482,
+      1172
+     ]
+    },
+    {
+     "name": "key_rollen_face",
+     "cluster": 6,
+     "legend": "Rollen (Icon)",
+     "bbox": [
+      4043,
+      956,
+      4258,
+      1172
+     ]
+    },
+    {
+     "name": "key_bild_up_face",
+     "cluster": 6,
+     "legend": "Bild↑ (Icon)",
+     "bbox": [
+      4267,
+      1291,
+      4482,
+      1507
+     ]
+    },
+    {
+     "name": "key_bild_down_face",
+     "cluster": 6,
+     "legend": "Bild↓ (Icon)",
+     "bbox": [
+      4267,
+      1515,
+      4482,
+      1730
+     ]
+    },
+    {
+     "name": "key_einf_face",
+     "cluster": 6,
+     "legend": "Einfg (Icon)",
+     "bbox": [
+      3819,
+      1291,
+      4034,
+      1507
+     ]
+    },
+    {
+     "name": "key_pos1_face",
+     "cluster": 6,
+     "legend": "Pos1 (Icon)",
+     "bbox": [
+      4043,
+      1291,
+      4258,
+      1507
+     ]
+    },
+    {
+     "name": "key_ende_face",
+     "cluster": 6,
+     "legend": "Ende (Icon)",
+     "bbox": [
+      4043,
+      1515,
+      4258,
+      1730
+     ]
+    },
+    {
+     "name": "key_entf_face",
+     "cluster": 6,
+     "legend": "Entf (Icon)",
+     "bbox": [
+      3819,
+      1515,
+      4034,
+      1730
+     ]
+    },
+    {
+     "name": "key_numlock_face",
+     "cluster": 6,
+     "legend": "NumLock (Icon)",
+     "bbox": [
+      4550,
+      1291,
+      4766,
+      1507
+     ]
+    },
+    {
+     "name": "key_druck_rose_face",
+     "cluster": 6,
+     "legend": "Druck (Icon, Rosé)",
+     "bbox": [
+      1163,
+      3775,
+      1378,
+      3991
+     ]
+    },
+    {
+     "name": "key_rollen_rose_face",
+     "cluster": 6,
+     "legend": "Rollen (Icon, Rosé)",
+     "bbox": [
+      1615,
+      3775,
+      1830,
+      3991
+     ]
+    },
+    {
+     "name": "key_pause_rose_face",
+     "cluster": 6,
+     "legend": "Pause (Icon, Rosé)",
+     "bbox": [
+      1391,
+      3775,
+      1606,
+      3991
+     ]
+    },
+    {
+     "name": "key_enter_face",
+     "cluster": 7,
+     "legend": "↵",
+     "bbox": [
+      3248,
+      1738,
+      3745,
+      1953
+     ]
+    },
+    {
+     "name": "key_numpad_enter_face",
+     "cluster": 7,
+     "legend": "↵",
+     "bbox": [
+      5220,
+      1961,
+      5435,
+      2399
+     ]
+    },
+    {
+     "name": "key_enter_iso_face",
+     "cluster": 7,
+     "legend": "↵",
+     "bbox": [
+      1111,
+      3013,
+      1459,
+      3479
+     ]
+    },
+    {
+     "name": "key_hero_1",
+     "cluster": 8,
+     "legend": "Delta-Logo",
+     "bbox": [
+      4550,
+      956,
+      4766,
+      1172
+     ]
+    },
+    {
+     "name": "key_hero_2",
+     "cluster": 8,
+     "legend": "Delta-Logo",
+     "bbox": [
+      4773,
+      956,
+      4989,
+      1172
+     ]
+    },
+    {
+     "name": "key_esc_face",
+     "cluster": 8,
+     "legend": "ESC",
+     "hinweis": "Board-Export v1.36 zeigt ein Telefon-Icon; Inventar 2026-09-28 nennt \"ESC\" (Gold)",
+     "bbox": [
+      394,
+      956,
+      610,
+      1172
+     ]
+    },
+    {
+     "name": "key_space_face",
+     "cluster": 8,
+     "legend": "Delta-Logo/Equalizer",
+     "bbox": [
+      1233,
+      2184,
+      2625,
+      2400
+     ]
+    },
+    {
+     "name": "key_note_face",
+     "cluster": 8,
+     "legend": "Note (Icon)",
+     "bbox": [
+      482,
+      2739,
+      698,
+      2955
+     ]
+    },
+    {
+     "name": "key_disk_face",
+     "cluster": 8,
+     "legend": "Schallplatte (Icon)",
+     "bbox": [
+      706,
+      2739,
+      922,
+      2955
+     ]
+    },
+    {
+     "name": "key_eq_face",
+     "cluster": 8,
+     "legend": "Equalizer (Icon)",
+     "bbox": [
+      930,
+      2739,
+      1146,
+      2955
+     ]
+    },
+    {
+     "name": "key_dial_face",
+     "cluster": 8,
+     "legend": "Wählscheibe (Icon)",
+     "bbox": [
+      1154,
+      2739,
+      1370,
+      2955
+     ]
+    },
+    {
+     "name": "key_mic_face",
+     "cluster": 8,
+     "legend": "Mikrofon (Icon)",
+     "bbox": [
+      1378,
+      2739,
+      1594,
+      2955
+     ]
+    },
+    {
+     "name": "key_note_2_face",
+     "cluster": 8,
+     "legend": "Note-Variante (Icon)",
+     "bbox": [
+      1602,
+      2739,
+      1817,
+      2955
+     ]
+    },
+    {
+     "name": "key_cassette_face",
+     "cluster": 8,
+     "legend": "Kassette (Icon)",
+     "bbox": [
+      474,
+      3013,
+      690,
+      3228
+     ]
+    },
+    {
+     "name": "key_heart_face",
+     "cluster": 8,
+     "legend": "Herz (Icon)",
+     "bbox": [
+      474,
+      3273,
+      690,
+      3488
+     ]
+    },
+    {
+     "name": "key_vol_up_face",
+     "cluster": 8,
+     "legend": "Lautstärke+ (Icon)",
+     "bbox": [
+      698,
+      3273,
+      914,
+      3488
+     ]
+    },
+    {
+     "name": "key_vol_down_face",
+     "cluster": 8,
+     "legend": "Lautstärke− (Icon)",
+     "bbox": [
+      919,
+      3273,
+      1135,
+      3488
+     ]
+    },
+    {
+     "name": "key_arrow_up_face",
+     "cluster": 9,
+     "legend": "↑",
+     "bbox": [
+      4043,
+      1961,
+      4258,
+      2177
+     ]
+    },
+    {
+     "name": "key_arrow_down_face",
+     "cluster": 9,
+     "legend": "↓",
+     "bbox": [
+      4043,
+      2184,
+      4258,
+      2400
+     ]
+    },
+    {
+     "name": "key_arrow_left_face",
+     "cluster": 9,
+     "legend": "←",
+     "bbox": [
+      3819,
+      2184,
+      4034,
+      2400
+     ]
+    },
+    {
+     "name": "key_arrow_right_face",
+     "cluster": 9,
+     "legend": "→",
+     "bbox": [
+      4267,
+      2184,
+      4482,
+      2400
+     ]
+    },
+    {
+     "name": "key_numpad_div_face",
+     "cluster": 10,
+     "legend": "/",
+     "bbox": [
+      4773,
+      1291,
+      4989,
+      1507
+     ]
+    },
+    {
+     "name": "key_numpad_mul_face",
+     "cluster": 10,
+     "legend": "*",
+     "bbox": [
+      4997,
+      1291,
+      5213,
+      1507
+     ]
+    },
+    {
+     "name": "key_numpad_sub_face",
+     "cluster": 10,
+     "legend": "-",
+     "bbox": [
+      5220,
+      1291,
+      5435,
+      1507
+     ]
+    },
+    {
+     "name": "key_numpad_plus_face",
+     "cluster": 10,
+     "legend": "+",
+     "bbox": [
+      5220,
+      1515,
+      5435,
+      1953
+     ]
+    },
+    {
+     "name": "key_numpad_7_face",
+     "cluster": 10,
+     "legend": "7",
+     "bbox": [
+      4550,
+      1515,
+      4766,
+      1730
+     ]
+    },
+    {
+     "name": "key_numpad_8_face",
+     "cluster": 10,
+     "legend": "8",
+     "bbox": [
+      4773,
+      1515,
+      4989,
+      1730
+     ]
+    },
+    {
+     "name": "key_numpad_9_face",
+     "cluster": 10,
+     "legend": "9",
+     "bbox": [
+      4997,
+      1515,
+      5213,
+      1730
+     ]
+    },
+    {
+     "name": "key_numpad_4_face",
+     "cluster": 10,
+     "legend": "4",
+     "bbox": [
+      4550,
+      1738,
+      4766,
+      1953
+     ]
+    },
+    {
+     "name": "key_numpad_5_face",
+     "cluster": 10,
+     "legend": "5",
+     "bbox": [
+      4773,
+      1738,
+      4989,
+      1953
+     ]
+    },
+    {
+     "name": "key_numpad_6_face",
+     "cluster": 10,
+     "legend": "6",
+     "bbox": [
+      4997,
+      1738,
+      5213,
+      1953
+     ]
+    },
+    {
+     "name": "key_numpad_1_face",
+     "cluster": 10,
+     "legend": "1",
+     "bbox": [
+      4550,
+      1961,
+      4766,
+      2177
+     ]
+    },
+    {
+     "name": "key_numpad_2_face",
+     "cluster": 10,
+     "legend": "2",
+     "bbox": [
+      4773,
+      1961,
+      4989,
+      2177
+     ]
+    },
+    {
+     "name": "key_numpad_3_face",
+     "cluster": 10,
+     "legend": "3",
+     "bbox": [
+      4997,
+      1961,
+      5213,
+      2177
+     ]
+    },
+    {
+     "name": "key_numpad_0_face",
+     "cluster": 10,
+     "legend": "0",
+     "bbox": [
+      4550,
+      2184,
+      4989,
+      2400
+     ]
+    },
+    {
+     "name": "key_numpad_dot_face",
+     "cluster": 10,
+     "legend": ".",
+     "bbox": [
+      4997,
+      2184,
+      5213,
+      2400
+     ]
+    },
+    {
+     "name": "key_numpad_0_1u_face",
+     "cluster": 10,
+     "legend": "0",
+     "bbox": [
+      698,
+      3013,
+      914,
+      3228
+     ]
+    }
+   ]
+  }
+ }
+}

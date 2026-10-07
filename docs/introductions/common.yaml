@@ -1,0 +1,20 @@
+# Gemeinsame Einstellungen fuer alle Project-Introduction-Dokumente (EN + 中文).
+# Gelesen von scripts/build_introduction.py; <design>.yaml ueberschreibt einzelne Schluessel.
+# UTF-8.
+
+brand: DELTASET
+
+# Schriften. EN: eingebaute PDF-Schrift Helvetica / Helvetica-Bold (wie im Original, nicht eingebettet).
+# 中文: ein vollstaendiger CJK-Font. Pfad auch per CLI (--cjk-font PFAD[:INDEX]) oder Umgebungsvariable
+# INTRO_CJK_FONT setzbar. Der Font wird NICHT im Repo abgelegt (Microsoft-Lizenz), nur referenziert.
+# Bei .ttc: index = Subfont (msyh.ttc: 0 = Microsoft YaHei, 1 = Microsoft YaHei UI).
+fonts:
+  cjk:
+    path: C:\Windows\Fonts\msyh.ttc
+    index: 0
+
+labels:
+  page: Page
+  table_zone: Zone
+  table_hex: Screen (Hex)
+  table_caps: Caps

@@ -1,5 +1,7 @@
 # Kappen-Inventar — DELTASET-Alpine-133 (Release)
 
+> Abgelöst durch inventory_alpine_2026-10-04.md (neue Node-Namen, Spalte Reihe)
+
 Quelle: `D:\repos\GitHub\keyboards\templates\release\release_alpine_133_2026-09-23.af`, Commit
 `6afa068`. Methode: `execute_script` (Affinity SDK) — Face-Nodes aus Layer `底色`, Legenden aus
 `Alphas_Alpine` + `Images` (Delta-Logo `key_empty_icon`), Zuordnung per bbox-Center-Containment

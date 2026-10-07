@@ -1,0 +1,202 @@
+# Project Introduction — Hello (EN + 中文)
+# Textquelle fuer scripts/build_introduction.py --design hello
+# Stand: Release Hello MOA v1.36 (2026-10-05); Text 1:1 aus DELTASET_Hello_Project_Introduction_EN-CN_v1_5.pdf, mit den
+# Korrekturen von Anton (2026-10-05): Material/Profil entfernt, Tastenzahlen aus dem Template,
+# Layout-Aussage ISO-DE und ANSI-DE, dunkle Tinte 141, Creme-Tinte entfaellt, kein "dot-matrix" im
+# Illustrator-Hinweis.
+#
+# Platzhalter in Texten: {total} {main} {extra} {n_zones} {version}
+#                        {caps:ZONE} {hex:ZONE} {pantone:ZONE}   (ZONE = Name aus `zones`)
+# **fett** nur in EN-Text.
+
+design: hello
+version: v1.6-draft               # "-draft" bleibt bis zur Versandfreigabe stehen
+title: “Hello” Keycap Set
+doc_label: Project Introduction
+cn_doc_label: 项目介绍
+tagline: ISO-DE / ANSI-DE
+footer: DELTASET · premium ISO-ANSI-DE keycaps · Hello · Introduction {version}
+
+hero:
+  image: assets/hello_concept.png
+  caption: Concept render — Hello (illustrative reference, not a production / material template).
+
+# Tastenzahlen laut Template (qc/inventory_hello_2026-09-28.md + qc/cluster_tastenliste_2026-10-04.md:
+# Hauptboard 109, Zusatzkappen 24)
+total_caps: 133
+main_caps: 109
+extra_caps: 24
+# Aufschluesselung der 24 Zusatzkappen (Summe wird von --check geprueft; steht nicht im Dokumenttext)
+extra_breakdown:
+  novelty_without_headphones: 10   # note, vinyl, eq, dial, mic, note2, cassette, heart, vol_up, vol_down
+  one_u_null: 1                    # key_numpad_0_1u_face
+  one_u_fn_menu_alt_strg: 4        # key_fn_1u, key_menu_1u, key_alt_1u, key_ctrl_1u
+  shift_widths_1u_1.25u_1.75u_2u: 4
+  less_and_hash: 2                 # key_less_face, key_hash_face
+  rose_variants_druck_rollen_pause: 3
+
+# Messwerte Legend system (keycap-qa, 2026-10-05, Hello_MOA_v1.33 = Release v1.36, 300 dpi):
+# Platzhalter {legend_objects} {placed_artworks} {wordmark_units} {wordmark_mm}
+values:
+  legend_objects: 164             # 163 Einzelkurven + Leertasten-Wortmarke als EIN Objekt
+  placed_artworks: 2              # Delta-Logos
+  wordmark_units: 387.9 × 101.8   # 387,894 × 101,760 Einheiten
+  wordmark_mm: 32.8 × 8.6
+  wordmark_glyphs: 7              # h, e, l, l, o, o, o (11 Teilpfade)
+# Pruefung (--check): Tinten 141 + 12 + 10 = 163 Legenden, + 1 Wortmarke = 164 Vektor-Objekte (+ 2 platziert = 166)
+legend_check:
+  inks: [141, 12, 10]
+  wordmark_objects: 1
+
+zones:
+  - {name: Cream,      pantone: 7506 C, hex: "#E8DDC8", caps: 61}
+  - {name: Terracotta, pantone: 7585 C, hex: "#A85D3E", caps: 25}
+  - {name: Taupe,      pantone: 4271 C, hex: "#8A7868", caps: 15}
+  - {name: Rosé,       pantone: 2446 C, hex: "#C89090", caps: 21}
+  - {name: Espresso,   pantone: 4259 C, hex: "#1A1612", caps: 11}
+
+blocks:
+  - section: concept
+    title: {en: Concept, cn: 概念}
+    body:
+      # Layout-Aussage laut Anton: ISO-DE und ANSI-DE.
+      - en: >-
+          Premium limited keycap set for German layouts — supports ISO-DE and ANSI-DE. A warm, retro
+          palette — cream and terracotta with taupe and rosé accents against an espresso base. Soft,
+          domestic, deliberately unlike a gaming set.
+        cn: >-
+          高端限量键帽套装，面向德语布局，支持 ISO-DE 与 ANSI-DE。温暖的复古配色 —— 奶油色与陶土色，辅以灰褐与玫瑰色点缀，衬于浓咖啡色底。柔和、居家，刻意区别于电竞风格套装。
+
+  # Abschnitt "Construction — solid" entfaellt (Anton: Material und Profil weglassen)
+
+  - section: legends
+    title: {en: Legends, cn: 字符与图例}
+    body:
+      - en: >-
+          Letters, digits and symbols are solid vector labels. Function and navigation keys carry solid
+          vector icons. The spacebar carries a **script wordmark** built as a single vector path with
+          true counters — the enclosed areas of the letters are real openings, not white fills, so the
+          cap colour shows through. Legends must be durable and non-removable.
+        cn: >-
+          字母、数字与符号为实心矢量字符。功能键与导航键采用实心矢量图标。空格键上的手写体字标由单一矢量路径构成，字母内部为真实镂空而非白色填充，因此可透出键帽底色。字符须耐久、不可脱落。
+
+  - section: colours
+    title:
+      en: Colours — {n_zones} zones, {total} caps
+      cn: 颜色 —— {n_zones} 个区域，{total} 个键帽
+    body:
+      - en: >-
+          Cream {hex:Cream} (**{caps:Cream}** caps) · Terracotta {hex:Terracotta} (**{caps:Terracotta}**) ·
+          Taupe {hex:Taupe} (**{caps:Taupe}**) · Rosé {hex:Rosé} (**{caps:Rosé}**) · Espresso
+          {hex:Espresso} (**{caps:Espresso}**).
+        cn: >-
+          Cream {hex:Cream}（{caps:Cream} 键）· Terracotta {hex:Terracotta}（{caps:Terracotta}）· Taupe {hex:Taupe}（{caps:Taupe}）· Rosé {hex:Rosé}（{caps:Rosé}）· Espresso {hex:Espresso}（{caps:Espresso}）。
+      - en: >-
+          **Legend inks — which ink on which caps:**
+        cn: >-
+          字符油墨 —— 各油墨用于哪些键帽：
+        gap_after: 0
+      # Dunkle Tinte: 141 (Anton, 2026-10-05; v1_5 nannte 137). Die Creme-Tinte (#F2E8D5, 6 auf Terracotta) entfaellt.
+      - en: >-
+          · #3A2A1E (dark brown) on light caps (Cream, Taupe, Terracotta, Rosé) — 141.
+        cn: >-
+          · #3A2A1E（深棕）用于浅色键帽（Cream、Taupe、Terracotta、Rosé）—— 共 141 个。
+        gap_after: 0
+      - en: >-
+          · #A85D3E (terracotta) — 12, on Cream caps.
+        cn: >-
+          · #A85D3E（陶土色）—— 12 个，用于 Cream 键帽。
+        gap_after: 0
+      - en: >-
+          · #D4A574 (gold) — 10, on Espresso caps (incl. the 3 Enter keys).
+        cn: >-
+          · #D4A574（金色）—— 10 个，用于 Espresso 键帽（含三个回车键）。
+        gap_after: 0
+      - en: >-
+          The three Enter keys share one treatment: espresso cap with gold ink.
+        cn: >-
+          三个回车键采用统一处理：Espresso 键帽配金色油墨。
+
+  - zone_table: true
+
+  - section: legend_system
+    title: {en: Legend system, cn: 字符系统}
+    body:
+      # Zahlen und Wortmarken-Mass gemessen (siehe `values`). Kein Strichstaerken-Satz: dort nicht belastbar messbar.
+      # Die Mitte-Angabe "105.9 units" entfaellt (gilt nur fuer 63 von 67 Icons).
+      - en: >-
+          Verified in the artwork file: **{legend_objects}** solid vector legend objects, plus **{placed_artworks}** placed vector
+          artworks. No dot-matrix elements — every legend is a solid vector shape. Icon legends sit
+          centred on the cap. The spacebar wordmark measures {wordmark_units} units ({wordmark_mm} mm), {wordmark_glyphs} glyphs, non-zero winding.
+        cn: >-
+          已在源文件中核对：{legend_objects} 个实心矢量字符对象，另有 {placed_artworks} 个置入矢量图稿。无点阵元素 —— 所有字符均为实心矢量图形。图标字符居中放置于键帽上。空格键字标尺寸为 {wordmark_units} 单位（{wordmark_mm} mm），含 {wordmark_glyphs} 个字形，采用非零填充规则。
+
+  - section: legend_positions
+    title: {en: Legends in the release file and positions, cn: 发布文件中的字符与位置}
+    body:
+      - en: >-
+          As in release file v1.36: **Esc** — telephone icon, gold on Espresso. **Modifiers** carry symbols,
+          not words: Strg, Win, Alt, AltGr (same symbol as Alt), Fn, Menu. **Shift, Caps, Tab, Backspace** — icons.
+          **Enter keys** — return arrow; on the ISO Enter in the upper part of the cap, on the Numpad Enter
+          in the middle. **Numpad dot** in the upper part of the cap. **F-row, right side:** two Delta logos and two Delete icons.
+        cn: >-
+          与发布文件 v1.36 一致：Esc —— 电话图标，Espresso 键帽上为金色。修饰键使用符号而非文字：Strg、Win、Alt、AltGr（与 Alt 同一符号）、Fn、Menu。Shift、Caps、Tab、退格 —— 图标。回车键 —— 回车箭头；ISO 回车上箭头位于键帽上部，小键盘回车上位于中部。小键盘句点位于键帽上部。F 行右侧：两个 Delta 标志与两个 Delete 图标。
+      - en: >-
+          Positions: icons on modifier, navigation and arrow keys sit in the middle of the cap, horizontally and
+          vertically. Letters are horizontally centred and sit at the top. AltGr @ € µ on Q / E / M stay as in the file.
+          Documented exception: the spacebar wordmark sits 1.97 px (0.17 mm) below the icon centre line.
+          Legend positions in the release file are final — please do not re-center or re-position them.
+        cn: >-
+          位置：修饰键、导航键与方向键上的图标水平、垂直均居中于键帽。字母水平居中、垂直位于上部。Q / E / M 上的 AltGr @ € µ 保持文件中的位置。已记录的例外：空格键字标位于图标中线下方 1.97 px（0.17 mm）。发布文件中的字符位置为最终位置，请勿重新居中或移动。
+
+  - section: size
+    title: {en: Size, cn: 尺寸}
+    body:
+      # Tastenzahlen laut Template: Hauptboard 109 + Zusatzkappen 24 = 133.
+      # Stabilisator-Liste abgeleitet aus qc/inventory_*: alle Kappen >= 2U und alle hohen Kappen (Face-Mass -> Nenn-U gerundet)
+      - en: >-
+          Full-size German layout including numpad, supporting ISO-DE and ANSI-DE: the main board has
+          {main} caps. The set ships **{total} keycaps** — the complete board plus {extra} additional
+          caps. 1U pitch 19.05 mm. Stabilised keys: 2U Backspace, 2.25U Enter, ISO Enter (1.5U × 2U), 2.25U L-Shift, 2.75U R-Shift, 6.25U Spacebar, Numpad + and Numpad Enter (1U × 2U), 2U Numpad 0; additional cap: 2U Shift.
+        cn: >-
+          全尺寸德语布局，含小键盘，支持 ISO-DE 与 ANSI-DE：主键盘共 {main} 个键帽。套装共含 {total} 个键帽 —— 整块键盘外加 {extra} 个附加键帽。 1U 间距 19.05 mm。带卫星轴的按键：2U 退格、2.25U 回车、ISO 回车（1.5U × 2U）、2.25U 左 Shift、2.75U 右 Shift、6.25U 空格、小键盘 + 与小键盘回车（1U × 2U）、2U 小键盘 0；附加键帽：2U Shift。
+
+  - section: next
+    title: {en: Next, cn: 后续}
+    body:
+      - en: >-
+          A full bilingual QA & print-transfer guide follows — with per-key alignment diagrams,
+          verified colours, a per-cap reference table, and a QA acceptance checklist.
+        cn: >-
+          随后提供完整的双语（EN/中文）QA 与印刷转移指南 —— 包含逐键对齐图、已验证颜色、逐帽参考表以及 QA 验收检查清单。
+
+  - section: illustrator
+    gap: 0
+    title:
+      en: Opening the design file (Affinity PDF) in Adobe Illustrator
+      cn: 在 Adobe Illustrator 中打开设计文件（Affinity PDF）
+    body:
+      - en: >-
+          1. File → Open and select the PDF exported from Affinity (for a multi-page file, pick the
+          page in the dialog). To place it into an existing document instead: File → Place → select
+          the PDF → choose the page → Embed.
+        cn: >-
+          1. 文件 → 打开，选择从 Affinity 导出的 PDF（多页文件请在对话框中选择页面）。若要置入现有文档：文件 → 置入 → 选择 PDF → 选择页面 → 嵌入。
+      - en: >-
+          2. The artwork opens as fully editable vector paths — keycap shapes and vector labels are
+          separate objects.
+        cn: >-
+          2. 图稿将作为完全可编辑的矢量路径打开 —— 键帽形状与矢量字符均为独立对象。
+      - en: >-
+          3. Text is exported as curves / outlines, so no fonts need installing and letters cannot shift.
+        cn: >-
+          3. 文本已转为曲线 / 轮廓，无需安装字体，字母也不会移位。
+      - en: >-
+          4. Check colours under Window → Swatches and confirm the document colour mode fits your
+          workflow (RGB / CMYK).
+        cn: >-
+          4. 在 窗口 → 色板 中检查颜色，并确认文档颜色模式符合您的流程（RGB / CMYK）。
+      - en: >-
+          5. If layers are present, open Window → Layers to keep the structure.
+        cn: >-
+          5. 若含图层，打开 窗口 → 图层 以保留结构。

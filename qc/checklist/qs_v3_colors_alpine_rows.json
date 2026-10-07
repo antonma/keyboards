@@ -1,0 +1,29 @@
+{
+ "overlay_alpha": 0.85,
+ "rows": {
+  "R6": {
+   "name": "F-Reihe",
+   "hex": "#059669"
+  },
+  "R5": {
+   "name": "Zahlenreihe",
+   "hex": "#F97316"
+  },
+  "R4": {
+   "name": "Tab-Reihe",
+   "hex": "#84CC16"
+  },
+  "R3": {
+   "name": "Caps-Reihe",
+   "hex": "#2563EB"
+  },
+  "R2": {
+   "name": "Shift-Reihe",
+   "hex": "#9333EA"
+  },
+  "R1": {
+   "name": "Strg-Reihe",
+   "hex": "#DC2626"
+  }
+ }
+}

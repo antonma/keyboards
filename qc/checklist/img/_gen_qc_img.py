@@ -97,6 +97,8 @@ def svg(body, w=W, h=H):
 
 def save(name, s):
     p = os.path.join(OUT, name)
+    if os.path.exists(p + '.svg') and os.path.exists(p + '.png') and open(p + '.svg', encoding='utf-8').read() == s:
+        print('unchanged', name); return      # idempotent: unveraenderte Bilder nicht neu schreiben
     open(p + '.svg', 'w', encoding='utf-8').write(s)
     doc = fitz.open('svg', s.encode('utf-8'))
     doc[0].get_pixmap(matrix=fitz.Matrix(1, 1), alpha=False).save(p + '.png')
@@ -284,3 +286,258 @@ ah2 = S * LEG * 1.35
 rot_icon = f'<g transform="rotate({ROT_DEG} {CX} {TCY})">{music_note(CX, TCY, ah2)}</g>'
 body_rot = guides_outside(CX, TCY, S) + cap_top(CX, CY, S, TAUPE) + dashed_axis(CX, TCY, S) + rot_icon
 save('bad_rotated', svg(body_rot))
+
+
+# ====================================================================================
+# v3: neue Schlecht-Bilder fuer die Werker-QS v3 (10 Cluster nach Legendenart)
+# Regel (Anton): ein Fehler je Bild, gross und auf den ersten Blick eindeutig (Druck ~33x22 mm),
+# wo es hilft eine gestrichelte Soll-Markierung. Bestehende Bilder bleiben unveraendert.
+# ====================================================================================
+from fontTools.pens.recordingPen import DecomposingRecordingPen
+
+V3 = []                        # Dateinamen der neuen Bilder (fuer den Kontaktbogen)
+def save3(name, s):
+    save(name, s); V3.append(name)
+
+DASH = '#8C8378'               # Soll-Markierung: auf hellen Kappen gut sichtbar
+DASH_LIGHT = '#CFC7BB'         # Soll-Markierung auf dunklen Kappen
+S3 = 760                       # grosse Einzelkappe (Bild-Hoehe 1000)
+TCY3 = CY - S3 * .023          # Top-Flaechen-Mitte
+
+def dline(x1, y1, x2, y2, col=DASH, w=8, dash='24 14'):
+    return (f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" stroke="{col}" '
+            f'stroke-width="{w}" stroke-dasharray="{dash}" stroke-linecap="round"/>')
+
+def dring(cx, cy, r, col=DASH, w=7, dash='15 11'):
+    return (f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r:.1f}" fill="none" stroke="{col}" '
+            f'stroke-width="{w}" stroke-dasharray="{dash}"/>')
+
+def cap_wide(cx, cy, w, h, col, shadow=True):
+    """Keycap Draufsicht, beliebiges Seitenverhaeltnis (wie cap_top, aber w x h)."""
+    o = []; r = min(w, h) * .15
+    if shadow:
+        o.append(rrect(cx - w / 2 + h * .01, cy - h / 2 + h * .035, w, h, r, fill='#3A2A1E', fill_opacity='0.13'))
+    o.append(rrect(cx - w / 2, cy - h / 2, w, h, r, fill=shade(col, -7), stroke=shade(col, -22), stroke_width=f'{h*.008:.2f}'))
+    i = h * .115
+    o.append(rrect(cx - w / 2 + i, cy - h / 2 + i * .8, w - 2 * i, h - 2 * i, h * .12, fill=col, stroke=shade(col, -12), stroke_width=f'{h*.005:.2f}'))
+    j = h * .165
+    o.append(rrect(cx - w / 2 + j, cy - h / 2 + j * .86, w - 2 * j, h - 2 * j, h * .10, fill='none', stroke=shade(col, 4), stroke_width=f'{h*.006:.2f}'))
+    return '\n'.join(o)
+
+HMTX = FONT['hmtx']
+def glyph_str(s, cx, cy, h):
+    """Zeichenkette als Pfad (Cap-Height = h, horizontal mittig ueber die Advance-Breiten)."""
+    sc = h / CAPH
+    adv = [HMTX[CMAP[ord(c)]][0] * sc for c in s]
+    x = cx - sum(adv) / 2
+    pen = SVGPathPen(GS, ntos=lambda v: ('%.2f' % v).rstrip('0').rstrip('.'))
+    for c, a in zip(s, adv):
+        GS[CMAP[ord(c)]].draw(TransformPen(pen, (sc, 0, 0, -sc, x, cy + h / 2)))
+        x += a
+    return pen.getCommands()
+
+def arrow_up(cx, cy, h, col, bar=False):
+    """Pfeil nach oben (Kopf + Schaft), optional mit Querbalken oben (Bild-hoch/Pos1-artig). Bbox mittig, Hoehe h."""
+    w = h * .66; sw = w * .32; top = cy - h / 2; bot = cy + h / 2
+    o = []
+    y_a = top + (h * .20 if bar else 0)
+    y_b = y_a + h * .40
+    pts = [(cx, y_a), (cx + w / 2, y_b), (cx + sw / 2, y_b), (cx + sw / 2, bot), (cx - sw / 2, bot), (cx - sw / 2, y_b), (cx - w / 2, y_b)]
+    o.append(f'<path d="M' + ' L'.join(f'{x:.1f},{y:.1f}' for x, y in pts) + f' Z" fill="{col}" stroke="{col}" stroke-width="{h*.04:.1f}" stroke-linejoin="round"/>')
+    if bar:
+        o.append(rrect(cx - w / 2, top, w, h * .11, h * .03, fill=col))
+    return ''.join(o)
+
+def rot(body, deg, cx, cy):
+    return f'<g transform="rotate({deg} {cx:.1f} {cy:.1f})">{body}</g>'
+
+def flip_v(body, cy):
+    return f'<g transform="translate(0,{2*cy:.1f}) scale(1,-1)">{body}</g>'
+
+# ---------- 1) bad_umlaut_dot_missing: Ö mit nur einem Punkt ----------
+def contours(ch):
+    rp = DecomposingRecordingPen(GS); GS[CMAP[ord(ch)]].draw(rp)
+    out, cur = [], []
+    for op, args in rp.value:
+        cur.append((op, args))
+        if op in ('closePath', 'endPath'):
+            out.append(cur); cur = []
+    return out
+
+def c_bbox(c):
+    pts = [p for op, args in c for p in args if p is not None]
+    return (min(p[0] for p in pts), min(p[1] for p in pts), max(p[0] for p in pts), max(p[1] for p in pts))
+
+def oe_paths(h):
+    """(Pfad ohne rechten Punkt, (cx,cy,r) des fehlenden Punkts), Cap-Height-Hoehe h, Bild-/Kappenmitte (CX,TCY3)."""
+    g = GS[CMAP[ord('Ö')]]
+    bp = BoundsPen(GS); g.draw(bp); x0, y0, x1, y1 = bp.bounds
+    sc = h / CAPH
+    tx = CX - (x0 + x1) / 2 * sc
+    ty = TCY3 + (h + (y1 - CAPH) * sc) / 2 - ((y1 - CAPH) * sc)   # Gesamt-Bbox (inkl. Punkte) optisch mittig
+    ty = TCY3 + h / 2 + (y1 - CAPH) * sc / 2
+    cs = contours('Ö')
+    dots = [c for c in cs if c_bbox(c)[1] > CAPH * .85]           # Kontur komplett ueber der Cap-Height = Punkt
+    dots.sort(key=lambda c: (c_bbox(c)[0] + c_bbox(c)[2]) / 2)
+    drop = dots[-1]                                                # rechter Punkt fehlt
+    pen = SVGPathPen(GS, ntos=lambda v: ('%.2f' % v).rstrip('0').rstrip('.'))
+    tp = TransformPen(pen, (sc, 0, 0, -sc, tx, ty))
+    for c in cs:
+        if c is drop: continue
+        for op, args in c: getattr(tp, op)(*args)
+    bx0, by0, bx1, by1 = c_bbox(drop)
+    mx = tx + (bx0 + bx1) / 2 * sc; my = ty - (by0 + by1) / 2 * sc
+    r = max(bx1 - bx0, by1 - by0) / 2 * sc
+    return pen.getCommands(), (mx, my, r)
+
+oe_d, (dx_, dy_, dr_) = oe_paths(S3 * .50)
+save3('bad_umlaut_dot_missing', svg(
+    cap_top(CX, CY, S3, CREAM) + f'<path d="{oe_d}" fill="{BROWN}"/>' + dring(dx_, dy_, dr_ * 1.7, w=8, dash='16 11')))
+
+# ---------- 2) bad_legend_missing: 7 mit "/" oben rechts, AltGr "{" unten rechts fehlt ----------
+SUBR = .17
+bx, by = CX + CORNER_BR[0] * S3, TCY3 + CORNER_BR[1] * S3
+box = S3 * .20
+save3('bad_legend_missing', svg(
+    cap_top(CX, CY, S3, CREAM) +
+    main_legend(CX, TCY3, S3, BROWN, '7', size_ratio=.34) +
+    sub_legend(CX, TCY3, S3, BROWN, '/', *CORNER_TR, size_ratio=SUBR) +
+    f'<rect x="{bx-box/2:.1f}" y="{by-box/2:.1f}" width="{box:.1f}" height="{box:.1f}" rx="{box*.2:.1f}" fill="none" '
+    f'stroke="{DASH}" stroke-width="8" stroke-dasharray="20 13"/>'))
+
+# ---------- 3) bad_wrong_icon: zwei Steuerungs-Kappen, Icons vertauscht ----------
+S_I = 540; OFF = 330; ICY = 590; IH = S_I * .46
+lx, rx_ = CX - OFF, CX + OFF
+icon_up_bar = lambda cx, cy: arrow_up(cx, cy, IH, CREAM, bar=True)
+icon_dn_bar = lambda cx, cy: flip_v(arrow_up(cx, cy, IH, CREAM, bar=True), cy)
+tc = ICY - S_I * .023
+# Soll: links Pfeil hoch mit Strich, rechts Pfeil runter mit Strich. Ist: vertauscht.
+swap = (f'<path d="M{lx:.1f},262 C{lx:.1f},120 {rx_:.1f},120 {rx_:.1f},262" fill="none" stroke="{DASH}" stroke-width="8" '
+        f'stroke-dasharray="24 14" stroke-linecap="round"/>'
+        f'<path d="M{lx-30:.1f},238 L{lx:.1f},282 L{lx+30:.1f},238 Z" fill="{DASH}"/>'
+        f'<path d="M{rx_-30:.1f},238 L{rx_:.1f},282 L{rx_+30:.1f},238 Z" fill="{DASH}"/>')
+save3('bad_wrong_icon', svg(
+    swap + cap_top(lx, ICY, S_I, TERRA) + icon_dn_bar(lx, tc) +
+    cap_top(rx_, ICY, S_I, TERRA) + icon_up_bar(rx_, tc)))
+
+# ---------- 4) bad_enter_mirrored: breite Enter-Kappe, Pfeil gespiegelt ----------
+EW, EH = 1000, 640
+def enter_arrow(cx, cy, h, col):
+    """Enter-Pfeil (links zeigend): Stummel oben rechts, Waagerechte nach links, Pfeilspitze links."""
+    a, b, c, hd = h * .30, h * .22, h * .08, h * .13
+    sw = h * .06
+    line = f'M{cx+a:.1f},{cy-b:.1f} L{cx+a:.1f},{cy+c:.1f} L{cx-a+hd*.9:.1f},{cy+c:.1f}'
+    head = f'M{cx-a:.1f},{cy+c:.1f} L{cx-a+hd*1.4:.1f},{cy+c-hd:.1f} L{cx-a+hd*1.4:.1f},{cy+c+hd:.1f} Z'
+    return (f'<path d="{line}" fill="none" stroke="{col}" stroke-width="{sw:.1f}" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<path d="{head}" fill="{col}" stroke="{col}" stroke-width="{sw*.5:.1f}" stroke-linejoin="round"/>')
+etc_ = CY - EH * .023
+mirror = lambda body, cx: f'<g transform="translate({2*cx:.1f},0) scale(-1,1)">{body}</g>'
+save3('bad_enter_mirrored', svg(
+    cap_wide(CX, CY, EW, EH, CREAM) + mirror(enter_arrow(CX, etc_, EH * 1.05, BROWN), CX)))
+
+# ---------- 5) bad_arrow_direction: umgekehrtes T, "runter"-Taste zeigt nach oben ----------
+S_A = 340; PA = 374; AH = S_A * .50
+acx = [CX - PA, CX, CX + PA]; ary = [500 - PA / 2, 500 + PA / 2]
+def arrow_key(cx, cy, deg):
+    tcy = cy - S_A * .023
+    return cap_top(cx, cy, S_A, CREAM) + rot(arrow_up(cx, tcy, AH, BROWN), deg, cx, tcy)
+save3('bad_arrow_direction', svg(
+    arrow_key(acx[1], ary[0], 0) +                  # hoch   (richtig)
+    arrow_key(acx[0], ary[1], 270) +                # links  (richtig)
+    arrow_key(acx[1], ary[1], 0) +                  # runter (FALSCH: zeigt nach oben)
+    arrow_key(acx[2], ary[1], 90)))                 # rechts (richtig)
+
+# ---------- 6) bad_dot_matrix_missing: dunkle Kappe, Punktmatrix "F1", Punkte fehlen ----------
+DARK, DOT = '#34353B', '#F2EEE6'
+PIX_F = ['11111', '10000', '10000', '11110', '10000', '10000', '10000']
+PIX_1 = ['0010', '0110', '0010', '0010', '0010', '0010', '0111']
+S_D = 860; CELL = 56; DOTS = CELL * .80; TCY_D = CY - S_D * .023
+grid = [f + '0' + o for f, o in zip(PIX_F, PIX_1)]            # 10 Spalten x 7 Zeilen
+MISSING = {(0, 3), (2, 0), (5, 0), (3, 8), (6, 7)}            # (Zeile, Spalte)
+gx0 = CX - len(grid[0]) * CELL / 2; gy0 = TCY_D - len(grid) * CELL / 2
+dots_, rings_ = [], []
+for r_, row in enumerate(grid):
+    for c_, v in enumerate(row):
+        if v != '1': continue
+        px = gx0 + c_ * CELL + CELL / 2; py = gy0 + r_ * CELL + CELL / 2
+        if (r_, c_) in MISSING:
+            rings_.append(dring(px, py, CELL * .58, col=DASH_LIGHT, w=6, dash='10 8'))
+        else:
+            dots_.append(rrect(px - DOTS / 2, py - DOTS / 2, DOTS, DOTS, DOTS * .14, fill=DOT))
+save3('bad_dot_matrix_missing', svg(cap_top(CX, CY, S_D, DARK) + ''.join(dots_) + ''.join(rings_)))
+
+# ---------- 7) bad_heat_ghost: Kappe A mit blassem, versetztem Zweitbild ----------
+hA = S3 * .38
+pA = glyph('A', CX, TCY3, hA)
+ghost = (f'<path d="{pA}" transform="translate(-44,-30)" fill="{BROWN}" fill-opacity="0.10" '
+         f'stroke="{BROWN}" stroke-opacity="0.60" stroke-width="7" stroke-linejoin="round"/>')
+save3('bad_heat_ghost', svg(cap_top(CX, CY, S3, CREAM) + ghost + f'<path d="{pA}" fill="{BROWN}"/>'))
+
+# ---------- 8) bad_f_row_misaligned: F1 F2 F3, F2-Legende sitzt zu tief ----------
+S_F = 420; PF = 460; hF = S_F * .30
+fcx = [CX - PF, CX, CX + PF]
+ftcy = CY - S_F * .023
+body = ''
+for i, (cx, txt) in enumerate(zip(fcx, ['F1', 'F2', 'F3'])):
+    dy = S_F * .19 if i == 1 else 0
+    body += cap_top(cx, CY, S_F, CREAM) + f'<path d="{glyph_str(txt, cx, ftcy + dy, hF)}" fill="{BROWN}"/>'
+body += dline(60, ftcy - hF / 2, W - 60, ftcy - hF / 2) + dline(60, ftcy + hF / 2, W - 60, ftcy + hF / 2)
+save3('bad_f_row_misaligned', svg(body))
+
+# ---------- 9) bad_wrong_row / good_row_same: Seitenansicht, eine Kappe mit anderem Reihenprofil ----------
+def round_poly(pts, radii):
+    d = ''
+    for i, p1 in enumerate(pts):
+        p0, p2 = pts[i - 1], pts[(i + 1) % len(pts)]
+        def toward(a, b, dist):
+            dx, dy = b[0] - a[0], b[1] - a[1]; L = math.hypot(dx, dy); t = min(dist / L, .5)
+            return a[0] + dx * t, a[1] + dy * t
+        a = toward(p1, p0, radii[i]); b = toward(p1, p2, radii[i])
+        d += ('M' if i == 0 else 'L') + f'{a[0]:.1f},{a[1]:.1f} Q{p1[0]:.1f},{p1[1]:.1f} {b[0]:.1f},{b[1]:.1f} '
+    return d + 'Z'
+
+UR, GR_, BASE_R = 320, 26, 640
+def sta_cap(x0, w, h, slope):
+    """STA-artige Seitenansicht: schraege Oberseite (slope>0: nach rechts abfallend)."""
+    ins = w * .12; xl, xr = x0 + ins, x0 + w - ins
+    ytl = BASE_R - h; ytr = ytl + slope * (xr - xl)
+    r = w * .07
+    return round_poly([(x0, BASE_R), (xl, ytl), (xr, ytr), (x0 + w, BASE_R)], [3, r, r, 3]), ytl
+
+def profile_row_sta(odd_idx=None):
+    total = 4 * UR + 3 * GR_; x = (W - total) / 2
+    hN = UR * .62
+    o = [rrect(x - 40, BASE_R + 42, total + 80, 34, 8, fill='#8E867C')]
+    xs = [x + i * (UR + GR_) for i in range(4)]
+    for x0 in xs:
+        o.append(rrect(x0 + UR / 2 - 56, BASE_R - 4, 112, 50, 6, fill='#4A4540'))
+    y_ref = BASE_R - hN
+    o.append(dline(x - 70, y_ref, x + total + 70, y_ref, w=7, dash='22 14'))
+    for i, x0 in enumerate(xs):
+        if i == odd_idx:
+            d, _ = sta_cap(x0, UR, hN * 1.45, -.14)         # hoeher + gegenlaeufig geneigt
+        else:
+            d, _ = sta_cap(x0, UR, hN, .20)
+        o.append(f'<path d="{d}" transform="translate(6,10)" fill="#3A2A1E" fill-opacity="0.12"/>')
+        o.append(f'<path d="{d}" fill="{CREAM}" stroke="{shade(CREAM,-25)}" stroke-width="5" stroke-linejoin="round"/>')
+        o.append(rrect(x0 + 6, BASE_R - 16, UR - 12, 12, 4, fill=shade(CREAM, -9)))
+    return '\n'.join(o)
+
+save3('good_row_same', svg(profile_row_sta(None)))
+save3('bad_wrong_row', svg(profile_row_sta(2)))
+
+# ---------- Kontaktbogen in Druckgroesse (33 x 22 mm @ 300 dpi = 390 x 260 px) ----------
+from PIL import Image, ImageDraw
+TW, TH = 390, 260
+cols = 5; rows = (len(V3) + cols - 1) // cols
+cw, chh = TW + 24, TH + 44
+sheet = Image.new('RGB', (cols * cw, rows * chh), (255, 255, 255))
+dr = ImageDraw.Draw(sheet)
+for k, n in enumerate(V3):
+    im = Image.open(os.path.join(OUT, n + '.png')).convert('RGB').resize((TW, TH), Image.LANCZOS)
+    cx0, cy0 = (k % cols) * cw + 12, (k // cols) * chh + 28
+    dr.rectangle([cx0 - 3, cy0 - 3, cx0 + TW + 2, cy0 + TH + 2], outline=(192, 24, 42) if n.startswith('bad') else (26, 138, 60), width=3)
+    sheet.paste(im, (cx0, cy0))
+    dr.text((cx0, cy0 - 20), n, fill=(0, 0, 0))
+sheet.save(os.path.join(OUT, '_contact_sheet_v3.png'))
+print('ok _contact_sheet_v3', sheet.size)

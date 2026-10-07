@@ -1,0 +1,2350 @@
+{
+ "meta": {
+  "quelle": "release_alpine_135_2026-10-02 (offen: C:\\Users\\Yogi\\OneDrive\\Desktop\\alpine135_release\\release_alpine_135_2026-10-02.af)",
+  "datum": "2026-10-04",
+  "konvention": "R6=F, R5=Zahlen, R4=Tab, R3=Caps, R2=Shift, R1=Strg",
+  "status": "angewendet am 2026-10-04 auf DELTASET-Alpine-134.af (590 Nodes, Selbstcheck ok)",
+  "entscheidungen_anton_2026-10-04": {
+   "konflikte": "nach Lage umbenennen (r6/r5)",
+   "kollisionen": "Zusatzkappe mit _1u vor der Reihe",
+   "zwei_reihen": "beide Reihen im Namen, obere zuerst (_r4_r3, _r2_r1)",
+   "seite_plus_reihe": "bleibt (_r_r1)"
+  }
+ },
+ "rename_face_und_legenden": {
+  "key_esc_face": "key_esc_r6_face",
+  "key_esc_pixels": "key_esc_r6_pixels",
+  "key_f1_face": "key_f1_r6_face",
+  "key_f1_pixels": "key_f1_r6_pixels",
+  "key_f2_face": "key_f2_r6_face",
+  "key_f2_pixels": "key_f2_r6_pixels",
+  "key_f3_face": "key_f3_r6_face",
+  "key_f3_pixels": "key_f3_r6_pixels",
+  "key_f4_face": "key_f4_r6_face",
+  "key_f4_pixels": "key_f4_r6_pixels",
+  "key_f5_face": "key_f5_r6_face",
+  "key_f5_pixels": "key_f5_r6_pixels",
+  "key_f6_face": "key_f6_r6_face",
+  "key_f6_pixels": "key_f6_r6_pixels",
+  "key_f7_face": "key_f7_r6_face",
+  "key_f7_pixels": "key_f7_r6_pixels",
+  "key_f8_face": "key_f8_r6_face",
+  "key_f8_pixels": "key_f8_r6_pixels",
+  "key_f9_face": "key_f9_r6_face",
+  "key_f9_pixels": "key_f9_r6_pixels",
+  "key_f10_face": "key_f10_r6_face",
+  "key_f10_pixels": "key_f10_r6_pixels",
+  "key_f11_face": "key_f11_r6_face",
+  "key_f11_pixels": "key_f11_r6_pixels",
+  "key_f12_face": "key_f12_r6_face",
+  "key_f12_pixels": "key_f12_r6_pixels",
+  "key_druck_face": "key_druck_r6_face",
+  "key_druck_pixels": "key_druck_r6_pixels",
+  "key_rollen_face": "key_rollen_r6_face",
+  "key_rollen_pixels": "key_rollen_r6_pixels",
+  "key_pause_face": "key_pause_r6_face",
+  "key_pause_pixels": "key_pause_r6_pixels",
+  "key_einf_r1_face": "key_einf_r6_face",
+  "key_einf_r1_pixels": "key_einf_r6_pixels",
+  "key_empty_face": "key_empty_r6_face",
+  "key_empty_icon": "key_empty_r6_icon",
+  "key_entf_r1_face": "key_entf_r6_face",
+  "key_entf_r1_pixels": "key_entf_r6_pixels",
+  "key_exit_r1_face": "key_exit_r6_face",
+  "key_exit_r1_pixels": "key_exit_r6_pixels",
+  "key_caret_face": "key_caret_r5_face",
+  "key_caret": "key_caret_r5",
+  "key_caret_sub": "key_caret_r5_sub",
+  "key_num_1_face": "key_num_1_r5_face",
+  "key_num_1": "key_num_1_r5",
+  "key_num_1_sub": "key_num_1_r5_sub",
+  "key_num_2_face": "key_num_2_r5_face",
+  "key_num_2": "key_num_2_r5",
+  "key_num_2_sub": "key_num_2_r5_sub",
+  "key_num_2_gr": "key_num_2_r5_gr",
+  "key_num_3_face": "key_num_3_r5_face",
+  "key_num_3": "key_num_3_r5",
+  "key_num_3_sub": "key_num_3_r5_sub",
+  "key_num_3_gr": "key_num_3_r5_gr",
+  "key_num_4_face": "key_num_4_r5_face",
+  "key_num_4": "key_num_4_r5",
+  "key_num_4_sub": "key_num_4_r5_sub",
+  "key_num_5_face": "key_num_5_r5_face",
+  "key_num_5": "key_num_5_r5",
+  "key_num_5_sub": "key_num_5_r5_sub",
+  "key_num_6_face": "key_num_6_r5_face",
+  "key_num_6": "key_num_6_r5",
+  "key_num_6_sub": "key_num_6_r5_sub",
+  "key_num_7_face": "key_num_7_r5_face",
+  "key_num_7": "key_num_7_r5",
+  "key_num_7_sub": "key_num_7_r5_sub",
+  "key_num_7_gr": "key_num_7_r5_gr",
+  "key_num_8_face": "key_num_8_r5_face",
+  "key_num_8": "key_num_8_r5",
+  "key_num_8_sub": "key_num_8_r5_sub",
+  "key_num_8_gr": "key_num_8_r5_gr",
+  "key_num_9_face": "key_num_9_r5_face",
+  "key_num_9": "key_num_9_r5",
+  "key_num_9_sub": "key_num_9_r5_sub",
+  "key_num_9_gr": "key_num_9_r5_gr",
+  "key_num_0_face": "key_num_0_r5_face",
+  "key_num_0": "key_num_0_r5",
+  "key_num_0_sub": "key_num_0_r5_sub",
+  "key_num_0_gr": "key_num_0_r5_gr",
+  "key_ss_face": "key_ss_r5_face",
+  "key_ss": "key_ss_r5",
+  "key_ss_sub": "key_ss_r5_sub",
+  "key_ss_gr": "key_ss_r5_gr",
+  "key_acute_face": "key_acute_r5_face",
+  "key_acute": "key_acute_r5",
+  "key_acute_sub": "key_acute_r5_sub",
+  "key_backspace_face": "key_backspace_r5_face",
+  "key_backspace_pixels": "key_backspace_r5_pixels",
+  "key_einf_face": "key_einf_r5_face",
+  "key_einf_pixels": "key_einf_r5_pixels",
+  "key_pos1_face": "key_pos1_r5_face",
+  "key_pos1_pixels": "key_pos1_r5_pixels",
+  "key_bild_up_face": "key_bild_up_r5_face",
+  "key_bild_up_pixels": "key_bild_up_r5_pixels",
+  "key_numlock_face": "key_numlock_r5_face",
+  "key_numlock_pixels": "key_numlock_r5_pixels",
+  "key_numpad_div_r1_face": "key_numpad_div_r5_face",
+  "key_numpad_div_r1": "key_numpad_div_r5",
+  "key_numpad_mul_r1_face": "key_numpad_mul_r5_face",
+  "key_numpad_mul_r1": "key_numpad_mul_r5",
+  "key_numpad_sub_r1_face": "key_numpad_sub_r5_face",
+  "key_numpad_sub_r1": "key_numpad_sub_r5",
+  "key_tab_face": "key_tab_r4_face",
+  "key_tab_pixels": "key_tab_r4_pixels",
+  "key_q_face": "key_q_r4_face",
+  "key_q": "key_q_r4",
+  "key_q_gr": "key_q_r4_gr",
+  "key_w_face": "key_w_r4_face",
+  "key_w": "key_w_r4",
+  "key_e_face": "key_e_r4_face",
+  "key_e": "key_e_r4",
+  "key_e_gr": "key_e_r4_gr",
+  "key_r_face": "key_r_r4_face",
+  "key_r": "key_r_r4",
+  "key_t_face": "key_t_r4_face",
+  "key_t": "key_t_r4",
+  "key_z_face": "key_z_r4_face",
+  "key_z": "key_z_r4",
+  "key_u_face": "key_u_r4_face",
+  "key_u": "key_u_r4",
+  "key_i_face": "key_i_r4_face",
+  "key_i": "key_i_r4",
+  "key_o_face": "key_o_r4_face",
+  "key_o": "key_o_r4",
+  "key_p_face": "key_p_r4_face",
+  "key_p": "key_p_r4",
+  "key_ue_face": "key_ue_r4_face",
+  "key_ue": "key_ue_r4",
+  "key_plus_face": "key_plus_r4_face",
+  "key_plus": "key_plus_r4",
+  "key_plus_sub": "key_plus_r4_sub",
+  "key_plus_gr": "key_plus_r4_gr",
+  "key_entf_face": "key_entf_r4_face",
+  "key_entf_pixels": "key_entf_r4_pixels",
+  "key_ende_face": "key_ende_r4_face",
+  "key_ende_pixels": "key_ende_r4_pixels",
+  "key_bild_down_face": "key_bild_down_r4_face",
+  "key_bild_down_pixels": "key_bild_down_r4_pixels",
+  "key_numpad_7_face": "key_numpad_7_r4_face",
+  "key_numpad_7": "key_numpad_7_r4",
+  "key_numpad_8_face": "key_numpad_8_r4_face",
+  "key_numpad_8": "key_numpad_8_r4",
+  "key_numpad_9_face": "key_numpad_9_r4_face",
+  "key_numpad_9": "key_numpad_9_r4",
+  "key_numpad_plus_face": "key_numpad_plus_r4_r3_face",
+  "key_numpad_plus": "key_numpad_plus_r4_r3",
+  "key_caps_face": "key_caps_r3_face",
+  "key_caps_pixels": "key_caps_r3_pixels",
+  "key_a_face": "key_a_r3_face",
+  "key_a": "key_a_r3",
+  "key_s_face": "key_s_r3_face",
+  "key_s": "key_s_r3",
+  "key_d_face": "key_d_r3_face",
+  "key_d": "key_d_r3",
+  "key_f_face": "key_f_r3_face",
+  "key_f": "key_f_r3",
+  "key_g_face": "key_g_r3_face",
+  "key_g": "key_g_r3",
+  "key_h_face": "key_h_r3_face",
+  "key_h": "key_h_r3",
+  "key_j_face": "key_j_r3_face",
+  "key_j": "key_j_r3",
+  "key_k_face": "key_k_r3_face",
+  "key_k": "key_k_r3",
+  "key_l_face": "key_l_r3_face",
+  "key_l": "key_l_r3",
+  "key_oe_face": "key_oe_r3_face",
+  "key_oe": "key_oe_r3",
+  "key_ae_face": "key_ae_r3_face",
+  "key_ae": "key_ae_r3",
+  "key_enter_face": "key_enter_r3_face",
+  "key_enter_pixels": "key_enter_r3_pixels",
+  "key_numpad_4_face": "key_numpad_4_r3_face",
+  "key_numpad_4": "key_numpad_4_r3",
+  "key_numpad_5_face": "key_numpad_5_r3_face",
+  "key_numpad_5": "key_numpad_5_r3",
+  "key_numpad_6_face": "key_numpad_6_r3_face",
+  "key_numpad_6": "key_numpad_6_r3",
+  "key_shift_l_face": "key_shift_l_r2_face",
+  "key_shift_l_pixels": "key_shift_l_r2_pixels",
+  "key_y_face": "key_y_r2_face",
+  "key_y": "key_y_r2",
+  "key_x_face": "key_x_r2_face",
+  "key_x": "key_x_r2",
+  "key_c_face": "key_c_r2_face",
+  "key_c": "key_c_r2",
+  "key_v_face": "key_v_r2_face",
+  "key_v": "key_v_r2",
+  "key_b_face": "key_b_r2_face",
+  "key_b": "key_b_r2",
+  "key_n_face": "key_n_r2_face",
+  "key_n": "key_n_r2",
+  "key_m_face": "key_m_r2_face",
+  "key_m": "key_m_r2",
+  "key_m_gr": "key_m_r2_gr",
+  "key_semicolon_face": "key_semicolon_r2_face",
+  "key_semicolon": "key_semicolon_r2",
+  "key_semicolon_sub": "key_semicolon_r2_sub",
+  "key_colon_face": "key_colon_r2_face",
+  "key_colon": "key_colon_r2",
+  "key_colon_sub": "key_colon_r2_sub",
+  "key_dash_face": "key_dash_r2_face",
+  "key_dash": "key_dash_r2",
+  "key_dash_sub": "key_dash_r2_sub",
+  "key_shift_r_face": "key_shift_r_r2_face",
+  "key_shift_r_pixels": "key_shift_r_r2_pixels",
+  "key_arrow_up_face": "key_arrow_up_r2_face",
+  "key_arrow_up_pixels": "key_arrow_up_r2_pixels",
+  "key_numpad_1_face": "key_numpad_1_r2_face",
+  "key_numpad_1": "key_numpad_1_r2",
+  "key_numpad_2_face": "key_numpad_2_r2_face",
+  "key_numpad_2": "key_numpad_2_r2",
+  "key_numpad_3_face": "key_numpad_3_r2_face",
+  "key_numpad_3": "key_numpad_3_r2",
+  "key_numpad_enter_face": "key_numpad_enter_r2_r1_face",
+  "key_numpad_enter_pixels": "key_numpad_enter_r2_r1_pixels",
+  "key_ctrl_l_face": "key_ctrl_l_r1_face",
+  "key_ctrl_l_pixels": "key_ctrl_l_r1_pixels",
+  "key_win_face": "key_win_r1_face",
+  "key_win_pixels": "key_win_r1_pixels",
+  "key_alt_face": "key_alt_r1_face",
+  "key_alt_pixels": "key_alt_r1_pixels",
+  "key_space_face": "key_space_r1_face",
+  "key_space_pixels": "key_space_r1_pixels",
+  "key_altgr_face": "key_altgr_r1_face",
+  "key_altgr_pixels": "key_altgr_r1_pixels",
+  "key_fn_r_face": "key_fn_r_r1_face",
+  "key_fn_r_pixels": "key_fn_r_r1_pixels",
+  "key_menu_face": "key_menu_r1_face",
+  "key_menu_pixels": "key_menu_r1_pixels",
+  "key_ctrl_r_face": "key_ctrl_r_r1_face",
+  "key_ctrl_r_pixels": "key_ctrl_r_r1_pixels",
+  "key_arrow_left_face": "key_arrow_left_r1_face",
+  "key_arrow_left_pixels": "key_arrow_left_r1_pixels",
+  "key_arrow_down_face": "key_arrow_down_r1_face",
+  "key_arrow_down_pixels": "key_arrow_down_r1_pixels",
+  "key_arrow_right_face": "key_arrow_right_r1_face",
+  "key_arrow_right_pixels": "key_arrow_right_r1_pixels",
+  "key_numpad_0_face": "key_numpad_0_r1_face",
+  "key_numpad_0": "key_numpad_0_r1",
+  "key_numpad_0_r1_face": "key_numpad_0_1u_r1_face",
+  "key_numpad_0_r1": "key_numpad_0_1u_r1",
+  "key_menu_r1_face": "key_menu_1u_r1_face",
+  "key_menu_r1_pixels": "key_menu_1u_r1_pixels",
+  "key_alt_r1_face": "key_alt_1u_r1_face",
+  "key_alt_r1_pixels": "key_alt_1u_r1_pixels",
+  "key_ISO_Enter_r3_face": "key_ISO_Enter_r4_r3_face",
+  "key_ISO_Enter_r3_pixels": "key_ISO_Enter_r4_r3_pixels"
+ },
+ "rename_helper_STA": {
+  "STA_mitte/key_esc_mitte": "key_esc_r6_mitte",
+  "STA_links_rechts/key_esc_links": "key_esc_r6_links",
+  "STA_links_rechts/key_esc_rechts": "key_esc_r6_rechts",
+  "STA_mitte/key_f1_mitte": "key_f1_r6_mitte",
+  "STA_links_rechts/key_f1_links": "key_f1_r6_links",
+  "STA_links_rechts/key_f1_rechts": "key_f1_r6_rechts",
+  "STA_mitte/key_f2_mitte": "key_f2_r6_mitte",
+  "STA_links_rechts/key_f2_links": "key_f2_r6_links",
+  "STA_links_rechts/key_f2_rechts": "key_f2_r6_rechts",
+  "STA_mitte/key_f3_mitte": "key_f3_r6_mitte",
+  "STA_links_rechts/key_f3_links": "key_f3_r6_links",
+  "STA_links_rechts/key_f3_rechts": "key_f3_r6_rechts",
+  "STA_mitte/key_f4_mitte": "key_f4_r6_mitte",
+  "STA_links_rechts/key_f4_links": "key_f4_r6_links",
+  "STA_links_rechts/key_f4_rechts": "key_f4_r6_rechts",
+  "STA_mitte/key_f5_mitte": "key_f5_r6_mitte",
+  "STA_links_rechts/key_f5_links": "key_f5_r6_links",
+  "STA_links_rechts/key_f5_rechts": "key_f5_r6_rechts",
+  "STA_mitte/key_f6_mitte": "key_f6_r6_mitte",
+  "STA_links_rechts/key_f6_links": "key_f6_r6_links",
+  "STA_links_rechts/key_f6_rechts": "key_f6_r6_rechts",
+  "STA_mitte/key_f7_mitte": "key_f7_r6_mitte",
+  "STA_links_rechts/key_f7_links": "key_f7_r6_links",
+  "STA_links_rechts/key_f7_rechts": "key_f7_r6_rechts",
+  "STA_mitte/key_f8_mitte": "key_f8_r6_mitte",
+  "STA_links_rechts/key_f8_links": "key_f8_r6_links",
+  "STA_links_rechts/key_f8_rechts": "key_f8_r6_rechts",
+  "STA_mitte/key_f9_mitte": "key_f9_r6_mitte",
+  "STA_links_rechts/key_f9_links": "key_f9_r6_links",
+  "STA_links_rechts/key_f9_rechts": "key_f9_r6_rechts",
+  "STA_mitte/key_f10_mitte": "key_f10_r6_mitte",
+  "STA_links_rechts/key_f10_links": "key_f10_r6_links",
+  "STA_links_rechts/key_f10_rechts": "key_f10_r6_rechts",
+  "STA_mitte/key_f11_mitte": "key_f11_r6_mitte",
+  "STA_links_rechts/key_f11_links": "key_f11_r6_links",
+  "STA_links_rechts/key_f11_rechts": "key_f11_r6_rechts",
+  "STA_mitte/key_f12_mitte": "key_f12_r6_mitte",
+  "STA_links_rechts/key_f12_links": "key_f12_r6_links",
+  "STA_links_rechts/key_f12_rechts": "key_f12_r6_rechts",
+  "STA_mitte/key_druck_mitte": "key_druck_r6_mitte",
+  "STA_links_rechts/key_druck_links": "key_druck_r6_links",
+  "STA_links_rechts/key_druck_rechts": "key_druck_r6_rechts",
+  "STA_mitte/key_rollen_mitte": "key_rollen_r6_mitte",
+  "STA_links_rechts/key_rollen_links": "key_rollen_r6_links",
+  "STA_links_rechts/key_rollen_rechts": "key_rollen_r6_rechts",
+  "STA_mitte/key_pause_mitte": "key_pause_r6_mitte",
+  "STA_links_rechts/key_pause_links": "key_pause_r6_links",
+  "STA_links_rechts/key_pause_rechts": "key_pause_r6_rechts",
+  "STA_mitte/key_einf_r1_mitte": "key_einf_r6_mitte",
+  "STA_links_rechts/key_einf_r1_links": "key_einf_r6_links",
+  "STA_links_rechts/key_einf_r1_rechts": "key_einf_r6_rechts",
+  "STA_mitte/key_empty_mitte": "key_empty_r6_mitte",
+  "STA_links_rechts/key_empty_links": "key_empty_r6_links",
+  "STA_links_rechts/key_empty_rechts": "key_empty_r6_rechts",
+  "STA_mitte/key_entf_r1_mitte": "key_entf_r6_mitte",
+  "STA_links_rechts/key_entf_r1_links": "key_entf_r6_links",
+  "STA_links_rechts/key_entf_r1_rechts": "key_entf_r6_rechts",
+  "STA_mitte/key_exit_r1_mitte": "key_exit_r6_mitte",
+  "STA_links_rechts/key_exit_r1_links": "key_exit_r6_links",
+  "STA_links_rechts/key_exit_r1_rechts": "key_exit_r6_rechts",
+  "STA_mitte/key_caret_mitte": "key_caret_r5_mitte",
+  "STA_links_rechts/key_caret_links": "key_caret_r5_links",
+  "STA_links_rechts/key_caret_rechts": "key_caret_r5_rechts",
+  "STA_mitte/key_num_1_mitte": "key_num_1_r5_mitte",
+  "STA_links_rechts/key_num_1_links": "key_num_1_r5_links",
+  "STA_links_rechts/key_num_1_rechts": "key_num_1_r5_rechts",
+  "STA_mitte/key_num_2_mitte": "key_num_2_r5_mitte",
+  "STA_links_rechts/key_num_2_links": "key_num_2_r5_links",
+  "STA_links_rechts/key_num_2_rechts": "key_num_2_r5_rechts",
+  "STA_mitte/key_num_3_mitte": "key_num_3_r5_mitte",
+  "STA_links_rechts/key_num_3_links": "key_num_3_r5_links",
+  "STA_links_rechts/key_num_3_rechts": "key_num_3_r5_rechts",
+  "STA_mitte/key_num_4_mitte": "key_num_4_r5_mitte",
+  "STA_links_rechts/key_num_4_links": "key_num_4_r5_links",
+  "STA_links_rechts/key_num_4_rechts": "key_num_4_r5_rechts",
+  "STA_mitte/key_num_5_mitte": "key_num_5_r5_mitte",
+  "STA_links_rechts/key_num_5_links": "key_num_5_r5_links",
+  "STA_links_rechts/key_num_5_rechts": "key_num_5_r5_rechts",
+  "STA_mitte/key_num_6_mitte": "key_num_6_r5_mitte",
+  "STA_links_rechts/key_num_6_links": "key_num_6_r5_links",
+  "STA_links_rechts/key_num_6_rechts": "key_num_6_r5_rechts",
+  "STA_mitte/key_num_7_mitte": "key_num_7_r5_mitte",
+  "STA_links_rechts/key_num_7_links": "key_num_7_r5_links",
+  "STA_links_rechts/key_num_7_rechts": "key_num_7_r5_rechts",
+  "STA_mitte/key_num_8_mitte": "key_num_8_r5_mitte",
+  "STA_links_rechts/key_num_8_links": "key_num_8_r5_links",
+  "STA_links_rechts/key_num_8_rechts": "key_num_8_r5_rechts",
+  "STA_mitte/key_num_9_mitte": "key_num_9_r5_mitte",
+  "STA_links_rechts/key_num_9_links": "key_num_9_r5_links",
+  "STA_links_rechts/key_num_9_rechts": "key_num_9_r5_rechts",
+  "STA_mitte/key_num_0_mitte": "key_num_0_r5_mitte",
+  "STA_links_rechts/key_num_0_links": "key_num_0_r5_links",
+  "STA_links_rechts/key_num_0_rechts": "key_num_0_r5_rechts",
+  "STA_mitte/key_ss_mitte": "key_ss_r5_mitte",
+  "STA_links_rechts/key_ss_links": "key_ss_r5_links",
+  "STA_links_rechts/key_ss_rechts": "key_ss_r5_rechts",
+  "STA_mitte/key_acute_mitte": "key_acute_r5_mitte",
+  "STA_links_rechts/key_acute_links": "key_acute_r5_links",
+  "STA_links_rechts/key_acute_rechts": "key_acute_r5_rechts",
+  "STA_mitte/key_backspace_mitte": "key_backspace_r5_mitte",
+  "STA_links_rechts/key_backspace_links": "key_backspace_r5_links",
+  "STA_links_rechts/key_backspace_rechts": "key_backspace_r5_rechts",
+  "STA_mitte/key_einf_mitte": "key_einf_r5_mitte",
+  "STA_links_rechts/key_einf_links": "key_einf_r5_links",
+  "STA_links_rechts/key_einf_rechts": "key_einf_r5_rechts",
+  "STA_mitte/key_pos1_mitte": "key_pos1_r5_mitte",
+  "STA_links_rechts/key_pos1_links": "key_pos1_r5_links",
+  "STA_links_rechts/key_pos1_rechts": "key_pos1_r5_rechts",
+  "STA_mitte/key_bild_up_mitte": "key_bild_up_r5_mitte",
+  "STA_links_rechts/key_bild_up_links": "key_bild_up_r5_links",
+  "STA_links_rechts/key_bild_up_rechts": "key_bild_up_r5_rechts",
+  "STA_mitte/key_numlock_mitte": "key_numlock_r5_mitte",
+  "STA_links_rechts/key_numlock_links": "key_numlock_r5_links",
+  "STA_links_rechts/key_numlock_rechts": "key_numlock_r5_rechts",
+  "STA_mitte/key_numpad_div_r1_mitte": "key_numpad_div_r5_mitte",
+  "STA_links_rechts/key_numpad_div_r1_links": "key_numpad_div_r5_links",
+  "STA_links_rechts/key_numpad_div_r1_rechts": "key_numpad_div_r5_rechts",
+  "STA_mitte/key_numpad_mul_r1_mitte": "key_numpad_mul_r5_mitte",
+  "STA_links_rechts/key_numpad_mul_r1_links": "key_numpad_mul_r5_links",
+  "STA_links_rechts/key_numpad_mul_r1_rechts": "key_numpad_mul_r5_rechts",
+  "STA_mitte/key_numpad_sub_r1_mitte": "key_numpad_sub_r5_mitte",
+  "STA_links_rechts/key_numpad_sub_r1_links": "key_numpad_sub_r5_links",
+  "STA_links_rechts/key_numpad_sub_r1_rechts": "key_numpad_sub_r5_rechts",
+  "STA_mitte/key_tab_mitte": "key_tab_r4_mitte",
+  "STA_links_rechts/key_tab_links": "key_tab_r4_links",
+  "STA_links_rechts/key_tab_rechts": "key_tab_r4_rechts",
+  "STA_mitte/key_q_mitte": "key_q_r4_mitte",
+  "STA_links_rechts/key_q_links": "key_q_r4_links",
+  "STA_links_rechts/key_q_rechts": "key_q_r4_rechts",
+  "STA_mitte/key_w_mitte": "key_w_r4_mitte",
+  "STA_links_rechts/key_w_links": "key_w_r4_links",
+  "STA_links_rechts/key_w_rechts": "key_w_r4_rechts",
+  "STA_mitte/key_e_mitte": "key_e_r4_mitte",
+  "STA_links_rechts/key_e_links": "key_e_r4_links",
+  "STA_links_rechts/key_e_rechts": "key_e_r4_rechts",
+  "STA_mitte/key_r_mitte": "key_r_r4_mitte",
+  "STA_links_rechts/key_r_links": "key_r_r4_links",
+  "STA_links_rechts/key_r_rechts": "key_r_r4_rechts",
+  "STA_mitte/key_t_mitte": "key_t_r4_mitte",
+  "STA_links_rechts/key_t_links": "key_t_r4_links",
+  "STA_links_rechts/key_t_rechts": "key_t_r4_rechts",
+  "STA_mitte/key_z_mitte": "key_z_r4_mitte",
+  "STA_links_rechts/key_z_links": "key_z_r4_links",
+  "STA_links_rechts/key_z_rechts": "key_z_r4_rechts",
+  "STA_mitte/key_u_mitte": "key_u_r4_mitte",
+  "STA_links_rechts/key_u_links": "key_u_r4_links",
+  "STA_links_rechts/key_u_rechts": "key_u_r4_rechts",
+  "STA_mitte/key_i_mitte": "key_i_r4_mitte",
+  "STA_links_rechts/key_i_links": "key_i_r4_links",
+  "STA_links_rechts/key_i_rechts": "key_i_r4_rechts",
+  "STA_mitte/key_o_mitte": "key_o_r4_mitte",
+  "STA_links_rechts/key_o_links": "key_o_r4_links",
+  "STA_links_rechts/key_o_rechts": "key_o_r4_rechts",
+  "STA_mitte/key_p_mitte": "key_p_r4_mitte",
+  "STA_links_rechts/key_p_links": "key_p_r4_links",
+  "STA_links_rechts/key_p_rechts": "key_p_r4_rechts",
+  "STA_mitte/key_ue_mitte": "key_ue_r4_mitte",
+  "STA_links_rechts/key_ue_links": "key_ue_r4_links",
+  "STA_links_rechts/key_ue_rechts": "key_ue_r4_rechts",
+  "STA_mitte/key_plus_mitte": "key_plus_r4_mitte",
+  "STA_links_rechts/key_plus_links": "key_plus_r4_links",
+  "STA_links_rechts/key_plus_rechts": "key_plus_r4_rechts",
+  "STA_mitte/key_entf_mitte": "key_entf_r4_mitte",
+  "STA_links_rechts/key_entf_links": "key_entf_r4_links",
+  "STA_links_rechts/key_entf_rechts": "key_entf_r4_rechts",
+  "STA_mitte/key_ende_mitte": "key_ende_r4_mitte",
+  "STA_links_rechts/key_ende_links": "key_ende_r4_links",
+  "STA_links_rechts/key_ende_rechts": "key_ende_r4_rechts",
+  "STA_mitte/key_bild_down_mitte": "key_bild_down_r4_mitte",
+  "STA_links_rechts/key_bild_down_links": "key_bild_down_r4_links",
+  "STA_links_rechts/key_bild_down_rechts": "key_bild_down_r4_rechts",
+  "STA_mitte/key_numpad_7_mitte": "key_numpad_7_r4_mitte",
+  "STA_links_rechts/key_numpad_7_links": "key_numpad_7_r4_links",
+  "STA_links_rechts/key_numpad_7_rechts": "key_numpad_7_r4_rechts",
+  "STA_mitte/key_numpad_8_mitte": "key_numpad_8_r4_mitte",
+  "STA_links_rechts/key_numpad_8_links": "key_numpad_8_r4_links",
+  "STA_links_rechts/key_numpad_8_rechts": "key_numpad_8_r4_rechts",
+  "STA_mitte/key_numpad_9_mitte": "key_numpad_9_r4_mitte",
+  "STA_links_rechts/key_numpad_9_links": "key_numpad_9_r4_links",
+  "STA_links_rechts/key_numpad_9_rechts": "key_numpad_9_r4_rechts",
+  "STA_mitte/key_numpad_plus_mitte": "key_numpad_plus_r4_r3_mitte",
+  "STA_links_rechts/key_numpad_plus_links": "key_numpad_plus_r4_r3_links",
+  "STA_links_rechts/key_numpad_plus_rechts": "key_numpad_plus_r4_r3_rechts",
+  "STA_mitte/key_caps_mitte": "key_caps_r3_mitte",
+  "STA_links_rechts/key_caps_links": "key_caps_r3_links",
+  "STA_links_rechts/key_caps_rechts": "key_caps_r3_rechts",
+  "STA_mitte/key_a_mitte": "key_a_r3_mitte",
+  "STA_links_rechts/key_a_links": "key_a_r3_links",
+  "STA_links_rechts/key_a_rechts": "key_a_r3_rechts",
+  "STA_mitte/key_s_mitte": "key_s_r3_mitte",
+  "STA_links_rechts/key_s_links": "key_s_r3_links",
+  "STA_links_rechts/key_s_rechts": "key_s_r3_rechts",
+  "STA_mitte/key_d_mitte": "key_d_r3_mitte",
+  "STA_links_rechts/key_d_links": "key_d_r3_links",
+  "STA_links_rechts/key_d_rechts": "key_d_r3_rechts",
+  "STA_mitte/key_f_mitte": "key_f_r3_mitte",
+  "STA_links_rechts/key_f_links": "key_f_r3_links",
+  "STA_links_rechts/key_f_rechts": "key_f_r3_rechts",
+  "STA_mitte/key_g_mitte": "key_g_r3_mitte",
+  "STA_links_rechts/key_g_links": "key_g_r3_links",
+  "STA_links_rechts/key_g_rechts": "key_g_r3_rechts",
+  "STA_mitte/key_h_mitte": "key_h_r3_mitte",
+  "STA_links_rechts/key_h_links": "key_h_r3_links",
+  "STA_links_rechts/key_h_rechts": "key_h_r3_rechts",
+  "STA_mitte/key_j_mitte": "key_j_r3_mitte",
+  "STA_links_rechts/key_j_links": "key_j_r3_links",
+  "STA_links_rechts/key_j_rechts": "key_j_r3_rechts",
+  "STA_mitte/key_k_mitte": "key_k_r3_mitte",
+  "STA_links_rechts/key_k_links": "key_k_r3_links",
+  "STA_links_rechts/key_k_rechts": "key_k_r3_rechts",
+  "STA_mitte/key_l_mitte": "key_l_r3_mitte",
+  "STA_links_rechts/key_l_links": "key_l_r3_links",
+  "STA_links_rechts/key_l_rechts": "key_l_r3_rechts",
+  "STA_mitte/key_oe_mitte": "key_oe_r3_mitte",
+  "STA_links_rechts/key_oe_links": "key_oe_r3_links",
+  "STA_links_rechts/key_oe_rechts": "key_oe_r3_rechts",
+  "STA_mitte/key_ae_mitte": "key_ae_r3_mitte",
+  "STA_links_rechts/key_ae_links": "key_ae_r3_links",
+  "STA_links_rechts/key_ae_rechts": "key_ae_r3_rechts",
+  "STA_mitte/key_enter_mitte": "key_enter_r3_mitte",
+  "STA_links_rechts/key_enter_links": "key_enter_r3_links",
+  "STA_links_rechts/key_enter_rechts": "key_enter_r3_rechts",
+  "STA_mitte/key_numpad_4_mitte": "key_numpad_4_r3_mitte",
+  "STA_links_rechts/key_numpad_4_links": "key_numpad_4_r3_links",
+  "STA_links_rechts/key_numpad_4_rechts": "key_numpad_4_r3_rechts",
+  "STA_mitte/key_numpad_5_mitte": "key_numpad_5_r3_mitte",
+  "STA_links_rechts/key_numpad_5_links": "key_numpad_5_r3_links",
+  "STA_links_rechts/key_numpad_5_rechts": "key_numpad_5_r3_rechts",
+  "STA_mitte/key_numpad_6_mitte": "key_numpad_6_r3_mitte",
+  "STA_links_rechts/key_numpad_6_links": "key_numpad_6_r3_links",
+  "STA_links_rechts/key_numpad_6_rechts": "key_numpad_6_r3_rechts",
+  "STA_mitte/key_shift_l_mitte": "key_shift_l_r2_mitte",
+  "STA_links_rechts/key_shift_l_links": "key_shift_l_r2_links",
+  "STA_links_rechts/key_shift_l_rechts": "key_shift_l_r2_rechts",
+  "STA_mitte/key_y_mitte": "key_y_r2_mitte",
+  "STA_links_rechts/key_y_links": "key_y_r2_links",
+  "STA_links_rechts/key_y_rechts": "key_y_r2_rechts",
+  "STA_mitte/key_x_mitte": "key_x_r2_mitte",
+  "STA_links_rechts/key_x_links": "key_x_r2_links",
+  "STA_links_rechts/key_x_rechts": "key_x_r2_rechts",
+  "STA_mitte/key_c_mitte": "key_c_r2_mitte",
+  "STA_links_rechts/key_c_links": "key_c_r2_links",
+  "STA_links_rechts/key_c_rechts": "key_c_r2_rechts",
+  "STA_mitte/key_v_mitte": "key_v_r2_mitte",
+  "STA_links_rechts/key_v_links": "key_v_r2_links",
+  "STA_links_rechts/key_v_rechts": "key_v_r2_rechts",
+  "STA_mitte/key_b_mitte": "key_b_r2_mitte",
+  "STA_links_rechts/key_b_links": "key_b_r2_links",
+  "STA_links_rechts/key_b_rechts": "key_b_r2_rechts",
+  "STA_mitte/key_n_mitte": "key_n_r2_mitte",
+  "STA_links_rechts/key_n_links": "key_n_r2_links",
+  "STA_links_rechts/key_n_rechts": "key_n_r2_rechts",
+  "STA_mitte/key_m_mitte": "key_m_r2_mitte",
+  "STA_links_rechts/key_m_links": "key_m_r2_links",
+  "STA_links_rechts/key_m_rechts": "key_m_r2_rechts",
+  "STA_mitte/key_semicolon_mitte": "key_semicolon_r2_mitte",
+  "STA_links_rechts/key_semicolon_links": "key_semicolon_r2_links",
+  "STA_links_rechts/key_semicolon_rechts": "key_semicolon_r2_rechts",
+  "STA_mitte/key_colon_mitte": "key_colon_r2_mitte",
+  "STA_links_rechts/key_colon_links": "key_colon_r2_links",
+  "STA_links_rechts/key_colon_rechts": "key_colon_r2_rechts",
+  "STA_mitte/key_dash_mitte": "key_dash_r2_mitte",
+  "STA_links_rechts/key_dash_links": "key_dash_r2_links",
+  "STA_links_rechts/key_dash_rechts": "key_dash_r2_rechts",
+  "STA_mitte/key_shift_r_mitte": "key_shift_r_r2_mitte",
+  "STA_links_rechts/key_shift_r_links": "key_shift_r_r2_links",
+  "STA_links_rechts/key_shift_r_rechts": "key_shift_r_r2_rechts",
+  "STA_mitte/key_arrow_up_mitte": "key_arrow_up_r2_mitte",
+  "STA_links_rechts/key_arrow_up_links": "key_arrow_up_r2_links",
+  "STA_links_rechts/key_arrow_up_rechts": "key_arrow_up_r2_rechts",
+  "STA_mitte/key_numpad_1_mitte": "key_numpad_1_r2_mitte",
+  "STA_links_rechts/key_numpad_1_links": "key_numpad_1_r2_links",
+  "STA_links_rechts/key_numpad_1_rechts": "key_numpad_1_r2_rechts",
+  "STA_mitte/key_numpad_2_mitte": "key_numpad_2_r2_mitte",
+  "STA_links_rechts/key_numpad_2_links": "key_numpad_2_r2_links",
+  "STA_links_rechts/key_numpad_2_rechts": "key_numpad_2_r2_rechts",
+  "STA_mitte/key_numpad_3_mitte": "key_numpad_3_r2_mitte",
+  "STA_links_rechts/key_numpad_3_links": "key_numpad_3_r2_links",
+  "STA_links_rechts/key_numpad_3_rechts": "key_numpad_3_r2_rechts",
+  "STA_mitte/key_numpad_enter_mitte": "key_numpad_enter_r2_r1_mitte",
+  "STA_links_rechts/key_numpad_enter_links": "key_numpad_enter_r2_r1_links",
+  "STA_links_rechts/key_numpad_enter_rechts": "key_numpad_enter_r2_r1_rechts",
+  "STA_mitte/key_ctrl_l_mitte": "key_ctrl_l_r1_mitte",
+  "STA_links_rechts/key_ctrl_l_links": "key_ctrl_l_r1_links",
+  "STA_links_rechts/key_ctrl_l_rechts": "key_ctrl_l_r1_rechts",
+  "STA_mitte/key_win_mitte": "key_win_r1_mitte",
+  "STA_links_rechts/key_win_links": "key_win_r1_links",
+  "STA_links_rechts/key_win_rechts": "key_win_r1_rechts",
+  "STA_mitte/key_alt_mitte": "key_alt_r1_mitte",
+  "STA_links_rechts/key_alt_links": "key_alt_r1_links",
+  "STA_links_rechts/key_alt_rechts": "key_alt_r1_rechts",
+  "STA_mitte/key_space_mitte": "key_space_r1_mitte",
+  "STA_links_rechts/key_space_links": "key_space_r1_links",
+  "STA_links_rechts/key_space_rechts": "key_space_r1_rechts",
+  "STA_mitte/key_altgr_mitte": "key_altgr_r1_mitte",
+  "STA_links_rechts/key_altgr_links": "key_altgr_r1_links",
+  "STA_links_rechts/key_altgr_rechts": "key_altgr_r1_rechts",
+  "STA_mitte/key_menu_mitte": "key_menu_r1_mitte",
+  "STA_links_rechts/key_menu_links": "key_menu_r1_links",
+  "STA_links_rechts/key_menu_rechts": "key_menu_r1_rechts",
+  "STA_mitte/key_ctrl_r_mitte": "key_ctrl_r_r1_mitte",
+  "STA_links_rechts/key_ctrl_r_links": "key_ctrl_r_r1_links",
+  "STA_links_rechts/key_ctrl_r_rechts": "key_ctrl_r_r1_rechts",
+  "STA_mitte/key_arrow_left_mitte": "key_arrow_left_r1_mitte",
+  "STA_links_rechts/key_arrow_left_links": "key_arrow_left_r1_links",
+  "STA_links_rechts/key_arrow_left_rechts": "key_arrow_left_r1_rechts",
+  "STA_mitte/key_arrow_down_mitte": "key_arrow_down_r1_mitte",
+  "STA_links_rechts/key_arrow_down_links": "key_arrow_down_r1_links",
+  "STA_links_rechts/key_arrow_down_rechts": "key_arrow_down_r1_rechts",
+  "STA_mitte/key_arrow_right_mitte": "key_arrow_right_r1_mitte",
+  "STA_links_rechts/key_arrow_right_links": "key_arrow_right_r1_links",
+  "STA_links_rechts/key_arrow_right_rechts": "key_arrow_right_r1_rechts",
+  "STA_mitte/key_numpad_0_mitte": "key_numpad_0_r1_mitte",
+  "STA_links_rechts/key_numpad_0_links": "key_numpad_0_r1_links",
+  "STA_links_rechts/key_numpad_0_rechts": "key_numpad_0_r1_rechts",
+  "STA_mitte/key_ISO_Enter_r3_mitte": "key_ISO_Enter_r4_r3_mitte",
+  "STA_links_rechts/key_ISO_Enter_r3_links": "key_ISO_Enter_r4_r3_links",
+  "STA_links_rechts/key_ISO_Enter_r3_rechts": "key_ISO_Enter_r4_r3_rechts",
+  "STA_mitte/key_numpad_0_r1_mitte": "key_numpad_0_1u_r1_mitte",
+  "STA_links_rechts/key_numpad_0_r1_links": "key_numpad_0_1u_r1_links",
+  "STA_links_rechts/key_numpad_0_r1_rechts": "key_numpad_0_1u_r1_rechts",
+  "STA_mitte/key_menu_r1_mitte": "key_menu_1u_r1_mitte",
+  "STA_links_rechts/key_menu_r1_links": "key_menu_1u_r1_links",
+  "STA_links_rechts/key_menu_r1_rechts": "key_menu_1u_r1_rechts",
+  "STA_mitte/key_alt_r1_mitte": "key_alt_1u_r1_mitte",
+  "STA_links_rechts/key_alt_r1_links": "key_alt_1u_r1_links",
+  "STA_links_rechts/key_alt_r1_rechts": "key_alt_1u_r1_rechts",
+  "STA_mitte/key_enter_top_mitte": "key_hash_r4_mitte",
+  "STA_links_rechts/key_enter_top_links": "key_hash_r4_links",
+  "STA_links_rechts/key_enter_top_rechts": "key_hash_r4_rechts",
+  "STA_mitte/key_win_r_mitte": "key_fn_r_r1_mitte",
+  "STA_links_rechts/key_win_r_links": "key_fn_r_r1_links",
+  "STA_links_rechts/key_win_r_rechts": "key_fn_r_r1_rechts"
+ },
+ "rename_helper_ENTER": {
+  "ENTER enter Label UP": "ENTER enter_r3 Label UP",
+  "ENTER enter Mid": "ENTER enter_r3 Mid",
+  "ENTER enter DOWN": "ENTER enter_r3 DOWN",
+  "ENTER numpad_enter Label UP": "ENTER numpad_enter_r2_r1 Label UP",
+  "ENTER numpad_enter Mid": "ENTER numpad_enter_r2_r1 Mid",
+  "ENTER numpad_enter DOWN": "ENTER numpad_enter_r2_r1 DOWN",
+  "ENTER ISO_Enter_r3 Label UP": "ENTER ISO_Enter_r4_r3 Label UP",
+  "ENTER ISO_Enter_r3 Mid": "ENTER ISO_Enter_r4_r3 Mid",
+  "ENTER ISO_Enter_r3 DOWN": "ENTER ISO_Enter_r4_r3 DOWN"
+ },
+ "faces": {
+  "key_esc_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_esc_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f1_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f1_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f2_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f2_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f3_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f3_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f4_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f4_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f5_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f5_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f6_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f6_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f7_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f7_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f8_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f8_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f9_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f9_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f10_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f10_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f11_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f11_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f12_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f12_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_druck_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_druck_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_rollen_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_rollen_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_pause_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_pause_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_einf_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_einf_r1_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": 1,
+   "konflikt": true,
+   "zwei_reihen": false
+  },
+  "key_empty_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_empty_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_entf_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_entf_r1_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": 1,
+   "konflikt": true,
+   "zwei_reihen": false
+  },
+  "key_exit_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Hauptboard",
+   "alt": "key_exit_r1_face",
+   "y_face_top": 678,
+   "herkunft": "R6-Beschriftung Hauptboard (y~777) / Guide STA F UP y=677 / Face-Top y=678",
+   "vorhandenes_rN": 1,
+   "konflikt": true,
+   "zwei_reihen": false
+  },
+  "key_caret_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_caret_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_num_1_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_num_1_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_num_2_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_num_2_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_num_3_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_num_3_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_num_4_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_num_4_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_num_5_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_num_5_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_num_6_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_num_6_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_num_7_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_num_7_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_num_8_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_num_8_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_num_9_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_num_9_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_num_0_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_num_0_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_ss_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_ss_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_acute_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_acute_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_backspace_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_backspace_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_einf_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_einf_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_pos1_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_pos1_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_bild_up_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_bild_up_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numlock_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numlock_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_div_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_div_r1_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": 1,
+   "konflikt": true,
+   "zwei_reihen": false
+  },
+  "key_numpad_mul_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_mul_r1_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": 1,
+   "konflikt": true,
+   "zwei_reihen": false
+  },
+  "key_numpad_sub_r5_face": {
+   "row": 5,
+   "rows": [
+    5
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_sub_r1_face",
+   "y_face_top": 1000,
+   "herkunft": "R5-Beschriftung Hauptboard (y~1073) / Guide STA num UP y=999 / Face-Top y=1000",
+   "vorhandenes_rN": 1,
+   "konflikt": true,
+   "zwei_reihen": false
+  },
+  "key_tab_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_tab_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_q_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_q_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_w_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_w_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_e_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_e_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_r_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_r_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_t_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_t_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_z_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_z_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_u_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_u_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_i_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_i_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_o_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_o_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_p_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_p_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_ue_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_ue_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_plus_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_plus_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_hash_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_hash_r4_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": 4,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_entf_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_entf_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_ende_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_ende_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_bild_down_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_bild_down_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_7_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_7_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_8_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_8_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_9_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_9_face",
+   "y_face_top": 1224,
+   "herkunft": "R4-Beschriftung Hauptboard (y~1305) / Guide STA Q UP y=1223 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_plus_r4_r3_face": {
+   "row": 3,
+   "rows": [
+    4,
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_plus_face",
+   "y_face_top": 1224,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1224",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": true
+  },
+  "key_caps_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_caps_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_a_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_a_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_s_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_s_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_d_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_d_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_f_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_f_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_g_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_g_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_h_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_h_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_j_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_j_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_k_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_k_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_l_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_l_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_oe_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_oe_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_ae_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_ae_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_enter_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_enter_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_4_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_4_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_5_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_5_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_6_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_6_face",
+   "y_face_top": 1449,
+   "herkunft": "R3-Beschriftung Hauptboard (y~1537) / Guide STA A UP y=1447 / Face-Top y=1449",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_shift_l_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_shift_l_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_y_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_y_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_x_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_x_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_c_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_c_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_v_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_v_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_b_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_b_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_n_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_n_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_m_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_m_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_semicolon_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_semicolon_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_colon_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_colon_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_dash_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_dash_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_shift_r_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_shift_r_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_arrow_up_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_arrow_up_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_1_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_1_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_2_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_2_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_3_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_3_face",
+   "y_face_top": 1673,
+   "herkunft": "R2-Beschriftung Hauptboard (y~1770) / Guide STA Z UP y=1672 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_enter_r2_r1_face": {
+   "row": 1,
+   "rows": [
+    2,
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_enter_face",
+   "y_face_top": 1673,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1673",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": true
+  },
+  "key_ctrl_l_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_ctrl_l_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_win_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_win_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_alt_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_alt_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_space_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_space_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_altgr_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_altgr_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_fn_r_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_fn_r_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_menu_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_menu_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_ctrl_r_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_ctrl_r_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_arrow_left_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_arrow_left_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_arrow_down_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_arrow_down_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_arrow_right_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_arrow_right_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_0_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_0_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": null,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_entf_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Hauptboard",
+   "alt": "key_numpad_entf_r1_face",
+   "y_face_top": 1898,
+   "herkunft": "R1-Beschriftung Hauptboard (y~2002) / Guide STA mod UP y=1897 / Face-Top y=1898",
+   "vorhandenes_rN": 1,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_fancy_1_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_fancy_1_r6_face",
+   "y_face_top": 2423,
+   "herkunft": "R6-Beschriftung Zusatzblock (y~2498) / Guide STA S1 UP y=2422 / Face-Top y=2423",
+   "vorhandenes_rN": 6,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_fancy_2_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_fancy_2_r6_face",
+   "y_face_top": 2423,
+   "herkunft": "R6-Beschriftung Zusatzblock (y~2498) / Guide STA S1 UP y=2422 / Face-Top y=2423",
+   "vorhandenes_rN": 6,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_fancy_3_r6_face": {
+   "row": 6,
+   "rows": [
+    6
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_fancy_3_r6_face",
+   "y_face_top": 2423,
+   "herkunft": "R6-Beschriftung Zusatzblock (y~2498) / Guide STA S1 UP y=2422 / Face-Top y=2423",
+   "vorhandenes_rN": 6,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_bild_up_r4_face": {
+   "row": 4,
+   "rows": [
+    4
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_bild_up_r4_face",
+   "y_face_top": 2710,
+   "herkunft": "R4-Beschriftung Zusatzblock (y~2786) / Guide STA S2 UP y=2709 / Face-Top y=2710",
+   "vorhandenes_rN": 4,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_ISO_Enter_r4_r3_face": {
+   "row": 3,
+   "rows": [
+    4,
+    3
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_ISO_Enter_r3_face",
+   "y_face_top": 2758,
+   "herkunft": "R3-Beschriftung Zusatzblock (y~3073) / Guide STA S3 UP y=2996 / Face-Top y=2758",
+   "vorhandenes_rN": 3,
+   "konflikt": false,
+   "zwei_reihen": true
+  },
+  "key_hash_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_hash_r3_face",
+   "y_face_top": 2997,
+   "herkunft": "R3-Beschriftung Zusatzblock (y~3073) / Guide STA S3 UP y=2996 / Face-Top y=2997",
+   "vorhandenes_rN": 3,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_bild_down_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_bild_down_r3_face",
+   "y_face_top": 2997,
+   "herkunft": "R3-Beschriftung Zusatzblock (y~3073) / Guide STA S3 UP y=2996 / Face-Top y=2997",
+   "vorhandenes_rN": 3,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_entf_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_entf_r3_face",
+   "y_face_top": 2997,
+   "herkunft": "R3-Beschriftung Zusatzblock (y~3073) / Guide STA S3 UP y=2996 / Face-Top y=2997",
+   "vorhandenes_rN": 3,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_bild_up_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_bild_up_r3_face",
+   "y_face_top": 2997,
+   "herkunft": "R3-Beschriftung Zusatzblock (y~3073) / Guide STA S3 UP y=2996 / Face-Top y=2997",
+   "vorhandenes_rN": 3,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_ende_r3_face": {
+   "row": 3,
+   "rows": [
+    3
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_ende_r3_face",
+   "y_face_top": 2997,
+   "herkunft": "R3-Beschriftung Zusatzblock (y~3073) / Guide STA S3 UP y=2996 / Face-Top y=2997",
+   "vorhandenes_rN": 3,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_bild_down_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_bild_down_r2_face",
+   "y_face_top": 3278,
+   "herkunft": "R2-Beschriftung Zusatzblock (y~3361) / Guide STA S4 UP y=3277 / Face-Top y=3278",
+   "vorhandenes_rN": 2,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_ende_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_ende_r2_face",
+   "y_face_top": 3278,
+   "herkunft": "R2-Beschriftung Zusatzblock (y~3361) / Guide STA S4 UP y=3277 / Face-Top y=3278",
+   "vorhandenes_rN": 2,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_entf_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_entf_r2_face",
+   "y_face_top": 3278,
+   "herkunft": "R2-Beschriftung Zusatzblock (y~3361) / Guide STA S4 UP y=3277 / Face-Top y=3278",
+   "vorhandenes_rN": 2,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_1u_shift_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_1u_shift_r2_face",
+   "y_face_top": 3278,
+   "herkunft": "R2-Beschriftung Zusatzblock (y~3361) / Guide STA S4 UP y=3277 / Face-Top y=3278",
+   "vorhandenes_rN": 2,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_less_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_less_r2_face",
+   "y_face_top": 3278,
+   "herkunft": "R2-Beschriftung Zusatzblock (y~3361) / Guide STA S4 UP y=3277 / Face-Top y=3278",
+   "vorhandenes_rN": 2,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_1.25u_shift_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_1.25u_shift_r2_face",
+   "y_face_top": 3278,
+   "herkunft": "R2-Beschriftung Zusatzblock (y~3361) / Guide STA S4 UP y=3277 / Face-Top y=3278",
+   "vorhandenes_rN": 2,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_1.75u_shift_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_1.75u_shift_r2_face",
+   "y_face_top": 3278,
+   "herkunft": "R2-Beschriftung Zusatzblock (y~3361) / Guide STA S4 UP y=3277 / Face-Top y=3278",
+   "vorhandenes_rN": 2,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_2u_shift_r2_face": {
+   "row": 2,
+   "rows": [
+    2
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_2u_shift_r2_face",
+   "y_face_top": 3278,
+   "herkunft": "R2-Beschriftung Zusatzblock (y~3361) / Guide STA S4 UP y=3277 / Face-Top y=3278",
+   "vorhandenes_rN": 2,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_numpad_0_1u_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_numpad_0_r1_face",
+   "y_face_top": 3568,
+   "herkunft": "R1-Beschriftung Zusatzblock (y~3649) / Guide STA S5 UP y=3567 / Face-Top y=3568",
+   "vorhandenes_rN": 1,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_strg_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_strg_r1_face",
+   "y_face_top": 3568,
+   "herkunft": "R1-Beschriftung Zusatzblock (y~3649) / Guide STA S5 UP y=3567 / Face-Top y=3568",
+   "vorhandenes_rN": 1,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_menu_1u_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_menu_r1_face",
+   "y_face_top": 3568,
+   "herkunft": "R1-Beschriftung Zusatzblock (y~3649) / Guide STA S5 UP y=3567 / Face-Top y=3568",
+   "vorhandenes_rN": 1,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_alt_1u_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_alt_r1_face",
+   "y_face_top": 3568,
+   "herkunft": "R1-Beschriftung Zusatzblock (y~3649) / Guide STA S5 UP y=3567 / Face-Top y=3568",
+   "vorhandenes_rN": 1,
+   "konflikt": false,
+   "zwei_reihen": false
+  },
+  "key_fn_r1_face": {
+   "row": 1,
+   "rows": [
+    1
+   ],
+   "block": "Zusatzkappen",
+   "alt": "key_fn_r1_face",
+   "y_face_top": 3568,
+   "herkunft": "R1-Beschriftung Zusatzblock (y~3649) / Guide STA S5 UP y=3567 / Face-Top y=3568",
+   "vorhandenes_rN": 1,
+   "konflikt": false,
+   "zwei_reihen": false
+  }
+ },
+ "kollisionen": [
+  {
+   "neuer_name_kollidiert": "key_alt_r1",
+   "kappen": [
+    "key_alt (Hauptboard)",
+    "key_alt_r1 (Zusatz)"
+   ],
+   "vorschlag_zusatz": [
+    "key_alt_b_r1"
+   ]
+  },
+  {
+   "neuer_name_kollidiert": "key_menu_r1",
+   "kappen": [
+    "key_menu (Hauptboard)",
+    "key_menu_r1 (Zusatz)"
+   ],
+   "vorschlag_zusatz": [
+    "key_menu_b_r1"
+   ]
+  },
+  {
+   "neuer_name_kollidiert": "key_numpad_0_r1",
+   "kappen": [
+    "key_numpad_0 (Hauptboard)",
+    "key_numpad_0_r1 (Zusatz)"
+   ],
+   "vorschlag_zusatz": [
+    "key_numpad_0_b_r1"
+   ]
+  }
+ ]
+}

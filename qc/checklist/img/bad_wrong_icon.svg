@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" width="1500" height="1000">
+<rect width="1500" height="1000" fill="#F4F1EC"/>
+<path d="M420.0,262 C420.0,120 1080.0,120 1080.0,262" fill="none" stroke="#8C8378" stroke-width="8" stroke-dasharray="24 14" stroke-linecap="round"/><path d="M390.0,238 L420.0,282 L450.0,238 Z" fill="#8C8378"/><path d="M1050.0,238 L1080.0,282 L1110.0,238 Z" fill="#8C8378"/><rect x="155.40" y="338.90" width="540.00" height="540.00" rx="81.00" fill="#3A2A1E" fill-opacity="0.13"/>
+<rect x="150.00" y="320.00" width="540.00" height="540.00" rx="81.00" fill="#944C2E" stroke="#6A280D" stroke-width="4.32"/>
+<rect x="212.10" y="369.68" width="415.80" height="415.80" rx="64.80" fill="#A85D3E" stroke="#864023" stroke-width="2.70"/>
+<rect x="239.10" y="396.63" width="361.80" height="361.80" rx="54.00" fill="none" stroke="#B46747" stroke-width="3.24"/><g transform="translate(0,1155.2) scale(1,-1)"><path d="M420.0,503.1 L502.0,602.4 L446.2,602.4 L446.2,701.8 L393.8,701.8 L393.8,602.4 L338.0,602.4 Z" fill="#E8DDC8" stroke="#E8DDC8" stroke-width="9.9" stroke-linejoin="round"/><rect x="338.03" y="453.38" width="163.94" height="27.32" rx="7.45" fill="#E8DDC8"/></g><rect x="815.40" y="338.90" width="540.00" height="540.00" rx="81.00" fill="#3A2A1E" fill-opacity="0.13"/>
+<rect x="810.00" y="320.00" width="540.00" height="540.00" rx="81.00" fill="#944C2E" stroke="#6A280D" stroke-width="4.32"/>
+<rect x="872.10" y="369.68" width="415.80" height="415.80" rx="64.80" fill="#A85D3E" stroke="#864023" stroke-width="2.70"/>
+<rect x="899.10" y="396.63" width="361.80" height="361.80" rx="54.00" fill="none" stroke="#B46747" stroke-width="3.24"/><path d="M1080.0,503.1 L1162.0,602.4 L1106.2,602.4 L1106.2,701.8 L1053.8,701.8 L1053.8,602.4 L998.0,602.4 Z" fill="#E8DDC8" stroke="#E8DDC8" stroke-width="9.9" stroke-linejoin="round"/><rect x="998.03" y="453.38" width="163.94" height="27.32" rx="7.45" fill="#E8DDC8"/>
+</svg>

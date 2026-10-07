@@ -1,0 +1,1071 @@
+{
+ "hinweis": "gemessen aus den Export-Pixeln (alpine_139 / hello_v136), 11,811 px/mm; je Design getrennt",
+ "hello": {
+  "a_horizontal_mitte_mm": {
+   "F-Reihe": {
+    "stats": {
+     "n": 12,
+     "median": 0.0,
+     "min": -0.04,
+     "max": 0.04,
+     "spread": 0.08
+    },
+    "per_key": {
+     "key_f1_face": 0.0,
+     "key_f2_face": -0.04,
+     "key_f3_face": 0.0,
+     "key_f4_face": 0.0,
+     "key_f5_face": 0.04,
+     "key_f6_face": 0.0,
+     "key_f7_face": 0.0,
+     "key_f8_face": -0.04,
+     "key_f9_face": 0.04,
+     "key_f10_face": 0.04,
+     "key_f11_face": 0.0,
+     "key_f12_face": 0.0
+    },
+    "ausreisser": {}
+   },
+   "Mod": {
+    "stats": {
+     "n": 14,
+     "median": 0.0,
+     "min": -4.7,
+     "max": 0.04,
+     "spread": 4.74
+    },
+    "per_key": {
+     "key_backspace_face": 0.0,
+     "key_tab_face": -2.37,
+     "key_caps_face": -4.7,
+     "key_ctrl_l_face": 0.04,
+     "key_win_face": 0.0,
+     "key_alt_face": -0.04,
+     "key_fn_face": 0.0,
+     "key_altgr_face": 0.0,
+     "key_ctrl_r_face": 0.0,
+     "key_menu_face": 0.04,
+     "key_fn_1u_face": 0.0,
+     "key_menu_1u_face": 0.0,
+     "key_alt_1u_face": 0.0,
+     "key_ctrl_1u_face": 0.0
+    },
+    "ausreisser": {
+     "key_tab_face": -2.37,
+     "key_caps_face": -4.7
+    }
+   },
+   "Navigation": {
+    "stats": {
+     "n": 15,
+     "median": 0.04,
+     "min": 0.0,
+     "max": 0.04,
+     "spread": 0.04
+    },
+    "per_key": {
+     "key_hero_3": 0.0,
+     "key_hero_4": 0.04,
+     "key_druck_face": 0.04,
+     "key_pause_face": 0.04,
+     "key_rollen_face": 0.04,
+     "key_bild_up_face": 0.04,
+     "key_bild_down_face": 0.04,
+     "key_einf_face": 0.04,
+     "key_pos1_face": 0.04,
+     "key_ende_face": 0.04,
+     "key_entf_face": 0.04,
+     "key_numlock_face": 0.0,
+     "key_druck_rose_face": 0.0,
+     "key_rollen_rose_face": 0.0,
+     "key_pause_rose_face": 0.0
+    },
+    "ausreisser": {}
+   },
+   "Enter": {
+    "stats": {
+     "n": 3,
+     "median": 0.04,
+     "min": 0.0,
+     "max": 0.04,
+     "spread": 0.04
+    },
+    "per_key": {
+     "key_enter_face": 0.0,
+     "key_numpad_enter_face": 0.04,
+     "key_enter_iso_face": 0.04
+    },
+    "ausreisser": {}
+   }
+  },
+  "b_linke_spalte": {
+   "per_key": {
+    "key_tab_face": {
+     "face_x0": 394,
+     "face_w": 328,
+     "legend_left_abs": 478,
+     "legend_right_abs": 582,
+     "legend_center_abs": 530.0,
+     "legend_left_rel_mm": 7.11,
+     "legend_center_rel_mm": 11.51
+    },
+    "key_caps_face": {
+     "face_x0": 394,
+     "face_w": 383,
+     "legend_left_abs": 478,
+     "legend_right_abs": 582,
+     "legend_center_abs": 530.0,
+     "legend_left_rel_mm": 7.11,
+     "legend_center_rel_mm": 11.51
+    },
+    "key_shift_l_face": {
+     "face_x0": 394,
+     "face_w": 497,
+     "legend_left_abs": 478,
+     "legend_right_abs": 583,
+     "legend_center_abs": 530.5,
+     "legend_left_rel_mm": 7.11,
+     "legend_center_rel_mm": 11.56
+    },
+    "key_ctrl_l_face": {
+     "face_x0": 394,
+     "face_w": 272,
+     "legend_left_abs": 478,
+     "legend_right_abs": 583,
+     "legend_center_abs": 530.5,
+     "legend_left_rel_mm": 7.11,
+     "legend_center_rel_mm": 11.56
+    }
+   },
+   "spread_left_edge_mm": 0.0,
+   "spread_center_mm": 0.04,
+   "face_x0_spread_mm": 0.0
+  },
+  "c_altgr_vertikal": {
+   "top": {
+    "n": 12,
+    "median": 9.7,
+    "min": 9.57,
+    "max": 11.85,
+    "spread": 2.28
+   },
+   "mitte": {
+    "n": 12,
+    "median": 11.39,
+    "min": 11.3,
+    "max": 12.45,
+    "spread": 1.15
+   },
+   "unterkante": {
+    "n": 12,
+    "median": 13.12,
+    "min": 13.04,
+    "max": 13.12,
+    "spread": 0.08
+   },
+   "sub_oberkante": {
+    "n": 10,
+    "median": 4.83,
+    "min": 4.83,
+    "max": 4.91,
+    "spread": 0.08
+   },
+   "ohne_2_3_top": {
+    "n": 10,
+    "median": 9.65,
+    "min": 9.57,
+    "max": 11.85,
+    "spread": 2.28
+   },
+   "ohne_2_3_unterkante": {
+    "n": 10,
+    "median": 13.12,
+    "min": 13.04,
+    "max": 13.12,
+    "spread": 0.08
+   }
+  },
+  "c_altgr": {
+   "per_key": {
+    "key_q_face": {
+     "altgr": "@",
+     "altgr_cx_minus_face_cx_mm": 2.46,
+     "face_right_minus_altgr_cx_mm": 6.69,
+     "altgr_left_from_face_left_mm": 10.16,
+     "altgr_top_rel_mm": 9.74,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 11.39
+    },
+    "key_e_face": {
+     "altgr": "€",
+     "altgr_cx_minus_face_cx_mm": 2.92,
+     "face_right_minus_altgr_cx_mm": 6.22,
+     "altgr_left_from_face_left_mm": 11.09,
+     "altgr_top_rel_mm": 10.16,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 11.6
+    },
+    "key_m_face": {
+     "altgr": "µ",
+     "altgr_cx_minus_face_cx_mm": 2.92,
+     "face_right_minus_altgr_cx_mm": 6.18,
+     "altgr_left_from_face_left_mm": 11.09,
+     "sub": null,
+     "altgr_cx_minus_sub_cx_mm": 2.88,
+     "sub_cx_minus_face_cx_mm": 0.04,
+     "face_right_minus_sub_cx_mm": 9.06,
+     "altgr_top_rel_mm": 10.08,
+     "altgr_bottom_rel_mm": 13.12,
+     "altgr_center_y_rel_mm": 11.6,
+     "sub_top_rel_mm": 4.83,
+     "sub_bottom_rel_mm": 9.06
+    },
+    "key_num_2_face": {
+     "altgr": "²",
+     "altgr_cx_minus_face_cx_mm": 0.0,
+     "face_right_minus_altgr_cx_mm": 9.14,
+     "altgr_left_from_face_left_mm": 8.3,
+     "sub": "\"",
+     "altgr_cx_minus_sub_cx_mm": -2.88,
+     "sub_cx_minus_face_cx_mm": 2.88,
+     "face_right_minus_sub_cx_mm": 6.27,
+     "altgr_top_rel_mm": 11.18,
+     "altgr_bottom_rel_mm": 13.12,
+     "altgr_center_y_rel_mm": 12.15,
+     "sub_top_rel_mm": 4.83,
+     "sub_bottom_rel_mm": 6.43
+    },
+    "key_num_3_face": {
+     "altgr": "³",
+     "altgr_cx_minus_face_cx_mm": 0.0,
+     "face_right_minus_altgr_cx_mm": 9.14,
+     "altgr_left_from_face_left_mm": 8.38,
+     "sub": "§",
+     "altgr_cx_minus_sub_cx_mm": -2.58,
+     "sub_cx_minus_face_cx_mm": 2.58,
+     "face_right_minus_sub_cx_mm": 6.56,
+     "altgr_top_rel_mm": 11.18,
+     "altgr_bottom_rel_mm": 13.12,
+     "altgr_center_y_rel_mm": 12.15,
+     "sub_top_rel_mm": 4.83,
+     "sub_bottom_rel_mm": 9.57
+    },
+    "key_num_7_face": {
+     "altgr": "{",
+     "altgr_cx_minus_face_cx_mm": -0.04,
+     "face_right_minus_altgr_cx_mm": 9.19,
+     "altgr_left_from_face_left_mm": 8.47,
+     "sub": "/",
+     "altgr_cx_minus_sub_cx_mm": -2.96,
+     "sub_cx_minus_face_cx_mm": 2.92,
+     "face_right_minus_sub_cx_mm": 6.22,
+     "altgr_top_rel_mm": 9.65,
+     "altgr_bottom_rel_mm": 13.12,
+     "altgr_center_y_rel_mm": 11.39,
+     "sub_top_rel_mm": 4.91,
+     "sub_bottom_rel_mm": 9.4
+    },
+    "key_num_8_face": {
+     "altgr": "[",
+     "altgr_cx_minus_face_cx_mm": 0.0,
+     "face_right_minus_altgr_cx_mm": 9.14,
+     "altgr_left_from_face_left_mm": 8.47,
+     "sub": "(",
+     "altgr_cx_minus_sub_cx_mm": -2.96,
+     "sub_cx_minus_face_cx_mm": 2.96,
+     "face_right_minus_sub_cx_mm": 6.18,
+     "altgr_top_rel_mm": 9.65,
+     "altgr_bottom_rel_mm": 13.12,
+     "altgr_center_y_rel_mm": 11.39,
+     "sub_top_rel_mm": 4.91,
+     "sub_bottom_rel_mm": 9.4
+    },
+    "key_num_9_face": {
+     "altgr": "]",
+     "altgr_cx_minus_face_cx_mm": 0.0,
+     "face_right_minus_altgr_cx_mm": 9.14,
+     "altgr_left_from_face_left_mm": 8.47,
+     "sub": ")",
+     "altgr_cx_minus_sub_cx_mm": -2.96,
+     "sub_cx_minus_face_cx_mm": 2.96,
+     "face_right_minus_sub_cx_mm": 6.18,
+     "altgr_top_rel_mm": 9.65,
+     "altgr_bottom_rel_mm": 13.12,
+     "altgr_center_y_rel_mm": 11.39,
+     "sub_top_rel_mm": 4.91,
+     "sub_bottom_rel_mm": 9.4
+    },
+    "key_num_0_face": {
+     "altgr": "}",
+     "altgr_cx_minus_face_cx_mm": 0.0,
+     "face_right_minus_altgr_cx_mm": 9.1,
+     "altgr_left_from_face_left_mm": 8.47,
+     "sub": "=",
+     "altgr_cx_minus_sub_cx_mm": -2.62,
+     "sub_cx_minus_face_cx_mm": 2.62,
+     "face_right_minus_sub_cx_mm": 6.48,
+     "altgr_top_rel_mm": 9.65,
+     "altgr_bottom_rel_mm": 13.12,
+     "altgr_center_y_rel_mm": 11.39,
+     "sub_top_rel_mm": 4.83,
+     "sub_bottom_rel_mm": 6.77
+    },
+    "key_ss_face": {
+     "altgr": "\\",
+     "altgr_cx_minus_face_cx_mm": 0.0,
+     "face_right_minus_altgr_cx_mm": 9.1,
+     "altgr_left_from_face_left_mm": 8.47,
+     "sub": "?",
+     "altgr_cx_minus_sub_cx_mm": -2.5,
+     "sub_cx_minus_face_cx_mm": 2.5,
+     "face_right_minus_sub_cx_mm": 6.6,
+     "altgr_top_rel_mm": 9.65,
+     "altgr_bottom_rel_mm": 13.12,
+     "altgr_center_y_rel_mm": 11.39,
+     "sub_top_rel_mm": 4.83,
+     "sub_bottom_rel_mm": 9.14
+    },
+    "key_plus_face": {
+     "altgr": "~",
+     "altgr_cx_minus_face_cx_mm": 0.0,
+     "face_right_minus_altgr_cx_mm": 9.1,
+     "altgr_left_from_face_left_mm": 7.87,
+     "sub": "*",
+     "altgr_cx_minus_sub_cx_mm": -2.71,
+     "sub_cx_minus_face_cx_mm": 2.71,
+     "face_right_minus_sub_cx_mm": 6.39,
+     "altgr_top_rel_mm": 11.85,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 12.45,
+     "sub_top_rel_mm": 4.83,
+     "sub_bottom_rel_mm": 7.2
+    },
+    "key_less_face": {
+     "altgr": "|",
+     "altgr_cx_minus_face_cx_mm": 0.04,
+     "face_right_minus_altgr_cx_mm": 9.1,
+     "altgr_left_from_face_left_mm": 8.89,
+     "sub": ">",
+     "altgr_cx_minus_sub_cx_mm": -2.79,
+     "sub_cx_minus_face_cx_mm": 2.84,
+     "face_right_minus_sub_cx_mm": 6.31,
+     "altgr_top_rel_mm": 9.57,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 11.3,
+     "sub_top_rel_mm": 4.83,
+     "sub_bottom_rel_mm": 7.87
+    }
+   },
+   "zur_kappenmitte": {
+    "n": 12,
+    "median": 0.0,
+    "min": -0.04,
+    "max": 2.92,
+    "spread": 2.96
+   },
+   "zum_rechten_rand": {
+    "n": 12,
+    "median": 9.1,
+    "min": 6.18,
+    "max": 9.19,
+    "spread": 3.01
+   },
+   "zur_shift_zeichen_mitte": {
+    "n": 10,
+    "median": -2.75,
+    "min": -2.96,
+    "max": 2.88,
+    "spread": 5.84
+   }
+  },
+  "d_cluster8": {
+   "f_reihe": {
+    "face_y0": [
+     956
+    ],
+    "legend_top_rel_px": 54.0,
+    "legend_center_rel_px": 106.5,
+    "streuung_top_px": 0.0,
+    "streuung_center_px": 0.0
+   },
+   "esc_logo": {
+    "key_esc_face": {
+     "face_y0": 956,
+     "legend_top_rel_px": 58.0,
+     "legend_center_rel_px": 106.0,
+     "top_minus_frow_mm": 0.34,
+     "center_minus_frow_mm": -0.04,
+     "bottom_minus_frow_mm": -0.42
+    },
+    "key_hero_1": {
+     "face_y0": 956,
+     "legend_top_rel_px": 59.0,
+     "legend_center_rel_px": 104.0,
+     "top_minus_frow_mm": 0.42,
+     "center_minus_frow_mm": -0.21,
+     "bottom_minus_frow_mm": -0.85
+    },
+    "key_hero_2": {
+     "face_y0": 956,
+     "legend_top_rel_px": 59.0,
+     "legend_center_rel_px": 104.0,
+     "top_minus_frow_mm": 0.42,
+     "center_minus_frow_mm": -0.21,
+     "bottom_minus_frow_mm": -0.85
+    }
+   },
+   "novelty": {
+    "per_key": {
+     "key_note_face": {
+      "face_y0": 2739,
+      "face_x0": 482,
+      "legend_center_y_abs": 2845.5,
+      "legend_top_y_abs": 2793,
+      "legend_center_x_rel_mm": 0.04
+     },
+     "key_disk_face": {
+      "face_y0": 2739,
+      "face_x0": 706,
+      "legend_center_y_abs": 2845.5,
+      "legend_top_y_abs": 2793,
+      "legend_center_x_rel_mm": 0.0
+     },
+     "key_eq_face": {
+      "face_y0": 2739,
+      "face_x0": 930,
+      "legend_center_y_abs": 2845.5,
+      "legend_top_y_abs": 2793,
+      "legend_center_x_rel_mm": 0.0
+     },
+     "key_dial_face": {
+      "face_y0": 2739,
+      "face_x0": 1154,
+      "legend_center_y_abs": 2845.5,
+      "legend_top_y_abs": 2793,
+      "legend_center_x_rel_mm": 0.0
+     },
+     "key_mic_face": {
+      "face_y0": 2739,
+      "face_x0": 1378,
+      "legend_center_y_abs": 2845.5,
+      "legend_top_y_abs": 2793,
+      "legend_center_x_rel_mm": 0.04
+     },
+     "key_note_2_face": {
+      "face_y0": 2739,
+      "face_x0": 1602,
+      "legend_center_y_abs": 2845.5,
+      "legend_top_y_abs": 2802,
+      "legend_center_x_rel_mm": 0.04
+     }
+    },
+    "face_y0_streuung_px": 0.0,
+    "legend_center_y_streuung_mm": 0.0,
+    "legend_center_rel_streuung_mm": 0.0
+   }
+  },
+  "e_iso_kappen": {
+   "ISO-Enter": {
+    "name": "key_enter_iso_face",
+    "w_px": 348,
+    "h_px": 466,
+    "w_u": 1.55,
+    "h_u": 2.07,
+    "cluster": 7,
+    "legend": "↵",
+    "sub": null,
+    "altgr": null,
+    "block": "Zusatzkappen (unter dem Board)"
+   },
+   "Shift 1,25U kurz": {
+    "name": "key_shift_1.25u_face",
+    "w_px": 272,
+    "h_px": 216,
+    "w_u": 1.21,
+    "h_u": 0.96,
+    "cluster": 5,
+    "legend": "⇧",
+    "sub": null,
+    "altgr": null,
+    "block": "Zusatzkappen (unter dem Board)"
+   },
+   "< > |": {
+    "name": "key_less_face",
+    "w_px": 216,
+    "h_px": 216,
+    "w_u": 0.96,
+    "h_u": 0.96,
+    "cluster": 2,
+    "legend": "<",
+    "sub": ">",
+    "altgr": "|",
+    "block": "Zusatzkappen (unter dem Board)"
+   },
+   "# ' ISO 1U": {
+    "name": "key_hash_face",
+    "w_px": 216,
+    "h_px": 216,
+    "w_u": 0.96,
+    "h_u": 0.96,
+    "cluster": 2,
+    "legend": "#",
+    "sub": "'",
+    "altgr": null,
+    "block": "Zusatzkappen (unter dem Board)"
+   },
+   "# ' 1,5U (ANSI)": {
+    "name": "key_hash_ansi",
+    "w_px": 328,
+    "h_px": 215,
+    "w_u": 1.46,
+    "h_u": 0.96,
+    "cluster": 2,
+    "legend": "#",
+    "sub": "'",
+    "altgr": null,
+    "block": "Hauptboard"
+   },
+   "_iso_enter_geometrie": {
+    "bbox_w_px": 348,
+    "bbox_h_px": 466,
+    "oberer_teil_x": [
+     0,
+     347
+    ],
+    "unterer_teil_x": [
+     24,
+     347
+    ],
+    "legenden_mitte_x": 174.5,
+    "legenden_mitte_minus_bbox_mitte_mm": 0.04,
+    "legenden_mitte_minus_oberer_teil_mitte_mm": 0.08,
+    "legenden_mitte_minus_unterer_teil_mitte_mm": -0.93,
+    "legenden_mitte_y_rel_mm": 9.57,
+    "oberer_teil_hoehe_mm": 19.22
+   }
+  }
+ },
+ "alpine": {
+  "a_horizontal_mitte_mm": {
+   "F-Reihe": {
+    "stats": {
+     "n": 12,
+     "median": 0.0,
+     "min": -0.04,
+     "max": 0.04,
+     "spread": 0.08
+    },
+    "per_key": {
+     "key_f1_r6_face": 0.0,
+     "key_f2_r6_face": 0.0,
+     "key_f3_r6_face": 0.0,
+     "key_f4_r6_face": 0.0,
+     "key_f5_r6_face": 0.0,
+     "key_f6_r6_face": 0.0,
+     "key_f7_r6_face": 0.0,
+     "key_f8_r6_face": 0.04,
+     "key_f9_r6_face": 0.04,
+     "key_f10_r6_face": 0.0,
+     "key_f11_r6_face": -0.04,
+     "key_f12_r6_face": 0.04
+    },
+    "ausreisser": {}
+   },
+   "Mod": {
+    "stats": {
+     "n": 14,
+     "median": 0.0,
+     "min": -4.61,
+     "max": 0.04,
+     "spread": 4.65
+    },
+    "per_key": {
+     "key_backspace_r5_face": -0.04,
+     "key_tab_r4_face": -1.99,
+     "key_caps_r3_face": -4.61,
+     "key_ctrl_l_r1_face": 0.0,
+     "key_win_r1_face": 0.04,
+     "key_alt_r1_face": 0.0,
+     "key_altgr_r1_face": 0.04,
+     "key_fn_r_r1_face": -0.04,
+     "key_menu_r1_face": 0.0,
+     "key_ctrl_r_r1_face": 0.0,
+     "key_strg_r1_face": 0.04,
+     "key_menu_1u_r1_face": 0.0,
+     "key_alt_1u_r1_face": -0.04,
+     "key_fn_r1_face": 0.0
+    },
+    "ausreisser": {
+     "key_tab_r4_face": -1.99,
+     "key_caps_r3_face": -4.61
+    }
+   },
+   "Navigation": {
+    "stats": {
+     "n": 20,
+     "median": 0.0,
+     "min": -0.04,
+     "max": 0.04,
+     "spread": 0.08
+    },
+    "per_key": {
+     "key_druck_r6_face": 0.0,
+     "key_rollen_r6_face": 0.04,
+     "key_pause_r6_face": 0.04,
+     "key_einf_r6_face": 0.04,
+     "key_entf_r6_face": 0.0,
+     "key_einf_r5_face": 0.0,
+     "key_pos1_r5_face": 0.04,
+     "key_bild_up_r5_face": 0.0,
+     "key_numlock_r5_face": 0.04,
+     "key_entf_r4_face": 0.0,
+     "key_ende_r4_face": 0.04,
+     "key_bild_down_r4_face": 0.0,
+     "key_bild_up_r4_face": 0.04,
+     "key_bild_down_r3_face": 0.0,
+     "key_entf_r3_face": 0.0,
+     "key_bild_up_r3_face": 0.0,
+     "key_ende_r3_face": -0.04,
+     "key_bild_down_r2_face": 0.0,
+     "key_ende_r2_face": 0.04,
+     "key_entf_r2_face": 0.0
+    },
+    "ausreisser": {}
+   },
+   "Enter": {
+    "stats": {
+     "n": 3,
+     "median": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "spread": 0.0
+    },
+    "per_key": {
+     "key_enter_r3_face": 0.0,
+     "key_ISO_Enter_r4_r3_face": 0.0,
+     "key_numpad_enter_r2_r1_face": 0.0
+    },
+    "ausreisser": {}
+   }
+  },
+  "b_linke_spalte": {
+   "per_key": {
+    "key_tab_r4_face": {
+     "face_x0": 1007,
+     "face_w": 327,
+     "legend_left_abs": 1102,
+     "legend_right_abs": 1192,
+     "legend_center_abs": 1147.0,
+     "legend_left_rel_mm": 8.04,
+     "legend_center_rel_mm": 11.85
+    },
+    "key_caps_r3_face": {
+     "face_x0": 1009,
+     "face_w": 385,
+     "legend_left_abs": 1102,
+     "legend_right_abs": 1192,
+     "legend_center_abs": 1147.0,
+     "legend_left_rel_mm": 7.87,
+     "legend_center_rel_mm": 11.68
+    },
+    "key_shift_l_r2_face": {
+     "face_x0": 1010,
+     "face_w": 497,
+     "legend_left_abs": 1102,
+     "legend_right_abs": 1192,
+     "legend_center_abs": 1147.0,
+     "legend_left_rel_mm": 7.79,
+     "legend_center_rel_mm": 11.6
+    },
+    "key_ctrl_l_r1_face": {
+     "face_x0": 1014,
+     "face_w": 266,
+     "legend_left_abs": 1102,
+     "legend_right_abs": 1192,
+     "legend_center_abs": 1147.0,
+     "legend_left_rel_mm": 7.45,
+     "legend_center_rel_mm": 11.26
+    }
+   },
+   "spread_left_edge_mm": 0.0,
+   "spread_center_mm": 0.0,
+   "face_x0_spread_mm": 0.59
+  },
+  "c_altgr_vertikal": {
+   "top": {
+    "n": 12,
+    "median": 9.78,
+    "min": 9.14,
+    "max": 12.28,
+    "spread": 3.14
+   },
+   "mitte": {
+    "n": 12,
+    "median": 11.41,
+    "min": 11.09,
+    "max": 12.66,
+    "spread": 1.57
+   },
+   "unterkante": {
+    "n": 12,
+    "median": 13.04,
+    "min": 13.04,
+    "max": 13.12,
+    "spread": 0.08
+   },
+   "sub_oberkante": {
+    "n": 9,
+    "median": 3.47,
+    "min": 3.47,
+    "max": 9.14,
+    "spread": 5.67
+   },
+   "ohne_2_3_top": {
+    "n": 10,
+    "median": 9.57,
+    "min": 9.14,
+    "max": 12.28,
+    "spread": 3.14
+   },
+   "ohne_2_3_unterkante": {
+    "n": 10,
+    "median": 13.04,
+    "min": 13.04,
+    "max": 13.12,
+    "spread": 0.08
+   }
+  },
+  "c_altgr": {
+   "per_key": {
+    "key_q_r4_face": {
+     "altgr": "@",
+     "altgr_cx_minus_face_cx_mm": 2.41,
+     "face_right_minus_altgr_cx_mm": 6.65,
+     "altgr_left_from_face_left_mm": 10.08,
+     "altgr_top_rel_mm": 10.24,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 11.64
+    },
+    "key_e_r4_face": {
+     "altgr": "€",
+     "altgr_cx_minus_face_cx_mm": 2.41,
+     "face_right_minus_altgr_cx_mm": 6.65,
+     "altgr_left_from_face_left_mm": 10.08,
+     "altgr_top_rel_mm": 9.99,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 11.51
+    },
+    "key_m_r2_face": {
+     "altgr": "µ",
+     "altgr_cx_minus_face_cx_mm": 2.84,
+     "face_right_minus_altgr_cx_mm": 6.22,
+     "altgr_left_from_face_left_mm": 11.01,
+     "altgr_top_rel_mm": 10.24,
+     "altgr_bottom_rel_mm": 13.12,
+     "altgr_center_y_rel_mm": 11.68
+    },
+    "key_num_2_r5_face": {
+     "altgr": "²",
+     "altgr_cx_minus_face_cx_mm": 3.09,
+     "face_right_minus_altgr_cx_mm": 5.97,
+     "altgr_left_from_face_left_mm": 11.43,
+     "sub": "\"",
+     "altgr_cx_minus_sub_cx_mm": 0.25,
+     "sub_cx_minus_face_cx_mm": 2.84,
+     "face_right_minus_sub_cx_mm": 6.22,
+     "altgr_top_rel_mm": 11.18,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 12.11,
+     "sub_top_rel_mm": 3.47,
+     "sub_bottom_rel_mm": 5.42
+    },
+    "key_num_3_r5_face": {
+     "altgr": "³",
+     "altgr_cx_minus_face_cx_mm": 3.09,
+     "face_right_minus_altgr_cx_mm": 6.01,
+     "altgr_left_from_face_left_mm": 11.51,
+     "sub": "§",
+     "altgr_cx_minus_sub_cx_mm": 0.38,
+     "sub_cx_minus_face_cx_mm": 2.71,
+     "face_right_minus_sub_cx_mm": 6.39,
+     "altgr_top_rel_mm": 11.18,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 12.11,
+     "sub_top_rel_mm": 3.47,
+     "sub_bottom_rel_mm": 7.45
+    },
+    "key_num_7_r5_face": {
+     "altgr": "{",
+     "altgr_cx_minus_face_cx_mm": 3.01,
+     "face_right_minus_altgr_cx_mm": 6.05,
+     "altgr_left_from_face_left_mm": 11.35,
+     "sub": "/",
+     "altgr_cx_minus_sub_cx_mm": 0.3,
+     "sub_cx_minus_face_cx_mm": 2.71,
+     "face_right_minus_sub_cx_mm": 6.35,
+     "altgr_top_rel_mm": 9.57,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 11.3,
+     "sub_top_rel_mm": 3.47,
+     "sub_bottom_rel_mm": 7.37
+    },
+    "key_num_8_r5_face": {
+     "altgr": "[",
+     "altgr_cx_minus_face_cx_mm": 3.09,
+     "face_right_minus_altgr_cx_mm": 5.97,
+     "altgr_left_from_face_left_mm": 11.43,
+     "sub": "(",
+     "altgr_cx_minus_sub_cx_mm": 0.0,
+     "sub_cx_minus_face_cx_mm": 3.09,
+     "face_right_minus_sub_cx_mm": 5.97,
+     "altgr_top_rel_mm": 9.57,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 11.3,
+     "sub_top_rel_mm": 3.47,
+     "sub_bottom_rel_mm": 7.62
+    },
+    "key_num_9_r5_face": {
+     "altgr": "]",
+     "altgr_cx_minus_face_cx_mm": 3.09,
+     "face_right_minus_altgr_cx_mm": 5.97,
+     "altgr_left_from_face_left_mm": 11.43,
+     "sub": ")",
+     "altgr_cx_minus_sub_cx_mm": 0.0,
+     "sub_cx_minus_face_cx_mm": 3.09,
+     "face_right_minus_sub_cx_mm": 5.97,
+     "altgr_top_rel_mm": 9.57,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 11.3,
+     "sub_top_rel_mm": 3.47,
+     "sub_bottom_rel_mm": 7.62
+    },
+    "key_num_0_r5_face": {
+     "altgr": "}",
+     "altgr_cx_minus_face_cx_mm": 3.09,
+     "face_right_minus_altgr_cx_mm": 5.97,
+     "altgr_left_from_face_left_mm": 11.43,
+     "sub": "=",
+     "altgr_cx_minus_sub_cx_mm": 0.38,
+     "sub_cx_minus_face_cx_mm": 2.71,
+     "face_right_minus_sub_cx_mm": 6.35,
+     "altgr_top_rel_mm": 9.57,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 11.3,
+     "sub_top_rel_mm": 3.47,
+     "sub_bottom_rel_mm": 5.16
+    },
+    "key_ss_r5_face": {
+     "altgr": "\\",
+     "altgr_cx_minus_face_cx_mm": 2.92,
+     "face_right_minus_altgr_cx_mm": 6.14,
+     "altgr_left_from_face_left_mm": 11.09,
+     "sub": "?",
+     "altgr_cx_minus_sub_cx_mm": 0.34,
+     "sub_cx_minus_face_cx_mm": 2.58,
+     "face_right_minus_sub_cx_mm": 6.48,
+     "altgr_top_rel_mm": 9.57,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 11.3,
+     "sub_top_rel_mm": 3.47,
+     "sub_bottom_rel_mm": 7.62
+    },
+    "key_plus_r4_face": {
+     "altgr": "~",
+     "altgr_cx_minus_face_cx_mm": 2.84,
+     "face_right_minus_altgr_cx_mm": 6.22,
+     "altgr_left_from_face_left_mm": 10.92,
+     "sub": "*",
+     "altgr_cx_minus_sub_cx_mm": 0.08,
+     "sub_cx_minus_face_cx_mm": 2.75,
+     "face_right_minus_sub_cx_mm": 6.31,
+     "altgr_top_rel_mm": 12.28,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 12.66,
+     "sub_top_rel_mm": 3.47,
+     "sub_bottom_rel_mm": 5.59
+    },
+    "key_less_r2_face": {
+     "altgr": "|",
+     "altgr_cx_minus_face_cx_mm": 3.51,
+     "face_right_minus_altgr_cx_mm": 5.55,
+     "altgr_left_from_face_left_mm": 12.28,
+     "sub": ">",
+     "altgr_cx_minus_sub_cx_mm": 0.0,
+     "sub_cx_minus_face_cx_mm": 3.51,
+     "face_right_minus_sub_cx_mm": 5.55,
+     "altgr_top_rel_mm": 9.14,
+     "altgr_bottom_rel_mm": 13.04,
+     "altgr_center_y_rel_mm": 11.09,
+     "sub_top_rel_mm": 9.14,
+     "sub_bottom_rel_mm": 9.23
+    }
+   },
+   "zur_kappenmitte": {
+    "n": 12,
+    "median": 3.05,
+    "min": 2.41,
+    "max": 3.51,
+    "spread": 1.1
+   },
+   "zum_rechten_rand": {
+    "n": 12,
+    "median": 6.03,
+    "min": 5.55,
+    "max": 6.65,
+    "spread": 1.1
+   },
+   "zur_shift_zeichen_mitte": {
+    "n": 9,
+    "median": 0.25,
+    "min": 0.0,
+    "max": 0.38,
+    "spread": 0.38
+   }
+  },
+  "d_cluster8": {
+   "f_reihe": {
+    "face_y0": [
+     678
+    ],
+    "legend_top_rel_px": 43.0,
+    "legend_center_rel_px": 65.0,
+    "streuung_top_px": 0.0,
+    "streuung_center_px": 0.0
+   },
+   "esc_logo": {
+    "key_esc_r6_face": {
+     "face_y0": 678,
+     "legend_top_rel_px": 43.0,
+     "legend_center_rel_px": 87.5,
+     "top_minus_frow_mm": 0.0,
+     "center_minus_frow_mm": 1.91,
+     "bottom_minus_frow_mm": 3.81
+    },
+    "key_empty_r6_face": {
+     "face_y0": 678,
+     "legend_top_rel_px": 41.0,
+     "legend_center_rel_px": 85.5,
+     "top_minus_frow_mm": -0.17,
+     "center_minus_frow_mm": 1.74,
+     "bottom_minus_frow_mm": 3.64
+    },
+    "key_exit_r6_face": {
+     "face_y0": 678,
+     "legend_top_rel_px": 43.0,
+     "legend_center_rel_px": 87.5,
+     "top_minus_frow_mm": 0.0,
+     "center_minus_frow_mm": 1.91,
+     "bottom_minus_frow_mm": 3.81
+    }
+   },
+   "novelty": {
+    "per_key": {
+     "key_fancy_1_r6_face": {
+      "face_y0": 2423,
+      "face_x0": 1020,
+      "legend_center_y_abs": 2510.5,
+      "legend_top_y_abs": 2466,
+      "legend_center_x_rel_mm": 0.0
+     },
+     "key_fancy_2_r6_face": {
+      "face_y0": 2423,
+      "face_x0": 1247,
+      "legend_center_y_abs": 2510.5,
+      "legend_top_y_abs": 2466,
+      "legend_center_x_rel_mm": 0.0
+     },
+     "key_fancy_3_r6_face": {
+      "face_y0": 2423,
+      "face_x0": 1476,
+      "legend_center_y_abs": 2510.5,
+      "legend_top_y_abs": 2466,
+      "legend_center_x_rel_mm": 0.0
+     }
+    },
+    "face_y0_streuung_px": 0.0,
+    "legend_center_y_streuung_mm": 0.0,
+    "legend_center_rel_streuung_mm": 0.0
+   }
+  },
+  "e_iso_kappen": {
+   "ISO-Enter": {
+    "name": "key_ISO_Enter_r4_r3_face",
+    "w_px": 332,
+    "h_px": 443,
+    "w_u": 1.48,
+    "h_u": 1.97,
+    "cluster": 7,
+    "legend": "↵",
+    "sub": null,
+    "altgr": null,
+    "block": "Zusatzkappen (unter dem Board)"
+   },
+   "Shift 1,25U kurz": {
+    "name": "key_1.25u_shift_r2_face",
+    "w_px": 266,
+    "h_px": 214,
+    "w_u": 1.18,
+    "h_u": 0.95,
+    "cluster": 5,
+    "legend": "⇧",
+    "sub": null,
+    "altgr": null,
+    "block": "Zusatzkappen (unter dem Board)"
+   },
+   "< > |": {
+    "name": "key_less_r2_face",
+    "w_px": 214,
+    "h_px": 214,
+    "w_u": 0.95,
+    "h_u": 0.95,
+    "cluster": 2,
+    "legend": "<",
+    "sub": ">",
+    "altgr": "|",
+    "block": "Zusatzkappen (unter dem Board)"
+   },
+   "# ' ISO 1U": {
+    "name": "key_hash_r3_face",
+    "w_px": 214,
+    "h_px": 214,
+    "w_u": 0.95,
+    "h_u": 0.95,
+    "cluster": 2,
+    "legend": "#",
+    "sub": "'",
+    "altgr": null,
+    "block": "Zusatzkappen (unter dem Board)"
+   },
+   "# ' 1,5U (ANSI)": {
+    "name": "key_hash_r4_face",
+    "w_px": 327,
+    "h_px": 214,
+    "w_u": 1.45,
+    "h_u": 0.95,
+    "cluster": 2,
+    "legend": "#",
+    "sub": "'",
+    "altgr": null,
+    "block": "Hauptboard"
+   },
+   "_iso_enter_geometrie": {
+    "bbox_w_px": 332,
+    "bbox_h_px": 443,
+    "oberer_teil_x": [
+     0,
+     331
+    ],
+    "unterer_teil_x": [
+     54,
+     331
+    ],
+    "legenden_mitte_x": 166.0,
+    "legenden_mitte_minus_bbox_mitte_mm": 0.0,
+    "legenden_mitte_minus_oberer_teil_mitte_mm": 0.04,
+    "legenden_mitte_minus_unterer_teil_mitte_mm": -2.24,
+    "legenden_mitte_y_rel_mm": 7.41,
+    "oberer_teil_hoehe_mm": 18.46
+   }
+  }
+ }
+}

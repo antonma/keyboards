@@ -1,0 +1,1375 @@
+{
+  "version": "v3-align-4",
+  "hello": {
+    "header": {
+      "title": {
+        "en": "DELTASET Quality Check v3",
+        "cn": "DELTASET 质量检查 v3"
+      },
+      "fields": [
+        {
+          "en": "Set",
+          "cn": "套装"
+        },
+        {
+          "en": "Date",
+          "cn": "日期"
+        },
+        {
+          "en": "Worker",
+          "cn": "检查人"
+        }
+      ]
+    },
+    "blockA": {
+      "title": {
+        "en": "A) ALIGNMENT PER CLUSTER",
+        "cn": "A) 各分组位置检查"
+      },
+      "hint": {
+        "en": "Compare every cap with its neighbours and with the reference picture. Anything you can see with the naked eye is NOK.",
+        "cn": "将每个键帽与相邻键帽和参考图对比。肉眼能看出的偏差都判为NOK。"
+      },
+      "rows": [
+        {
+          "id": "1",
+          "title": {
+            "en": "Letters",
+            "cn": "字母键"
+          },
+          "keys": {
+            "en": "A–Z, Ä Ö Ü",
+            "cn": "A–Z、Ä Ö Ü"
+          },
+          "checks": [
+            {
+              "en": "Every letter on the same line as its neighbours? (none higher or lower)",
+              "cn": "每个字母与相邻字母在同一条线上？（没有偏高或偏低）"
+            },
+            {
+              "en": "Same left-right place as in the reference picture? (letters in the middle)",
+              "cn": "左右位置与参考图一致？（字母居中）"
+            },
+            {
+              "en": "Ä Ö Ü: letter on the same line as the other letters? (the dots stick out above, this is OK)",
+              "cn": "Ä Ö Ü：字母与其他字母在同一条线上？（上面的两点突出来是正常的）"
+            },
+            {
+              "en": "Straight, not tilted? Same size as neighbours?",
+              "cn": "摆正，没有歪斜？与相邻字母大小一致？"
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "title": {
+            "en": "Numbers & symbols",
+            "cn": "数字与符号键"
+          },
+          "keys": {
+            "en": "1–0, ß, ´ ^ # < - ; : +",
+            "cn": "1–0、ß、´ ^ # < - ; : +"
+          },
+          "checks": [
+            {
+              "en": "Main signs on one line?",
+              "cn": "主字符在同一条线上？"
+            },
+            {
+              "en": "Shift signs (top right) on one line?",
+              "cn": "Shift字符（右上）在同一条线上？"
+            },
+            {
+              "en": "AltGr signs (bottom right) on one line?",
+              "cn": "AltGr字符（右下）在同一条线上？"
+            },
+            {
+              "en": "Same distance to the right edge on every key?",
+              "cn": "每个键上字符到右边缘的距离一致？"
+            }
+          ]
+        },
+        {
+          "id": "2a",
+          "title": {
+            "en": "AltGr signs",
+            "cn": "AltGr 字符"
+          },
+          "keys": {
+            "en": "2 3 7 8 9 0 ß + < Q E M",
+            "cn": "2 3 7 8 9 0 ß + < Q E M"
+          },
+          "checks": [
+            {
+              "en": "AltGr sign in the middle, as in the reference picture? (centred in its field at the bottom right)",
+              "cn": "AltGr字符居中，与参考图一致？（在右下角的位置内居中）"
+            },
+            {
+              "en": "All AltGr signs on one line?",
+              "cn": "所有AltGr字符在同一条线上？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "title": {
+            "en": "F row",
+            "cn": "F排（功能键）"
+          },
+          "keys": {
+            "en": "F1–F12",
+            "cn": "F1–F12"
+          },
+          "checks": [
+            {
+              "en": "Every legend centred left to right and all on one line?",
+              "cn": "每个字符左右居中，并且全部在同一条线上？"
+            },
+            {
+              "en": "All the same size?",
+              "cn": "大小全部一致？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "3a",
+          "title": {
+            "en": "F row: centred left to right",
+            "cn": "F排：左右居中"
+          },
+          "keys": {
+            "en": "F1–F12",
+            "cn": "F1–F12"
+          },
+          "checks": [
+            {
+              "en": "Symbol in the middle of the key left to right, as in the reference picture?",
+              "cn": "符号在键帽左右正中，与参考图一致？"
+            },
+            {
+              "en": "Same on every key? (none further left or right)",
+              "cn": "每个键都一致？（没有偏左或偏右）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "4",
+          "title": {
+            "en": "Mod keys",
+            "cn": "功能修饰键"
+          },
+          "keys": {
+            "en": "Backspace, Tab, Caps, Ctrl, Win, Alt, AltGr, Fn, Menu",
+            "cn": "退格、Tab、大写锁定、Ctrl、Win、Alt、AltGr、Fn、菜单键"
+          },
+          "note": {
+            "en": "Exception: Tab, Caps Lock, left Shift, left Ctrl → see 5a.",
+            "cn": "例外：Tab、大写锁定、左Shift、左Ctrl → 见5a。"
+          },
+          "checks": [
+            {
+              "en": "Symbol centred left to right and all on one line?",
+              "cn": "符号左右居中，并且全部在同一条线上？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "4a",
+          "title": {
+            "en": "Mod keys: centred left to right",
+            "cn": "功能修饰键：左右居中"
+          },
+          "keys": {
+            "en": "Backspace, Tab, Caps, Ctrl, Win, Alt, AltGr, Fn, Menu",
+            "cn": "退格、Tab、大写锁定、Ctrl、Win、Alt、AltGr、Fn、菜单键"
+          },
+          "note": {
+            "en": "Exception: Tab, Caps Lock, left Shift, left Ctrl → see 5a.",
+            "cn": "例外：Tab、大写锁定、左Shift、左Ctrl → 见5a。"
+          },
+          "checks": [
+            {
+              "en": "Symbol in the middle of the key left to right, as in the reference picture?",
+              "cn": "符号在键帽左右正中，与参考图一致？"
+            },
+            {
+              "en": "Same on every key? (none further left or right)",
+              "cn": "每个键都一致？（没有偏左或偏右）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "5",
+          "title": {
+            "en": "Shift",
+            "cn": "Shift键"
+          },
+          "keys": {
+            "en": "Shift, all sizes",
+            "cn": "Shift，所有尺寸"
+          },
+          "note": {
+            "en": "Exception: left Shift → see 5a.",
+            "cn": "例外：左Shift → 见5a。"
+          },
+          "checks": [
+            {
+              "en": "Arrow at the same height on all sizes?",
+              "cn": "所有尺寸上箭头高度一致？"
+            },
+            {
+              "en": "Arrow the same size on all sizes?",
+              "cn": "所有尺寸上箭头大小一致？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "5a",
+          "title": {
+            "en": "Left column: Tab, Caps Lock, left Shift, left Ctrl",
+            "cn": "左侧一列：Tab、大写锁定、左Shift、左Ctrl"
+          },
+          "keys": {
+            "en": "Tab, Caps Lock, left Shift, left Ctrl",
+            "cn": "Tab、大写锁定、左Shift、左Ctrl"
+          },
+          "note": {
+            "en": "Special case: these four symbols are NOT in the middle. They sit one below the other on one vertical line (left aligned).",
+            "cn": "特殊情况：这四个键上的符号不在正中，而是上下排成一条竖直线（靠左对齐）。"
+          },
+          "checks": [
+            {
+              "en": "All four symbols on one vertical line?",
+              "cn": "四个符号在同一条竖直线上？"
+            },
+            {
+              "en": "None further left or further right?",
+              "cn": "没有一个偏左或偏右？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "6",
+          "title": {
+            "en": "Navigation keys",
+            "cn": "导航键"
+          },
+          "keys": {
+            "en": "Print, Scroll, Pause, Ins, Home, End, PgUp, PgDn, Del, NumLock",
+            "cn": "打印屏幕、滚动锁定、暂停、插入、首页、结尾、上翻页、下翻页、删除、数字锁定"
+          },
+          "checks": [
+            {
+              "en": "Symbol centred left to right and all on one line?",
+              "cn": "符号左右居中，并且全部在同一条线上？"
+            },
+            {
+              "en": "All the same size?",
+              "cn": "大小全部一致？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "6a",
+          "title": {
+            "en": "Navigation keys: centred left to right",
+            "cn": "导航键：左右居中"
+          },
+          "keys": {
+            "en": "Print, Scroll, Pause, Ins, Home, End, PgUp, PgDn, Del, NumLock",
+            "cn": "打印屏幕、滚动锁定、暂停、插入、首页、结尾、上翻页、下翻页、删除、数字锁定"
+          },
+          "checks": [
+            {
+              "en": "Symbol in the middle of the key left to right, as in the reference picture?",
+              "cn": "符号在键帽左右正中，与参考图一致？"
+            },
+            {
+              "en": "Same on every navigation key? (none further left or right)",
+              "cn": "每个导航键都一致？（没有偏左或偏右）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "7",
+          "title": {
+            "en": "Enter",
+            "cn": "回车键"
+          },
+          "keys": {
+            "en": "ISO Enter, Enter, Numpad Enter",
+            "cn": "ISO回车、回车、小键盘回车"
+          },
+          "checks": [
+            {
+              "en": "Arrow placed as in the reference picture?",
+              "cn": "箭头位置与参考图一致？"
+            },
+            {
+              "en": "Arrow centred left to right?",
+              "cn": "箭头左右居中？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            },
+            {
+              "en": "Arrow the same size on all Enter keys?",
+              "cn": "所有回车键上箭头大小一致？"
+            }
+          ]
+        },
+        {
+          "id": "8",
+          "title": {
+            "en": "Logo, Esc, special caps, Space",
+            "cn": "标志、Esc、特殊键、空格键"
+          },
+          "keys": {
+            "en": "Delta logo, Esc, novelty caps, space bar",
+            "cn": "Delta标志、Esc、异形键帽、空格键"
+          },
+          "checks": [
+            {
+              "en": "Picture in the middle of the cap?",
+              "cn": "图案在键帽正中？"
+            },
+            {
+              "en": "On one line with the whole row? (Esc and logo on the line of the F row; novelty caps one below the other on one line)",
+              "cn": "与整排在同一条线上？（Esc和标志与F排在同一条线上；异形键帽上下在同一条线上）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            },
+            {
+              "en": "Space bar: picture in the middle?",
+              "cn": "空格键：图案居中？"
+            }
+          ]
+        },
+        {
+          "id": "9",
+          "title": {
+            "en": "Arrows",
+            "cn": "方向键"
+          },
+          "keys": {
+            "en": "Up, Down, Left, Right",
+            "cn": "上、下、左、右"
+          },
+          "checks": [
+            {
+              "en": "In the middle of the cap?",
+              "cn": "在键帽正中？"
+            },
+            {
+              "en": "All the same size?",
+              "cn": "大小全部一致？"
+            },
+            {
+              "en": "← ↓ → on one line?",
+              "cn": "← ↓ → 在同一条线上？"
+            }
+          ]
+        },
+        {
+          "id": "9a",
+          "title": {
+            "en": "Arrows: centred left to right",
+            "cn": "方向键：左右居中"
+          },
+          "keys": {
+            "en": "Up, Down, Left, Right",
+            "cn": "上、下、左、右"
+          },
+          "checks": [
+            {
+              "en": "Symbol in the middle of the key left to right, as in the reference picture?",
+              "cn": "符号在键帽左右正中，与参考图一致？"
+            },
+            {
+              "en": "Same on every key? (none further left or right)",
+              "cn": "每个键都一致？（没有偏左或偏右）"
+            },
+            {
+              "en": "← ↓ → symbol in the middle of its key?",
+              "cn": "← ↓ → 符号在各自键帽正中？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "10",
+          "title": {
+            "en": "Numpad",
+            "cn": "小键盘"
+          },
+          "keys": {
+            "en": "0–9, / * − +, 0, dot",
+            "cn": "0–9、/ * − +、0、小数点"
+          },
+          "checks": [
+            {
+              "en": "Digits on one line?",
+              "cn": "数字在同一条线上？"
+            },
+            {
+              "en": "/ * − + on one line?",
+              "cn": "/ * − + 在同一条线上？"
+            },
+            {
+              "en": "Same left-right place as the letters?",
+              "cn": "左右位置与字母键一致？"
+            }
+          ]
+        }
+      ]
+    },
+    "blockISO": {
+      "title": {
+        "en": "ISO CHECK",
+        "cn": "ISO 键位检查"
+      },
+      "hint": {
+        "en": "These caps exist only for the German ISO layout. Check that each one is there and aligned.",
+        "cn": "这些键帽只用于德语ISO键位。检查每个键帽是否都有，并且位置对齐。"
+      },
+      "rows": [
+        {
+          "id": "I1",
+          "title": {
+            "en": "ISO Enter",
+            "cn": "ISO回车"
+          },
+          "keys": {
+            "en": "ISO Enter",
+            "cn": "ISO回车"
+          },
+          "checks": [
+            {
+              "en": "There?",
+              "cn": "有？"
+            },
+            {
+              "en": "Arrow centred left to right? (at the top, not in the vertical middle)",
+              "cn": "箭头左右居中？（位置靠上，不是上下居中）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "I2",
+          "title": {
+            "en": "AltGr signs, all 12",
+            "cn": "AltGr 字符，全部12个"
+          },
+          "keys": {
+            "en": "² ³ { [ ] } \\ @ € ~ | µ  (on keys 2 3 7 8 9 0 ß Q E + < M)",
+            "cn": "² ³ { [ ] } \\ @ € ~ | µ（在键 2 3 7 8 9 0 ß Q E + < M 上）"
+          },
+          "checks": [
+            {
+              "en": "Every sign there?",
+              "cn": "每个字符都有？"
+            },
+            {
+              "en": "At the bottom right?",
+              "cn": "在右下角？"
+            },
+            {
+              "en": "In the middle of its field and on one line?",
+              "cn": "在其位置内居中，并且在同一条线上？"
+            }
+          ]
+        },
+        {
+          "id": "I3",
+          "title": {
+            "en": "Left Shift 1.25U (short Shift for ISO)",
+            "cn": "左Shift 1.25U（ISO短Shift）"
+          },
+          "keys": {
+            "en": "Left Shift 1.25U",
+            "cn": "左Shift 1.25U"
+          },
+          "checks": [
+            {
+              "en": "There?",
+              "cn": "有？"
+            },
+            {
+              "en": "Arrow like on the other Shift keys?",
+              "cn": "箭头与其他Shift键一致？"
+            }
+          ]
+        },
+        {
+          "id": "I4",
+          "title": {
+            "en": "Key < > |",
+            "cn": "< > | 键"
+          },
+          "keys": {
+            "en": "< > |",
+            "cn": "< > |"
+          },
+          "checks": [
+            {
+              "en": "All three signs there?",
+              "cn": "三个字符都有？"
+            },
+            {
+              "en": "Each sign on its line?",
+              "cn": "每个字符在各自的线上？"
+            }
+          ]
+        },
+        {
+          "id": "I5",
+          "title": {
+            "en": "Key # ’",
+            "cn": "# ’ 键"
+          },
+          "keys": {
+            "en": "# ’ (ISO key next to Enter)",
+            "cn": "# ’（Enter旁边的ISO键）"
+          },
+          "checks": [
+            {
+              "en": "Both signs there?",
+              "cn": "两个字符都有？"
+            },
+            {
+              "en": "Each sign on its line?",
+              "cn": "每个字符在各自的线上？"
+            }
+          ]
+        }
+      ]
+    },
+    "blockB": null,
+    "footer": {
+      "en": "If ✗: put cap aside, take photo, send to Tina.",
+      "cn": "发现问题: 单独放置, 拍照发给Tina."
+    },
+    "layout_sheet": {
+      "title": {
+        "en": "Layout sheet",
+        "cn": "键位图"
+      },
+      "cluster_legend": [
+        {
+          "id": 1,
+          "en": "Letters",
+          "cn": "字母键"
+        },
+        {
+          "id": 2,
+          "en": "Numbers & symbols",
+          "cn": "数字与符号键"
+        },
+        {
+          "id": 3,
+          "en": "F row",
+          "cn": "F排（功能键）"
+        },
+        {
+          "id": 4,
+          "en": "Mod keys",
+          "cn": "功能修饰键"
+        },
+        {
+          "id": 5,
+          "en": "Shift",
+          "cn": "Shift键"
+        },
+        {
+          "id": 6,
+          "en": "Navigation keys",
+          "cn": "导航键"
+        },
+        {
+          "id": 7,
+          "en": "Enter",
+          "cn": "回车键"
+        },
+        {
+          "id": 8,
+          "en": "Logo, Esc, special caps, Space",
+          "cn": "标志、Esc、特殊键、空格键"
+        },
+        {
+          "id": 9,
+          "en": "Arrows",
+          "cn": "方向键"
+        },
+        {
+          "id": 10,
+          "en": "Numpad",
+          "cn": "小键盘"
+        }
+      ],
+      "note": {
+        "en": "The numbers 1–10 are the lines in Block A. Compare every cap with this sheet.",
+        "cn": "数字1–10对应A部分的各行。请对照此图检查每个键帽。"
+      }
+    }
+  },
+  "alpine": {
+    "header": {
+      "title": {
+        "en": "DELTASET Quality Check v3",
+        "cn": "DELTASET 质量检查 v3"
+      },
+      "fields": [
+        {
+          "en": "Set",
+          "cn": "套装"
+        },
+        {
+          "en": "Date",
+          "cn": "日期"
+        },
+        {
+          "en": "Worker",
+          "cn": "检查人"
+        }
+      ]
+    },
+    "blockA": {
+      "title": {
+        "en": "A) ALIGNMENT PER CLUSTER",
+        "cn": "A) 各分组位置检查"
+      },
+      "hint": {
+        "en": "Compare every cap with its neighbours and with the reference picture. Anything you can see with the naked eye is NOK.",
+        "cn": "将每个键帽与相邻键帽和参考图对比。肉眼能看出的偏差都判为NOK。"
+      },
+      "rows": [
+        {
+          "id": "1",
+          "title": {
+            "en": "Letters",
+            "cn": "字母键"
+          },
+          "keys": {
+            "en": "A–Z, Ä Ö Ü",
+            "cn": "A–Z、Ä Ö Ü"
+          },
+          "checks": [
+            {
+              "en": "Every letter on the same line as its neighbours? (none higher or lower)",
+              "cn": "每个字母与相邻字母在同一条线上？（没有偏高或偏低）"
+            },
+            {
+              "en": "Same left-right place as in the reference picture? (letters at the left)",
+              "cn": "左右位置与参考图一致？（字母靠左）"
+            },
+            {
+              "en": "Ä Ö Ü: letter on the same line as the other letters? (the dots stick out above, this is OK)",
+              "cn": "Ä Ö Ü：字母与其他字母在同一条线上？（上面的两点突出来是正常的）"
+            },
+            {
+              "en": "Straight, not tilted? Same size as neighbours?",
+              "cn": "摆正，没有歪斜？与相邻字母大小一致？"
+            }
+          ]
+        },
+        {
+          "id": "1a",
+          "title": {
+            "en": "Letters: left-right position (top-left)",
+            "cn": "字母键：左右位置（左上角）"
+          },
+          "keys": {
+            "en": "A–Z, Ä Ö Ü",
+            "cn": "A–Z、Ä Ö Ü"
+          },
+          "checks": [
+            {
+              "en": "Letter in the top-left corner, as in the reference picture?",
+              "cn": "字母在左上角，与参考图一致？"
+            },
+            {
+              "en": "Same distance to the left edge on every key? (none further left or right)",
+              "cn": "每个键上字母到左边缘的距离一致？（没有偏左或偏右）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "title": {
+            "en": "Numbers & symbols",
+            "cn": "数字与符号键"
+          },
+          "keys": {
+            "en": "1–0, ß, ´ ^ # < - ; : +",
+            "cn": "1–0、ß、´ ^ # < - ; : +"
+          },
+          "checks": [
+            {
+              "en": "Main signs on one line?",
+              "cn": "主字符在同一条线上？"
+            },
+            {
+              "en": "Shift signs (top right) on one line?",
+              "cn": "Shift字符（右上）在同一条线上？"
+            },
+            {
+              "en": "AltGr signs (bottom right) on one line?",
+              "cn": "AltGr字符（右下）在同一条线上？"
+            },
+            {
+              "en": "Same distance to the right edge on every key?",
+              "cn": "每个键上字符到右边缘的距离一致？"
+            }
+          ]
+        },
+        {
+          "id": "2a",
+          "title": {
+            "en": "AltGr signs",
+            "cn": "AltGr 字符"
+          },
+          "keys": {
+            "en": "2 3 7 8 9 0 ß + < Q E M",
+            "cn": "2 3 7 8 9 0 ß + < Q E M"
+          },
+          "checks": [
+            {
+              "en": "AltGr sign in the middle, as in the reference picture? (centred in its field at the bottom right)",
+              "cn": "AltGr字符居中，与参考图一致？（在右下角的位置内居中）"
+            },
+            {
+              "en": "All AltGr signs on one line?",
+              "cn": "所有AltGr字符在同一条线上？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "title": {
+            "en": "F row",
+            "cn": "F排（功能键）"
+          },
+          "keys": {
+            "en": "F1–F12",
+            "cn": "F1–F12"
+          },
+          "checks": [
+            {
+              "en": "Every legend centred left to right and all on one line? (at the top, not in the vertical middle)",
+              "cn": "每个字符左右居中，并且全部在同一条线上？（位置靠上，不是上下居中）"
+            },
+            {
+              "en": "All the same size?",
+              "cn": "大小全部一致？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "4",
+          "title": {
+            "en": "Mod keys",
+            "cn": "功能修饰键"
+          },
+          "keys": {
+            "en": "Backspace, Tab, Caps, Ctrl, Win, Alt, AltGr, Fn, Menu",
+            "cn": "退格、Tab、大写锁定、Ctrl、Win、Alt、AltGr、Fn、菜单键"
+          },
+          "note": {
+            "en": "Exception: Tab, Caps Lock, left Shift, left Ctrl → see 5a.",
+            "cn": "例外：Tab、大写锁定、左Shift、左Ctrl → 见5a。"
+          },
+          "checks": [
+            {
+              "en": "Symbol centred left to right and all on one line? (at the top, not in the vertical middle)",
+              "cn": "符号左右居中，并且全部在同一条线上？（位置靠上，不是上下居中）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "4a",
+          "title": {
+            "en": "Mod keys: centred left to right",
+            "cn": "功能修饰键：左右居中"
+          },
+          "keys": {
+            "en": "Backspace, Tab, Caps, Ctrl, Win, Alt, AltGr, Fn, Menu",
+            "cn": "退格、Tab、大写锁定、Ctrl、Win、Alt、AltGr、Fn、菜单键"
+          },
+          "note": {
+            "en": "Exception: Tab, Caps Lock, left Shift, left Ctrl → see 5a.",
+            "cn": "例外：Tab、大写锁定、左Shift、左Ctrl → 见5a。"
+          },
+          "checks": [
+            {
+              "en": "Symbol in the middle of the key left to right, as in the reference picture?",
+              "cn": "符号在键帽左右正中，与参考图一致？"
+            },
+            {
+              "en": "Same on every mod key? (none further left or right)",
+              "cn": "每个修饰键都一致？（没有偏左或偏右）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "5",
+          "title": {
+            "en": "Shift",
+            "cn": "Shift键"
+          },
+          "keys": {
+            "en": "Shift, all sizes",
+            "cn": "Shift，所有尺寸"
+          },
+          "note": {
+            "en": "Exception: left Shift → see 5a.",
+            "cn": "例外：左Shift → 见5a。"
+          },
+          "checks": [
+            {
+              "en": "Arrow at the same height on all sizes?",
+              "cn": "所有尺寸上箭头高度一致？"
+            },
+            {
+              "en": "Arrow the same size on all sizes?",
+              "cn": "所有尺寸上箭头大小一致？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "5a",
+          "title": {
+            "en": "Left column: Tab, Caps Lock, left Shift, left Ctrl",
+            "cn": "左侧一列：Tab、大写锁定、左Shift、左Ctrl"
+          },
+          "keys": {
+            "en": "Tab, Caps Lock, left Shift, left Ctrl",
+            "cn": "Tab、大写锁定、左Shift、左Ctrl"
+          },
+          "note": {
+            "en": "Special case: these four symbols are NOT in the middle. They sit one below the other on one vertical line (left aligned).",
+            "cn": "特殊情况：这四个键上的符号不在正中，而是上下排成一条竖直线（靠左对齐）。"
+          },
+          "checks": [
+            {
+              "en": "All four symbols on one vertical line?",
+              "cn": "四个符号在同一条竖直线上？"
+            },
+            {
+              "en": "None further left or further right?",
+              "cn": "没有一个偏左或偏右？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "6",
+          "title": {
+            "en": "Navigation keys",
+            "cn": "导航键"
+          },
+          "keys": {
+            "en": "Print, Scroll, Pause, Ins, Home, End, PgUp, PgDn, Del, NumLock",
+            "cn": "打印屏幕、滚动锁定、暂停、插入、首页、结尾、上翻页、下翻页、删除、数字锁定"
+          },
+          "checks": [
+            {
+              "en": "Symbol centred left to right and all on one line? (at the top, not in the vertical middle)",
+              "cn": "符号左右居中，并且全部在同一条线上？（位置靠上，不是上下居中）"
+            },
+            {
+              "en": "All the same size?",
+              "cn": "大小全部一致？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "6a",
+          "title": {
+            "en": "Navigation keys: centred left to right",
+            "cn": "导航键：左右居中"
+          },
+          "keys": {
+            "en": "Print, Scroll, Pause, Ins, Home, End, PgUp, PgDn, Del, NumLock",
+            "cn": "打印屏幕、滚动锁定、暂停、插入、首页、结尾、上翻页、下翻页、删除、数字锁定"
+          },
+          "checks": [
+            {
+              "en": "Symbol in the middle of the key left to right, as in the reference picture?",
+              "cn": "符号在键帽左右正中，与参考图一致？"
+            },
+            {
+              "en": "Same on every navigation key? (none further left or right)",
+              "cn": "每个导航键都一致？（没有偏左或偏右）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "7",
+          "title": {
+            "en": "Enter",
+            "cn": "回车键"
+          },
+          "keys": {
+            "en": "ISO Enter, Enter, Numpad Enter",
+            "cn": "ISO回车、回车、小键盘回车"
+          },
+          "checks": [
+            {
+              "en": "Arrow placed as in the reference picture?",
+              "cn": "箭头位置与参考图一致？"
+            },
+            {
+              "en": "Arrow centred left to right? (at the top, not in the vertical middle)",
+              "cn": "箭头左右居中？（位置靠上，不是上下居中）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            },
+            {
+              "en": "Arrow the same size on all Enter keys?",
+              "cn": "所有回车键上箭头大小一致？"
+            }
+          ]
+        },
+        {
+          "id": "8",
+          "title": {
+            "en": "Logo, Esc, special caps, Space",
+            "cn": "标志、Esc、特殊键、空格键"
+          },
+          "keys": {
+            "en": "Delta logo, Esc, novelty caps, space bar",
+            "cn": "Delta标志、Esc、异形键帽、空格键"
+          },
+          "checks": [
+            {
+              "en": "Picture centred left to right? (at the top, not in the vertical middle)",
+              "cn": "图案左右居中？（位置靠上，不是上下居中）"
+            },
+            {
+              "en": "On one line with the whole row? (Esc and logo on the line of the F row; novelty caps one below the other on one line)",
+              "cn": "与整排在同一条线上？（Esc和标志与F排在同一条线上；异形键帽上下在同一条线上）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            },
+            {
+              "en": "Space bar: picture centred left to right? (at the top, not in the vertical middle)",
+              "cn": "空格键：图案左右居中？（位置靠上，不是上下居中）"
+            }
+          ]
+        },
+        {
+          "id": "9",
+          "title": {
+            "en": "Arrows",
+            "cn": "方向键"
+          },
+          "keys": {
+            "en": "Up, Down, Left, Right",
+            "cn": "上、下、左、右"
+          },
+          "checks": [
+            {
+              "en": "Centred left to right? (at the top, not in the vertical middle)",
+              "cn": "左右居中？（位置靠上，不是上下居中）"
+            },
+            {
+              "en": "All the same size?",
+              "cn": "大小全部一致？"
+            },
+            {
+              "en": "← ↓ → on one line?",
+              "cn": "← ↓ → 在同一条线上？"
+            }
+          ]
+        },
+        {
+          "id": "9a",
+          "title": {
+            "en": "Arrows: centred left to right",
+            "cn": "方向键：左右居中"
+          },
+          "keys": {
+            "en": "Up, Down, Left, Right",
+            "cn": "上、下、左、右"
+          },
+          "checks": [
+            {
+              "en": "Symbol in the middle of the key left to right, as in the reference picture?",
+              "cn": "符号在键帽左右正中，与参考图一致？"
+            },
+            {
+              "en": "Same on every arrow key? (none further left or right)",
+              "cn": "每个方向键都一致？（没有偏左或偏右）"
+            },
+            {
+              "en": "← ↓ → symbol in the middle of its key?",
+              "cn": "← ↓ → 符号在各自键帽正中？"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "10",
+          "title": {
+            "en": "Numpad",
+            "cn": "小键盘"
+          },
+          "keys": {
+            "en": "0–9, / * − +, 0, dot",
+            "cn": "0–9、/ * − +、0、小数点"
+          },
+          "checks": [
+            {
+              "en": "Digits on one line?",
+              "cn": "数字在同一条线上？"
+            },
+            {
+              "en": "/ * − + on one line?",
+              "cn": "/ * − + 在同一条线上？"
+            },
+            {
+              "en": "Same left-right place as the letters?",
+              "cn": "左右位置与字母键一致？"
+            }
+          ]
+        }
+      ]
+    },
+    "blockISO": {
+      "title": {
+        "en": "ISO CHECK",
+        "cn": "ISO 键位检查"
+      },
+      "hint": {
+        "en": "These caps exist only for the German ISO layout. Check that each one is there and aligned.",
+        "cn": "这些键帽只用于德语ISO键位。检查每个键帽是否都有，并且位置对齐。"
+      },
+      "rows": [
+        {
+          "id": "I1",
+          "title": {
+            "en": "ISO Enter",
+            "cn": "ISO回车"
+          },
+          "keys": {
+            "en": "ISO Enter",
+            "cn": "ISO回车"
+          },
+          "checks": [
+            {
+              "en": "There?",
+              "cn": "有？"
+            },
+            {
+              "en": "Arrow centred left to right? (at the top, not in the vertical middle)",
+              "cn": "箭头左右居中？（位置靠上，不是上下居中）"
+            },
+            {
+              "en": "Straight, not tilted?",
+              "cn": "摆正，没有歪斜？"
+            }
+          ]
+        },
+        {
+          "id": "I2",
+          "title": {
+            "en": "AltGr signs, all 12",
+            "cn": "AltGr 字符，全部12个"
+          },
+          "keys": {
+            "en": "² ³ { [ ] } \\ @ € ~ | µ  (on keys 2 3 7 8 9 0 ß Q E + < M)",
+            "cn": "² ³ { [ ] } \\ @ € ~ | µ（在键 2 3 7 8 9 0 ß Q E + < M 上）"
+          },
+          "checks": [
+            {
+              "en": "Every sign there?",
+              "cn": "每个字符都有？"
+            },
+            {
+              "en": "At the bottom right?",
+              "cn": "在右下角？"
+            },
+            {
+              "en": "In the middle of its field and on one line?",
+              "cn": "在其位置内居中，并且在同一条线上？"
+            }
+          ]
+        },
+        {
+          "id": "I3",
+          "title": {
+            "en": "Left Shift 1.25U (short Shift for ISO)",
+            "cn": "左Shift 1.25U（ISO短Shift）"
+          },
+          "keys": {
+            "en": "Left Shift 1.25U",
+            "cn": "左Shift 1.25U"
+          },
+          "checks": [
+            {
+              "en": "There?",
+              "cn": "有？"
+            },
+            {
+              "en": "Arrow like on the other Shift keys?",
+              "cn": "箭头与其他Shift键一致？"
+            }
+          ]
+        },
+        {
+          "id": "I4",
+          "title": {
+            "en": "Key < > |",
+            "cn": "< > | 键"
+          },
+          "keys": {
+            "en": "< > |",
+            "cn": "< > |"
+          },
+          "checks": [
+            {
+              "en": "All three signs there?",
+              "cn": "三个字符都有？"
+            },
+            {
+              "en": "Each sign on its line?",
+              "cn": "每个字符在各自的线上？"
+            }
+          ]
+        },
+        {
+          "id": "I5",
+          "title": {
+            "en": "Key # ’",
+            "cn": "# ’ 键"
+          },
+          "keys": {
+            "en": "# ’ (ISO key next to Enter)",
+            "cn": "# ’（Enter旁边的ISO键）"
+          },
+          "checks": [
+            {
+              "en": "Both signs there?",
+              "cn": "两个字符都有？"
+            },
+            {
+              "en": "Each sign on its line?",
+              "cn": "每个字符在各自的线上？"
+            }
+          ]
+        }
+      ]
+    },
+    "blockB": {
+      "title": {
+        "en": "B) ROW",
+        "cn": "B) 排位"
+      },
+      "hint": {
+        "en": "All caps.",
+        "cn": "所有键帽。"
+      },
+      "rows": [
+        {
+          "id": "B1",
+          "title": {
+            "en": "Right row?",
+            "cn": "排位正确？"
+          },
+          "checks": [
+            {
+              "en": "Legend on the cap of the right row? (R1–R6, see layout sheet)",
+              "cn": "字符在正确排的键帽上？（R1–R6，见键位图）"
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "en": "If ✗: put cap aside, take photo, send to Tina.",
+      "cn": "发现问题: 单独放置, 拍照发给Tina."
+    },
+    "layout_sheet": {
+      "title": {
+        "en": "Layout sheet",
+        "cn": "键位图"
+      },
+      "cluster_legend": [
+        {
+          "id": 1,
+          "en": "Letters",
+          "cn": "字母键"
+        },
+        {
+          "id": 2,
+          "en": "Numbers & symbols",
+          "cn": "数字与符号键"
+        },
+        {
+          "id": 3,
+          "en": "F row",
+          "cn": "F排（功能键）"
+        },
+        {
+          "id": 4,
+          "en": "Mod keys",
+          "cn": "功能修饰键"
+        },
+        {
+          "id": 5,
+          "en": "Shift",
+          "cn": "Shift键"
+        },
+        {
+          "id": 6,
+          "en": "Navigation keys",
+          "cn": "导航键"
+        },
+        {
+          "id": 7,
+          "en": "Enter",
+          "cn": "回车键"
+        },
+        {
+          "id": 8,
+          "en": "Logo, Esc, special caps, Space",
+          "cn": "标志、Esc、特殊键、空格键"
+        },
+        {
+          "id": 9,
+          "en": "Arrows",
+          "cn": "方向键"
+        },
+        {
+          "id": 10,
+          "en": "Numpad",
+          "cn": "小键盘"
+        }
+      ],
+      "note": {
+        "en": "The numbers 1–10 are the lines in Block A. Compare every cap with this sheet.",
+        "cn": "数字1–10对应A部分的各行。请对照此图检查每个键帽。"
+      },
+      "row_legend": [
+        {
+          "row": "R6",
+          "en": "F row (Esc, F1–F12)",
+          "cn": "F排（Esc、F1–F12）"
+        },
+        {
+          "row": "R5",
+          "en": "Number row",
+          "cn": "数字排"
+        },
+        {
+          "row": "R4",
+          "en": "Tab row (Q row)",
+          "cn": "Tab排（Q排）"
+        },
+        {
+          "row": "R3",
+          "en": "Caps Lock row (A row)",
+          "cn": "大写锁定排（A排）"
+        },
+        {
+          "row": "R2",
+          "en": "Shift row (Y row)",
+          "cn": "Shift排（Y排）"
+        },
+        {
+          "row": "R1",
+          "en": "Bottom row (space bar, Ctrl …)",
+          "cn": "最下排（空格键、Ctrl等）"
+        }
+      ]
+    }
+  }
+}

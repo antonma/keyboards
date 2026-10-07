@@ -1,0 +1,45 @@
+{
+ "overlay_alpha": 0.85,
+ "clusters": {
+  "1": {
+   "name": "Alpha-Buchstaben (A–Z, Ä Ö Ü)",
+   "hex": "#2563EB"
+  },
+  "2": {
+   "name": "Zahlen und Sonderzeichen",
+   "hex": "#F97316"
+  },
+  "3": {
+   "name": "F-Reihe (F1–F12)",
+   "hex": "#16A34A"
+  },
+  "4": {
+   "name": "Mod",
+   "hex": "#9333EA"
+  },
+  "5": {
+   "name": "Shift",
+   "hex": "#EC4899"
+  },
+  "6": {
+   "name": "Steuerung (inkl. NumLock)",
+   "hex": "#06B6D4"
+  },
+  "7": {
+   "name": "Enter",
+   "hex": "#DC2626"
+  },
+  "8": {
+   "name": "Delta-Icon, Esc, Novelty + Leertaste",
+   "hex": "#A16207"
+  },
+  "9": {
+   "name": "Pfeile",
+   "hex": "#84CC16"
+  },
+  "10": {
+   "name": "Ziffernblock (ohne Enter, NumLock; inkl. Punkt)",
+   "hex": "#64748B"
+  }
+ }
+}
