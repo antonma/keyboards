@@ -9,7 +9,7 @@
 # **fett** nur in EN-Text.
 
 design: alpine
-version: v3.12-draft              # "-draft" bleibt bis zur Versandfreigabe stehen
+version: v3.12                    # Versandfreigabe Anton 2026-10-07
 title: “Alpine / Rücklicht” Keycap Set
 doc_label: Project Introduction
 cn_doc_label: 项目介绍

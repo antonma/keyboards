@@ -10,7 +10,7 @@
 # **fett** nur in EN-Text.
 
 design: hello
-version: v1.6-draft               # "-draft" bleibt bis zur Versandfreigabe stehen
+version: v1.6                     # Versandfreigabe Anton 2026-10-07
 title: “Hello” Keycap Set
 doc_label: Project Introduction
 cn_doc_label: 项目介绍
