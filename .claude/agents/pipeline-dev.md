@@ -29,7 +29,7 @@ Der Abschnitt „Agentic System“ der CLAUDE.md richtet sich an den Hauptagente
 8. **.af-Dateien**: unter `templates/hersteller/` nie committen (gitignored; kein `git add -f`);
    Release-.af nur unter `templates/release/`. Vor Commit `git check-attr filter -- <datei>` = `lfs`
    prüfen und nach `git add` mit `git lfs ls-files` bestätigen, sonst nicht committen. Nie --force,
-   keine Historie umschreiben. Details: Brain-DB-RUNBOOK `78b7f7f7-bca0-4e12-b547-bd9bc0e10443`.
+   keine Historie umschreiben. Details: Brain-DB-RUNBOOK `37132aff-c14b-48bb-aeaa-eaa30e68401d`.
 
 ## Rückgabe (max. ~300 Wörter)
 

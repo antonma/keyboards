@@ -63,7 +63,7 @@ Exit-Codes: 0 ok · 1 HTTP/Runtime · 2 Dedup-Treffer (→ `--update <id>` oder 
    unsichtbar in einer Berechtigungsabfrage hängen).
 9. **Release einer .af**: im Session-Log + Handoff/Register des Designs vermerken — Version,
    Datum, Dateigröße, Snapshot-Anzahl, Commit-Hash. Hintergrund: RUNBOOK
-   `78b7f7f7-bca0-4e12-b547-bd9bc0e10443`.
+   `37132aff-c14b-48bb-aeaa-eaa30e68401d`.
 
 ## Rückgabe
 

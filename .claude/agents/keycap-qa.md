@@ -55,7 +55,7 @@ SDK-Lesemuster bei Bedarf aus
 6. Bei Audits/Messreihen: Methode, Stichprobe (n) und Einheit angeben; Ausreißer mit Node-Namen.
 7. **Release-Abnahme** (auf der RELEASE-Datei, read-only): Snapshot-Anzahl ≤ 1 (FAIL bei > 1),
    Voll-Sweep GRÜN, Zählstände identisch zur Arbeitsdatei, Dateigröße notieren. Ohne diese
-   Abnahme kein Commit. Details: Brain-DB-RUNBOOK `78b7f7f7-bca0-4e12-b547-bd9bc0e10443`.
+   Abnahme kein Commit. Details: Brain-DB-RUNBOOK `37132aff-c14b-48bb-aeaa-eaa30e68401d`.
 
 ## Rückgabe (max. ~400 Wörter)
 

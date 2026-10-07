@@ -46,7 +46,7 @@ Die Affinity-MCP-Tools sind deferred: zuerst per ToolSearch laden
    „Speichern unter" nach `templates/release/`; in der Kopie alle Snapshots bis auf einen
    (`release_<design>_<version>_<YYYY-MM-DD>`) löschen. Arbeitsdatei und deren Snapshots NIE
    anfassen. Snapshot-Anzahl und Dateigröße vorher/nachher melden.
-   Details: Brain-DB-RUNBOOK `78b7f7f7-bca0-4e12-b547-bd9bc0e10443`.
+   Details: Brain-DB-RUNBOOK `37132aff-c14b-48bb-aeaa-eaa30e68401d`.
 
 ## Umgebung — nicht prüfen, nicht ausgeben
 
