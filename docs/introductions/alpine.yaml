@@ -17,8 +17,9 @@ tagline: ISO-DE / ANSI-DE
 footer: DELTASET · premium ISO-ANSI-DE keycaps · Alpine / Ruecklicht · Introduction {version}
 
 hero:
-  image: assets/alpine_concept.png
-  caption: Concept render — Alpine / Rücklicht (illustrative reference, not a production / material template).
+  image: assets/alpine_01_hero.png
+  caption: Render of the release file — Alpine / Rücklicht (illustrative reference).
+  caption_cn: 发布文件渲染图 —— Alpine / Rücklicht（仅供参考）。
 
 # Tastenzahlen laut Template (qc/inventory_alpine_2026-10-04.md: Hauptboard 108, Zusatzkappen 23)
 total_caps: 131
@@ -96,6 +97,12 @@ blocks:
           re-center or re-position them.
         cn: >-
           标点（. , ; :）、小键盘句点与连字符位于键帽上方的字符基线，与其他上方字符一致。发布文件中的字符位置为最终位置，请勿重新居中或移动。
+
+  - figures:
+      - image: assets/alpine_02_34_macro.png
+        caption:
+          en: Macro — dot-matrix glow, AltGr in Brake-red.
+          cn: 微距 —— 点阵发光，AltGr 为 Brake-red。
 
   - section: size
     title: {en: Size, cn: 尺寸}

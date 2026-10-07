@@ -46,7 +46,8 @@ BODY_SIZE, EN_LEAD, CN_LEAD, BODY_OFF = 8.2, 11.5, 12.6, 8.2
 HEAD_SIZE, HEAD_LEAD = 10.0, 12.8
 PARA_GAP = 5.0
 SECTION_PAD = 10.0                          # unter dem Abschnitt, vor der naechsten Trennlinie
-HERO = dict(top=143.7, x=89.4, w=416.5, caption_base=385.3, next_cursor=394.6)
+HERO = dict(top=143.7, x=89.4, w=416.5)   # Hoehe aus dem Seitenverhaeltnis des Bildes (16:10 -> 260 pt)
+FIG_GAP, FIG_CAP_LEAD = 14.0, 9.6
 SWATCH_Y0, SWATCH_H = 104.7, 31.0
 TABLE_COLS = [50.4, 181.5, 292.5]            # Zone, Hex, Caps (Pantone entfaellt, Anton 2026-10-07)
 TABLE_ROW_H, TABLE_HEAD_H, TABLE_SWATCH_W = 17.5, 21.0, 131.1
@@ -122,12 +123,16 @@ def collect_texts(c, ex):
     out = [("tagline", "en", ex(c["tagline"])), ("footer", "en", ex(c["footer"])),
            ("title", "en", ex(c["title"])), ("doc_label", "en", ex(c["doc_label"])),
            ("cn_doc_label", "cn", ex(c["cn_doc_label"])), ("hero.caption", "en", ex(c["hero"]["caption"])),
+           ("hero.caption_cn", "cn", ex(c["hero"]["caption_cn"])),
            ]
     for k, v in c["labels"].items():
         out.append((f"labels.{k}", "en", v))
     for z in c["zones"]:
         out.append((f"zone.{z['name']}", "en", z["name"]))
     for b in c["blocks"]:
+        for n, f in enumerate(b.get("figures") or [], 1):
+            out.append((f"figure[{n}]", "en", ex(f["caption"]["en"])))
+            out.append((f"figure[{n}]", "cn", ex(f["caption"]["cn"])))
         if "section" not in b:
             continue
         sid = b["section"]
@@ -275,12 +280,14 @@ def run_check(c, design, cjk_path):
               f"{c['main_caps']} + {c['extra_caps']} = {c['total_caps']}; Aufschluesselung = {bs}")
 
     # 4. Bild, TODO-Marker
-    img = INTRO_DIR / c["hero"]["image"]
-    if not img.exists():
-        ok = False
-        print(f"  BILD fehlt: {img}")
-    else:
-        print(f"  [ok] Bild {img.relative_to(REPO)} ({img.stat().st_size / 1e6:.2f} MB)")
+    imgs = [c["hero"]["image"]] + [f["image"] for b in c["blocks"] for f in (b.get("figures") or [])]
+    for name in imgs:
+        img = INTRO_DIR / name
+        if not img.exists():
+            ok = False
+            print(f"  BILD fehlt: {img}")
+        else:
+            print(f"  [ok] Bild {img.relative_to(REPO)} ({img.stat().st_size / 1e6:.2f} MB)")
     todos = [t for t in todo_markers() if t[0].stem in (design, "common")]
     print(f"  [info] {len(todos)} TODO-Marker:")
     for p, n, line in todos:
@@ -511,8 +518,11 @@ class Doc:
             iw, ih = im.size
         h = HERO["w"] * ih / iw
         cv.drawImage(str(img), HERO["x"], self.Y(HERO["top"] + h), HERO["w"], h)
-        self.text(FRAME_X0, HERO["caption_base"], self.ex(c["hero"]["caption"]), "Helvetica", 7.0, C666)
-        self.y = HERO["next_cursor"]
+        cap_y = HERO["top"] + h + 9.6
+        self.text(FRAME_X0, cap_y, self.ex(c["hero"]["caption"]), "Helvetica", 7.0, C666)
+        cap_cn = self.ts.wrap(self.ex(c["hero"]["caption_cn"]), 7.0, FRAME_X1 - FRAME_X0, "cn")
+        self.draw_lines(FRAME_X0, cap_y + 2.0, cap_cn, 7.0, 9.6, C666, 7.0)
+        self.y = cap_y + 2.0 + len(cap_cn) * 9.6 + 9.0
 
     # --- Abschnitte
     def pair_layout(self, en, cn, size, en_lead, cn_lead, en_bold=False):
@@ -578,6 +588,36 @@ class Doc:
             i = last
         self.y += SECTION_PAD
 
+    # --- Bildzeile (1 oder 2 Bilder, Bildunterschrift EN + 中文 darunter)
+    def figures(self, b):
+        from PIL import Image
+        figs = b["figures"]
+        n = len(figs)
+        total = FRAME_X1 - FRAME_X0
+        w = (total - FIG_GAP) / 2 if n > 1 else 300.0
+        x0 = FRAME_X0 if n > 1 else FRAME_X0 + (total - w) / 2
+        items, hmax = [], 0.0
+        for f in figs:
+            img = INTRO_DIR / f["image"]
+            with Image.open(img) as im:
+                iw, ih = im.size
+            h = w * ih / iw
+            en = self.ts.wrap(self.ex(f["caption"]["en"]), 7.0, w, "en")
+            cn = self.ts.wrap(self.ex(f["caption"]["cn"]), 7.0, w, "cn")
+            self.check_kinsoku(cn)
+            items.append((img, h, en, cn))
+            hmax = max(hmax, h + 9.6 + (len(en) + len(cn)) * FIG_CAP_LEAD)
+        if self.y + hmax > BOTTOM and self.y > TOP + 0.01:
+            self.new_page()
+        top = self.y
+        for i, (img, h, en, cn) in enumerate(items):
+            x = x0 + i * (w + FIG_GAP)
+            self.cv.drawImage(str(img), x, self.Y(top + h), w, h)
+            ny = top + h + 2.0
+            self.draw_lines(x, ny, [[self._italic(t) for t in ln] for ln in en], 7.0, FIG_CAP_LEAD, C666, 7.0)
+            self.draw_lines(x, ny + len(en) * FIG_CAP_LEAD, cn, 7.0, FIG_CAP_LEAD, C666, 7.0)
+        self.y = top + hmax + SECTION_PAD
+
     # --- Farbtabelle + Hinweis
     def zone_table(self):
         c, ex = self.c, self.ex
@@ -620,6 +660,8 @@ def build(c, out, cli_font):
     for b in c["blocks"]:
         if "section" in b:
             doc.section(b)
+        elif b.get("figures"):
+            doc.figures(b)
         elif b.get("zone_table"):
             doc.zone_table()
         else:

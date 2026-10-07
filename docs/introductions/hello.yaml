@@ -18,8 +18,9 @@ tagline: ISO-DE / ANSI-DE
 footer: DELTASET · premium ISO-ANSI-DE keycaps · Hello · Introduction {version}
 
 hero:
-  image: assets/hello_concept.png
-  caption: Concept render — Hello (illustrative reference, not a production / material template).
+  image: assets/hello_moa_iso_01_hero.png
+  caption: Render of the release file — Hello (illustrative reference).
+  caption_cn: 发布文件渲染图 —— Hello（仅供参考）。
 
 # Tastenzahlen laut Template (qc/inventory_hello_2026-09-28.md + qc/cluster_tastenliste_2026-10-04.md:
 # Hauptboard 109, Zusatzkappen 24)
@@ -148,6 +149,12 @@ blocks:
           Legend positions in the release file are final — please do not re-center or re-position them.
         cn: >-
           位置：修饰键、导航键与方向键上的图标水平、垂直均居中于键帽。字母水平居中、垂直位于上部。Q / E / M 上的 AltGr @ € µ 保持文件中的位置。已记录的例外：空格键字标位于图标中线下方 1.97 px（0.17 mm）。发布文件中的字符位置为最终位置，请勿重新居中或移动。
+
+  - figures:
+      - image: assets/hello_moa_studio_02_top.png
+        caption: {en: Top view., cn: 俯视图。}
+      - image: assets/hello_moa_iso_02_enter_macro.png
+        caption: {en: ISO Enter macro., cn: ISO 回车微距。}
 
   - section: size
     title: {en: Size, cn: 尺寸}
