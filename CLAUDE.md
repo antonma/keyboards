@@ -78,8 +78,10 @@ vollständiger Tabelle (z.B. „diese 40 Nodes auf diese Füllfarbe“) → `aff
     auf eine möglicherweise offene Abfrage hinweisen. Neue Tools/Bash-Muster, die Agenten regelmäßig
     brauchen, in `.claude/settings.json` → `permissions.allow` aufnehmen (nie `env`/`printenv`).
 10. **Release einer .af** nur auf Antons ausdrückliche Anweisung und nur nach board-weitem GRÜNEM
-    Voll-Sweep. Kette: `affinity-builder` (Kopie + Snapshots reduzieren) → `keycap-qa`
-    (Snapshot ≤ 1 + Sweep) → `pipeline-dev` (LFS-Commit) → `brain-scribe`. Runbook-ID
+    Voll-Sweep. Kette: `affinity-builder` (Kopie in Release-Ordner, Snapshots ≤ 1, PDF-Export) →
+    `keycap-qa` (Snapshot ≤ 1 + Sweep) → `pipeline-dev` (Introduction + QC-Checkliste bauen und
+    in den Ordner kopieren, LFS-Commit) → `brain-scribe`. Release = Ordner
+    `templates/release/<design>/<version>_<datum>/` mit 4 Dateien, s. README. Runbook-ID
     `78b7f7f7-bca0-4e12-b547-bd9bc0e10443` allen beteiligten Agenten wörtlich mitgeben.
 
 ## Repo-Struktur
@@ -100,7 +102,7 @@ templates/
   GK75-TheWell-v6.pdf              # v5 + Dolch-Cleanup + Labels + Legende-Farben
   GK75-TheWell-v7.pdf              # v6 + Uppercase Modifier Labels (aktuell)
   hersteller/                      # Arbeits-.af pro Hersteller/Design (gitignored, s.u.)
-  release/                         # Meilenstein-.af für Hersteller-Versand (Git LFS, s.u.)
+  release/                         # Hersteller-Pakete: ein Ordner je Release und Design, s. README (Git LFS, s.u.)
 designs/the-well/
   the-well-design-document-EN.docx
   the-well-design-document-CN.docx
@@ -115,12 +117,16 @@ qc/                                # QC-Inventare je Design (Node-Namen, Legende
 - Arbeits-.af unter `templates/hersteller/` sind **gitignored** (GitHub-Limit 100 MB,
   Snapshots blähen die Dateien stark auf). Bereits getrackte Altdateien dort bleiben
   vorerst getrackt — bewusst nicht automatisch entfernt.
-- Release-.af nur unter `templates/release/`, versioniert über **Git LFS**.
-- Regel **max. 1 Snapshot** pro Release-Datei + Ablauf (Details: `templates/release/README.md`):
-  1. `affinity-builder` erzeugt Kopie der Arbeitsdatei nach `templates/release/`.
-  2. Dort alle Snapshots bis auf einen reduzieren, ohne Verlauf speichern.
-  3. `keycap-qa` prüft read-only: Snapshot-Anzahl ≤ 1 + Voll-Sweep GRÜN.
-  4. Erst danach commit + push.
+- Release nur unter `templates/release/<design>/<version>_<datum>/` (seit 2026-10-07), ein Ordner
+  = komplettes Hersteller-Paket: `DELTASET_<Design>_<version>.af` + `.pdf` (Druck-Export),
+  `..._Project_Introduction_EN-CN.pdf`, `..._QC_Checklist_EN-CN.pdf` (Version nur in Ordner und
+  .af/.pdf). Alles über **Git LFS**. Flache `release_*.af` im Ordner = historisch, unverändert.
+- Regel **max. 1 Snapshot** pro Release-.af + Ablauf (Details: `templates/release/README.md`):
+  1. `affinity-builder` kopiert die Arbeitsdatei in den Release-Ordner, reduziert Snapshots auf
+     ≤ 1 (ohne Verlauf speichern) und exportiert das Druck-PDF.
+  2. `keycap-qa` prüft read-only: Snapshot-Anzahl ≤ 1 + Voll-Sweep GRÜN.
+  3. `pipeline-dev` baut Introduction + QC-Checkliste, kopiert sie in den Ordner, LFS-Commit + Push.
+  4. Introductions ohne „-draft“ erst nach Antons Versandfreigabe.
 - Handlungsanweisung für alle Agenten (design-übergreifend): Brain-DB-RUNBOOK
   `78b7f7f7-bca0-4e12-b547-bd9bc0e10443` (topic `af-release-runbook`). Begründung: ADR
   `c4033da7-a085-471f-ac1d-51e58218779d`.
